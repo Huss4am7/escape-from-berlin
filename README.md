@@ -1,2 +1,21 @@
-# escape-from-berlin
-Interactive browser game to learn German (A1) with quizzes, memory, and mini-games.
+# الهروب من برلين 🇩🇪
+
+نسخة جاهزة للرفع على GitHub و GitHub Pages.
+
+## التشغيل
+افتح `index.html` مباشرة في المتصفح.
+
+## النشر على GitHub Pages
+1. ارفع الملفات إلى مستودع جديد.
+2. من `Settings > Pages`
+3. اختر:
+   - Deploy from a branch
+   - Branch: `main`
+   - Folder: `/root`
+
+## ما تم تنظيفه
+- إصلاح علامات الاقتباس الذكية المكسورة داخل CSS
+- إصلاح المتغيرات التي كانت مكتوبة بشرطات غير صحيحة
+- تعريف `--gold-dim`
+- تصحيح `Tschüs` إلى `Tschüss`
+- إزالة الرمز غير المناسب من شجرة الجوائز واستبداله بـ `نقطة`
