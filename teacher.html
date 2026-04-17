@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Deutsch A1 — Interaktive Übungen</title>
+<title>Deutsch A1 — Lehrerwerkzeuge</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -598,7 +598,7 @@
     color: #666;
     margin-inline-start: auto;
   }
-  .{
+  .teacher-note-target {
     cursor: pointer;
     outline: 2px dashed transparent;
     outline-offset: 3px;
@@ -737,8 +737,8 @@
 <!-- HEADER -->
 <div class="header">
   <div>
-    <div class="header-title">Deutsch A1 — تمارين تفاعلية</div>
-    <div class="header-sub">ملخص الدروس 1 و 2 · نسخة تفاعلية للطلاب · جاهزة لـ GitHub Pages</div>
+    <div class="header-title">Deutsch A1 — نسخة المعلم</div>
+    <div class="header-sub">ملخص الدروس 1 و 2 · نسخة المعلم التفاعلية · جاهزة لـ GitHub Pages</div>
   </div>
   <div class="header-flag">🇩🇪</div>
 </div>
@@ -757,6 +757,17 @@
   <a href="#hausaufgabe">📝 الواجب</a>
 </nav>
 
+
+<div class="teacher-toolbar" id="teacherToolbar">
+  <span class="tool-label">🧑‍🏫 أدوات المعلم</span>
+  <button type="button" id="highlightBtn" onclick="highlightSelection()">تظليل النص المحدد</button>
+  <button type="button" id="commentBtn" onclick="commentSelection()">تعليق على النص المحدد</button>
+  <button type="button" id="noteModeBtn" onclick="toggleTeacherNoteMode()">وضع الملاحظات على العناصر</button>
+  <button type="button" onclick="clearTeacherAnnotations()">مسح الأدوات التعليمية</button>
+  <button type="button" onclick="toggleAnswers()">إظهار / إخفاء الحلول</button>
+  <button type="button" onclick="clearAllFields()">مسح إجابات الطالب</button>
+  <span class="teacher-status" id="teacherStatus">يمكنك تحديد نص أو تشغيل وضع الملاحظات.</span>
+</div>
 
 <div class="page">
 
@@ -778,22 +789,22 @@
   </div>
 
   <!-- BEGRÜSSUNG -->
-  <div class="card">
+  <div class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> التحية والوداع — Begrüßung & Abschied</div>
     <div class="phrases-grid">
-      <div class="phrase-item"><span class="phrase-de">Guten Morgen</span><div class="fill-cell"><input class="fillable" data-key="gmorgen" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">صباح الخير (6–11)</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Guten Tag</span><div class="fill-cell"><input class="fillable" data-key="gtag" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">يوم سعيد / نهارك سعيد (11–18)</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Guten Abend</span><div class="fill-cell"><input class="fillable" data-key="gabend" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">مساء الخير (18+)</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Gute Nacht</span><div class="fill-cell"><input class="fillable" data-key="gnacht" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">ليلة سعيدة</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Hallo / Hi</span><div class="fill-cell"><input class="fillable" data-key="hallo" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">مرحبا (غير رسمي)</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Auf Wiedersehen</span><div class="fill-cell"><input class="fillable" data-key="aufw" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">مع السلامة (رسمي)</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Tschüss</span><div class="fill-cell"><input class="fillable" data-key="tschuess" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">باي / مع السلامة (غير رسمي)</div></div></div>
-      <div class="phrase-item"><span class="phrase-de">Servus / Ciao</span><div class="fill-cell"><input class="fillable" data-key="servus" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">باي (بافاريا / النمسا)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Guten Morgen</span><div class="fill-cell"><input class="fillable" data-key="gmorgen" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">صباح الخير (6–11)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Guten Tag</span><div class="fill-cell"><input class="fillable" data-key="gtag" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">يوم سعيد / نهارك سعيد (11–18)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Guten Abend</span><div class="fill-cell"><input class="fillable" data-key="gabend" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">مساء الخير (18+)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Gute Nacht</span><div class="fill-cell"><input class="fillable" data-key="gnacht" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">ليلة سعيدة</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Hallo / Hi</span><div class="fill-cell"><input class="fillable" data-key="hallo" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">مرحبا (غير رسمي)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Auf Wiedersehen</span><div class="fill-cell"><input class="fillable" data-key="aufw" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">مع السلامة (رسمي)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Tschüss</span><div class="fill-cell"><input class="fillable" data-key="tschuess" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">باي / مع السلامة (غير رسمي)</div></div></div>
+      <div class="phrase-item teacher-note-target"><span class="phrase-de">Servus / Ciao</span><div class="fill-cell"><input class="fillable" data-key="servus" type="text" placeholder="اكتب الترجمة هنا"><div class="answer">باي (بافاريا / النمسا)</div></div></div>
     </div>
   </div>
 
   <!-- SICH VORSTELLEN -->
-  <div class="card">
+  <div class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> التعريف بالنفس — Sich vorstellen</div>
     <table>
       <thead><tr><th>الجملة بالألمانية</th><th>المعنى بالعربية</th><th>مثال</th></tr></thead>
@@ -806,7 +817,7 @@
         <tr class="teacher-note-target"><td class="de">Ich spreche …</td><td><input class="fillable" data-key="vorstellen6" type="text" placeholder="اكتب المعنى بالعربية"><div class="answer">أتحدث…</div></td><td class="ex">Ich spreche Arabisch.</td></tr>
       </tbody>
     </table>
-    <div class="highlight-box yellow" style="margin-top:14px">
+    <div class="highlight-box teacher-note-target yellow" style="margin-top:14px">
       <strong>❓ أسئلة مهمة:</strong><br>
       <span style="direction:ltr;display:block;margin-top:6px">
         <strong>Wie heißen Sie?</strong> / <strong>Wie heißt du?</strong> → ما اسمك؟<br>
@@ -814,7 +825,7 @@
         <strong>Wo wohnen Sie?</strong> / <strong>Wo wohnst du?</strong> → أين تسكن؟
       </span>
     </div>
-    <div class="highlight-box blue" style="margin-top:10px">
+    <div class="highlight-box teacher-note-target blue" style="margin-top:10px">
       <strong>🎩 Sie مقابل du — الرسمي وغير الرسمي:</strong><br>
       <span style="font-size:0.9rem">
         <strong>du</strong> = مع الأصدقاء، الأطفال، الزملاء<br>
@@ -824,7 +835,7 @@
   </div>
 
   <!-- PRONOMEN -->
-  <div class="card">
+  <div class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> الضمائر الشخصية — Personalpronomen</div>
     <table>
       <thead><tr><th>الضمير</th><th>المعنى</th><th>مثال</th></tr></thead>
@@ -842,44 +853,44 @@
   </div>
 
   <!-- ZAHLEN -->
-  <div id="zahlen" class="card">
+  <div id="zahlen" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> الأرقام 1–20 — Zahlen</div>
     <div class="numbers-toolbar">
       <button type="button" onclick="flipAllNumberCards()">إظهار كل الكلمات</button>
       <button type="button" onclick="resetNumberCards()">إرجاع كل البطاقات</button>
     </div>
     <div class="numbers-grid">
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">1</span></div><div class="flip-face back">eins</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">2</span></div><div class="flip-face back">zwei</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">3</span></div><div class="flip-face back">drei</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">4</span></div><div class="flip-face back">vier</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">5</span></div><div class="flip-face back">fünf</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">6</span></div><div class="flip-face back">sechs</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">7</span></div><div class="flip-face back">sieben</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">8</span></div><div class="flip-face back">acht</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">9</span></div><div class="flip-face back">neun</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">10</span></div><div class="flip-face back">zehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">11</span></div><div class="flip-face back">elf</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">12</span></div><div class="flip-face back">zwölf</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">13</span></div><div class="flip-face back">dreizehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">14</span></div><div class="flip-face back">vierzehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">15</span></div><div class="flip-face back">fünfzehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">16</span></div><div class="flip-face back">sechzehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">17</span></div><div class="flip-face back">siebzehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">18</span></div><div class="flip-face back">achtzehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">19</span></div><div class="flip-face back">neunzehn</div></div></div>
-      <div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">20</span></div><div class="flip-face back">zwanzig</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">1</span></div><div class="flip-face back">eins</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">2</span></div><div class="flip-face back">zwei</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">3</span></div><div class="flip-face back">drei</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">4</span></div><div class="flip-face back">vier</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">5</span></div><div class="flip-face back">fünf</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">6</span></div><div class="flip-face back">sechs</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">7</span></div><div class="flip-face back">sieben</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">8</span></div><div class="flip-face back">acht</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">9</span></div><div class="flip-face back">neun</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">10</span></div><div class="flip-face back">zehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">11</span></div><div class="flip-face back">elf</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">12</span></div><div class="flip-face back">zwölf</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">13</span></div><div class="flip-face back">dreizehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">14</span></div><div class="flip-face back">vierzehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">15</span></div><div class="flip-face back">fünfzehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">16</span></div><div class="flip-face back">sechzehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">17</span></div><div class="flip-face back">siebzehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">18</span></div><div class="flip-face back">achtzehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">19</span></div><div class="flip-face back">neunzehn</div></div></div>
+      <div class="flip-card teacher-note-target" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">20</span></div><div class="flip-face back">zwanzig</div></div></div>
     </div>
-    <div class="highlight-box yellow" style="margin-top:14px">
+    <div class="highlight-box teacher-note-target yellow" style="margin-top:14px">
       <strong>📌 ملاحظة:</strong> من 13 إلى 19 نضيف <strong>-zehn</strong> مثل "zehn" = 10. مثال: drei + zehn = dreizehn (13)
     </div>
   </div>
 
   <!-- ARTIKEL -->
-  <div id="artikel" class="card">
+  <div id="artikel" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> أداة التعريف — Bestimmter Artikel</div>
     <div class="article-grid">
-      <div class="article-box masc">
+      <div class="article-box teacher-note-target masc">
         <span class="article-name" style="color:#1a3a5c">der</span>
         <span class="article-label">مذكر — Maskulin</span>
         <div class="article-ex-ar">الرجل</div>
@@ -889,7 +900,7 @@
         <input class="mini-input" data-key="art2" type="text" placeholder="اكتب المثال بالألمانية">
         <div class="answer de">der Vater</div>
       </div>
-      <div class="article-box fem">
+      <div class="article-box teacher-note-target fem">
         <span class="article-name" style="color:#e63329">die</span>
         <span class="article-label">مؤنث — Feminin</span>
         <div class="article-ex-ar">المرأة</div>
@@ -899,7 +910,7 @@
         <input class="mini-input" data-key="art4" type="text" placeholder="اكتب المثال بالألمانية">
         <div class="answer de">die Mutter</div>
       </div>
-      <div class="article-box neu">
+      <div class="article-box teacher-note-target neu">
         <span class="article-name" style="color:#2d6a4f">das</span>
         <span class="article-label">محايد — Neutrum</span>
         <div class="article-ex-ar">الطفل</div>
@@ -910,22 +921,22 @@
         <div class="answer de">das Mädchen</div>
       </div>
     </div>
-    <div class="highlight-box red" style="margin-top:14px">
+    <div class="highlight-box teacher-note-target red" style="margin-top:14px">
       <strong>⚠️ مهم جداً:</strong> في الألمانية لا يوجد قاعدة ثابتة تحدد جنس الكلمة. يجب حفظ كل كلمة مع أداتها!<br>
       <span style="font-size:0.9rem; color:#555">✅ الحل: احفظ دائماً: <strong>der Mann</strong> وليس فقط <strong>Mann</strong></span>
     </div>
-    <div class="highlight-box green" style="margin-top:10px">
+    <div class="highlight-box teacher-note-target green" style="margin-top:10px">
       <strong>📌 الجمع:</strong> أداة التعريف للجمع دائماً <strong style="direction:ltr">die</strong> بغض النظر عن الجنس.<br>
       <span style="direction:ltr; font-size:0.9rem">der Mann → <strong>die</strong> Männer &nbsp;|&nbsp; das Kind → <strong>die</strong> Kinder</span>
     </div>
   </div>
 
   <!-- VERBEN -->
-  <div id="verben" class="card">
+  <div id="verben" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> تصريف الأفعال — Verbkonjugation</div>
     <div class="verb-grid">
 
-      <div class="verb-card">
+      <div class="verb-card teacher-note-target">
         <div class="verb-card-header">sein<span>يكون — to be</span></div>
         <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="sein_ich" type="text" placeholder="..."><span class="solution-inline">bin</span></div>
         <div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="sein_du" type="text" placeholder="..."><span class="solution-inline">bist</span></div>
@@ -935,7 +946,7 @@
         <div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="sein_sie" type="text" placeholder="..."><span class="solution-inline">sind</span></div>
       </div>
 
-      <div class="verb-card">
+      <div class="verb-card teacher-note-target">
         <div class="verb-card-header">heißen<span>يُدعى — to be called</span></div>
         <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="heissen_ich" type="text" placeholder="..."><span class="solution-inline">heiße</span></div>
         <div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="heissen_du" type="text" placeholder="..."><span class="solution-inline">heißt</span></div>
@@ -945,7 +956,7 @@
         <div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="heissen_sie" type="text" placeholder="..."><span class="solution-inline">heißen</span></div>
       </div>
 
-      <div class="verb-card">
+      <div class="verb-card teacher-note-target">
         <div class="verb-card-header">kommen<span>يأتي / يكون من</span></div>
         <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="kommen_ich" type="text" placeholder="..."><span class="solution-inline">komme</span></div>
         <div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="kommen_du" type="text" placeholder="..."><span class="solution-inline">kommst</span></div>
@@ -955,7 +966,7 @@
         <div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="kommen_sie" type="text" placeholder="..."><span class="solution-inline">kommen</span></div>
       </div>
 
-      <div class="verb-card">
+      <div class="verb-card teacher-note-target">
         <div class="verb-card-header">sprechen<span>يتكلم</span></div>
         <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="spreche_ich" type="text" placeholder="..."><span class="solution-inline">spreche</span></div>
         <div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="spreche_du" type="text" placeholder="..."><span class="solution-inline">sprichst</span></div>
@@ -965,7 +976,7 @@
         <div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="spreche_sie" type="text" placeholder="..."><span class="solution-inline">sprechen</span></div>
       </div>
 
-      <div class="verb-card">
+      <div class="verb-card teacher-note-target">
         <div class="verb-card-header">wohnen / leben<span>يسكن / يعيش</span></div>
         <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="wohnen_ich" type="text" placeholder="..."><span class="solution-inline">wohne</span></div>
         <div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="wohnen_du" type="text" placeholder="..."><span class="solution-inline">wohnst</span></div>
@@ -977,7 +988,7 @@
 
     </div>
 
-    <div class="highlight-box yellow" style="margin-top:16px">
+    <div class="highlight-box teacher-note-target yellow" style="margin-top:16px">
       <strong>📐 قاعدة التصريف العامة:</strong><br>
       <span style="direction:ltr; display:block; margin-top:6px; font-size:0.95rem">
         ich → <strong>-e</strong> &nbsp;|&nbsp; du → <strong>-st</strong> &nbsp;|&nbsp; er/sie/es → <strong>-t</strong><br>
@@ -988,7 +999,7 @@
   </div>
 
   <!-- WIE GEHT'S -->
-  <div class="card">
+  <div class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> كيف حالك؟ — Wie geht's?</div>
     <table>
       <thead><tr><th>السؤال</th><th>الجواب</th><th>المستوى</th></tr></thead>
@@ -1011,76 +1022,76 @@
   </div>
 
   <!-- FAMILIE WORTSCHATZ -->
-  <div id="familie" class="card">
+  <div id="familie" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> أفراد العائلة — Familienmitglieder</div>
     <div class="family-tree">
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👨</span>
         <div class="family-de">der Vater</div>
         <input class="mini-input" data-key="family_12233" type="text" placeholder="المعنى"><div class="answer">الأب</div>
         <div class="family-plural">Pl: die Väter</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👩</span>
         <div class="family-de">die Mutter</div>
         <input class="mini-input" data-key="family_38194" type="text" placeholder="المعنى"><div class="answer">الأم</div>
         <div class="family-plural">Pl: die Mütter</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👦</span>
         <div class="family-de">der Sohn</div>
         <input class="mini-input" data-key="family_94059" type="text" placeholder="المعنى"><div class="answer">الابن</div>
         <div class="family-plural">Pl: die Söhne</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👧</span>
         <div class="family-de">die Tochter</div>
         <input class="mini-input" data-key="family_54084" type="text" placeholder="المعنى"><div class="answer">الابنة</div>
         <div class="family-plural">Pl: die Töchter</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👱‍♂️</span>
         <div class="family-de">der Bruder</div>
         <input class="mini-input" data-key="family_76252" type="text" placeholder="المعنى"><div class="answer">الأخ</div>
         <div class="family-plural">Pl: die Brüder</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👱‍♀️</span>
         <div class="family-de">die Schwester</div>
         <input class="mini-input" data-key="family_88571" type="text" placeholder="المعنى"><div class="answer">الأخت</div>
         <div class="family-plural">Pl: die Schwestern</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👴</span>
         <div class="family-de">der Großvater / Opa</div>
         <input class="mini-input" data-key="family_65784" type="text" placeholder="المعنى"><div class="answer">الجد</div>
         <div class="family-plural">Pl: die Großväter</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👵</span>
         <div class="family-de">die Großmutter / Oma</div>
         <input class="mini-input" data-key="family_10192" type="text" placeholder="المعنى"><div class="answer">الجدة</div>
         <div class="family-plural">Pl: die Großmütter</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">🧒</span>
         <div class="family-de">das Kind</div>
         <input class="mini-input" data-key="family_92512" type="text" placeholder="المعنى"><div class="answer">الطفل</div>
         <div class="family-plural">Pl: die Kinder</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👰</span>
         <div class="family-de">die Frau / Ehefrau</div>
         <input class="mini-input" data-key="family_21054" type="text" placeholder="المعنى"><div class="answer">الزوجة</div>
         <div class="family-plural">Pl: die Frauen</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">🤵</span>
         <div class="family-de">der Mann / Ehemann</div>
         <input class="mini-input" data-key="family_51736" type="text" placeholder="المعنى"><div class="answer">الزوج</div>
         <div class="family-plural">Pl: die Männer</div>
       </div>
-      <div class="family-member">
+      <div class="family-member teacher-note-target">
         <span class="family-emoji">👫</span>
         <div class="family-de">die Geschwister</div>
         <input class="mini-input" data-key="family_27483" type="text" placeholder="المعنى"><div class="answer">الإخوة (جمع)</div>
@@ -1090,25 +1101,25 @@
   </div>
 
   <!-- POSSESSIVARTIKEL -->
-  <div id="possessiv" class="card">
+  <div id="possessiv" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> ضمائر الملكية — Possessivartikel</div>
     <p style="font-size:0.9rem;color:#666;margin-bottom:14px">تتغير نهاية ضمير الملكية حسب جنس الكلمة التي تتبعها</p>
     <div class="poss-grid">
-      <div class="poss-card">
+      <div class="poss-card teacher-note-target">
         <div class="poss-header">mein / meine<small>اكتب Possessivartikel المناسب</small></div>
         <div class="poss-row"><span class="ar-note">أخي (مذكر)</span><span><input class="mini-input" data-key="poss_m1" type="text" placeholder="mein / meine"><div class="answer de">mein Bruder</div></span></div>
         <div class="poss-row"><span class="ar-note">طفلي (محايد)</span><span><input class="mini-input" data-key="poss_m2" type="text" placeholder="mein / meine"><div class="answer de">mein Kind</div></span></div>
         <div class="poss-row"><span class="ar-note">ابنتي (مؤنث)</span><span><input class="mini-input" data-key="poss_m3" type="text" placeholder="mein / meine"><div class="answer de">meine Tochter</div></span></div>
         <div class="poss-row"><span class="ar-note">أطفالي (جمع)</span><span><input class="mini-input" data-key="poss_m4" type="text" placeholder="mein / meine"><div class="answer de">meine Kinder</div></span></div>
       </div>
-      <div class="poss-card">
+      <div class="poss-card teacher-note-target">
         <div class="poss-header">dein / deine<small>اكتب Possessivartikel المناسب</small></div>
         <div class="poss-row"><span class="ar-note">أخوك (مذكر)</span><span><input class="mini-input" data-key="poss_d1" type="text" placeholder="dein / deine"><div class="answer de">dein Bruder</div></span></div>
         <div class="poss-row"><span class="ar-note">طفلك (محايد)</span><span><input class="mini-input" data-key="poss_d2" type="text" placeholder="dein / deine"><div class="answer de">dein Kind</div></span></div>
         <div class="poss-row"><span class="ar-note">ابنتك (مؤنث)</span><span><input class="mini-input" data-key="poss_d3" type="text" placeholder="dein / deine"><div class="answer de">deine Tochter</div></span></div>
         <div class="poss-row"><span class="ar-note">أطفالك (جمع)</span><span><input class="mini-input" data-key="poss_d4" type="text" placeholder="dein / deine"><div class="answer de">deine Kinder</div></span></div>
       </div>
-      <div class="poss-card">
+      <div class="poss-card teacher-note-target">
         <div class="poss-header">Ihr / Ihre<small>اكتب Possessivartikel المناسب</small></div>
         <div class="poss-row"><span class="ar-note">أخوك / أخاك (رسمي)</span><span><input class="mini-input" data-key="poss_i1" type="text" placeholder="Ihr / Ihre"><div class="answer de">Ihr Bruder</div></span></div>
         <div class="poss-row"><span class="ar-note">طفلك (رسمي)</span><span><input class="mini-input" data-key="poss_i2" type="text" placeholder="Ihr / Ihre"><div class="answer de">Ihr Kind</div></span></div>
@@ -1116,7 +1127,7 @@
         <div class="poss-row"><span class="ar-note">أطفالك (رسمي)</span><span><input class="mini-input" data-key="poss_i4" type="text" placeholder="Ihr / Ihre"><div class="answer de">Ihre Kinder</div></span></div>
       </div>
     </div>
-    <div class="highlight-box yellow" style="margin-top:14px">
+    <div class="highlight-box teacher-note-target yellow" style="margin-top:14px">
       <strong>📐 القاعدة البسيطة:</strong>
       <span style="direction:ltr;display:block;margin-top:6px">
         مذكر + محايد → <strong>mein / dein / Ihr</strong> (بدون -e)<br>
@@ -1126,7 +1137,7 @@
   </div>
 
   <!-- HABEN -->
-  <div id="haben" class="card">
+  <div id="haben" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> فعل المِلك — haben (يملك / عنده)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
       <div>
@@ -1143,7 +1154,7 @@
         </table>
       </div>
       <div>
-        <div class="highlight-box green">
+        <div class="highlight-box teacher-note-target green">
           <strong>💬 استخدام haben:</strong><br><br>
           <div style="font-size:0.92rem">
             <div>→ عندي طفلان</div>
@@ -1159,7 +1170,7 @@
             <div class="answer de">Wir haben keine Kinder.</div>
           </div>
         </div>
-        <div class="highlight-box blue" style="margin-top:10px">
+        <div class="highlight-box teacher-note-target blue" style="margin-top:10px">
           <strong>➕ مثال إضافي:</strong><br>
           <div>→ هل عندكم أخ؟</div>
           <input class="line-input" data-key="haben_beisp4" type="text" placeholder="اكتب الجملة بالألمانية">
@@ -1170,31 +1181,31 @@
   </div>
 
   <!-- DIALOG EXAMPLE -->
-  <div class="card">
+  <div class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> حوار نموذجي — Musterdialog</div>
     <div class="dialog-box">
-      <div class="dialog-line">
+      <div class="dialog-line teacher-note-target">
         <span class="dialog-speaker">A</span>
         <div>
           <div class="dialog-text">Hallo! Ich heiße Matteo Steiner. Ich bin siebzehn.</div>
           <input class="dialog-input" data-key="dialog_79385" type="text" placeholder="اكتب الترجمة أو الشرح هنا"><div class="answer">مرحباً! اسمي ماتيو شتاينر. عمري سبعة عشر.</div>
         </div>
       </div>
-      <div class="dialog-line">
+      <div class="dialog-line teacher-note-target">
         <span class="dialog-speaker">B</span>
         <div>
           <div class="dialog-text">Woher kommst du?</div>
           <input class="dialog-input" data-key="dialog_52303" type="text" placeholder="اكتب الترجمة أو الشرح هنا"><div class="answer">من أين أنت؟</div>
         </div>
       </div>
-      <div class="dialog-line">
+      <div class="dialog-line teacher-note-target">
         <span class="dialog-speaker">A</span>
         <div>
           <div class="dialog-text">Ich komme aus der Schweiz. Ich wohne in Basel. Und du?</div>
           <input class="dialog-input" data-key="dialog_97875" type="text" placeholder="اكتب الترجمة أو الشرح هنا"><div class="answer">أنا من سويسرا. أسكن في بازل. وأنت؟</div>
         </div>
       </div>
-      <div class="dialog-line">
+      <div class="dialog-line teacher-note-target">
         <span class="dialog-speaker">B</span>
         <div>
           <div class="dialog-text">Ich komme aus Syrien. Ich habe zwei Geschwister — einen Bruder und eine Schwester.</div>
@@ -1205,7 +1216,7 @@
   </div>
 
   <!-- LERNZIEL CHECKLIST -->
-  <div class="card">
+  <div class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> ماذا تعلمت؟ — Was kann ich jetzt?</div>
     <table>
       <thead><tr><th>أستطيع الآن…</th><th>✅</th></tr></thead>
@@ -1223,15 +1234,15 @@
   </div>
 
   <!-- TIPS -->
-  <div id="tipps" class="card">
+  <div id="tipps" class="card teacher-note-target">
     <div class="card-title"><span class="dot"></span> نصائح للتعلم — Lerntipps</div>
 
-    <div class="tip-intro">
+    <div class="tip-intro teacher-note-target">
       أقوى طرق التعلّم ليست عادةً الأكثر بهرجة، بل الأكثر ثباتاً ووضوحاً في التطبيق: <strong>الاسترجاع المتباعد</strong>، <strong>المدخلات المفهومة</strong>، <strong>الإنتاج مع تصحيح</strong>، و<strong>العمل المقصود على النطق</strong>. أمّا إعادة القراءة بشكل سلبي أو النسخ المتكرر بلا تفكير فليسا من أكثر الأساليب فاعلية على المدى الطويل.
     </div>
 
     <div class="tips-grid">
-      <div class="tip-item">
+      <div class="tip-item teacher-note-target">
         <div class="tip-kicker">1 · Impact pro Minute</div>
         <div class="tip-title">🧠 الاسترجاع المتباعد — Spaced Retrieval mit Flashcards / SRS</div>
         <div class="tip-body">
@@ -1241,7 +1252,7 @@
         </div>
       </div>
 
-      <div class="tip-item">
+      <div class="tip-item teacher-note-target">
         <div class="tip-kicker">2 · Mengenmotor</div>
         <div class="tip-title">📚 الكثير من المدخلات المفهومة — Lesen und Hören auf passendem Niveau</div>
         <div class="tip-body">
@@ -1251,7 +1262,7 @@
         </div>
       </div>
 
-      <div class="tip-item">
+      <div class="tip-item teacher-note-target">
         <div class="tip-kicker">3 · Fehler sichtbar machen</div>
         <div class="tip-title">✍️ إنتاج قصير مع تصحيح واضح — Output mit Korrekturfeedback</div>
         <div class="tip-body">
@@ -1261,7 +1272,7 @@
         </div>
       </div>
 
-      <div class="tip-item">
+      <div class="tip-item teacher-note-target">
         <div class="tip-kicker">4 · Deutsch-spezifischer Hebel</div>
         <div class="tip-title">🏷️ تعلّم الأسماء كحزم لغوية — Artikel + Genus als Chunk</div>
         <div class="tip-body">
@@ -1271,7 +1282,7 @@
         </div>
       </div>
 
-      <div class="tip-item">
+      <div class="tip-item teacher-note-target">
         <div class="tip-kicker">5 · Satzgefühl aufbauen</div>
         <div class="tip-title">🧩 لاحظ بنية الجملة الألمانية — Satzklammer, Verbzweit, Verbende</div>
         <div class="tip-body">
@@ -1281,7 +1292,7 @@
         </div>
       </div>
 
-      <div class="tip-item">
+      <div class="tip-item teacher-note-target">
         <div class="tip-kicker">6 · Hörbar besser werden</div>
         <div class="tip-title">🗣️ عمل نطق مقصود مع تغذية راجعة — gezielte Aussprachearbeit</div>
         <div class="tip-body">
@@ -1292,7 +1303,7 @@
       </div>
     </div>
 
-    <div class="tip-vision">
+    <div class="tip-vision teacher-note-target">
       <strong>الصورة الكبيرة:</strong> إذا التزم الطالب بهذه الخطوات عملياً، فلن يبقى الألماني مجرد جداول وقواعد على الورق، بل سيبدأ بالتحول إلى شيء <strong>يُستَخدم</strong>: كلمات تُستدعى بسرعة، جمل تُبنى بثقة، وأخطاء تُرى وتُصلح بدلاً من أن تتكرر بلا نهاية. هذا هو الشكل الذي نريده للتعلّم: أقل ضجيجاً، أكثر ثباتاً، وأقرب إلى اللغة الحقيقية.
     </div>
   </div>
@@ -1300,15 +1311,15 @@
   <!-- HOMEWORK -->
   <div id="hausaufgabe" class="homework">
     <h2>📝 الواجب البيتي — Hausaufgabe</h2>
-    <div class="hw-item">
+    <div class="hw-item teacher-note-target">
       <span class="hw-num">1</span>
       اكتب نصاً قصيراً عن نفسك وعائلتك بالألمانية (5–8 جمل). استخدم: <strong style="direction:ltr">Ich heiße / Ich komme aus / Ich habe / Mein Bruder heißt …</strong>
     </div>
-    <div class="hw-item">
+    <div class="hw-item teacher-note-target">
       <span class="hw-num">2</span>
       احفظ تصريف الأفعال الخمسة: <strong style="direction:ltr">sein, heißen, kommen, sprechen, haben</strong>
     </div>
-    <div class="hw-item">
+    <div class="hw-item teacher-note-target">
       <span class="hw-num">3</span>
       تدرب على الأرقام 1–20 — سنختبرها في الدرس القادم بسرعة 😊
     </div>
@@ -1317,7 +1328,7 @@
 </div>
 
 <div class="footer">
-  Deutsch A1 · نسخة الطلاب التفاعلية · تحفظ الإجابات محليًا في المتصفح · جاهزة لـ GitHub Pages
+  Deutsch A1 · نسخة المعلم · أدوات تمييز وملاحظات محلية في المتصفح · جاهزة لـ GitHub Pages
 </div>
 
 
