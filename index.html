@@ -295,8 +295,8 @@ padding:20px 10px;cursor:pointer;transition:all .2s;text-align:center;color:var(
 
 /* Satzpuzzle */
 .sp-sentence{min-height:54px;background:var(--s1);border:2px dashed var(--bd);border-radius:10px;
-display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;
-padding:12px;margin-bottom:14px;transition:border-color .2s}
+display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:flex-start;
+padding:12px;margin-bottom:14px;transition:border-color .2s;direction:ltr}
 .sp-sentence.ok{border-color:var(--grn);border-style:solid}
 .sp-sentence.no{border-color:var(--red);border-style:solid}
 .sp-pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px;min-height:50px}
@@ -558,6 +558,7 @@ html{
     <button class="btn br" onclick="adjScore(false)" style="margin:0">❌ خطأ −10</button>
   </div>
   <button class="btn bg millbtn" id="millBtn" onclick="goMillionaire()">👑 تحدي المليون</button>
+  <button class="btn bx" onclick="stopTimer();show('sc-levels')" style="margin-top:6px">← الرئيسية</button>
 </div>
 
 <!-- ══ SCREEN: MILLIONAIRE ══ -->
@@ -1180,8 +1181,11 @@ function initBanana(){
   updBDisp();
 }
 function renderBWords(){
-  document.getElementById('bTargetWords').innerHTML=bTarget.map(w=>`
-    <div class="bword ${bFound.includes(w.de)?'found':''}">${w.de} (${w.de.length}) — ${w.ar}</div>`).join('');
+  document.getElementById('bTargetWords').innerHTML=bTarget.map(w=>{
+    const found=bFound.includes(w.de);
+    const hint=found ? w.de : w.de[0]+w.de.slice(1).replace(/./g,'–');
+    return `<div class="bword ${found?'found':''}" style="direction:ltr;letter-spacing:3px">${hint} (${w.de.length}) — ${w.ar}</div>`;
+  }).join('');
 }
 function selBTile(letter,tile){
   if(tile.classList.contains('used')) return;
@@ -1425,7 +1429,7 @@ function renderSatz(){
   sent.className='sp-sentence';
   sent.innerHTML=spPlaced.length?spPlaced.map((w,i)=>`
     <span class="word-chip placed" onclick="unplace(${i})">${w}</span>`).join('')
-    :`<span style="color:var(--dim);font-size:.8rem">اضغط الكلمات لترتيبها…</span>`;
+    :`<span style="color:var(--dim);font-size:.8rem;direction:rtl;width:100%;text-align:center">اضغط الكلمات لترتيبها…</span>`;
   pool.innerHTML=spWords.map((w,i)=>`
     <span class="word-chip" onclick="placeWord(${i})">${w}</span>`).join('');
 }
