@@ -769,6 +769,99 @@ const QUESTIONS=[
    opts:['الاسم الأول','اسم العائلة','اسم المدينة','رقم الهاتف'],ans:1},
   {cat:'📚 المفردات',color:'#ff9800',q:'ما معنى "Postleitzahl"؟',de:'PLZ',
    opts:['رقم الهاتف','رقم المنزل','الرمز البريدي','رقم الجواز'],ans:2},
+  // ── NEU: Uhrzeiten ──
+  {cat:'🕐 الوقت',color:'#e91e63',q:'كيف تقول "الساعة 12" بالألمانية؟',de:'Es ist zwölf Uhr.',
+   opts:['Es ist zwei Uhr.','Es ist zwölf Uhr.','Es ist zehn Uhr.','Es ist elf Uhr.'],ans:1},
+  {cat:'🕐 الوقت',color:'#e91e63',q:'ماذا يعني "zehn vor elf"؟',de:'10 vor 11',
+   opts:['الساعة 11:10','الساعة 10:50','الساعة 10:11','الساعة 11:00'],ans:1},
+  {cat:'🕐 الوقت',color:'#e91e63',q:'ماذا يعني "fünf nach elf"؟',de:'5 nach 11',
+   opts:['الساعة 10:55','الساعة 11:05','الساعة 11:50','الساعة 5:11'],ans:1},
+  {cat:'🕐 الوقت',color:'#e91e63',q:'كيف تسأل عن الوقت بشكل رسمي؟',de:'Wie spät ist es, bitte?',
+   opts:['Wann ist es?','Wie viel Uhr?','Wie spät ist es, bitte?','Was ist die Zeit?'],ans:2},
+  {cat:'🕐 الوقت',color:'#e91e63',q:'ماذا يعني "vor" في سياق الوقت؟',de:'zehn vor zwölf',
+   opts:['بعد','قبل','في تمام','ونصف'],ans:1},
+
+  // ── NEU: Lebensmittel & Artikel ──
+  {cat:'🥛 المفردات الجديدة',color:'#ff6f00',q:'ما هو مذكر "der Käse"؟',de:'der Käse = الجبن',
+   opts:['مؤنث','مذكر','محايد','جمع'],ans:1},
+  {cat:'🥛 المفردات الجديدة',color:'#ff6f00',q:'ما معنى "die Milch"؟',de:'die Milch',
+   opts:['اللحم','الحليب','الخبز','البيضة'],ans:1},
+  {cat:'🥛 المفردات الجديدة',color:'#ff6f00',q:'ما معنى "das Fleisch"؟',de:'das Fleisch',
+   opts:['الخضروات','الحليب','اللحم','الجبن'],ans:2},
+  {cat:'🥛 المفردات الجديدة',color:'#ff6f00',q:'أي منها محايد (das)؟',de:'Welches ist Neutrum?',
+   opts:['die Milch','der Käse','das Brot','die Banane'],ans:2},
+  {cat:'🥛 المفردات الجديدة',color:'#ff6f00',q:'كيف تنفي وجود شيء مذكر بالألمانية؟',de:'Das ist ___ Apfel.',
+   opts:['nicht','kein','keine','ein'],ans:1},
+  {cat:'🥛 المفردات الجديدة',color:'#ff6f00',q:'أكمل: "Das ist ___ Orange."',de:'eine / keine Orange',
+   opts:['ein','kein','eine','keine — والصحيح للمؤنث: eine'],ans:2},
+
+  // ── NEU: Familie ──
+  {cat:'👨‍👩‍👧 العائلة',color:'#8bc34a',q:'ما معنى "der Sohn"؟',de:'der Sohn',
+   opts:['الابنة','الأخ','الابن','الأب'],ans:2},
+  {cat:'👨‍👩‍👧 العائلة',color:'#8bc34a',q:'ما معنى "die Tochter"؟',de:'die Tochter',
+   opts:['الأم','الابنة','الأخت','الجدة'],ans:1},
+  {cat:'👨‍👩‍👧 العائلة',color:'#8bc34a',q:'ما جمع "der Bruder"؟',de:'Pl: die ___',
+   opts:['die Bruders','die Brüder','die Bruderen','die Bruder'],ans:1},
+  {cat:'👨‍👩‍👧 العائلة',color:'#8bc34a',q:'ما معنى "die Geschwister"؟',de:'die Geschwister',
+   opts:['الأجداد','الأبناء','الإخوة والأخوات مجتمعين','الزوجان'],ans:2},
+  {cat:'👨‍👩‍👧 العائلة',color:'#8bc34a',q:'ما معنى "die Großmutter"؟',de:'die Großmutter',
+   opts:['الأم','الجدة','العمة','الأخت الكبرى'],ans:1},
+
+  // ── NEU: Possessivpronomen ──
+  {cat:'📐 القواعد',color:'#00e676',q:'أي صيغة صحيحة مع اسم مذكر؟',de:'___ Bruder (ملكيتي)',
+   opts:['meine Bruder','meinen Bruder','mein Bruder','meinem Bruder'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'أكمل: "___ Tochter" (ملكيتك - غير رسمي)؟',de:'dein / deine?',
+   opts:['dein Tochter','deine Tochter','deinen Tochter','deiner Tochter'],ans:1},
+  {cat:'📐 القواعد',color:'#00e676',q:'متى تضاف اللاحقة -e لضمائر الملكية؟',de:'mein → meine',
+   opts:['مع المذكر','مع المحايد','مع المؤنث والجمع','دائماً'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'كيف تقول "أطفالك" رسمياً؟',de:'Ihr/Ihre Kinder?',
+   opts:['Ihr Kinder','Ihre Kinder','Ihren Kinder','Ihrem Kinder'],ans:1},
+
+  // ── NEU: haben-Konjugation ──
+  {cat:'📐 القواعد',color:'#00e676',q:'تصريف "haben" مع "du"؟',de:'du ___',
+   opts:['haben','habe','hast','hat'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'تصريف "haben" مع "er/sie/es"؟',de:'er ___',
+   opts:['haben','habe','hast','hat'],ans:3},
+  {cat:'📐 القواعد',color:'#00e676',q:'تصريف "haben" مع "wir"؟',de:'wir ___',
+   opts:['habt','hat','haben','hast'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'أي جملة صحيحة؟',de:'haben — عنده أخت',
+   opts:['Er habe eine Schwester.','Er hat eine Schwester.','Er haben eine Schwester.','Er hast eine Schwester.'],ans:1},
+
+  // ── NEU: wollen vs. möchten + leben vs. wohnen ──
+  {cat:'📐 القواعد',color:'#00e676',q:'ما الفرق بين "wollen" و "möchten"؟',de:'wollen / möchten',
+   opts:['لا فرق','wollen مباشر/قوي، möchten مؤدب','möchten للماضي','wollen للمستقبل فقط'],ans:1},
+  {cat:'📐 القواعد',color:'#00e676',q:'أين يذهب الفعل الأصلي مع "möchten"؟',de:'Ich möchte Brot ___.',
+   opts:['في المنتصف','في البداية','في نهاية الجملة كمصدر','لا يتغير موقعه'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'ما الفرق بين "leben" و "wohnen"؟',de:'Ich lebe in München / Ich wohne in der Innenstadt.',
+   opts:['لا فرق بينهما','leben عام (يعيش)، wohnen محدد (يسكن في عنوان)','leben للماضي','wohnen للمدن فقط'],ans:1},
+
+  // ── NEU: Transport & Orte ──
+  {cat:'🚉 السفر',color:'#00bcd4',q:'ما معنى "der Flughafen"؟',de:'der Flughafen',
+   opts:['الفندق','المحطة','المطار','مكتب البريد'],ans:2},
+  {cat:'🚉 السفر',color:'#00bcd4',q:'ما معنى "das Hotel"؟',de:'das Hotel',
+   opts:['الفندق','المطار','سيارة الأجرة','المحطة'],ans:0},
+  {cat:'🚉 السفر',color:'#00bcd4',q:'ما معنى "die Post"؟',de:'die Post',
+   opts:['البريد / مكتب البريد','المحطة','الفندق','المطار'],ans:0},
+  {cat:'🚉 السفر',color:'#00bcd4',q:'كيف تقول "إلى المطار، من فضلك" للتاكسي؟',de:'Zum Flughafen, bitte.',
+   opts:['Nach Flughafen, bitte.','Zu Flughafen, bitte.','Zum Flughafen, bitte.','An Flughafen, bitte.'],ans:2},
+  {cat:'🚉 السفر',color:'#00bcd4',q:'ماذا يعني "Gern."؟',de:'Gern. / Gerne.',
+   opts:['لا مشكلة / بكل سرور','شكراً','عفواً','ليس ممكناً'],ans:0},
+  {cat:'🚉 السفر',color:'#00bcd4',q:'ماذا يعني "Gleis" في سياق القطار؟',de:'Gleis sechs.',
+   opts:['القطار','التذكرة','الرصيف رقم…','المحطة'],ans:2},
+
+  // ── NEU: Preise & Mengen ──
+  {cat:'💶 الأسعار',color:'#9c27b0',q:'ما اختصار "Kilogramm"؟',de:'1 kg',
+   opts:['km','kg','kl','ko'],ans:1},
+  {cat:'💶 الأسعار',color:'#9c27b0',q:'كيف تسأل عن السعر؟',de:'Was kostet ...?',
+   opts:['Wie viel ist ...?','Was kostet ...?','Wie heißt ...?','Was ist ...?'],ans:1},
+  {cat:'💶 الأسعار',color:'#9c27b0',q:'ما معنى "Das macht … Euro."؟',de:'Das macht 5 Euro.',
+   opts:['هذا يصنع...','هذا يكلّف... يورو','هذا جيد','هذا ليس ممكناً'],ans:1},
+
+  // ── NEU: Komposita ──
+  {cat:'🔤 تركيب الكلمات',color:'#795548',q:'ما القاعدة في تركيب الكلمات (Komposita)؟',de:'Milch + Reis = Milchreis',
+   opts:['الكلمة الأولى هي الأساسية','الكلمة الأخيرة هي الأساسية وتحدد المعنى والجنس','كلاهما متساويان','الجنس يأتي من الكلمة الأطول'],ans:1},
+  {cat:'🔤 تركيب الكلمات',color:'#795548',q:'ما معنى "Schokoladeneis"؟',de:'Schokolade + Eis',
+   opts:['شوكولاتة فقط','ماء الشوكولاتة','بوظة بالشوكولاتة','كعكة الشوكولاتة'],ans:2},
 ];
 
 const MILL_Qs=[
@@ -786,6 +879,20 @@ const MILL_Qs=[
    opts:['Wie ist dein Name?','Wie heißen Sie?','Was ist Ihr Name?','B و C كلاهما صحيح'],ans:3},
   {q:'ما معنى "Jetzt arbeite ich als..."؟',
    opts:['أنا طالب','أعمل الآن كـ…','أسكن في…','أنا من…'],ans:1},
+  {q:'ما الفرق بين "vor" و "nach" في الوقت؟',
+   opts:['vor=بعد، nach=قبل','vor=قبل، nach=بعد','كلاهما تعني "بعد"','لا فرق'],ans:1},
+  {q:'أكمل: "Ich ___ einen Bruder und eine Schwester."',
+   opts:['bin','habe','komme','wohne'],ans:1},
+  {q:'كيف تقول "طفلتي" (مؤنث)؟',
+   opts:['mein Tochter','meinen Tochter','meine Tochter','meiner Tochter'],ans:2},
+  {q:'أي جملة تعبر عن رغبة مؤدبة؟',
+   opts:['Ich will Kaffee!','Ich möchte einen Kaffee, bitte.','Gib mir Kaffee.','Kaffee jetzt!'],ans:1},
+  {q:'ما جنس "der Bahnhof"؟',
+   opts:['مؤنث','محايد','مذكر','لا جنس له'],ans:2},
+  {q:'"Zum Hotel, bitte." — متى تقول هذه الجملة؟',
+   opts:['عند التحية','في التاكسي أو وسيلة النقل','عند الوداع','عند الطلب في مطعم'],ans:1},
+  {q:'ما معنى البادئة "ent-" في الكلمات الألمانية؟',
+   opts:['تعزيز المعنى','عكس أو إلغاء المعنى الأصلي','تصغير الكلمة','لا تأثير لها'],ans:1},
 ];
 const MONEY=[500,1000,2000,4000,8000,16000,32000,64000,125000,250000,1000000];
 
@@ -953,6 +1060,10 @@ const BWORDS=[
   {de:'LAND',ar:'بلد'},{de:'KURS',ar:'دورة'},{de:'BUCH',ar:'كتاب'},
   {de:'TAG',ar:'يوم'},{de:'NACHT',ar:'ليل'},{de:'EINS',ar:'واحد'},
   {de:'VIER',ar:'أربعة'},{de:'ACHT',ar:'ثمانية'},{de:'AUCH',ar:'أيضاً'},
+  // NEU — Lebensmittel & Familie & Transport:
+  {de:'MILCH',ar:'حليب'},{de:'BROT',ar:'خبز'},{de:'KÄSE',ar:'جبن'},
+  {de:'SOHN',ar:'ابن'},{de:'TAXI',ar:'تاكسي'},{de:'HOTEL',ar:'فندق'},
+  {de:'POST',ar:'بريد'},{de:'KEIN',ar:'لا يوجد'},{de:'UHRZEIT',ar:'وقت الساعة'},
 ];
 let bTarget=[],bFound=[],bSel=[],bTiles=[];
 function initBanana(){
@@ -1125,6 +1236,16 @@ const DDD=[
   {w:'Kind',art:'das',tr:'طفل'},{w:'Buch',art:'das',tr:'كتاب'},{w:'Auto',art:'das',tr:'سيارة'},
   {w:'Haus',art:'das',tr:'منزل'},{w:'Land',art:'das',tr:'بلد'},{w:'Wasser',art:'das',tr:'ماء'},
   {w:'Formular',art:'das',tr:'استمارة'},{w:'Foto',art:'das',tr:'صورة'},{w:'Alphabet',art:'das',tr:'أبجدية'},
+  {w:'Sohn',art:'der',tr:'الابن'},{w:'Bruder',art:'der',tr:'الأخ'},{w:'Großvater',art:'der',tr:'الجد'},
+  {w:'Flughafen',art:'der',tr:'المطار'},{w:'Euro',art:'der',tr:'اليورو'},
+  {w:'Tochter',art:'die',tr:'الابنة'},{w:'Schwester',art:'die',tr:'الأخت'},{w:'Großmutter',art:'die',tr:'الجدة'},
+  {w:'Milch',art:'die',tr:'الحليب'},{w:'Post',art:'die',tr:'البريد'},
+  {w:'Banane',art:'die',tr:'الموزة'},{w:'Tomate',art:'die',tr:'الطماطم'},
+  {w:'Birne',art:'die',tr:'الكمثرى'},{w:'Orange',art:'die',tr:'البرتقالة'},
+  {w:'Hotel',art:'das',tr:'الفندق'},{w:'Taxi',art:'das',tr:'سيارة الأجرة'},
+  {w:'Fleisch',art:'das',tr:'اللحم'},{w:'Brot',art:'das',tr:'الخبز'},
+  {w:'Ei',art:'das',tr:'البيضة'},{w:'Brötchen',art:'das',tr:'الخبز الصغير'},
+  {w:'Würstchen',art:'das',tr:'النقانق'},{w:'Mehl',art:'das',tr:'الدقيق'},
 ];
 let dddPts=0,dddStr=0,dddQ=0,dddCur=null,dddLocked=false;
 function initDDD(){dddPts=0;dddStr=0;dddQ=0;dddLocked=false;updDDDhud();nextDDD();}
@@ -1164,16 +1285,27 @@ function updDDDhud(){
 
 // ── Satzpuzzle ──
 const SATZ=[
+  // Bestehend (bewährt):
   {de:['Ich','heiße','Ahmed','.'],tr:'اسمي أحمد.'},
   {de:['Ich','komme','aus','Syrien','.'],tr:'أنا من سوريا.'},
-  {de:['Ich','spreche','Arabisch','.'],tr:'أنا أتكلم العربية.'},
-  {de:['Wie','heißen','Sie','?'],tr:'ما اسمك (رسمي)؟'},
   {de:['Woher','kommen','Sie','?'],tr:'من أين أنت؟'},
-  {de:['Ich','wohne','in','Augsburg','.'],tr:'أسكن في أوغسبورغ.'},
-  {de:['Das','ist','mein','Name','.'],tr:'هذا اسمي.'},
-  {de:['Guten','Morgen','!'],tr:'صباح الخير!'},
-  {de:['Ich','lerne','Deutsch','.'],tr:'أتعلم الألمانية.'},
   {de:['Entschuldigung',',','wo','ist','der','Bahnhof','?'],tr:'عذراً، أين المحطة؟'},
+  // NEU — Uhrzeiten:
+  {de:['Es','ist','zwölf','Uhr','.'],tr:'الساعة الثانية عشرة.'},
+  {de:['Wie','spät','ist','es','bitte','?'],tr:'كم الساعة، من فضلك؟'},
+  {de:['Es','ist','fünf','vor','elf','.'],tr:'الساعة الحادية عشرة إلا خمس دقائق.'},
+  // NEU — Familie:
+  {de:['Ich','habe','zwei','Geschwister','.'],tr:'عندي أخوان.'},
+  {de:['Er','hat','eine','Schwester','.'],tr:'عنده أخت.'},
+  {de:['Mein','Bruder','heißt','Karim','.'],tr:'اسم أخي كريم.'},
+  // NEU — Transport:
+  {de:['Zum','Flughafen',',','bitte','.'],tr:'إلى المطار، من فضلك.'},
+  {de:['Wann','fährt','ein','Zug','nach','Berlin','?'],tr:'متى يغادر القطار إلى برلين؟'},
+  // NEU — Lebensmittel:
+  {de:['Haben','wir','noch','Milch','?'],tr:'هل عندنا حليب؟'},
+  {de:['Das','ist','kein','Apfel',',','das','ist','eine','Birne','.'],tr:'هذه ليست تفاحة، هذه كمثرى.'},
+  // NEU — möchten:
+  {de:['Ich','möchte','einen','Kaffee',',','bitte','.'],tr:'أرغب في قهوة، من فضلك.'},
 ];
 let spPts=0,spQ=0,spWords=[],spPlaced=[];
 function initSatz(){spPts=0;spQ=0;nextSatz();}
@@ -1215,16 +1347,30 @@ function checkSatz(){
 
 // ── Lückentext ──
 const LUECKE=[
-  {tpl:'Ich ___ Ahmed.',tr:'اسمي أحمد.',blank:'heiße',wrong:['komme','bin','spreche']},
-  {tpl:'Ich ___ aus Syrien.',tr:'أنا من سوريا.',blank:'komme',wrong:['heiße','wohne','lerne']},
-  {tpl:'Guten ___ !',tr:'صباح الخير!',blank:'Morgen',wrong:['Abend','Tag','Nacht']},
-  {tpl:'Ich ___ Arabisch.',tr:'أتكلم العربية.',blank:'spreche',wrong:['lerne','heiße','bin']},
+  // Bewährt:
   {tpl:'Wie ___ Sie?',tr:'ما اسمك (رسمي)؟',blank:'heißen',wrong:['kommen','wohnen','sprechen']},
   {tpl:'Ich wohne ___ Augsburg.',tr:'أسكن في أوغسبورغ.',blank:'in',wrong:['aus','nach','bei']},
-  {tpl:'Ich lerne ___ .',tr:'أتعلم الألمانية.',blank:'Deutsch',wrong:['Arabisch','Englisch','Französisch']},
   {tpl:'___ Wiedersehen!',tr:'إلى اللقاء!',blank:'Auf',wrong:['Mit','Für','Bei']},
-  {tpl:'Mein ___ ist Müller.',tr:'اسم عائلتي مولر.',blank:'Familienname',wrong:['Vorname','Adresse','Beruf']},
-  {tpl:'___ Sie Arabisch?',tr:'هل تتكلم العربية (رسمي)؟',blank:'Sprechen',wrong:['Kommen','Heißen','Wohnen']},
+  // NEU — Uhrzeiten:
+  {tpl:'Es ist zehn ___ elf.',tr:'الساعة الحادية عشرة إلا عشر دقائق.',blank:'vor',wrong:['nach','bis','und']},
+  {tpl:'Es ist fünf ___ zwölf.',tr:'الساعة الثانية عشرة وخمس دقائق.',blank:'nach',wrong:['vor','bis','um']},
+  {tpl:'Wie ___ ist es, bitte?',tr:'كم الساعة، من فضلك؟',blank:'spät',wrong:['alt','viel','groß']},
+  // NEU — haben:
+  {tpl:'Ich ___ zwei Kinder.',tr:'عندي طفلان.',blank:'habe',wrong:['bin','komme','wohne']},
+  {tpl:'Er ___ eine Schwester.',tr:'عنده أخت.',blank:'hat',wrong:['habe','haben','hast']},
+  {tpl:'Wir ___ keine Kinder.',tr:'ليس عندنا أطفال.',blank:'haben',wrong:['habt','hat','habe']},
+  // NEU — Possessiv:
+  {tpl:'Das ist ___ Bruder.',tr:'هذا أخي.',blank:'mein',wrong:['meine','meinen','meinem']},
+  {tpl:'Das ist ___ Tochter.',tr:'هذه ابنتي.',blank:'meine',wrong:['mein','meinen','meiner']},
+  {tpl:'Wie heißt ___ Mutter?',tr:'ما اسم أمك (غير رسمي)؟',blank:'deine',wrong:['dein','deinen','deiner']},
+  // NEU — kein/keine:
+  {tpl:'Das ist ___ Apfel, das ist eine Birne.',tr:'هذه ليست تفاحة، هذه كمثرى.',blank:'kein',wrong:['keine','nicht','nein']},
+  {tpl:'Das ist ___ Orange.',tr:'هذه ليست برتقالة.',blank:'keine',wrong:['kein','nicht','nein']},
+  // NEU — Transport:
+  {tpl:'___ Flughafen, bitte.',tr:'إلى المطار، من فضلك.',blank:'Zum',wrong:['Zur','Nach','An']},
+  {tpl:'Wann fährt ein Zug ___ Berlin?',tr:'متى يغادر القطار إلى برلين؟',blank:'nach',wrong:['zu','in','an']},
+  // NEU — möchten:
+  {tpl:'Ich möchte einen Kaffee ___ .',tr:'أرغب في قهوة، من فضلك.',blank:'bitte',wrong:['danke','gern','auch']},
 ];
 let ltPts=0,ltStr=0,ltIdx=0;
 function initLuecke(){ltPts=0;ltStr=0;ltIdx=0;nextLuecke();}
@@ -1266,6 +1412,17 @@ const BILD=[
   {emoji:'🚉',q:'ما هذا؟',tr:'What is this?',ans:'der Bahnhof',wrong:['das Auto','die Schule','der Bus']},
   {emoji:'💧',q:'ما هذا؟',tr:'What is this?',ans:'das Wasser',wrong:['der Tee','die Milch','der Kaffee']},
   {emoji:'📱',q:'ما هذا؟',tr:'What is this?',ans:'das Handy',wrong:['das Buch','die Karte','das Foto']},
+  // NEU — Lebensmittel:
+  {emoji:'🍞',q:'ما هذا؟',tr:'Was ist das?',ans:'das Brot',wrong:['die Milch','das Fleisch','der Käse']},
+  {emoji:'🥛',q:'ما هذا؟',tr:'Was ist das?',ans:'die Milch',wrong:['das Wasser','der Saft','das Bier']},
+  {emoji:'🥚',q:'ما هذا؟',tr:'Was ist das?',ans:'das Ei',wrong:['die Tomate','die Banane','der Apfel']},
+  {emoji:'🍌',q:'ما هذا؟',tr:'Was ist das?',ans:'die Banane',wrong:['die Birne','die Orange','die Tomate']},
+  {emoji:'🍅',q:'ما هذا؟',tr:'Was ist das?',ans:'die Tomate',wrong:['die Birne','der Apfel','die Orange']},
+  {emoji:'🍊',q:'ما هذا؟',tr:'Was ist das?',ans:'die Orange',wrong:['die Tomate','die Banane','die Birne']},
+  {emoji:'🧀',q:'ما هذا؟',tr:'Was ist das?',ans:'der Käse',wrong:['das Fleisch','die Milch','das Brot']},
+  {emoji:'✈️',q:'ما هذا؟',tr:'Was ist das?',ans:'der Flughafen',wrong:['der Bahnhof','das Hotel','die Post']},
+  {emoji:'🏨',q:'ما هذا؟',tr:'Was ist das?',ans:'das Hotel',wrong:['die Post','der Bahnhof','das Haus']},
+  {emoji:'🚕',q:'ما هذا؟',tr:'Was ist das?',ans:'das Taxi',wrong:['der Bus','das Auto','der Zug']},
 ];
 let bwPts=0,bwQ=0,bwPool=[];
 function initBild(){bwPts=0;bwQ=0;bwPool=shuffle(BILD);nextBild();}
@@ -1347,6 +1504,46 @@ const ROLLE=[
      {de:'Hallo Maria! Ich heiße Ahmed. Woher kommst du?',ar:'مرحباً ماريا! اسمي أحمد. من أين أنتِ؟',ok:true},
      {de:'Auf Wiedersehen!',ar:'وداعاً!',ok:false},
      {de:'Ich spreche Arabisch.',ar:'أتكلم العربية.',ok:false},
+   ]},
+  // NEU — Am Bahnhof (aus Bildmaterial Zug-Dialog):
+  {context:'🚉 أنت في محطة القطار وتسأل عن القطار.',
+   dialog:[{role:'them',de:'Wann fährt ein Zug nach Berlin?',ar:'متى يغادر القطار إلى برلين؟'}],
+   opts:[
+     {de:'Um elf Uhr. Gleis sechs.',ar:'في الساعة الحادية عشرة. الرصيف رقم ستة.',ok:true},
+     {de:'Ich komme aus Syrien.',ar:'أنا من سوريا.',ok:false},
+     {de:'Guten Morgen!',ar:'صباح الخير!',ok:false},
+   ]},
+  // NEU — Im Taxi:
+  {context:'🚕 أنت في سيارة أجرة.',
+   dialog:[{role:'them',de:'Wohin möchten Sie?',ar:'إلى أين تريد الذهاب؟'}],
+   opts:[
+     {de:'Zum Flughafen, bitte.',ar:'إلى المطار، من فضلك.',ok:true},
+     {de:'Danke schön!',ar:'شكراً جزيلاً!',ok:false},
+     {de:'Ich habe zwei Kinder.',ar:'عندي طفلان.',ok:false},
+   ]},
+  // NEU — Im Supermarkt, Lebensmittel:
+  {context:'🛒 أنت في السوبرماركت تبحث عن شيء.',
+   dialog:[{role:'them',de:'Haben Sie Eier?',ar:'هل عندكم بيض؟'}],
+   opts:[
+     {de:'Ja, natürlich. Hier bitte.',ar:'نعم، بالطبع. تفضّل.',ok:true},
+     {de:'Ich möchte nach Berlin.',ar:'أريد الذهاب إلى برلين.',ok:false},
+     {de:'Mein Name ist Ahmed.',ar:'اسمي أحمد.',ok:false},
+   ]},
+  // NEU — Über die Familie sprechen:
+  {context:'🏠 زميلك يسألك عن عائلتك.',
+   dialog:[{role:'them',de:'Hast du Geschwister?',ar:'هل عندك إخوة أو أخوات؟'}],
+   opts:[
+     {de:'Ja, ich habe einen Bruder und eine Schwester.',ar:'نعم، عندي أخ وأخت.',ok:true},
+     {de:'Ich wohne in Augsburg.',ar:'أسكن في أوغسبورغ.',ok:false},
+     {de:'Es ist elf Uhr.',ar:'الساعة الحادية عشرة.',ok:false},
+   ]},
+  // NEU — Nach der Uhrzeit fragen:
+  {context:'🕐 تسأل شخصاً عن الوقت في الشارع.',
+   dialog:[{role:'them',de:'Entschuldigung, wie spät ist es, bitte?',ar:'عفواً، كم الساعة، من فضلك؟'}],
+   opts:[
+     {de:'Es ist zehn nach elf.',ar:'الساعة الحادية عشرة وعشر دقائق.',ok:true},
+     {de:'Ich heiße Ahmed.',ar:'اسمي أحمد.',ok:false},
+     {de:'Auf Wiedersehen!',ar:'وداعاً!',ok:false},
    ]},
 ];
 let rsPts=0,rsQ=0;
