@@ -2,271 +2,292 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>الهروب من برلين - تعلم الألمانية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>الهروب من برلين - النسخة الكاملة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f4f7fa;
-            --panel: #ffffff;
-            --text: #1a202c;
-            --dim: #718096;
-            --border: #e2e8f0;
-            --primary: #3182ce; /* Blue */
-            --accent-1: #ed64a6; /* Pink */
-            --accent-2: #38a169; /* Green */
-            --accent-3: #ecc94b; /* Gold */
-            --danger: #e53e3e;
-            --radius: 16px;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --bg: #f8fafc;
+            --panel: rgba(255, 255, 255, 0.9);
+            --primary: #0ea5e9;
+            --secondary: #8b5cf6;
+            --accent-pink: #ec4899;
+            --accent-green: #10b981;
+            --accent-gold: #f59e0b;
+            --text-dark: #0f172a;
+            --text-dim: #64748b;
+            --error: #ef4444;
+            --br: 24px;
+            --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { 
-            background: var(--bg); 
-            color: var(--text); 
             font-family: 'Tajawal', sans-serif; 
-            line-height: 1.6;
-            overflow-x: hidden;
+            background: var(--bg); 
+            color: var(--text-dark); 
             min-height: 100vh;
+            background-image: radial-gradient(circle at top right, rgba(14, 165, 233, 0.05), transparent),
+                              radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.05), transparent);
         }
 
-        /* --- Utility Classes --- */
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; position: relative; }
         .hidden { display: none !important; }
-        .sc { max-width: 600px; margin: 0 auto; padding: 20px; animation: fadeIn 0.4s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- UI Elements --- */
+        /* UI Elements */
         .card { 
             background: var(--panel); 
-            border-radius: var(--radius); 
-            padding: 25px; 
-            box-shadow: var(--shadow); 
-            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.7);
+            border-radius: var(--br); 
+            padding: 30px; 
+            box-shadow: var(--shadow);
             margin-bottom: 20px;
+            animation: slideIn 0.5s ease-out;
         }
+
+        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         .btn {
-            display: block; width: 100%; padding: 16px; border: none; border-radius: 12px;
-            font-size: 1.1rem; font-weight: 900; cursor: pointer; transition: all 0.2s;
-            text-align: center; margin-bottom: 12px; font-family: 'Tajawal', sans-serif;
-            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+            width: 100%; padding: 18px; border: none; border-radius: 18px;
+            font-size: 1.1rem; font-weight: 900; cursor: pointer; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-bottom: 12px; font-family: 'Tajawal';
         }
-        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.1); }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-ghost { background: var(--bg); color: var(--dim); border: 1px solid var(--border); box-shadow: none; }
+        .btn-p { background: var(--primary); color: white; box-shadow: 0 10px 15px -3px rgba(14,165,233,0.3); }
+        .btn-s { background: var(--secondary); color: white; }
+        .btn-ghost { background: white; border: 2px solid #e2e8f0; color: var(--text-dim); }
+        .btn:active { transform: scale(0.98); }
 
-        .title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; text-align: center; color: var(--primary); margin-bottom: 5px; }
-        .subtitle { text-align: center; color: var(--dim); margin-bottom: 30px; }
+        /* Module Specifics */
+        .grid-memory { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .mem-card { aspect-ratio: 1; background: var(--primary); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; cursor: pointer; text-align: center; padding: 5px; transition: 0.3s; }
+        .mem-card.flipped { background: white; color: var(--text-dark); border: 2px solid var(--primary); }
+        
+        .puzzle-slots { min-height: 60px; border: 2px dashed #cbd5e1; border-radius: 15px; display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; margin-bottom: 20px; }
+        .puzzle-word { background: white; border: 2px solid #e2e8f0; padding: 8px 15px; border-radius: 10px; cursor: pointer; font-weight: 700; }
 
-        /* --- Scoreboard --- */
-        .scoreboard { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 20px; }
-        .score-item { 
-            background: white; padding: 10px 15px; border-radius: 12px; border: 2px solid var(--border);
-            min-width: 100px; text-align: center; transition: all 0.3s;
-        }
-        .score-item.active { border-color: var(--primary); background: #ebf8ff; }
-        .score-name { font-size: 0.8rem; color: var(--dim); font-weight: bold; }
-        .score-pts { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--text); }
+        .banana-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; }
+        .banana-tile { aspect-ratio: 1; background: var(--accent-gold); color: white; display: flex; align-items: center; justify-content: center; font-weight: 900; border-radius: 8px; cursor: pointer; }
 
-        /* --- Grid Layouts --- */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        /* Scoreboard */
+        .scoreboard { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding: 5px; }
+        .score-pill { flex: 1; background: white; padding: 15px; border-radius: 20px; text-align: center; border: 3px solid transparent; transition: 0.3s; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .score-pill.active { border-color: var(--primary); transform: translateY(-5px); }
 
-        /* --- Specific Game UI --- */
-        .q-text { font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; text-align: center; }
-        .opt-btn { 
-            background: white; border: 2px solid var(--border); padding: 15px; border-radius: 12px;
-            text-align: right; margin-bottom: 10px; cursor: pointer; transition: 0.2s; font-weight: bold;
-        }
-        .opt-btn:hover { border-color: var(--primary); background: #f7fafc; }
-        .opt-btn.correct { background: var(--accent-2); color: white; border-color: var(--accent-2); }
-        .opt-btn.wrong { background: var(--danger); color: white; border-color: var(--danger); }
-
-        /* --- Overlay --- */
-        .overlay { 
-            position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
-            z-index: 1000; display: flex; align-items: center; justify-content: center;
-        }
-        .modal { background: white; padding: 40px; border-radius: 24px; text-align: center; width: 90%; max-width: 400px; }
+        /* Overlay */
+        .overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(8px); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .modal { background: white; width: 90%; max-width: 400px; padding: 40px; border-radius: 30px; text-align: center; }
     </style>
 </head>
 <body>
 
+<div class="container">
+    <div id="header-area" class="sc-header">
+        <h1 style="font-family:'Bebas Neue'; font-size: 3rem; text-align: center; color: var(--text-dark);">DIE FLUCHT 🇩🇪</h1>
+        <p style="text-align: center; color: var(--text-dim); font-weight: 700; margin-bottom: 30px;">الهروب من برلين</p>
+    </div>
+
+    <div id="sc-menu" class="sc">
+        <div class="card" onclick="setLvl(1)" style="border-right: 10px solid var(--accent-pink); cursor: pointer;">
+            <h2 style="color: var(--accent-pink);">المستوى الأول: الانطلاق 🏃</h2>
+            <p>Quiz & Bildwörterbuch - أساسيات اللغة</p>
+        </div>
+        <div class="card" onclick="setLvl(2)" style="border-right: 10px solid var(--primary); cursor: pointer;">
+            <h2 style="color: var(--primary);">المستوى الثاني: التحدي 🎮</h2>
+            <p>Memory & Bananagrams - القواعد والذاكرة</p>
+        </div>
+        <div class="card" onclick="setLvl(3)" style="border-right: 10px solid var(--accent-green); cursor: pointer;">
+            <h2 style="color: var(--accent-green);">المستوى الثالث: الاحتراف 🚀</h2>
+            <p>Satzpuzzle & Rollenspiel - بناء الجمل والمحادثة</p>
+        </div>
+    </div>
+
+    <div id="sc-setup" class="sc hidden">
+        <div class="card">
+            <h3 style="margin-bottom: 20px;">أسماء المتنافسين:</h3>
+            <input type="text" id="t1-name" class="btn btn-ghost" placeholder="اسم الفريق 1" style="text-align: center; cursor: text;">
+            <input type="text" id="t2-name" class="btn btn-ghost" placeholder="اسم الفريق 2" style="text-align: center; cursor: text;">
+            <button class="btn btn-p" onclick="initGame()">ابدأ المغامرة</button>
+        </div>
+    </div>
+
+    <div id="sc-game" class="sc hidden">
+        <div id="scoreboard" class="scoreboard"></div>
+        <div class="card">
+            <div id="module-title" style="font-family:'Space Mono'; color: var(--primary); font-size: 0.8rem; margin-bottom: 10px;">MODULE</div>
+            <div id="game-content">
+                </div>
+        </div>
+        <button class="btn btn-ghost" onclick="resetToMenu()">إنهاء اللعبة</button>
+    </div>
+</div>
+
 <div id="overlay" class="overlay hidden">
     <div class="modal">
-        <h2 id="modal-title" style="font-size: 2rem; margin-bottom: 10px;">🏆 ممتاز!</h2>
-        <p id="modal-body" style="color: var(--dim); margin-bottom: 25px;">لقد حصلت على نقاط إضافية.</p>
-        <button class="btn btn-primary" onclick="closeOverlay()">متابعة</button>
-    </div>
-</div>
-
-<div id="sc-levels" class="sc">
-    <h1 class="title">الهروب من برلين</h1>
-    <p class="subtitle">تحدَّ أصدقاءك في اللغة الألمانية 🇩🇪</p>
-    
-    <div class="card" onclick="startSetup(1)" style="cursor:pointer; border-right: 8px solid var(--accent-1);">
-        <h2 style="color: var(--accent-1)">المستوى 1: المبتدئين</h2>
-        <p>أسئلة عامة + من سيربح المليون</p>
-    </div>
-    
-    <div class="card" onclick="startSetup(2)" style="cursor:pointer; border-right: 8px solid var(--primary);">
-        <h2 style="color: var(--primary)">المستوى 2: المتوسط</h2>
-        <p>قواعد، ذاكرة، وتحدي الكلمات</p>
-    </div>
-    
-    <div class="card" onclick="startSetup(3)" style="cursor:pointer; border-right: 8px solid var(--accent-2);">
-        <h2 style="color: var(--accent-2)">المستوى 3: المتقدم</h2>
-        <p>بناء الجمل، نصوص، ومحادثات</p>
-    </div>
-</div>
-
-<div id="sc-setup" class="sc hidden">
-    <h2 class="title">تجهيز الفرق</h2>
-    <div class="card">
-        <p style="margin-bottom: 15px;">أدخل أسماء الفرق (2-4 فرق):</p>
-        <div id="team-inputs">
-            <input type="text" class="btn btn-ghost" placeholder="الفريق الأول" style="text-align: right; cursor: text;">
-            <input type="text" class="btn btn-ghost" placeholder="الفريق الثاني" style="text-align: right; cursor: text;">
-        </div>
-        <button class="btn btn-primary" onclick="initGame()">ابدأ اللعب الآن</button>
-        <button class="btn btn-ghost" onclick="showScreen('sc-levels')">رجوع</button>
-    </div>
-</div>
-
-<div id="sc-quiz" class="sc hidden">
-    <div id="quiz-scoreboard" class="scoreboard"></div>
-    <div class="card">
-        <div id="q-category" style="font-size: 0.7rem; color: var(--primary); font-weight: bold; text-transform: uppercase;">Grammatik</div>
-        <div id="q-text" class="q-text">Wie sagt man "Hello" auf Deutsch?</div>
-        <div id="q-options"></div>
-    </div>
-    <div class="grid-2">
-        <button class="btn btn-ghost" onclick="showScreen('sc-levels')">انسحاب</button>
-        <button class="btn btn-primary" id="next-q-btn" onclick="nextQuestion()">السؤال التالي</button>
+        <div id="m-icon" style="font-size: 4rem; margin-bottom: 15px;">🎉</div>
+        <h2 id="m-title" style="margin-bottom: 10px;">ممتاز!</h2>
+        <p id="m-desc" style="color: var(--text-dim); margin-bottom: 25px;">لقد حصلت على نقاط.</p>
+        <button class="btn btn-p" onclick="closeModal()">متابعة اللعب</button>
     </div>
 </div>
 
 <script>
-    // --- Global State ---
     let state = {
-        level: 1,
+        lvl: 1,
         teams: [],
-        currentTeamIdx: 0,
-        questions: [],
-        currentQIdx: 0,
-        scores: []
+        scores: [0, 0],
+        turn: 0,
+        currentModule: '',
+        memSelected: [],
+        bananaWords: []
     };
 
-    const QUESTIONS_POOL = [
-        { q: "Was ist der Artikel von 'Tisch'?", options: ["Der", "Die", "Das"], correct: 0, cat: "Artikel" },
-        { q: "Wie heißt 'Book' auf Deutsch?", options: ["Buch", "Heft", "Stift"], correct: 0, cat: "Vokabeln" },
-        { q: "Ich ___ nach Berlin.", options: ["gehe", "geht", "gehst"], correct: 0, cat: "Verben" },
-        { q: "Wie spät ist es? (14:00)", options: ["Zwei Uhr", "Drei Uhr", "Eins Uhr"], correct: 0, cat: "Zeit" }
-    ];
+    const DATA = {
+        1: [
+            { type: 'quiz', q: 'ماذا يعني فعل "laufen"؟', a: ['يركض', 'يأكل', 'ينام', 'يشرب'], c: 0 },
+            { type: 'image', q: 'ما هذا؟ 🍎', a: ['Der Apfel', 'Die Birne', 'Das Brot'], c: 0 }
+        ],
+        2: [
+            { type: 'memory', pairs: [['Ja', 'نعم'], ['Nein', 'لا'], ['Brot', 'خبز'], ['Wasser', 'ماء']] },
+            { type: 'banana', letters: 'ICHHABEDURST'.split(''), target: 'DURST' }
+        ],
+        3: [
+            { type: 'puzzle', ar: 'أنا أتعلم الألمانية.', de: 'Ich lerne Deutsch', words: ['Ich', 'lerne', 'Deutsch'] },
+            { type: 'cloze', text: 'Ich ___ Ahmed.', options: ['bin', 'heiße', 'wohne'], c: 1 }
+        ]
+    };
 
-    // --- Core Functions ---
-    function showScreen(screenId) {
+    function showScreen(id) {
         document.querySelectorAll('.sc').forEach(s => s.classList.add('hidden'));
-        document.getElementById(screenId).classList.remove('hidden');
+        document.getElementById(id).classList.remove('hidden');
     }
 
-    function startSetup(lvl) {
-        state.level = lvl;
-        showScreen('sc-setup');
-    }
+    function setLvl(l) { state.lvl = l; showScreen('sc-setup'); }
 
     function initGame() {
-        const inputs = document.querySelectorAll('#team-inputs input');
-        state.teams = [];
-        state.scores = [];
-        
-        inputs.forEach(inp => {
-            if(inp.value.trim() !== "") {
-                state.teams.push(inp.value.trim());
-                state.scores.push(0);
-            }
-        });
+        state.teams = [
+            document.getElementById('t1-name').value || "التنانين",
+            document.getElementById('t2-name').value || "الصقور"
+        ];
+        state.scores = [0, 0];
+        state.turn = 0;
+        updateScore();
+        nextModule();
+        showScreen('sc-game');
+    }
 
-        if(state.teams.length < 2) {
-            alert("يرجى إدخال فريقين على الأقل");
-            return;
+    function updateScore() {
+        const sb = document.getElementById('scoreboard');
+        sb.innerHTML = state.teams.map((t, i) => `
+            <div class="score-pill ${i === state.turn ? 'active' : ''}">
+                <div style="font-size: 0.7rem; font-weight: 900;">${t}</div>
+                <div style="font-family: 'Bebas Neue'; font-size: 2rem;">${state.scores[i]}</div>
+            </div>
+        `).join('');
+    }
+
+    function nextModule() {
+        const modules = DATA[state.lvl];
+        const mod = modules[Math.floor(Math.random() * modules.length)];
+        renderModule(mod);
+    }
+
+    function renderModule(mod) {
+        const root = document.getElementById('game-content');
+        document.getElementById('module-title').innerText = mod.type.toUpperCase();
+        root.innerHTML = '';
+
+        if(mod.type === 'quiz' || mod.type === 'image' || mod.type === 'cloze') {
+            root.innerHTML = `<h2 style="margin-bottom:20px;">${mod.q || mod.text || 'أجب على السؤال:'}</h2>`;
+            mod.a ? mod.a.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.className = 'btn btn-ghost';
+                b.innerText = opt;
+                b.onclick = () => check(i === mod.c);
+                root.appendChild(b);
+            }) : mod.options.forEach((opt, i) => {
+                const b = document.createElement('button');
+                b.className = 'btn btn-ghost';
+                b.innerText = opt;
+                b.onclick = () => check(i === mod.c);
+                root.appendChild(b);
+            });
         }
 
-        state.currentTeamIdx = 0;
-        state.currentQIdx = 0;
-        state.questions = [...QUESTIONS_POOL].sort(() => Math.random() - 0.5);
-        
-        updateScoreboard();
-        loadQuestion();
-        showScreen('sc-quiz');
+        if(mod.type === 'puzzle') {
+            root.innerHTML = `<p style="color:var(--text-dim); margin-bottom:10px;">رتب الجملة: ${mod.ar}</p><div id="slots" class="puzzle-slots"></div><div id="pool" style="display:flex; gap:10px; flex-wrap:wrap;"></div>`;
+            const pool = [...mod.words].sort(() => Math.random() - 0.5);
+            pool.forEach(w => {
+                const span = document.createElement('div');
+                span.className = 'puzzle-word';
+                span.innerText = w;
+                span.onclick = () => {
+                    document.getElementById('slots').appendChild(span);
+                    if(document.getElementById('slots').children.length === mod.words.length) {
+                        const res = Array.from(document.getElementById('slots').children).map(c => c.innerText).join(' ');
+                        check(res === mod.de);
+                    }
+                };
+                document.getElementById('pool').appendChild(span);
+            });
+        }
+
+        if(mod.type === 'memory') {
+            root.innerHTML = `<div class="grid-memory"></div>`;
+            const cards = [...mod.pairs.flat()].sort(() => Math.random() - 0.5);
+            const grid = root.querySelector('.grid-memory');
+            cards.forEach((val, i) => {
+                const c = document.createElement('div');
+                c.className = 'mem-card';
+                c.innerText = '?';
+                c.onclick = () => {
+                    if(state.memSelected.length < 2 && !c.classList.contains('flipped')) {
+                        c.innerText = val;
+                        c.classList.add('flipped');
+                        state.memSelected.push({val, el: c});
+                        if(state.memSelected.length === 2) {
+                            const match = mod.pairs.some(p => (p[0] === state.memSelected[0].val && p[1] === state.memSelected[1].val) || (p[1] === state.memSelected[0].val && p[0] === state.memSelected[1].val));
+                            setTimeout(() => {
+                                if(match) { check(true); } else {
+                                    state.memSelected.forEach(s => { s.el.classList.remove('flipped'); s.el.innerText = '?'; });
+                                    state.memSelected = [];
+                                }
+                            }, 800);
+                        }
+                    }
+                };
+                grid.appendChild(c);
+            });
+        }
     }
 
-    function updateScoreboard() {
-        const container = document.getElementById('quiz-scoreboard');
-        container.innerHTML = '';
-        state.teams.forEach((name, i) => {
-            const div = document.createElement('div');
-            div.className = `score-item ${i === state.currentTeamIdx ? 'active' : ''}`;
-            div.innerHTML = `
-                <div class="score-name">${name}</div>
-                <div class="score-pts">${state.scores[i]}</div>
-            `;
-            container.appendChild(div);
-        });
-    }
-
-    function loadQuestion() {
-        const q = state.questions[state.currentQIdx];
-        document.getElementById('q-text').innerText = q.q;
-        document.getElementById('q-category').innerText = q.cat;
-        
-        const optContainer = document.getElementById('q-options');
-        optContainer.innerHTML = '';
-        
-        q.options.forEach((opt, i) => {
-            const b = document.createElement('div');
-            b.className = 'opt-btn';
-            b.innerText = opt;
-            b.onclick = () => checkAnswer(i, b);
-            optContainer.appendChild(b);
-        });
-    }
-
-    function checkAnswer(idx, element) {
-        const q = state.questions[state.currentQIdx];
-        const allOpts = document.querySelectorAll('.opt-btn');
-        allOpts.forEach(btn => btn.style.pointerEvents = 'none');
-
-        if(idx === q.correct) {
-            element.classList.add('correct');
-            state.scores[state.currentTeamIdx] += 20;
-            openOverlay("✅ إجابة صحيحة", `أحسنت يا فريق ${state.teams[state.currentTeamIdx]}! حصلتم على 20 نقطة.`);
+    function check(win) {
+        if(win) {
+            state.scores[state.turn] += 20;
+            openModal("أحسنت! ✅", `حصل فريق ${state.teams[state.turn]} على 20 نقطة.`, "🔥");
         } else {
-            element.classList.add('wrong');
-            allOpts[q.correct].classList.add('correct');
-            state.scores[state.currentTeamIdx] = Math.max(0, state.scores[state.currentTeamIdx] - 10);
-            openOverlay("❌ للأسف!", "إجابة خاطئة. تم خصم 10 نقاط.");
+            state.scores[state.turn] = Math.max(0, state.scores[state.turn] - 10);
+            openModal("للأسف! ❌", "إجابة خاطئة، تم خصم 10 نقاط.", "🩹");
         }
-        updateScoreboard();
+        state.memSelected = [];
     }
 
-    function nextQuestion() {
-        state.currentTeamIdx = (state.currentTeamIdx + 1) % state.teams.length;
-        state.currentQIdx = (state.currentQIdx + 1) % state.questions.length;
-        updateScoreboard();
-        loadQuestion();
-    }
-
-    // --- UI Helpers ---
-    function openOverlay(title, body) {
-        document.getElementById('modal-title').innerText = title;
-        document.getElementById('modal-body').innerText = body;
+    function openModal(t, d, i) {
+        document.getElementById('m-title').innerText = t;
+        document.getElementById('m-desc').innerText = d;
+        document.getElementById('m-icon').innerText = i;
         document.getElementById('overlay').classList.remove('hidden');
     }
 
-    function closeOverlay() {
+    function closeModal() {
         document.getElementById('overlay').classList.add('hidden');
+        state.turn = (state.turn + 1) % 2;
+        updateScore();
+        nextModule();
     }
+
+    function resetToMenu() { location.reload(); }
 </script>
 
 </body>
