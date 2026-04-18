@@ -1,711 +1,1383 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Deutsch A1 — تمارين تفاعلية</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>الهروب من برلين 🇩🇪</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#07070f;--s1:#0e0e1c;--s2:#151523;--s3:#1c1c2e;--bd:#25253a;
+  --gold:#f5c518;--g2:#ffaa00;--cyan:#00e5ff;--pink:#ff2d78;
+  --grn:#00e676;--red:#ff3d5a;--purp:#7c4dff;
+  --txt:#eff0f8;--dim:#6a6a90;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;background:var(--bg);color:var(--txt);font-family:'Tajawal',sans-serif;overflow-x:hidden}
 
-  :root {
-    --black: #111;
-    --white: #fafaf8;
-    --yellow: #f5c518;
-    --red: #e63329;
-    --blue: #1a3a5c;
-    --lightblue: #e8f0f8;
-    --gray: #f0efec;
-    --border: #ddd;
-    --accent: #2d6a4f;
-    --accent-light: #e8f5ef;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Cairo', 'Noto Sans Arabic', sans-serif; background: var(--white); color: var(--black); font-size: 16px; line-height: 1.7; }
+/* AMBIENT */
+body::before{content:’’;position:fixed;inset:0;pointer-events:none;
+background:radial-gradient(ellipse 70% 50% at 10% 95%,rgba(255,45,120,.05) 0%,transparent 60%),
+radial-gradient(ellipse 60% 40% at 90% 5%,rgba(0,229,255,.04) 0%,transparent 60%);
+}
 
-  /* HEADER */
-  .header { background: var(--blue); color: white; padding: 20px 20px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--yellow); gap: 12px; }
-  .header-title { font-size: 1.4rem; font-weight: 900; }
-  .header-sub { font-size: 0.85rem; opacity: 0.8; margin-top: 3px; }
-  .header-flag { font-size: 2.2rem; flex-shrink: 0; }
+/* SCREENS */
+.sc{display:none;position:relative;z-index:1;max-width:680px;margin:0 auto;padding:14px 13px 40px}
+.sc.on{display:block;animation:fadeUp .3s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-  /* NAV */
-  .nav { position: sticky; top: 0; z-index: 100; background: white; border-bottom: 1.5px solid var(--border); padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  .nav::-webkit-scrollbar { display: none; }
-  .nav a { text-decoration: none; padding: 6px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; color: var(--blue); background: var(--lightblue); white-space: nowrap; flex-shrink: 0; }
-  .nav a:hover, .nav a:active { background: var(--yellow); color: var(--black); }
+/* TITLE */
+.gametitle{font-family:‘Bebas Neue’,sans-serif;font-size:2.3rem;text-align:center;padding:18px 0 2px;letter-spacing:.04em;
+background:linear-gradient(90deg,var(–pink),var(–gold),var(–cyan));
+-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gamesub{text-align:center;color:var(–dim);font-size:.82rem;margin-bottom:22px}
 
-  /* PAGE */
-  .page { max-width: 960px; margin: 0 auto; padding: 0 14px 60px; }
+/* PANEL */
+.panel{background:var(–s2);border:1px solid var(–bd);border-radius:10px;padding:18px;margin-bottom:12px}
+.ptitle{font-family:‘Space Mono’,monospace;font-size:.6rem;color:var(–gold);letter-spacing:.13em;text-transform:uppercase;margin-bottom:12px}
 
-  /* LESSON HEADER */
-  .lesson-header { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 32px 0 20px; padding-bottom: 10px; border-bottom: 3px solid var(--yellow); }
-  .lesson-badge { background: var(--yellow); color: var(--black); font-weight: 900; font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
-  .lesson-title { font-size: 1.2rem; font-weight: 900; color: var(--blue); }
-  .lesson-emoji { font-size: 1.3rem; }
+/* BUTTONS */
+.btn{display:block;width:100%;padding:15px;border:none;border-radius:8px;
+font-family:‘Tajawal’,sans-serif;font-size:1rem;font-weight:900;cursor:pointer;
+letter-spacing:.02em;transition:transform .15s,filter .2s;margin-bottom:9px}
+.btn:active{transform:scale(.96)}
+.bg{background:var(–gold);color:#000}
+.bc{background:var(–cyan);color:#000}
+.bp{background:var(–pink);color:#fff}
+.bpu{background:var(–purp);color:#fff}
+.bgr{background:var(–grn);color:#000}
+.br{background:var(–red);color:#fff}
+.bx{background:transparent;border:1px solid var(–bd);color:var(–dim)}
+.bx:hover{border-color:var(–gold);color:var(–gold)}
 
-  /* CARD */
-  .card { background: white; border: 1.5px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-  .card-title { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .card-title .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); display: inline-block; flex-shrink: 0; }
+/* LEVEL CARDS */
+.lvl-grid{display:grid;gap:12px;margin-bottom:22px}
+.lvl{background:var(–s2);border:2px solid var(–bd);border-radius:12px;padding:26px 18px;
+text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s}
+.lvl:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
+.lvl.l1:hover{border-color:var(–pink)}.lvl.l2:hover{border-color:var(–cyan)}.lvl.l3:hover{border-color:var(–grn)}
+.lvl-icon{font-size:2.6rem;margin-bottom:9px}
+.lvl-name{font-family:‘Bebas Neue’,sans-serif;font-size:1.5rem;letter-spacing:.04em;margin-bottom:4px}
+.lvl-desc{font-size:.78rem;color:var(–dim)}
 
-  /* TABLES — always scrollable on mobile */
-  .t-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 8px; border-radius: 8px; }
-  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 300px; }
-  th { background: var(--blue); color: white; padding: 9px 12px; text-align: center; font-weight: 700; font-size: 0.85rem; }
-  td { padding: 9px 12px; border-bottom: 1px solid var(--border); text-align: center; vertical-align: middle; }
-  tr:nth-child(even) td { background: var(--gray); }
-  tr:last-child td { border-bottom: none; }
-  .de { font-weight: 700; color: var(--blue); direction: ltr; }
-  .ar { color: #555; }
-  .ex { color: var(--accent); font-style: italic; font-size: 0.88em; direction: ltr; }
-  .conj-ltr { direction: ltr; }
-  .conj-ltr td, .conj-ltr th { text-align: left; direction: ltr; }
+/* TEAM SETUP */
+.teamrow{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.tf{flex:1;background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:10px 13px;border-radius:6px;font-family:‘Tajawal’,sans-serif;font-size:.93rem;transition:border-color .2s}
+.tf:focus{outline:none;border-color:var(–gold)}
 
-  /* GRIDS — mobile-first: 1 col default, 2+ on wider */
-  .phrases-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
-  .phrase-item { background: var(--lightblue); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .phrase-de { font-weight: 700; color: var(--blue); direction: ltr; font-size: 0.95rem; }
-  .phrase-ar { color: #666; font-size: 0.85rem; }
+/* SCOREBAR */
+.sbar{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
+.sbar::-webkit-scrollbar{display:none}
+.spill{flex-shrink:0;background:var(–s2);border:2px solid var(–bd);border-radius:8px;
+padding:9px 13px;text-align:center;cursor:pointer;transition:all .2s;min-width:78px}
+.spill.cur{border-color:var(–gold);box-shadow:0 0 14px rgba(245,197,24,.2)}
+.sname{font-size:.68rem;color:var(–dim);margin-bottom:2px}
+.spts{font-family:‘Bebas Neue’,sans-serif;font-size:1.7rem;line-height:1}
+.spill.cur .spts{color:var(–gold)}
+.slives{font-size:.72rem;margin-top:2px}
+.spill.dead{opacity:.35;pointer-events:none}
 
-  .article-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
-  .article-box { border-radius: 8px; padding: 14px; text-align: center; }
-  .article-box.masc { background: #e3eaf5; border: 2px solid #1a3a5c; }
-  .article-box.fem  { background: #fde8e8; border: 2px solid #e63329; }
-  .article-box.neu  { background: #e8f5ef; border: 2px solid #2d6a4f; }
-  .article-name { font-size: 1.5rem; font-weight: 900; display: block; margin-bottom: 4px; direction: ltr; }
-  .article-label { font-size: 0.82rem; color: #666; display: block; margin-bottom: 8px; }
-  .article-example { font-size: 0.9rem; font-weight: 600; direction: ltr; }
-  .article-ex-ar { font-size: 0.8rem; color: #888; margin-top: 2px; }
+/* QUIZ */
+.qhdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.cattag{font-family:‘Space Mono’,monospace;font-size:.62rem;letter-spacing:.1em;
+border:1px solid;padding:3px 10px;border-radius:3px}
+.tring{position:relative;width:50px;height:50px}
+.tring svg{transform:rotate(-90deg)}
+.tring circle{fill:none;stroke:var(–bd);stroke-width:3}
+.tarc{stroke:var(–gold);stroke-dasharray:138.2;stroke-dashoffset:0;stroke-linecap:round;transition:stroke-dashoffset 1s linear,stroke .3s}
+.tarc.hot{stroke:var(–red)}
+.tnum{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+font-family:‘Space Mono’,monospace;font-size:.82rem;font-weight:700}
+.qcard{background:var(–s2);border:1px solid var(–bd);border-radius:10px;padding:22px;margin-bottom:13px}
+.qtext{font-size:1.15rem;font-weight:700;line-height:1.6;margin-bottom:18px}
+.debox{font-family:‘Space Mono’,monospace;font-size:.9rem;color:var(–gold);
+background:rgba(245,197,24,.08);border-right:3px solid var(–gold);
+padding:8px 12px;border-radius:3px;direction:ltr;margin-bottom:18px;display:none}
+.opts{display:grid;gap:9px}
+.opt{background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:13px 15px;border-radius:8px;cursor:pointer;
+font-family:‘Tajawal’,sans-serif;font-size:.93rem;text-align:right;
+transition:all .16s;display:flex;align-items:center;gap:9px;width:100%}
+.opt:hover:not(:disabled){border-color:var(–cyan);background:rgba(0,229,255,.06)}
+.olbl{font-family:‘Space Mono’,monospace;font-size:.62rem;color:var(–dim);
+background:var(–s2);width:21px;height:21px;display:flex;align-items:center;
+justify-content:center;border-radius:3px;flex-shrink:0}
+.opt.ok{border-color:var(–grn);background:rgba(0,230,118,.09);color:var(–grn)}
+.opt.ok .olbl{background:var(–grn);color:#000}
+.opt.no{border-color:var(–red);background:rgba(255,61,90,.09);color:var(–red)}
+.opt.no .olbl{background:var(–red);color:#fff}
+.opt:disabled{cursor:default}
+.qfooter{display:flex;gap:9px;margin-top:11px}
+.qfooter .btn{margin:0;flex:1}
+.millbtn{display:none;margin-top:10px}
 
-  .verb-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
-  .verb-card { border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .verb-card-header { background: var(--blue); color: white; text-align: center; padding: 8px 12px; font-weight: 700; direction: ltr; }
-  .verb-card-header span { font-size: 0.78rem; opacity: 0.8; display: block; font-weight: 400; direction: rtl; }
-  .verb-row { direction: ltr; display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; gap: 8px; }
-  .verb-row:last-child { border-bottom: none; }
-  .verb-row:nth-child(even) { background: var(--gray); }
-  .verb-pronoun { color: #777; min-width: 55px; direction: ltr; flex-shrink: 0; }
-  .verb-form { font-weight: 700; color: var(--blue); direction: ltr; }
-  .verb-highlight { background: #fff8dc !important; }
+/* PROGRESS */
+.progbar{height:2px;background:var(–bd);border-radius:99px;margin-bottom:18px;overflow:hidden}
+.progfill{height:100%;background:linear-gradient(90deg,var(–pink),var(–gold));
+border-radius:99px;transition:width .5s ease;width:0%}
 
-  .family-tree { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
-  .family-member { border: 1.5px solid var(--border); border-radius: 8px; padding: 10px; text-align: center; background: white; }
-  .family-emoji { font-size: 1.6rem; display: block; margin-bottom: 4px; }
-  .family-de { font-weight: 700; color: var(--blue); direction: ltr; font-size: 0.9rem; }
-  .family-ar { font-size: 0.82rem; color: #666; }
-  .family-plural { font-size: 0.72rem; color: var(--red); direction: ltr; margin-top: 2px; }
+/* OVERLAY */
+.overlay{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+background:rgba(7,7,15,.88);backdrop-filter:blur(7px);animation:fadeIn .22s ease}
+.overlay.hidden{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.obox{background:var(–s2);border:2px solid var(–bd);border-radius:14px;
+padding:38px 30px;text-align:center;max-width:330px;width:90%;animation:popIn .28s ease}
+@keyframes popIn{from{transform:scale(.84);opacity:0}to{transform:scale(1);opacity:1}}
+.oicon{font-size:3.8rem;margin-bottom:12px}
+.otitle{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;letter-spacing:.03em;margin-bottom:7px}
+.odetail{font-size:.88rem;color:var(–dim);margin-bottom:22px;line-height:1.7}
 
-  .poss-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
-  .poss-card { border-radius: 8px; overflow: hidden; border: 1.5px solid var(--border); }
-  .poss-header { background: var(--blue); color: white; padding: 8px 12px; text-align: center; font-weight: 700; direction: ltr; }
-  .poss-header small { display: block; font-size: 0.72rem; opacity: 0.8; font-weight: 400; direction: rtl; }
-  .poss-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; font-size: 0.88rem; border-bottom: 1px solid #eee; direction: ltr; gap: 8px; }
-  .poss-row:last-child { border-bottom: none; }
-  .poss-row:nth-child(even) { background: var(--gray); }
-  .poss-row .ar-note { direction: rtl; color: #888; font-size: 0.8rem; flex-shrink: 0; }
+/* MILLIONAIRE */
+.mill-hdr{text-align:center;margin-bottom:18px}
+.george{width:90px;height:90px;border-radius:50%;border:3px solid var(–gold);
+box-shadow:0 0 22px rgba(245,197,24,.35);margin-bottom:10px}
+.mtree{background:var(–s1);border:1px solid var(–bd);border-radius:8px;
+padding:10px;margin-bottom:14px;max-height:200px;overflow-y:auto;scrollbar-width:thin}
+.mitem{display:flex;justify-content:space-between;align-items:center;
+padding:5px 10px;border-radius:4px;font-size:.83rem;margin:2px 0}
+.mitem.cur{background:var(–gold);color:#000;font-weight:700}
+.mitem.won{background:rgba(0,230,118,.13);color:var(–grn)}
+.ll-row{display:flex;justify-content:center;gap:13px;margin-bottom:16px}
+.ll{width:50px;height:50px;border-radius:50%;border:2px solid var(–gold);
+background:var(–s2);display:flex;align-items:center;justify-content:center;
+font-size:1.25rem;cursor:pointer;transition:all .2s}
+.ll:hover{transform:scale(1.06)}
+.ll.used{opacity:.22;border-color:var(–bd);pointer-events:none}
+.mq-box{background:rgba(0,229,255,.05);border:2px solid rgba(0,229,255,.25);
+border-radius:10px;padding:17px;margin-bottom:13px}
+.mq-text{font-size:1.05rem;text-align:center;font-weight:700;line-height:1.6}
+.mopts{display:grid;gap:9px}
+.mopt{background:linear-gradient(135deg,var(–s3),var(–s2));border:2px solid rgba(0,229,255,.25);
+color:var(–txt);padding:15px;border-radius:8px;cursor:pointer;
+font-family:‘Tajawal’,sans-serif;font-size:.93rem;text-align:right;transition:all .2s}
+.mopt:hover:not(:disabled){border-color:var(–cyan)}
+.mopt.ok{border-color:var(–grn);background:rgba(0,230,118,.1);color:var(–grn)}
+.mopt.no{border-color:var(–red);background:rgba(255,61,90,.09);color:var(–red)}
+.mopt:disabled{cursor:default}
 
-  /* FLIP CARDS — numbers */
-  .numbers-toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 14px; }
-  .numbers-toolbar button { border: 1.5px solid var(--border); background: white; color: var(--blue); border-radius: 999px; padding: 8px 14px; font-family: inherit; font-weight: 700; cursor: pointer; font-size: 0.85rem; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-  .numbers-toolbar button:active { background: var(--lightblue); }
-  .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
-  .flip-card { perspective: 800px; height: 80px; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; }
-  .flip-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s; }
-  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-  .flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--border); border-radius: 8px; background: white; padding: 8px 4px; }
-  .flip-face.back { transform: rotateY(180deg); background: #fff8dc; color: var(--blue); font-weight: 800; font-size: 0.9rem; direction: ltr; text-align: center; }
-  .flip-number { font-size: 1.6rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+/* L2 MENU */
+.l2grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:13px 0}
+.l2btn{background:var(–s2);border:2px solid var(–bd);border-radius:10px;
+padding:20px 10px;cursor:pointer;transition:all .2s;text-align:center;color:var(–txt);font-family:‘Tajawal’,sans-serif}
+.l2btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.l2btn .li{font-size:1.9rem;display:block;margin-bottom:7px}
+.l2btn .ln{font-size:.87rem;font-weight:700;display:block;margin-bottom:2px}
+.l2btn .ld{font-size:.68rem;color:var(–dim)}
+.l2btn.c1{border-color:var(–gold)}.l2btn.c2{border-color:var(–cyan)}
+.l2btn.c3{border-color:var(–pink)}.l2btn.c4{border-color:var(–purp)}
 
-  /* HIGHLIGHT BOXES */
-  .highlight-box { border-radius: 8px; padding: 14px 16px; margin-top: 12px; border-right: 4px solid; }
-  .highlight-box.yellow { background: #fffbe6; border-color: var(--yellow); }
-  .highlight-box.red    { background: #fef2f2; border-color: var(--red); }
-  .highlight-box.green  { background: var(--accent-light); border-color: var(--accent); }
-  .highlight-box.blue   { background: var(--lightblue); border-color: var(--blue); }
-  .highlight-box strong { color: var(--blue); }
+/* DER DIE DAS */
+.ddd-hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ddd-pts{font-family:‘Bebas Neue’,sans-serif;font-size:2rem;color:var(–gold)}
+.ddd-card{background:var(–s2);border:3px solid var(–bd);border-radius:14px;
+padding:46px 20px;text-align:center;margin-bottom:22px;transition:border-color .28s,background .28s}
+.ddd-card.ok{border-color:var(–grn);background:rgba(0,230,118,.06);animation:shOk .38s ease}
+.ddd-card.no{border-color:var(–red);background:rgba(255,61,90,.06);animation:shNo .38s ease}
+@keyframes shOk{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+@keyframes shNo{0%,100%{transform:translateX(0)}25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.dword{font-size:2.8rem;font-weight:900;letter-spacing:2px;margin-bottom:8px}
+.dtr{font-size:1.2rem;color:var(–dim)}
+.drev{font-size:.95rem;color:var(–grn);margin-top:7px;min-height:22px}
+.ddbtns{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-bottom:14px}
+.ddb{border:none;border-radius:10px;padding:16px 8px;font-size:1.2rem;font-weight:900;
+color:#fff;cursor:pointer;transition:transform .1s;box-shadow:0 5px 0 rgba(0,0,0,.35)}
+.ddb:active{transform:translateY(5px);box-shadow:0 0 0}
+.ddb:disabled{opacity:.45;cursor:default}
+.db-der{background:linear-gradient(135deg,#1565c0,#0d47a1)}
+.db-die{background:linear-gradient(135deg,#c62828,#b71c1c)}
+.db-das{background:linear-gradient(135deg,#2e7d32,#1b5e20)}
+.dprog{height:3px;background:var(–bd);border-radius:99px;overflow:hidden;margin-bottom:14px}
+.dprogf{height:100%;background:linear-gradient(90deg,var(–pink),var(–gold));border-radius:99px;transition:width .4s}
 
-  /* DIALOG */
-  .dialog-box { background: var(--gray); border-radius: 10px; padding: 16px; margin-top: 12px; }
-  .dialog-line { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
-  .dialog-line:last-child { margin-bottom: 0; }
-  .dialog-speaker { background: var(--blue); color: white; border-radius: 4px; padding: 2px 7px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; margin-top: 3px; flex-shrink: 0; }
-  .dialog-text { font-size: 0.9rem; direction: ltr; }
-  .dialog-translation { font-size: 0.78rem; color: #888; direction: rtl; }
+/* BANANAGRAMS */
+.btarget{background:var(–s1);border:1px solid var(–bd);border-radius:8px;padding:11px 13px;margin-bottom:13px}
+.btlbl{font-family:‘Space Mono’,monospace;font-size:.58rem;color:var(–gold);letter-spacing:.1em;margin-bottom:7px}
+.btwords{display:flex;flex-wrap:wrap;gap:7px}
+.bword{font-family:‘Space Mono’,monospace;font-size:.8rem;letter-spacing:2px;
+background:var(–s2);border:1px solid var(–bd);padding:4px 9px;border-radius:4px}
+.bword.found{background:rgba(0,230,118,.1);border-color:var(–grn);color:var(–grn)}
+.bdisp{background:var(–s1);border:1px solid var(–bd);border-radius:8px;
+padding:17px;text-align:center;font-family:‘Space Mono’,monospace;font-size:1.9rem;
+letter-spacing:5px;min-height:60px;color:var(–gold);margin-bottom:13px;transition:color .2s}
+.bdisp.valid{color:var(–grn)}.bdisp.empty{color:var(–dim);font-size:1.1rem;letter-spacing:2px}
+.bgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;
+padding:14px;background:var(–s1);border-radius:8px;margin-bottom:13px}
+.btile{background:linear-gradient(135deg,var(–gold),var(–g2));color:#000;
+aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+font-family:‘Space Mono’,monospace;font-size:1.2rem;font-weight:700;
+border-radius:6px;cursor:pointer;box-shadow:0 3px 0 #9a6e00;
+transition:all .13s;user-select:none}
+.btile:active{transform:translateY(3px);box-shadow:0 0 0}
+.btile.sel{outline:3px solid var(–cyan);filter:brightness(1.1)}
+.btile.used{opacity:.2;pointer-events:none}
+.bfound{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px}
+.fbadge{background:rgba(0,230,118,.13);border:1px solid var(–grn);color:var(–grn);
+padding:4px 11px;border-radius:20px;font-size:.78rem}
+.ba3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:10px}
+.ba3 .btn{margin:0}
 
-  /* TIPS */
-  .tips-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
-  .tip-item { background: linear-gradient(180deg,#fff 0%,#f7fbff 100%); border: 1.5px solid #d9e7f5; border-right: 5px solid var(--blue); border-radius: 12px; padding: 16px; }
-  .tip-kicker { display: inline-block; background: var(--yellow); color: var(--black); font-weight: 800; border-radius: 999px; padding: 3px 10px; font-size: 0.75rem; margin-bottom: 8px; }
-  .tip-title { font-weight: 800; color: var(--blue); margin-bottom: 8px; font-size: 0.95rem; }
-  .tip-body { font-size: 0.9rem; color: #2f3a44; line-height: 1.8; }
-  .tip-body strong { color: var(--blue); }
-  .tip-intro { background: linear-gradient(135deg,#eef5fc,#fffdf4); border: 1.5px solid #dde7f0; border-right: 5px solid var(--yellow); border-radius: 12px; padding: 16px; margin-bottom: 14px; color: #2f3a44; line-height: 1.8; font-size: 0.9rem; }
-  .tip-vision { margin-top: 14px; background: #0f2f4a; color: white; border-radius: 12px; padding: 16px; line-height: 1.85; font-size: 0.9rem; }
-  .tip-vision strong { color: var(--yellow); }
+/* MEMORY */
+.mem-hud{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.mem-t{font-family:‘Bebas Neue’,sans-serif;font-size:2.8rem;color:var(–red);
+text-shadow:0 0 14px rgba(255,61,90,.45)}
+.mem-t.ok{color:var(–grn);text-shadow:0 0 14px rgba(0,230,118,.4)}
+.mem-p{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;color:var(–gold)}
+.mem-done{font-family:‘Space Mono’,monospace;font-size:.65rem;color:var(–dim);text-align:center;margin-bottom:11px}
+.mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}
+.mcard{background:var(–s2);border:2px solid var(–bd);border-radius:10px;
+aspect-ratio:.72;display:flex;flex-direction:column;align-items:center;
+justify-content:center;cursor:pointer;transition:all .22s;padding:7px}
+.mcard:active{transform:scale(.95)}
+.mcard.flipped{border-color:var(–cyan);background:rgba(0,229,255,.05)}
+.mcard.matched{border-color:var(–grn);background:rgba(0,230,118,.08);animation:mpop .32s ease;cursor:default}
+@keyframes mpop{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.mcard.wrong{border-color:var(–red);animation:shNo .38s ease}
+.mc-de{font-family:‘Space Mono’,monospace;font-size:.85rem;color:var(–gold);font-weight:700;text-align:center;direction:ltr}
+.mc-ar{font-size:.88rem;color:var(–dim);margin-top:5px;text-align:center}
+.mcard.flipped .mc-ar,.mcard.matched .mc-ar{color:var(–txt)}
+.mc-q{font-size:1.9rem;color:var(–bd)}
 
-  /* HOMEWORK */
-  .homework { background: var(--blue); color: white; border-radius: 10px; padding: 20px; margin-top: 32px; }
-  .homework h2 { font-size: 1.1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-  .hw-item { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; border-right: 3px solid var(--yellow); font-size: 0.9rem; }
-  .hw-item:last-child { margin-bottom: 0; }
-  .hw-num { background: var(--yellow); color: var(--black); font-weight: 900; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-left: 8px; }
+/* MAD LIBS */
+.ml-title{font-family:‘Bebas Neue’,sans-serif;font-size:1.45rem;color:var(–cyan);
+letter-spacing:.04em;text-align:center;margin-bottom:14px}
+.ml-field{margin-bottom:11px;background:var(–s2);border:1px solid var(–bd);border-radius:8px;padding:13px}
+.ml-label{font-family:‘Space Mono’,monospace;font-size:.58rem;color:var(–cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}
+.ml-inp{width:100%;background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:10px 13px;border-radius:6px;font-family:‘Tajawal’,sans-serif;font-size:.97rem;
+text-align:center;transition:border-color .2s;direction:ltr}
+.ml-inp:focus{outline:none;border-color:var(–cyan)}
+.ml-eg{font-size:.72rem;color:var(–dim);margin-top:4px;text-align:center}
+.ml-result{background:var(–s1);border:2px solid var(–grn);border-radius:10px;
+padding:18px;margin-top:14px;display:none;animation:popIn .28s ease}
+.ml-result.show{display:block}
+.ml-de{font-family:‘Space Mono’,monospace;font-size:.88rem;direction:ltr;line-height:1.9;
+margin-bottom:11px;padding-bottom:11px;border-bottom:1px solid var(–bd)}
+.ml-ar{font-size:.97rem;line-height:1.9;color:var(–dim)}
 
-  /* FOOTER */
-  .footer { background: var(--gray); text-align: center; padding: 18px 16px; margin-top: 48px; font-size: 0.82rem; color: #888; border-top: 2px solid var(--border); }
-  .footer a { color: var(--blue); text-decoration: none; font-weight: 600; margin: 0 8px; }
+/* ── LEVEL 3 ── */
+/* L3 Menu */
+.l3grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:13px 0}
+.l3btn{background:var(–s2);border:2px solid var(–bd);border-radius:10px;
+padding:20px 10px;cursor:pointer;transition:all .2s;text-align:center;color:var(–txt);font-family:‘Tajawal’,sans-serif}
+.l3btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.4)}
+.l3btn .li{font-size:1.9rem;display:block;margin-bottom:7px}
+.l3btn .ln{font-size:.87rem;font-weight:700;display:block;margin-bottom:2px}
+.l3btn .ld{font-size:.68rem;color:var(–dim)}
+.l3btn.ca{border-color:var(–grn)}.l3btn.cb{border-color:var(–gold)}
+.l3btn.cc{border-color:var(–pink)}.l3btn.cd{border-color:var(–cyan)}
 
-  /* INPUTS — all inputs: font-size 16px prevents iOS zoom */
-  input[type="text"], textarea {
-    font-family: inherit;
-    font-size: 16px !important; /* prevents iOS auto-zoom */
-    border: 1.5px dashed #aaa;
-    border-radius: 6px;
-    background: #fff;
-    padding: 8px 10px;
-    width: 100%;
-    box-sizing: border-box;
-    -webkit-appearance: none;
-  }
-  input[type="text"]:focus, textarea:focus {
-    outline: none;
-    border-color: var(--blue);
-    border-style: solid;
-    box-shadow: 0 0 0 3px rgba(26,58,92,0.08);
-  }
-  .verb-input { width: 100%; text-align: center; direction: ltr; }
-  .mini-input { text-align: center; }
-  .answer { display: none; margin-top: 5px; color: #555; font-size: 0.82rem; direction: rtl; font-style: italic; }
-  .show-answers .answer { display: block; }
-  .solution-inline { display: none; font-size: 0.82rem; color: #555; margin-inline-start: 6px; }
-  .show-answers .solution-inline { display: inline; }
+/* Satzpuzzle */
+.sp-sentence{min-height:54px;background:var(–s1);border:2px dashed var(–bd);border-radius:10px;
+display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;
+padding:12px;margin-bottom:14px;transition:border-color .2s}
+.sp-sentence.ok{border-color:var(–grn);border-style:solid}
+.sp-sentence.no{border-color:var(–red);border-style:solid}
+.sp-pool{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px;min-height:50px}
+.word-chip{background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:9px 15px;border-radius:20px;cursor:pointer;transition:all .16s;
+font-size:.95rem;user-select:none}
+.word-chip:hover{border-color:var(–cyan);background:rgba(0,229,255,.06)}
+.word-chip.placed{background:rgba(0,229,255,.1);border-color:var(–cyan);color:var(–cyan)}
+.word-chip.correct{background:rgba(0,230,118,.12);border-color:var(–grn);color:var(–grn)}
+.sp-ar{text-align:center;font-size:1rem;color:var(–dim);margin-bottom:14px}
+.sp-de-ref{text-align:center;font-family:‘Space Mono’,monospace;font-size:.8rem;
+color:var(–gold);background:rgba(245,197,24,.07);border-right:3px solid var(–gold);
+padding:8px 13px;border-radius:4px;direction:ltr;display:none;margin-bottom:14px}
+.sp-hud{display:flex;justify-content:space-between;margin-bottom:10px}
+.sp-pts{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;color:var(–gold)}
+.sp-prog{font-family:‘Space Mono’,monospace;font-size:.65rem;color:var(–dim);align-self:flex-end;margin-bottom:6px}
 
-  /* WORKSHEET NOTE */
-  .worksheet-note { background: #fffbe6; border: 1.5px solid var(--yellow); border-radius: 10px; padding: 16px; margin: 20px 0 16px; font-size: 0.9rem; }
-  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .toolbar button { border: none; background: var(--blue); color: white; padding: 10px 14px; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; flex: 1 1 auto; min-width: 140px; }
-  .toolbar button.secondary { background: var(--accent); }
-  .toolbar button:active { opacity: 0.85; }
-  .save-status { font-size: 0.82rem; color: #666; margin-top: 8px; }
+/* Lückentext */
+.lt-card{background:var(–s2);border:1px solid var(–bd);border-radius:10px;padding:22px;margin-bottom:13px}
+.lt-sentence{font-size:1.1rem;line-height:2.2;font-weight:700;text-align:center;direction:ltr;letter-spacing:.02em}
+.lt-blank{display:inline-block;border-bottom:2px solid var(–gold);min-width:90px;text-align:center;
+padding:0 5px;color:var(–gold);font-family:‘Space Mono’,monospace}
+.lt-tr{text-align:center;color:var(–dim);font-size:.9rem;margin-top:10px;margin-bottom:16px}
+.lt-choices{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.lt-opt{background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:12px;border-radius:8px;cursor:pointer;font-family:‘Space Mono’,monospace;
+font-size:.88rem;text-align:center;transition:all .16s;direction:ltr}
+.lt-opt:hover:not(:disabled){border-color:var(–cyan);background:rgba(0,229,255,.06)}
+.lt-opt.ok{border-color:var(–grn);background:rgba(0,230,118,.09);color:var(–grn)}
+.lt-opt.no{border-color:var(–red);background:rgba(255,61,90,.09);color:var(–red)}
+.lt-opt:disabled{cursor:default}
+.lt-hud{display:flex;justify-content:space-between;margin-bottom:12px}
+.lt-pts{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;color:var(–gold)}
+.lt-streak{font-size:.85rem;color:var(–cyan);align-self:flex-end;margin-bottom:6px}
 
-  /* TEACHER TOOLS */
-  .teacher-toolbar { position: sticky; top: 48px; z-index: 150; max-width: 960px; margin: 12px auto 0; padding: 10px 12px; background: #fffdf5; border: 1.5px solid #ecd98b; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.06); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .teacher-toolbar .tool-label { font-weight: 800; color: var(--blue); font-size: 0.88rem; }
-  .teacher-toolbar button { border: 1px solid #d8d8d8; background: white; color: var(--blue); border-radius: 999px; padding: 7px 12px; font-family: inherit; font-size: 0.82rem; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-  .teacher-toolbar button:active, .teacher-toolbar button.active { background: var(--blue); color: white; border-color: var(--blue); }
-  .teacher-status { font-size: 0.78rem; color: #666; width: 100%; margin-top: 2px; }
-  .teacher-note-mode .teacher-note-target { cursor: pointer; outline: 2px dashed transparent; outline-offset: 3px; }
-  .teacher-note-mode .teacher-note-target:hover, .teacher-note-mode .teacher-note-target:active { outline-color: var(--yellow); }
-  .teacher-highlight { background: linear-gradient(transparent 35%,#fff1a8 35%,#fff1a8 88%,transparent 88%); border-radius: 2px; padding: 0 2px; }
-  .teacher-comment { background: #e9f4ff; border-bottom: 2px dotted #1a3a5c; cursor: help; padding: 0 2px; }
-  .teacher-comment::after { content: '📝'; font-size: 0.78rem; margin-inline-start: 3px; }
-  .teacher-marked { box-shadow: inset 4px 0 0 var(--yellow); background-image: linear-gradient(to left,rgba(245,197,24,0.10),rgba(245,197,24,0)); }
-  .teacher-note-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 0.8rem; color: #4f4f4f; background: #fff9dc; border: 1px solid #f0dfa0; border-radius: 999px; padding: 4px 10px; }
-  .teacher-note-badge button { all: unset; cursor: pointer; font-size: 0.8rem; color: var(--red); font-weight: 700; margin-inline-start: 4px; padding: 2px 4px; }
+/* Bildwörterbuch (Picture vocab) */
+.bw-img{width:100%;max-height:200px;object-fit:contain;border-radius:10px;
+background:var(–s2);border:1px solid var(–bd);margin-bottom:14px;display:block}
+.bw-question{text-align:center;font-size:1.1rem;font-weight:700;margin-bottom:6px}
+.bw-tr{text-align:center;font-size:.85rem;color:var(–dim);margin-bottom:16px}
+.bw-opts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.bw-opt{background:var(–s3);border:2px solid var(–bd);color:var(–txt);
+padding:14px;border-radius:8px;cursor:pointer;font-family:‘Tajawal’,sans-serif;
+font-size:.93rem;text-align:center;transition:all .16s}
+.bw-opt:hover:not(:disabled){border-color:var(–gold)}
+.bw-opt.ok{border-color:var(–grn);background:rgba(0,230,118,.09);color:var(–grn)}
+.bw-opt.no{border-color:var(–red);background:rgba(255,61,90,.09);color:var(–red)}
+.bw-opt:disabled{cursor:default}
+.bw-hud{display:flex;justify-content:space-between;margin-bottom:12px}
+.bw-pts{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;color:var(–gold)}
+.bw-prog{font-family:‘Space Mono’,monospace;font-size:.65rem;color:var(–dim);align-self:flex-end;margin-bottom:6px}
 
-  /* FILLED ANSWERS (handout) */
-  .filled-answer { color: var(--accent); font-weight: 600; }
+/* Rollenspiel */
+.rs-scene{background:var(–s2);border:2px solid var(–bd);border-radius:12px;padding:18px;margin-bottom:14px}
+.rs-context{font-size:.85rem;color:var(–cyan);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(–bd)}
+.rs-bubble{border-radius:10px;padding:12px 15px;margin-bottom:10px;font-size:.93rem;line-height:1.6;max-width:85%}
+.rs-bubble.them{background:var(–s3);border:1px solid var(–bd);border-radius:10px 10px 10px 0}
+.rs-bubble.you{background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.25);
+margin-right:auto;margin-left:0;border-radius:10px 10px 0 10px}
+.rs-label{font-family:‘Space Mono’,monospace;font-size:.55rem;color:var(–dim);letter-spacing:.08em;margin-bottom:4px}
+.rs-choices{display:grid;gap:9px;margin-bottom:14px}
+.rs-opt{background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:13px 15px;border-radius:8px;cursor:pointer;font-family:‘Tajawal’,sans-serif;
+font-size:.92rem;text-align:right;transition:all .16s;direction:ltr}
+.rs-opt:hover:not(:disabled){border-color:var(–purp);background:rgba(124,77,255,.06)}
+.rs-opt.ok{border-color:var(–grn);background:rgba(0,230,118,.09);color:var(–grn)}
+.rs-opt.no{border-color:var(–red);background:rgba(255,61,90,.09);color:var(–red)}
+.rs-opt:disabled{cursor:default}
+.rs-hud{display:flex;justify-content:space-between;margin-bottom:12px}
+.rs-pts{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;color:var(–gold)}
 
-  /* HABEN GRID — stacks on mobile */
-  .haben-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+/* END */
+.podium{display:flex;gap:9px;justify-content:center;margin:18px 0;align-items:flex-end}
+.pod{background:var(–s2);border:2px solid var(–bd);border-radius:8px;padding:15px 11px;text-align:center;min-width:88px}
+.pod.first{border-color:var(–gold);background:rgba(245,197,24,.07)}
+.pod-m{font-size:1.7rem;margin-bottom:5px}
+.pod-n{font-size:.72rem;color:var(–dim);margin-bottom:3px}
+.pod-p{font-family:‘Bebas Neue’,sans-serif;font-size:1.9rem;color:var(–gold)}
+.pod:not(.first) .pod-p{color:var(–txt)}
 
-  /* MODAL — replaces prompt() for iOS compatibility */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9000; align-items: center; justify-content: center; padding: 16px; }
-  .modal-overlay.open { display: flex; }
-  .modal-box { background: white; border-radius: 12px; padding: 20px; max-width: 400px; width: 100%; box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
-  .modal-title { font-weight: 800; color: var(--blue); margin-bottom: 10px; font-size: 0.95rem; }
-  .modal-input { width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 16px; margin-bottom: 12px; box-sizing: border-box; }
-  .modal-input:focus { outline: none; border-color: var(--blue); }
-  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
-  .modal-actions button { padding: 9px 16px; border-radius: 8px; border: none; font-family: inherit; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
-  .modal-btn-ok { background: var(--blue); color: white; }
-  .modal-btn-cancel { background: var(--gray); color: var(--black); }
+/* TOAST */
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(55px);
+background:var(–s2);border:1px solid var(–bd);padding:9px 18px;
+border-radius:6px;font-size:.88rem;font-weight:700;transition:transform .26s ease;
+z-index:999;white-space:nowrap;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.toast.ok{border-color:var(–grn);color:var(–grn)}
+.toast.no{border-color:var(–red);color:var(–red)}
+.toast.sk{color:var(–dim)}
 
-  /* RESPONSIVE: tablet 640px+ */
-  @media (min-width: 640px) {
-    .header { padding: 24px 32px 20px; }
-    .header-title { font-size: 1.8rem; }
-    .header-flag { font-size: 2.8rem; }
-    .page { padding: 0 20px 60px; }
-    .nav { padding: 8px 20px; }
-    .phrases-grid { grid-template-columns: 1fr 1fr; }
-    .article-grid { grid-template-columns: repeat(3, 1fr); }
-    .verb-grid { grid-template-columns: repeat(2, 1fr); }
-    .family-tree { grid-template-columns: repeat(3, 1fr); }
-    .poss-grid { grid-template-columns: repeat(3, 1fr); }
-    .numbers-grid { grid-template-columns: repeat(5, 1fr); }
-    .haben-grid { grid-template-columns: 1fr 1fr; }
-    .phrase-item { flex-direction: row; align-items: center; }
-  }
-
-  /* RESPONSIVE: desktop 960px+ */
-  @media (min-width: 960px) {
-    .verb-grid { grid-template-columns: repeat(3, 1fr); }
-  }
-
-
+@media(max-width:420px){
+.gametitle{font-size:1.85rem}.dword{font-size:2.3rem}.l2grid,.l3grid{grid-template-columns:1fr 1fr}
+}
 </style>
+
 </head>
 <body>
 
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal-box">
-    <div class="modal-title" id="modalTitle"></div>
-    <input class="modal-input" id="modalInput" type="text" />
-    <div class="modal-actions">
-      <button class="modal-btn-cancel" id="modalCancel">إلغاء</button>
-      <button class="modal-btn-ok" id="modalOk">تأكيد</button>
+<div class="toast" id="toast"></div>
+
+<!-- OVERLAY -->
+
+<div class="overlay hidden" id="overlay">
+  <div class="obox">
+    <div class="oicon" id="oIcon">🎯</div>
+    <div class="otitle" id="oTitle" style="color:var(--grn)">النتيجة</div>
+    <div class="odetail" id="oDetail"></div>
+    <button class="btn bg" onclick="nextRound()">التالي ←</button>
+  </div>
+</div>
+
+<!-- ══ SCREEN: LEVELS ══ -->
+
+<div id="sc-levels" class="sc on">
+  <h1 class="gametitle">الهروب من برلين</h1>
+  <p class="gamesub">تعلّم الألمانية بالمنافسة 🇩🇪</p>
+  <div class="lvl-grid">
+    <div class="lvl l1" onclick="goSetup(1)">
+      <div class="lvl-icon">🏃</div>
+      <div class="lvl-name" style="color:var(--pink)">المستوى الأول</div>
+      <div class="lvl-desc">مسابقة أسئلة + تحدي المليون</div>
     </div>
-  </div>
-</div>
-<div class="header">
-  <div>
-    <div class="header-title">Deutsch A1 — تمارين تفاعلية</div>
-    <div class="header-sub">درس 1 و 2 · اكتب في الحقول · الإجابات تُحفظ تلقائياً</div>
-  </div>
-  <div class="header-flag">🇩🇪</div>
-</div>
-<nav class="nav">
-  <a href="#lektion1">📘 درس 1</a>
-  <a href="#zahlen">🔢 الأرقام</a>
-  <a href="#artikel">📌 der/die/das</a>
-  <a href="#verben">🔄 الأفعال</a>
-  <a href="#lektion2">👨‍👩‍👧 درس 2</a>
-  <a href="#familie">👪 العائلة</a>
-  <a href="#possessiv">✋ الملكية</a>
-  <a href="#haben">🔑 haben</a>
-  <a href="#tipps">💡 نصائح</a>
-  <a href="#hausaufgabe">📝 الواجب</a>
-</nav>
-<div class="page">
-
-<div class="worksheet-note">
-    <strong>📚 نسخة تفاعلية:</strong> اكتب داخل الحقول — تُحفظ الإجابات تلقائياً في متصفحك.
-    <div class="toolbar">
-      <button type="button" onclick="toggleAnswers()">إظهار / إخفاء الحلول</button>
-      <button type="button" class="secondary" onclick="clearAllFields()">مسح الإجابات</button>
+    <div class="lvl l2" onclick="goSetup(2)">
+      <div class="lvl-icon">🎮</div>
+      <div class="lvl-name" style="color:var(--cyan)">المستوى الثاني</div>
+      <div class="lvl-desc">Bananagrams · ذاكرة · Mad Libs · Der/Die/Das</div>
     </div>
-    <div class="save-status" id="saveStatus">الحفظ التلقائي مفعّل.</div>
-  </div>
-
-
-<!-- LEKTION 1 -->
-<div id="lektion1" class="lesson-header">
-  <span class="lesson-badge">مراجعة — درس 1</span>
-  <span class="lesson-title">Guten Tag! — التحية والتعريف</span>
-  <span class="lesson-emoji">👋</span>
-</div>
-
-<!-- Begrüßung -->
-<div class="card">
-  <div class="card-title"><span class="dot"></span> التحية والوداع — Begrüßung & Abschied</div>
-  <div class="phrases-grid">
-    <div class="phrase-item"><span class="phrase-de">Guten Morgen</span><span class="phrase-ar">صباح الخير (6–11)</span></div>
-    <div class="phrase-item"><span class="phrase-de">Guten Tag</span><span class="phrase-ar">نهارك سعيد (11–18)</span></div>
-    <div class="phrase-item"><span class="phrase-de">Guten Abend</span><span class="phrase-ar">مساء الخير (18+)</span></div>
-    <div class="phrase-item"><span class="phrase-de">Gute Nacht</span><span class="phrase-ar">ليلة سعيدة</span></div>
-    <div class="phrase-item"><span class="phrase-de">Hallo / Hi</span><span class="phrase-ar">مرحبا (غير رسمي)</span></div>
-    <div class="phrase-item"><span class="phrase-de">Auf Wiedersehen</span><span class="phrase-ar">مع السلامة (رسمي)</span></div>
-    <div class="phrase-item"><span class="phrase-de">Tschüss / Tschau</span><span class="phrase-ar">باي (غير رسمي)</span></div>
-    <div class="phrase-item"><span class="phrase-de">Wie geht's? — Gut, danke!</span><span class="phrase-ar">كيف حالك؟ — بخير!</span></div>
-  </div>
-</div>
-
-<!-- Sich vorstellen -->
-<div class="card">
-  <div class="card-title"><span class="dot"></span> التعريف بالنفس — Sich vorstellen</div>
-  <div class="t-wrap">
-  <table>
-    <thead><tr><th>الألمانية</th><th>المعنى</th><th>مثال</th></tr></thead>
-    <tbody>
-      <tr class=""><td class="de">Ich heiße …</td><td><input class="mini-input" data-key="vs1" type="text" placeholder="المعنى"><div class="answer">اسمي…</div></td><td class="ex">Ich heiße Sara.</td></tr>
-      <tr class=""><td class="de">Mein Name ist …</td><td><input class="mini-input" data-key="vs2" type="text" placeholder="المعنى"><div class="answer">اسمي…</div></td><td class="ex">Mein Name ist Ali.</td></tr>
-      <tr class=""><td class="de">Ich bin …</td><td><input class="mini-input" data-key="vs3" type="text" placeholder="المعنى"><div class="answer">أنا…</div></td><td class="ex">Ich bin Lara.</td></tr>
-      <tr class=""><td class="de">Ich komme aus …</td><td><input class="mini-input" data-key="vs4" type="text" placeholder="المعنى"><div class="answer">أنا من…</div></td><td class="ex">Ich komme aus Syrien.</td></tr>
-      <tr class=""><td class="de">Ich lebe / wohne in …</td><td><input class="mini-input" data-key="vs5" type="text" placeholder="المعنى"><div class="answer">أسكن في…</div></td><td class="ex">Ich wohne in Augsburg.</td></tr>
-      <tr class=""><td class="de">Ich spreche …</td><td><input class="mini-input" data-key="vs6" type="text" placeholder="المعنى"><div class="answer">أتحدث…</div></td><td class="ex">Ich spreche Arabisch.</td></tr>
-    </tbody>
-  </table>
-  </div>
-  <div class="highlight-box yellow" style="margin-top:12px">
-    <strong>❓ أسئلة مهمة:</strong>
-    <span style="direction:ltr;display:block;margin-top:4px;font-size:0.88rem">
-      Wie heißen <strong>Sie</strong>? / Wie heißt <strong>du</strong>? → ما اسمك?<br>
-      Woher kommen <strong>Sie</strong>? / Woher kommst <strong>du</strong>? → من أين أنت?<br>
-      Wo wohnen <strong>Sie</strong>? / Wo wohnst <strong>du</strong>? → أين تسكن?
-    </span>
-  </div>
-  <div class="highlight-box blue" style="margin-top:10px">
-    <strong>🎩 Sie (رسمي) مقابل du (غير رسمي):</strong>
-    <span style="font-size:0.88rem;display:block">
-      <strong>du</strong> = مع الأصدقاء والزملاء ·
-      <strong>Sie</strong> (بالكبيرة) = مع الأساتذة والكبار
-    </span>
-  </div>
-</div>
-
-<!-- Pronomen -->
-<div class="card">
-  <div class="card-title"><span class="dot"></span> الضمائر — Personalpronomen</div>
-  <div class="t-wrap">
-  <table>
-    <thead><tr><th>الضمير</th><th>المعنى</th><th>مثال</th></tr></thead>
-    <tbody>
-      <tr class=""><td class="de">ich</td><td><input class="mini-input" data-key="pr1" type="text" placeholder=""><div class="answer">أنا</div></td><td class="ex">Ich bin …</td></tr>
-      <tr class=""><td class="de">du</td><td><input class="mini-input" data-key="pr2" type="text" placeholder=""><div class="answer">أنت</div></td><td class="ex">Du kommst aus …</td></tr>
-      <tr class=""><td class="de">er</td><td><input class="mini-input" data-key="pr3" type="text" placeholder=""><div class="answer">هو</div></td><td class="ex">Er heißt Tim.</td></tr>
-      <tr class=""><td class="de">sie</td><td><input class="mini-input" data-key="pr4" type="text" placeholder=""><div class="answer">هي</div></td><td class="ex">Sie heißt Lara.</td></tr>
-      <tr class=""><td class="de">es</td><td><input class="mini-input" data-key="pr5" type="text" placeholder=""><div class="answer">هو/هي (محايد)</div></td><td class="ex">Es ist ein Kind.</td></tr>
-      <tr class=""><td class="de">wir</td><td><input class="mini-input" data-key="pr6" type="text" placeholder=""><div class="answer">نحن</div></td><td class="ex">Wir kommen aus …</td></tr>
-      <tr class=""><td class="de">ihr</td><td><input class="mini-input" data-key="pr7" type="text" placeholder=""><div class="answer">أنتم</div></td><td class="ex">Ihr kommt aus …</td></tr>
-      <tr class=""><td class="de">sie / Sie</td><td><input class="mini-input" data-key="pr8" type="text" placeholder=""><div class="answer">هم / أنتم (رسمي)</div></td><td class="ex">Sie kommen aus …</td></tr>
-    </tbody>
-  </table>
-  </div>
-</div>
-
-<!-- Zahlen -->
-<div id="zahlen" class="card">
-  <div class="card-title"><span class="dot"></span> الأرقام 1–20 — Zahlen</div>
-  <div class="numbers-toolbar">
-      <button type="button" onclick="flipAllNumberCards()">إظهار كل الكلمات</button>
-      <button type="button" onclick="resetNumberCards()">إرجاع البطاقات</button>
-    </div>
-  <div class="numbers-grid"><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">1</span></div><div class="flip-face back">eins</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">2</span></div><div class="flip-face back">zwei</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">3</span></div><div class="flip-face back">drei</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">4</span></div><div class="flip-face back">vier</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">5</span></div><div class="flip-face back">fünf</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">6</span></div><div class="flip-face back">sechs</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">7</span></div><div class="flip-face back">sieben</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">8</span></div><div class="flip-face back">acht</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">9</span></div><div class="flip-face back">neun</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">10</span></div><div class="flip-face back">zehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">11</span></div><div class="flip-face back">elf</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">12</span></div><div class="flip-face back">zwölf</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">13</span></div><div class="flip-face back">dreizehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">14</span></div><div class="flip-face back">vierzehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">15</span></div><div class="flip-face back">fünfzehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">16</span></div><div class="flip-face back">sechzehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">17</span></div><div class="flip-face back">siebzehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">18</span></div><div class="flip-face back">achtzehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">19</span></div><div class="flip-face back">neunzehn</div></div></div><div class="flip-card" data-number-card><div class="flip-card-inner"><div class="flip-face front"><span class="flip-number">20</span></div><div class="flip-face back">zwanzig</div></div></div></div>
-  <div class="highlight-box yellow" style="margin-top:12px">
-    <strong>📌 ملاحظة:</strong> من 13 إلى 19 نضيف <strong style="direction:ltr">-zehn</strong> (= zehn = 10). مثال: drei + zehn = dreizehn (13)
-  </div>
-</div>
-
-<!-- Artikel -->
-<div id="artikel" class="card">
-  <div class="card-title"><span class="dot"></span> أداة التعريف — Bestimmter Artikel</div>
-  <div class="article-grid">
-    <div class="article-box masc">
-      <span class="article-name" style="color:#1a3a5c">der</span>
-      <span class="article-label">مذكر — Maskulin</span>
-      <span class="article-example">der Mann</span><span class="article-ex-ar">الرجل</span>
-      <span class="article-example">der Vater</span><span class="article-ex-ar">الأب</span>
-    </div>
-    <div class="article-box fem">
-      <span class="article-name" style="color:#e63329">die</span>
-      <span class="article-label">مؤنث — Feminin</span>
-      <span class="article-example">die Frau</span><span class="article-ex-ar">المرأة</span>
-      <span class="article-example">die Mutter</span><span class="article-ex-ar">الأم</span>
-    </div>
-    <div class="article-box neu">
-      <span class="article-name" style="color:#2d6a4f">das</span>
-      <span class="article-label">محايد — Neutrum</span>
-      <span class="article-example">das Kind</span><span class="article-ex-ar">الطفل</span>
-      <span class="article-example">das Mädchen</span><span class="article-ex-ar">البنت</span>
-    </div>
-  </div>
-  <div class="highlight-box red" style="margin-top:12px">
-    <strong>⚠️ مهم:</strong> لا توجد قاعدة ثابتة لجنس الكلمة في الألمانية — يجب حفظ كل كلمة مع أداتها!<br>
-    <span style="font-size:0.88rem">✅ احفظ دائماً: <strong style="direction:ltr">der Mann</strong> وليس فقط <strong style="direction:ltr">Mann</strong></span>
-  </div>
-  <div class="highlight-box green" style="margin-top:8px">
-    <strong>📌 الجمع دائماً <span style="direction:ltr">die</span>:</strong>
-    <span style="direction:ltr;font-size:0.88rem;display:block">der Mann → <strong>die</strong> Männer · das Kind → <strong>die</strong> Kinder</span>
-  </div>
-</div>
-
-<!-- Verben -->
-<div id="verben" class="card">
-  <div class="card-title"><span class="dot"></span> تصريف الأفعال — Verbkonjugation</div>
-  <div class="verb-grid">
-    <div class="verb-card">
-        <div class="verb-card-header">sein<span>يكون</span></div>
-        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="sein_ich" type="text" placeholder="..."><span class="solution-inline">bin</span></div><div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="sein_du" type="text" placeholder="..."><span class="solution-inline">bist</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><input class="verb-input" data-key="sein_er_sie_es" type="text" placeholder="..."><span class="solution-inline">ist</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><input class="verb-input" data-key="sein_wir" type="text" placeholder="..."><span class="solution-inline">sind</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><input class="verb-input" data-key="sein_ihr" type="text" placeholder="..."><span class="solution-inline">seid</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="sein_sie_Sie" type="text" placeholder="..."><span class="solution-inline">sind</span></div>
-      </div><div class="verb-card">
-        <div class="verb-card-header">heißen<span>يُدعى</span></div>
-        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="heissen_ich" type="text" placeholder="..."><span class="solution-inline">heiße</span></div><div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="heissen_du" type="text" placeholder="..."><span class="solution-inline">heißt</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><input class="verb-input" data-key="heissen_er_sie_es" type="text" placeholder="..."><span class="solution-inline">heißt</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><input class="verb-input" data-key="heissen_wir" type="text" placeholder="..."><span class="solution-inline">heißen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><input class="verb-input" data-key="heissen_ihr" type="text" placeholder="..."><span class="solution-inline">heißt</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="heissen_sie_Sie" type="text" placeholder="..."><span class="solution-inline">heißen</span></div>
-      </div><div class="verb-card">
-        <div class="verb-card-header">kommen<span>يأتي / يكون من</span></div>
-        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="kommen_ich" type="text" placeholder="..."><span class="solution-inline">komme</span></div><div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="kommen_du" type="text" placeholder="..."><span class="solution-inline">kommst</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><input class="verb-input" data-key="kommen_er_sie_es" type="text" placeholder="..."><span class="solution-inline">kommt</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><input class="verb-input" data-key="kommen_wir" type="text" placeholder="..."><span class="solution-inline">kommen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><input class="verb-input" data-key="kommen_ihr" type="text" placeholder="..."><span class="solution-inline">kommt</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="kommen_sie_Sie" type="text" placeholder="..."><span class="solution-inline">kommen</span></div>
-      </div><div class="verb-card">
-        <div class="verb-card-header">sprechen<span>يتكلم</span></div>
-        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="sprechen_ich" type="text" placeholder="..."><span class="solution-inline">spreche</span></div><div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="sprechen_du" type="text" placeholder="..."><span class="solution-inline">sprichst</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><input class="verb-input" data-key="sprechen_er_sie_es" type="text" placeholder="..."><span class="solution-inline">spricht</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><input class="verb-input" data-key="sprechen_wir" type="text" placeholder="..."><span class="solution-inline">sprechen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><input class="verb-input" data-key="sprechen_ihr" type="text" placeholder="..."><span class="solution-inline">sprecht</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="sprechen_sie_Sie" type="text" placeholder="..."><span class="solution-inline">sprechen</span></div>
-      </div><div class="verb-card">
-        <div class="verb-card-header">wohnen<span>يسكن</span></div>
-        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><input class="verb-input" data-key="wohnen_ich" type="text" placeholder="..."><span class="solution-inline">wohne</span></div><div class="verb-row"><span class="verb-pronoun">du</span><input class="verb-input" data-key="wohnen_du" type="text" placeholder="..."><span class="solution-inline">wohnst</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><input class="verb-input" data-key="wohnen_er_sie_es" type="text" placeholder="..."><span class="solution-inline">wohnt</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><input class="verb-input" data-key="wohnen_wir" type="text" placeholder="..."><span class="solution-inline">wohnen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><input class="verb-input" data-key="wohnen_ihr" type="text" placeholder="..."><span class="solution-inline">wohnt</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><input class="verb-input" data-key="wohnen_sie_Sie" type="text" placeholder="..."><span class="solution-inline">wohnen</span></div>
-      </div>
-  </div>
-  <div class="highlight-box yellow" style="margin-top:14px">
-    <strong>📐 القاعدة:</strong>
-    <span style="direction:ltr;display:block;margin-top:4px;font-size:0.88rem">
-      ich → <strong>-e</strong> · du → <strong>-st</strong> · er/sie/es → <strong>-t</strong> · wir → <strong>-en</strong> · ihr → <strong>-t</strong> · sie/Sie → <strong>-en</strong>
-    </span>
-    <span style="font-size:0.82rem;color:#666">⚠️ sein شاذ تماماً · sprechen يتغير في du وer → يجب حفظهما</span>
-  </div>
-</div>
-
-<!-- LEKTION 2 -->
-<div id="lektion2" class="lesson-header" style="margin-top:40px">
-  <span class="lesson-badge">درس جديد — Lektion 2</span>
-  <span class="lesson-title">Meine Familie — عائلتي</span>
-  <span class="lesson-emoji">👨‍👩‍👧‍👦</span>
-</div>
-
-<!-- Familie -->
-<div id="familie" class="card">
-  <div class="card-title"><span class="dot"></span> أفراد العائلة — Familienmitglieder</div>
-  <div class="family-tree">
-    <div class="family-member">
-        <span class="family-emoji">👨</span>
-        <div class="family-de">der Vater</div>
-        <input class="mini-input" data-key="fam_vater" type="text" placeholder="المعنى"><div class="answer">الأب</div>
-        <div class="family-plural">Pl: die Väter</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👩</span>
-        <div class="family-de">die Mutter</div>
-        <input class="mini-input" data-key="fam_mutter" type="text" placeholder="المعنى"><div class="answer">الأم</div>
-        <div class="family-plural">Pl: die Mütter</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👦</span>
-        <div class="family-de">der Sohn</div>
-        <input class="mini-input" data-key="fam_sohn" type="text" placeholder="المعنى"><div class="answer">الابن</div>
-        <div class="family-plural">Pl: die Söhne</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👧</span>
-        <div class="family-de">die Tochter</div>
-        <input class="mini-input" data-key="fam_tochter" type="text" placeholder="المعنى"><div class="answer">الابنة</div>
-        <div class="family-plural">Pl: die Töchter</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👱‍♂️</span>
-        <div class="family-de">der Bruder</div>
-        <input class="mini-input" data-key="fam_bruder" type="text" placeholder="المعنى"><div class="answer">الأخ</div>
-        <div class="family-plural">Pl: die Brüder</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👱‍♀️</span>
-        <div class="family-de">die Schwester</div>
-        <input class="mini-input" data-key="fam_schwester" type="text" placeholder="المعنى"><div class="answer">الأخت</div>
-        <div class="family-plural">Pl: die Schwestern</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👴</span>
-        <div class="family-de">der Großvater</div>
-        <input class="mini-input" data-key="fam_opa" type="text" placeholder="المعنى"><div class="answer">الجد</div>
-        <div class="family-plural">Pl: die Großväter</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👵</span>
-        <div class="family-de">die Großmutter</div>
-        <input class="mini-input" data-key="fam_oma" type="text" placeholder="المعنى"><div class="answer">الجدة</div>
-        <div class="family-plural">Pl: die Großmütter</div>
-      </div><div class="family-member">
-        <span class="family-emoji">🧒</span>
-        <div class="family-de">das Kind</div>
-        <input class="mini-input" data-key="fam_kind" type="text" placeholder="المعنى"><div class="answer">الطفل</div>
-        <div class="family-plural">Pl: die Kinder</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👰</span>
-        <div class="family-de">die Frau</div>
-        <input class="mini-input" data-key="fam_frau" type="text" placeholder="المعنى"><div class="answer">الزوجة</div>
-        <div class="family-plural">Pl: die Frauen</div>
-      </div><div class="family-member">
-        <span class="family-emoji">🤵</span>
-        <div class="family-de">der Mann</div>
-        <input class="mini-input" data-key="fam_mann" type="text" placeholder="المعنى"><div class="answer">الزوج</div>
-        <div class="family-plural">Pl: die Männer</div>
-      </div><div class="family-member">
-        <span class="family-emoji">👫</span>
-        <div class="family-de">die Geschwister</div>
-        <input class="mini-input" data-key="fam_geschwister" type="text" placeholder="المعنى"><div class="answer">الإخوة</div>
-        <div class="family-plural">Pl: (جمع فقط)</div>
-      </div>
-  </div>
-</div>
-
-<!-- Possessiv -->
-<div id="possessiv" class="card">
-  <div class="card-title"><span class="dot"></span> ضمائر الملكية — Possessivartikel</div>
-  <p style="font-size:0.88rem;color:#666;margin-bottom:12px">نهاية الضمير تتغير حسب جنس الاسم الذي يتبعه</p>
-  <div class="poss-grid">
-    <div class="poss-card">
-        <div class="poss-header">mein / meine<small>ملكيتي</small></div>
-        <div class="poss-row"><span class="ar-note">أخي (مذكر)</span><span><input class="mini-input" data-key="poss_m1" type="text" placeholder="mein..."><div class="answer de">mein Bruder</div></span></div><div class="poss-row"><span class="ar-note">طفلي (محايد)</span><span><input class="mini-input" data-key="poss_m2" type="text" placeholder="mein..."><div class="answer de">mein Kind</div></span></div><div class="poss-row"><span class="ar-note">ابنتي (مؤنث)</span><span><input class="mini-input" data-key="poss_m3" type="text" placeholder="mein..."><div class="answer de">meine Tochter</div></span></div><div class="poss-row"><span class="ar-note">أطفالي (جمع)</span><span><input class="mini-input" data-key="poss_m4" type="text" placeholder="mein..."><div class="answer de">meine Kinder</div></span></div>
-      </div><div class="poss-card">
-        <div class="poss-header">dein / deine<small>ملكيتك</small></div>
-        <div class="poss-row"><span class="ar-note">أخوك (مذكر)</span><span><input class="mini-input" data-key="poss_d1" type="text" placeholder="dein..."><div class="answer de">dein Bruder</div></span></div><div class="poss-row"><span class="ar-note">طفلك (محايد)</span><span><input class="mini-input" data-key="poss_d2" type="text" placeholder="dein..."><div class="answer de">dein Kind</div></span></div><div class="poss-row"><span class="ar-note">ابنتك (مؤنث)</span><span><input class="mini-input" data-key="poss_d3" type="text" placeholder="dein..."><div class="answer de">deine Tochter</div></span></div><div class="poss-row"><span class="ar-note">أطفالك (جمع)</span><span><input class="mini-input" data-key="poss_d4" type="text" placeholder="dein..."><div class="answer de">deine Kinder</div></span></div>
-      </div><div class="poss-card">
-        <div class="poss-header">Ihr / Ihre<small>ملكيتك (رسمي)</small></div>
-        <div class="poss-row"><span class="ar-note">أخوك (رسمي)</span><span><input class="mini-input" data-key="poss_i1" type="text" placeholder="Ihr..."><div class="answer de">Ihr Bruder</div></span></div><div class="poss-row"><span class="ar-note">طفلك (رسمي)</span><span><input class="mini-input" data-key="poss_i2" type="text" placeholder="Ihr..."><div class="answer de">Ihr Kind</div></span></div><div class="poss-row"><span class="ar-note">ابنتك (رسمي)</span><span><input class="mini-input" data-key="poss_i3" type="text" placeholder="Ihr..."><div class="answer de">Ihre Tochter</div></span></div><div class="poss-row"><span class="ar-note">أطفالك (رسمي)</span><span><input class="mini-input" data-key="poss_i4" type="text" placeholder="Ihr..."><div class="answer de">Ihre Kinder</div></span></div>
-      </div>
-  </div>
-  <div class="highlight-box yellow" style="margin-top:12px">
-    <strong>📐 القاعدة:</strong>
-    <span style="direction:ltr;display:block;margin-top:4px;font-size:0.88rem">
-      مذكر + محايد → <strong>mein / dein / Ihr</strong> (بدون -e)<br>
-      مؤنث + جمع &nbsp; → <strong>meine / deine / Ihre</strong> (مع -e)
-    </span>
-  </div>
-</div>
-
-<!-- haben -->
-<div id="haben" class="card">
-  <div class="card-title"><span class="dot"></span> فعل المِلك — haben (عنده / يملك)</div>
-  <div class="haben-grid">
-    <div>
-      <div class="t-wrap">
-      <table class="conj-ltr">
-        <thead><tr><th>الضمير</th><th>التصريف</th></tr></thead>
-        <tbody>
-          <tr class="teacher-note-target"><td class="de">ich</td><td><input class="mini-input" data-key="haben1" type="text" placeholder="..."><span class="solution-inline">habe</span></td></tr><tr class="teacher-note-target"><td class="de">du</td><td><input class="mini-input" data-key="haben2" type="text" placeholder="..."><span class="solution-inline">hast</span></td></tr><tr class="teacher-note-target"><td class="de">er / sie / es</td><td><input class="mini-input" data-key="haben3" type="text" placeholder="..."><span class="solution-inline">hat</span></td></tr><tr class="teacher-note-target"><td class="de">wir</td><td><input class="mini-input" data-key="haben4" type="text" placeholder="..."><span class="solution-inline">haben</span></td></tr><tr class="teacher-note-target"><td class="de">ihr</td><td><input class="mini-input" data-key="haben5" type="text" placeholder="..."><span class="solution-inline">habt</span></td></tr><tr class="teacher-note-target"><td class="de">sie / Sie</td><td><input class="mini-input" data-key="haben6" type="text" placeholder="..."><span class="solution-inline">haben</span></td></tr>
-        </tbody>
-      </table>
-      </div>
-    </div>
-    <div>
-      <div class="highlight-box green">
-        <strong>💬 أمثلة:</strong>
-        <div style="margin-bottom:10px;font-size:0.88rem"><div>→ عندي طفلان</div><input class="verb-input" data-key="haben_b1" type="text" placeholder="..."><div class="answer de">Ich habe zwei Kinder.</div></div><div style="margin-bottom:10px;font-size:0.88rem"><div>→ عنده أخت</div><input class="verb-input" data-key="haben_b2" type="text" placeholder="..."><div class="answer de">Er hat eine Schwester.</div></div><div style="margin-bottom:10px;font-size:0.88rem"><div>→ ليس عندنا أطفال</div><input class="verb-input" data-key="haben_b3" type="text" placeholder="..."><div class="answer de">Wir haben keine Kinder.</div></div><div style="margin-bottom:10px;font-size:0.88rem"><div>→ هل عندكم أخ؟</div><input class="verb-input" data-key="haben_b4" type="text" placeholder="..."><div class="answer de">Habt ihr einen Bruder?</div></div>
-      </div>
+    <div class="lvl l3" onclick="goSetup(3)">
+      <div class="lvl-icon">🚀</div>
+      <div class="lvl-name" style="color:var(--grn)">المستوى الثالث</div>
+      <div class="lvl-desc">Satzpuzzle · Lückentext · Bildwörterbuch · Rollenspiel</div>
     </div>
   </div>
 </div>
 
-<!-- Dialog -->
-<div class="card">
-  <div class="card-title"><span class="dot"></span> حوار نموذجي — Musterdialog</div>
-  <div class="dialog-box">
-    <div class="dialog-line"><span class="dialog-speaker">A</span><div><div class="dialog-text">Hallo! Ich heiße Matteo Steiner. Ich bin siebzehn.</div><input class="verb-input" data-key="dialog_1" type="text" placeholder="اكتب الترجمة"><div class="answer">مرحباً! اسمي ماتيو. عمري سبعة عشر.</div></div></div><div class="dialog-line"><span class="dialog-speaker">B</span><div><div class="dialog-text">Woher kommst du?</div><input class="verb-input" data-key="dialog_2" type="text" placeholder="اكتب الترجمة"><div class="answer">من أين أنت؟</div></div></div><div class="dialog-line"><span class="dialog-speaker">A</span><div><div class="dialog-text">Ich komme aus der Schweiz. Ich wohne in Basel. Und du?</div><input class="verb-input" data-key="dialog_3" type="text" placeholder="اكتب الترجمة"><div class="answer">أنا من سويسرا. أسكن في بازل. وأنت؟</div></div></div><div class="dialog-line"><span class="dialog-speaker">B</span><div><div class="dialog-text">Ich komme aus Syrien. Ich habe zwei Geschwister.</div><input class="verb-input" data-key="dialog_4" type="text" placeholder="اكتب الترجمة"><div class="answer">أنا من سوريا. عندي أخوان.</div></div></div>
+<!-- ══ SCREEN: TEAM SETUP ══ -->
+
+<div id="sc-teams" class="sc">
+  <h1 class="gametitle">إعداد الفرق</h1>
+  <p class="gamesub">من 2 إلى 4 فرق</p>
+  <div class="panel">
+    <div class="ptitle">أسماء الفرق</div>
+    <div id="teamGrid"></div>
+  </div>
+  <button class="btn bg" onclick="startGame()">ابدأ اللعبة ←</button>
+  <button class="btn bx" onclick="show('sc-levels')">← رجوع</button>
+</div>
+
+<!-- ══ SCREEN: QUIZ (L1) ══ -->
+
+<div id="sc-game" class="sc">
+  <div class="sbar" id="sbar1"></div>
+  <div class="progbar"><div class="progfill" id="progFill"></div></div>
+  <div class="qhdr">
+    <span class="cattag" id="catTag">…</span>
+    <div class="tring">
+      <svg width="50" height="50"><circle cx="25" cy="25" r="22"/><circle class="tarc" id="tArc" cx="25" cy="25" r="22"/></svg>
+      <div class="tnum" id="tNum">30</div>
+    </div>
+  </div>
+  <div class="qcard">
+    <div class="qtext" id="qText">جاري التحميل…</div>
+    <div class="debox" id="deBox"></div>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="qfooter">
+    <button class="btn bgr" onclick="adjScore(true)" style="margin:0">✅ صحيح +20</button>
+    <button class="btn br" onclick="adjScore(false)" style="margin:0">❌ خطأ −10</button>
+  </div>
+  <button class="btn bg millbtn" id="millBtn" onclick="goMillionaire()">👑 تحدي المليون</button>
+</div>
+
+<!-- ══ SCREEN: MILLIONAIRE ══ -->
+
+<div id="sc-mill" class="sc">
+  <div class="mill-hdr">
+    <img class="george" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/George_Kordahi.jpg/440px-George_Kordahi.jpg"
+      onerror="this.style.display='none'" alt="">
+    <h2 style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.04em">من سيربح المليون؟</h2>
+    <p style="color:var(--dim);font-size:.83rem">فريق: <b id="millTeam" style="color:var(--gold)">—</b></p>
+  </div>
+  <div class="mtree" id="mtree"></div>
+  <div class="ll-row">
+    <div class="ll" id="ll50" onclick="useLL(50)" title="50:50">👥</div>
+    <div class="ll" id="llP" onclick="useLL('phone')" title="اتصل">📞</div>
+    <div class="ll" id="llA" onclick="useLL('aud')" title="جمهور">📊</div>
+  </div>
+  <div class="mq-box"><div class="mq-text" id="mq">…</div></div>
+  <div class="mopts" id="mopts"></div>
+  <button class="btn br" onclick="surrenderMill()" style="margin-top:14px">الاستسلام والعودة</button>
+</div>
+
+<!-- ══ SCREEN: L2 MENU ══ -->
+
+<div id="sc-l2" class="sc">
+  <h1 class="gametitle">المستوى الثاني</h1>
+  <div class="sbar" id="sbar2"></div>
+  <div class="l2grid">
+    <button class="l2btn c1" onclick="show('sc-banana');initBanana()">
+      <span class="li">🍌</span><span class="ln">Bananagrams</span><span class="ld">رتّب الحروف</span>
+    </button>
+    <button class="l2btn c2" onclick="show('sc-memory');initMemory()">
+      <span class="li">⚡</span><span class="ln">ذاكرة</span><span class="ld">بطاقات مطابقة</span>
+    </button>
+    <button class="l2btn c3" onclick="show('sc-madlib');initMadLib()">
+      <span class="li">📝</span><span class="ln">Mad Libs</span><span class="ld">إكمال قصص</span>
+    </button>
+    <button class="l2btn c4" onclick="show('sc-ddd');initDDD()">
+      <span class="li">🎨</span><span class="ln">Der/Die/Das</span><span class="ld">أدوات التعريف</span>
+    </button>
+  </div>
+  <button class="btn bx" onclick="show('sc-levels')">← للمستويات</button>
+</div>
+
+<!-- ══ SCREEN: L3 MENU ══ -->
+
+<div id="sc-l3" class="sc">
+  <h1 class="gametitle">المستوى الثالث</h1>
+  <div class="sbar" id="sbar3"></div>
+  <div class="l3grid">
+    <button class="l3btn ca" onclick="show('sc-satz');initSatz()">
+      <span class="li">🧩</span><span class="ln">Satzpuzzle</span><span class="ld">رتّب الجملة</span>
+    </button>
+    <button class="l3btn cb" onclick="show('sc-luecke');initLuecke()">
+      <span class="li">✏️</span><span class="ln">Lückentext</span><span class="ld">الفراغات</span>
+    </button>
+    <button class="l3btn cc" onclick="show('sc-bild');initBild()">
+      <span class="li">🖼️</span><span class="ln">Bildwörterbuch</span><span class="ld">مفردات بصرية</span>
+    </button>
+    <button class="l3btn cd" onclick="show('sc-rolle');initRolle()">
+      <span class="li">🎭</span><span class="ln">Rollenspiel</span><span class="ld">محادثة تمثيلية</span>
+    </button>
+  </div>
+  <button class="btn bx" onclick="show('sc-levels')">← للمستويات</button>
+</div>
+
+<!-- BANANAGRAMS -->
+
+<div id="sc-banana" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--gold);letter-spacing:.04em;margin-bottom:13px">🍌 Bananagrams</h2>
+  <div class="btarget"><div class="btlbl">الكلمات المطلوبة</div><div class="btwords" id="bTargetWords"></div></div>
+  <div class="bdisp empty" id="bDisp">اضغط الحروف…</div>
+  <div class="bgrid" id="bGrid"></div>
+  <div class="bfound" id="bFound"></div>
+  <div class="ba3">
+    <button class="btn bgr" onclick="checkBanana()" style="margin:0">✅ تحقق</button>
+    <button class="btn br" onclick="clearBanana()" style="margin:0">🗑 مسح</button>
+    <button class="btn bx" onclick="shuffleBanana()" style="margin:0">🔀 خلط</button>
+  </div>
+  <button class="btn bx" onclick="show('sc-l2')" style="margin-top:9px">← رجوع</button>
+</div>
+
+<!-- MEMORY -->
+
+<div id="sc-memory" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--cyan);letter-spacing:.04em;margin-bottom:13px">⚡ الذاكرة السريعة</h2>
+  <div class="mem-hud">
+    <div class="mem-t ok" id="memTimer">60</div>
+    <div><div class="mem-p" id="memPts">0</div><div style="font-size:.6rem;color:var(--dim);text-align:center">نقطة</div></div>
+  </div>
+  <div class="mem-done" id="memDone">0 / 6 أزواج</div>
+  <div class="mgrid" id="mgrid"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+    <button class="btn bg" onclick="initMemory()" style="margin:0">🔄 جديدة</button>
+    <button class="btn bx" onclick="clearMemT();show('sc-l2')" style="margin:0">← رجوع</button>
   </div>
 </div>
 
-<!-- Lernziele -->
-<div class="card">
-  <div class="card-title"><span class="dot"></span> ماذا تعلمت؟ — Was kann ich jetzt?</div>
-  <div class="t-wrap">
-  <table>
-    <thead><tr><th>أستطيع الآن…</th><th>✅</th></tr></thead>
-    <tbody>
-      <tr class=""><td>تحية الناس وتوديعهم حسب الوقت</td><td>☐</td></tr>
-      <tr class=""><td>التعريف بنفسي: الاسم، البلد، المدينة، اللغة</td><td>☐</td></tr>
-      <tr class=""><td>استخدام du و Sie بشكل صحيح</td><td>☐</td></tr>
-      <tr class=""><td>تصريف الأفعال: sein, heißen, kommen, sprechen, haben</td><td>☐</td></tr>
-      <tr class=""><td>الفرق بين der / die / das</td><td>☐</td></tr>
-      <tr class=""><td>تسمية أفراد العائلة بالألمانية</td><td>☐</td></tr>
-      <tr class=""><td>استخدام mein/meine, dein/deine, Ihr/Ihre</td><td>☐</td></tr>
-      <tr class=""><td>وصف العائلة بجمل بسيطة</td><td>☐</td></tr>
-    </tbody>
-  </table>
+<!-- MAD LIBS -->
+
+<div id="sc-madlib" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--pink);letter-spacing:.04em;margin-bottom:13px">📝 Mad Libs</h2>
+  <div id="mlFields"></div>
+  <button class="btn bp" onclick="generateML()">✨ أنشئ الجملة</button>
+  <div class="ml-result" id="mlResult"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px">
+    <button class="btn bg" onclick="initMadLib()" style="margin:0">🔄 جديدة</button>
+    <button class="btn bx" onclick="show('sc-l2')" style="margin:0">← رجوع</button>
   </div>
 </div>
 
-<!-- Tips -->
-<div id="tipps" class="card">
-  <div class="card-title"><span class="dot"></span> نصائح للتعلم — Lerntipps</div>
-  <div class="tip-intro">أقوى طرق التعلّم ليست الأكثر بهرجة، بل الأكثر ثباتاً: <strong>الاسترجاع المتباعد</strong>، <strong>المدخلات المفهومة</strong>، <strong>الإنتاج مع تصحيح</strong>.</div>
-  <div class="tips-grid"><div class="tip-item"><div class="tip-kicker">1</div><div class="tip-title">🧠 الاسترجاع المتباعد</div><div class="tip-body">ابنِ رزمة من 20–30 كلمة، لكن لا تقرأها فقط: أجب من الذاكرة أولاً ثم اكشف الحل. كرر بعد يوم، 3 أيام، أسبوع، أسبوعين. في الألمانية احفظ دائماً: <strong style="direction:ltr">der Tisch</strong>، <strong style="direction:ltr">die Lampe</strong>، <strong style="direction:ltr">das Buch</strong> — الأداة جزء من الكلمة.</div></div><div class="tip-item"><div class="tip-kicker">2</div><div class="tip-title">📚 مدخلات مفهومة</div><div class="tip-body">اقرأ واستمع لمواد مفهومة: قصص مبسطة، بودكاست بطيء، حوارات قصيرة. الهدف ليس فهم كل كلمة، بل بناء تعرّض منتظم. التقط فقط الكلمات التي <strong>تتكرر فعلاً</strong> وتفيدك في الحياة اليومية.</div></div><div class="tip-item"><div class="tip-kicker">3</div><div class="tip-title">✍️ اكتب وصحّح</div><div class="tip-body">اكتب يومياً 5 جمل قصيرة عن نفسك أو عائلتك. صحح مباشرة. احتفظ بقائمة أكثر 3 أخطاء متكررة وتجنبها في اليوم التالي. هكذا يصبح التصحيح تدريباً حقيقياً.</div></div><div class="tip-item"><div class="tip-kicker">4</div><div class="tip-title">🏷️ احفظ الكلمة مع أداتها</div><div class="tip-body">لا تحفظ <strong style="direction:ltr">Kind</strong> بل <strong style="direction:ltr">das Kind</strong>. اختبر نفسك في الاتجاهين: Artikel → Nomen و Nomen → Artikel. هذا يبني أساساً أقوى من قاعدة نظرية.</div></div><div class="tip-item"><div class="tip-kicker">5</div><div class="tip-title">🗣️ تحدث بصوت عالٍ</div><div class="tip-body">سجّل دقيقتين يومياً، قارن نطقك مع نموذج. اختر هدفاً واحداً فقط: <strong>ä / ö / ü</strong> أو <strong style="direction:ltr">ch</strong>. التحسن يأتي من التركيز الضيق.</div></div></div>
-  <div class="tip-vision"><strong>الصورة الكبيرة:</strong> إذا التزمت بهذه الخطوات، لن يبقى الألماني جداول على الورق — بل سيصبح شيئاً <strong>يُستخدم</strong>.</div>
+<!-- DER DIE DAS -->
+
+<div id="sc-ddd" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--purp);letter-spacing:.04em;margin-bottom:4px">🎨 Der · Die · Das</h2>
+  <p style="text-align:center;color:var(--dim);font-size:.78rem;margin-bottom:13px">اختر أداة التعريف الصحيحة</p>
+  <div class="ddd-hud">
+    <div><div class="ddd-pts" id="dddPts">0</div><div style="font-size:.6rem;color:var(--dim)">نقطة</div></div>
+    <span style="font-size:.85rem;color:var(--cyan)" id="dddStreak"></span>
+    <span style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--dim)" id="dddProg">0/20</span>
+  </div>
+  <div class="dprog"><div class="dprogf" id="dprogf" style="width:0%"></div></div>
+  <div class="ddd-card" id="dddCard">
+    <div class="dword" id="dword">—</div>
+    <div class="dtr" id="dtr">—</div>
+    <div class="drev" id="drev"></div>
+  </div>
+  <div class="ddbtns">
+    <button class="ddb db-der" onclick="checkDDD('der')">der<br><small style="font-size:.5em;opacity:.75">مذكر</small></button>
+    <button class="ddb db-die" onclick="checkDDD('die')">die<br><small style="font-size:.5em;opacity:.75">مؤنث</small></button>
+    <button class="ddb db-das" onclick="checkDDD('das')">das<br><small style="font-size:.5em;opacity:.75">محايد</small></button>
+  </div>
+  <button class="btn bx" onclick="show('sc-l2')">← رجوع</button>
 </div>
 
-<!-- Hausaufgabe -->
-<div id="hausaufgabe" class="homework">
-  <h2>📝 الواجب — Hausaufgabe</h2>
-  <div class="hw-item"><span class="hw-num">1</span> اكتب 5–8 جمل عن نفسك وعائلتك بالألمانية. استخدم: <strong style="direction:ltr">Ich heiße … / Ich komme aus … / Ich habe … / Mein … heißt …</strong></div>
-  <div class="hw-item"><span class="hw-num">2</span> احفظ تصريف الأفعال: <strong style="direction:ltr">sein, heißen, kommen, sprechen, haben</strong></div>
-  <div class="hw-item"><span class="hw-num">3</span> تدرب على الأرقام 1–20 — سنختبرها في الدرس القادم 😊</div>
+<!-- ══ L3: SATZPUZZLE ══ -->
+
+<div id="sc-satz" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--grn);letter-spacing:.04em;margin-bottom:13px">🧩 Satzpuzzle</h2>
+  <div class="sp-hud"><div class="sp-pts" id="spPts">0</div><div class="sp-prog" id="spProg">0/10</div></div>
+  <div class="dprog"><div class="dprogf" id="spProgBar" style="width:0%"></div></div>
+  <div class="sp-ar" id="spAr">…</div>
+  <div class="sp-sentence" id="spSentence"><span style="color:var(--dim);font-size:.8rem">اضغط الكلمات لترتيبها…</span></div>
+  <div class="sp-pool" id="spPool"></div>
+  <div class="sp-de-ref" id="spRef"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+    <button class="btn bgr" onclick="checkSatz()" style="margin:0">✅ تحقق</button>
+    <button class="btn bx" onclick="resetSatz()" style="margin:0">↩ إعادة</button>
+  </div>
+  <button class="btn bx" onclick="show('sc-l3')" style="margin-top:9px">← رجوع</button>
 </div>
+
+<!-- ══ L3: LÜCKENTEXT ══ -->
+
+<div id="sc-luecke" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--gold);letter-spacing:.04em;margin-bottom:13px">✏️ Lückentext</h2>
+  <div class="lt-hud">
+    <div class="lt-pts" id="ltPts">0</div>
+    <div class="lt-streak" id="ltStreak"></div>
+  </div>
+  <div class="lt-card">
+    <div class="lt-sentence" id="ltSentence">…</div>
+    <div class="lt-tr" id="ltTr">…</div>
+    <div class="lt-choices" id="ltChoices"></div>
+  </div>
+  <button class="btn bx" onclick="show('sc-l3')" style="margin-top:9px">← رجوع</button>
 </div>
-<div class="footer">
-  <a href="index.html">📖 تفاعلي</a>
-  <a href="student.html">🎓 طالب</a>
-  <a href="handout.html">📄 Handout</a>
-  <a href="teacher.html">👩‍🏫 معلم</a><br>
-  <span style="color:#aaa;font-size:0.78rem">Deutsch A1 · A1 — لغة ألمانية</span>
+
+<!-- ══ L3: BILDWÖRTERBUCH ══ -->
+
+<div id="sc-bild" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--pink);letter-spacing:.04em;margin-bottom:13px">🖼️ Bildwörterbuch</h2>
+  <div class="bw-hud">
+    <div class="bw-pts" id="bwPts">0</div>
+    <div class="bw-prog" id="bwProg">0/10</div>
+  </div>
+  <div class="dprog" style="margin-bottom:14px"><div class="dprogf" id="bwProgBar" style="width:0%"></div></div>
+  <div class="bw-question" id="bwQ">…</div>
+  <div class="bw-tr" id="bwTr">…</div>
+  <div style="font-size:4rem;text-align:center;margin:18px 0;min-height:80px" id="bwEmoji">🇩🇪</div>
+  <div class="bw-opts" id="bwOpts"></div>
+  <button class="btn bx" onclick="show('sc-l3')" style="margin-top:13px">← رجوع</button>
+</div>
+
+<!-- ══ L3: ROLLENSPIEL ══ -->
+
+<div id="sc-rolle" class="sc">
+  <h2 style="text-align:center;font-family:'Bebas Neue',sans-serif;font-size:1.7rem;color:var(--cyan);letter-spacing:.04em;margin-bottom:13px">🎭 Rollenspiel</h2>
+  <div class="rs-hud">
+    <div class="rs-pts" id="rsPts">0</div>
+    <div style="font-family:'Space Mono',monospace;font-size:.62rem;color:var(--dim);align-self:flex-end;margin-bottom:6px" id="rsProg">0/8</div>
+  </div>
+  <div class="rs-scene" id="rsScene"></div>
+  <div class="rs-choices" id="rsChoices"></div>
+  <button class="btn bx" onclick="show('sc-l3')" style="margin-top:9px">← رجوع</button>
+</div>
+
+<!-- END -->
+
+<div id="sc-end" class="sc">
+  <h1 class="gametitle">انتهت اللعبة!</h1>
+  <div class="podium" id="podium"></div>
+  <button class="btn bg" onclick="show('sc-levels')">🔄 لعبة جديدة</button>
 </div>
 
 <script>
-  const STORAGE_KEY = 'deutsch_a1_v3';
+// ─────────────────── UTILITY ───────────────────
+const COLORS=['#f5c518','#00e5ff','#ff2d78','#7c4dff'];
+const TEAM_DEF=['التنانين','الصقور','البرق','النجوم'];
+const L4=['أ','ب','ج','د'];
+let pendingLevel=1;
 
-  // Mobile-safe modal — replaces browser prompt() which is blocked on iOS GitHub Pages
-  function showModal(title, defaultValue) {
-    return new Promise((resolve) => {
-      const overlay = document.getElementById('modalOverlay');
-      const input = document.getElementById('modalInput');
-      const titleEl = document.getElementById('modalTitle');
-      const okBtn = document.getElementById('modalOk');
-      const cancelBtn = document.getElementById('modalCancel');
-      if (!overlay) { resolve(window.prompt(title, defaultValue || '')); return; }
-      titleEl.textContent = title;
-      input.value = defaultValue || '';
-      overlay.classList.add('open');
-      setTimeout(() => input.focus(), 80);
-      function cleanup() {
-        overlay.classList.remove('open');
-        okBtn.removeEventListener('click', onOk);
-        cancelBtn.removeEventListener('click', onCancel);
-        overlay.removeEventListener('click', onOutside);
-        input.removeEventListener('keydown', onKey);
-      }
-      function onOk()     { cleanup(); resolve(input.value); }
-      function onCancel() { cleanup(); resolve(null); }
-      function onOutside(e) { if (e.target === overlay) { cleanup(); resolve(null); } }
-      function onKey(e)   { if (e.key === 'Enter') onOk(); if (e.key === 'Escape') onCancel(); }
-      okBtn.addEventListener('click', onOk);
-      cancelBtn.addEventListener('click', onCancel);
-      overlay.addEventListener('click', onOutside);
-      input.addEventListener('keydown', onKey);
-    });
+function show(id){
+  document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  window.scrollTo(0,0);
+}
+
+let _tTO;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast '+type+' show';
+  clearTimeout(_tTO); _tTO=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+function rand(arr){return arr[Math.floor(Math.random()*arr.length)];}
+function shuffle(arr){return [...arr].sort(()=>Math.random()-.5);}
+
+// ─────────────────── TEAM STATE ───────────────────
+let teams=[], curTeam=0, qPool=[], qIdx=0, timerID=null, tLeft=0;
+
+function goSetup(lvl){
+  pendingLevel=lvl;
+  const g=document.getElementById('teamGrid'); g.innerHTML='';
+  for(let i=0;i<4;i++){
+    const r=document.createElement('div'); r.className='teamrow';
+    r.innerHTML=`<div class="dot" style="background:${COLORS[i]}"></div>
+      <input class="tf" id="tn${i}" placeholder="${i<2?'مطلوب':'اختياري'}" value="${i<2?TEAM_DEF[i]:''}">`;
+    g.appendChild(r);
   }
+  show('sc-teams');
+}
 
-  function collectFields() { return Array.from(document.querySelectorAll('input[data-key], textarea[data-key]')); }
+function buildSbar(id){
+  const sb=document.getElementById(id); if(!sb) return;
+  sb.innerHTML=teams.map((t,i)=>`
+    <div class="spill ${i===curTeam?'cur':''} ${t.lives<=0?'dead':''}" onclick="setCur(${i})">
+      <div class="sname" style="color:${t.color}">${t.name}</div>
+      <div class="spts">${t.score}</div>
+      <div class="slives">${'❤️'.repeat(Math.max(0,t.lives))}${'🖤'.repeat(Math.max(0,3-t.lives))}</div>
+    </div>`).join('');
+}
+function setCur(i){curTeam=i;buildSbar('sbar1');}
 
-  function saveFields() {
-    try {
-      const data = {};
-      collectFields().forEach(f => { data[f.dataset.key] = f.value; });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      const box = document.getElementById('saveStatus');
-      if (box) box.textContent = 'تم الحفظ تلقائياً ✓';
-    } catch(e) {}
+function startGame(){
+  const names=[];
+  for(let i=0;i<4;i++){const v=(document.getElementById('tn'+i)||{}).value?.trim();if(v)names.push(v);}
+  if(names.length<2){toast('أدخل اسمين على الأقل','no');return;}
+  teams=names.map((n,i)=>({name:n,color:COLORS[i],score:0,lives:3}));
+  curTeam=0;
+  if(pendingLevel===1){
+    qPool=shuffle(QUESTIONS); qIdx=0;
+    buildSbar('sbar1'); show('sc-game'); loadQ();
+  } else if(pendingLevel===2){
+    buildSbar('sbar2'); show('sc-l2');
+  } else {
+    buildSbar('sbar3'); show('sc-l3');
   }
+}
 
-  function loadFields() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return;
-      const data = JSON.parse(raw);
-      collectFields().forEach(f => { if (data[f.dataset.key] !== undefined) f.value = data[f.dataset.key]; });
-    } catch(e) {}
+// ─────────────────── QUESTIONS DATA ───────────────────
+const QUESTIONS=[
+  {cat:'🔤 الأبجدية',color:'#f5c518',q:'كيف يُنطق Ä؟',de:'Ää',
+   opts:['[a] مثل "آ"','[ɛ] مثل "e" في bed','[o] مثل "أو"','[u] مستدير'],ans:1},
+  {cat:'🔤 الأبجدية',color:'#f5c518',q:'كيف يُنطق Ö؟',de:'Öö',
+   opts:['[o]','[u]','[a]','[ø] شفتان مستديرتان مع صوت e'],ans:3},
+  {cat:'🔤 الأبجدية',color:'#f5c518',q:'كيف يُنطق Ü؟',de:'Üü',
+   opts:['[u]','[y] شفتان مستديرتان مع صوت i','[o]','[e]'],ans:1},
+  {cat:'🔤 الأبجدية',color:'#f5c518',q:'ما الفرق بين V و W؟',de:'Vv / Ww',
+   opts:['لا فرق','V=[f] و W=[v]','V=[v] و W=[f]','كلاهما=[w]'],ans:1},
+  {cat:'🔤 الأبجدية',color:'#f5c518',q:'كيف يُنطق Z؟',de:'Zz',
+   opts:['مثل Z الإنجليزية','مثل S','مثل ts مجتمعتين','مثل sh'],ans:2},
+  {cat:'🗣️ الصوتيات',color:'#00e5ff',q:'كيف تُنطق "ch" في "Buch"؟',de:'Buch = كتاب',
+   opts:['مثل sh','مثل k','خشن من الحلق (مثل خ عربية)','مثل s'],ans:2},
+  {cat:'🗣️ الصوتيات',color:'#00e5ff',q:'كيف تُنطق "ch" في "Ich"؟',de:'Ich = أنا',
+   opts:['مثل k','صوت خشن من الحلق','sh خفيفة من وسط الفم','مثل s'],ans:2},
+  {cat:'🗣️ الصوتيات',color:'#00e5ff',q:'كيف تُنطق "sch"؟',de:'Schule = مدرسة',
+   opts:['مثل sk','مثل sh (شين)','مثل s','مثل tsh'],ans:1},
+  {cat:'🗣️ الصوتيات',color:'#00e5ff',q:'كيف تُنطق "ei"؟',de:'Eins = واحد',
+   opts:['مثل ee طويلة','مثل آي','مثل أوه','مثل أيه'],ans:1},
+  {cat:'🗣️ الصوتيات',color:'#00e5ff',q:'"sp" في بداية الكلمة؟',de:'Sprache = لغة',
+   opts:['sp عادية','شب (sh+p)','zp','fp'],ans:1},
+  {cat:'🔢 الأرقام',color:'#7c4dff',q:'الرقم 2 بالألمانية؟',de:'2',
+   opts:['eins','zwei','drei','vier'],ans:1},
+  {cat:'🔢 الأرقام',color:'#7c4dff',q:'الرقم 6 بالألمانية؟',de:'6',
+   opts:['fünf','sieben','sechs','acht'],ans:2},
+  {cat:'🔢 الأرقام',color:'#7c4dff',q:'الرقم 9 بالألمانية؟',de:'9',
+   opts:['acht','zehn','sieben','neun'],ans:3},
+  {cat:'🔢 الأرقام',color:'#7c4dff',q:'ماذا يعني "fünf"؟',de:'fünf',
+   opts:['4','3','5','6'],ans:2},
+  {cat:'👋 التحيات',color:'#ff2d78',q:'متى تستخدم "Guten Abend"؟',de:'Guten Abend',
+   opts:['6–11 صباحاً','11–18 نهاراً','من 18:00 مساءً','عند النوم'],ans:2},
+  {cat:'👋 التحيات',color:'#ff2d78',q:'ما معنى "Auf Wiederhören"؟',de:'Auf Wiederhören',
+   opts:['وداعاً وجهاً لوجه','وداعاً بالهاتف','صباح الخير','شكراً'],ans:1},
+  {cat:'👋 التحيات',color:'#ff2d78',q:'ماذا تعني "Freut mich"؟',de:'Freut mich.',
+   opts:['شكراً','عفواً','يسعدني','صباح الخير'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'موقع الفعل في الجملة العادية؟',de:'Ich komme aus Deutschland.',
+   opts:['الأول','الثاني دائماً','الأخير','أي مكان'],ans:1},
+  {cat:'📐 القواعد',color:'#00e676',q:'تصريف "sein" مع "er/sie/es"؟',de:'er/sie/es ___',
+   opts:['bin','bist','ist','sind'],ans:2},
+  {cat:'📐 القواعد',color:'#00e676',q:'تصريف "kommen" مع "du"؟',de:'du ___',
+   opts:['komme','kommst','kommen','kommt'],ans:1},
+  {cat:'📐 القواعد',color:'#00e676',q:'الفرق بين "du" و "Sie"؟',de:'du / Sie',
+   opts:['لا فرق','du للغرباء','Sie للأصدقاء','du غير رسمي، Sie رسمي'],ans:3},
+  {cat:'📐 القواعد',color:'#00e676',q:'أي جملة صحيحة نحوياً؟',de:'Position 2',
+   opts:['Aus Polen ich komme.','Ich komme aus Polen.','Komme ich aus Polen.','Polen komme ich.'],ans:1},
+  {cat:'📚 المفردات',color:'#ff9800',q:'ما معنى "Entschuldigung"؟',de:'Entschuldigung',
+   opts:['شكراً','مرحباً','عذراً','وداعاً'],ans:2},
+  {cat:'📚 المفردات',color:'#ff9800',q:'ما معنى "Familienname"؟',de:'Familienname',
+   opts:['الاسم الأول','اسم العائلة','اسم المدينة','رقم الهاتف'],ans:1},
+  {cat:'📚 المفردات',color:'#ff9800',q:'ما معنى "Postleitzahl"؟',de:'PLZ',
+   opts:['رقم الهاتف','رقم المنزل','الرمز البريدي','رقم الجواز'],ans:2},
+];
+
+const MILL_Qs=[
+  {q:'ما الفرق بين "studieren" و "lernen"؟',
+   opts:['لا فرق','studieren للجامعة، lernen بمعنى التعلم عموماً','studieren للطب فقط','lernen للكبار'],ans:1},
+  {q:'متى تستخدم "Sie" بدلاً من "du"؟',
+   opts:['مع الأصدقاء','مع الأطفال','مع الغرباء والكبار','مع العائلة'],ans:2},
+  {q:'أي جملة صحيحة؟',
+   opts:['Woher Sie kommen?','Woher kommen Sie?','Kommen Sie woher?','Sie woher kommen?'],ans:1},
+  {q:'ما معنى "ein bisschen"؟',
+   opts:['كثيراً','قليلاً','لا شيء','أحياناً'],ans:1},
+  {q:'الفعل الصحيح: "Ich ___ Medizin" (أدرس الطب)؟',
+   opts:['lerne','arbeite','studiere','bin'],ans:2},
+  {q:'المقابل الرسمي لـ "Wie heißt du?"؟',
+   opts:['Wie ist dein Name?','Wie heißen Sie?','Was ist Ihr Name?','B و C كلاهما صحيح'],ans:3},
+  {q:'ما معنى "Jetzt arbeite ich als..."؟',
+   opts:['أنا طالب','أعمل الآن كـ…','أسكن في…','أنا من…'],ans:1},
+];
+const MONEY=[500,1000,2000,4000,8000,16000,32000,64000,125000,250000,1000000];
+
+// ─────────────────── QUIZ LOGIC ───────────────────
+function loadQ(){
+  if(qIdx>=qPool.length){endGame();return;}
+  const q=qPool[qIdx];
+  const ct=document.getElementById('catTag');
+  ct.textContent=q.cat; ct.style.color=q.color; ct.style.borderColor=q.color+'44';
+  document.getElementById('qText').textContent=q.q;
+  const db=document.getElementById('deBox'); db.textContent='🇩🇪 '+q.de; db.style.display='none';
+  document.getElementById('opts').innerHTML=q.opts.map((o,i)=>`
+    <button class="opt" id="qo${i}" onclick="pickOpt(${i})">
+      <span class="olbl">${L4[i]}</span>${o}</button>`).join('');
+  document.getElementById('millBtn').style.display=(qIdx>0&&qIdx%5===0&&teams[curTeam].lives>0)?'block':'none';
+  document.getElementById('progFill').style.width=(qIdx/qPool.length*100)+'%';
+  startTimer(30);
+  toast(`دور: ${teams[curTeam].name}`,'sk');
+}
+
+function pickOpt(i){
+  stopTimer();
+  document.querySelectorAll('.opt').forEach(b=>b.disabled=true);
+  const ans=qPool[qIdx].ans;
+  document.getElementById('qo'+i).classList.add(i===ans?'ok':'no');
+  if(i!==ans) document.getElementById('qo'+ans).classList.add('ok');
+  document.getElementById('deBox').style.display='block';
+}
+
+function adjScore(ok){
+  stopTimer();
+  const t=teams[curTeam];
+  if(ok){t.score+=20;showOverlay('🎉','إجابة صحيحة!',`+20 · المجموع: ${t.score}`,'var(--grn)');}
+  else{
+    t.lives--; t.score=Math.max(0,t.score-10);
+    const msg=t.lives<=0?`☠️ خروج فريق ${t.name}!`:`−10 · ${'❤️'.repeat(Math.max(0,t.lives))} متبقية`;
+    showOverlay('💔','إجابة خاطئة!',msg,'var(--red)');
   }
+  buildSbar('sbar1');
+}
 
-  function clearAllFields() {
-    collectFields().forEach(f => f.value = '');
-    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
-    const box = document.getElementById('saveStatus');
-    if (box) box.textContent = 'تم مسح الإجابات.';
+function showOverlay(icon,title,detail,color){
+  document.getElementById('oIcon').textContent=icon;
+  document.getElementById('oTitle').textContent=title;
+  document.getElementById('oTitle').style.color=color;
+  document.getElementById('oDetail').textContent=detail;
+  document.getElementById('overlay').classList.remove('hidden');
+}
+
+function nextRound(){
+  document.getElementById('overlay').classList.add('hidden');
+  qIdx++;
+  let tries=0;
+  do{curTeam=(curTeam+1)%teams.length;tries++;}
+  while(teams[curTeam].lives<=0&&tries<teams.length);
+  if(teams.every(t=>t.lives<=0)||qIdx>=qPool.length){endGame();return;}
+  buildSbar('sbar1'); loadQ();
+}
+
+function endGame(){
+  document.getElementById('overlay').classList.add('hidden');
+  const s=[...teams].sort((a,b)=>b.score-a.score);
+  const M=['🥇','🥈','🥉','4️⃣'];
+  document.getElementById('podium').innerHTML=s.map((t,i)=>`
+    <div class="pod ${i===0?'first':''}">
+      <div class="pod-m">${M[i]}</div>
+      <div class="pod-n" style="color:${t.color}">${t.name}</div>
+      <div class="pod-p">${t.score}</div>
+    </div>`).join('');
+  show('sc-end');
+}
+
+// TIMER
+function startTimer(s){
+  stopTimer(); tLeft=s;
+  const arc=document.getElementById('tArc'), num=document.getElementById('tNum');
+  arc.style.strokeDashoffset='0'; arc.classList.remove('hot'); num.textContent=s;
+  timerID=setInterval(()=>{
+    tLeft--; num.textContent=tLeft;
+    arc.style.strokeDashoffset=138.2*(1-tLeft/s);
+    if(tLeft<=5) arc.classList.add('hot');
+    if(tLeft<=0){stopTimer();adjScore(false);}
+  },1000);
+}
+function stopTimer(){clearInterval(timerID);}
+
+document.addEventListener('keydown',e=>{
+  if(document.getElementById('sc-game').classList.contains('on')){
+    if(e.key==='ArrowRight'){stopTimer();adjScore(true);}
+    if(e.key==='ArrowLeft'){stopTimer();adjScore(false);}
   }
+});
 
-  function toggleAnswers() { document.body.classList.toggle('show-answers'); }
+// ─────────────────── MILLIONAIRE ───────────────────
+let millIdx=0,millLL={};
+function goMillionaire(){
+  document.getElementById('millTeam').textContent=teams[curTeam].name;
+  millIdx=0; millLL={50:false,phone:false,aud:false};
+  ['ll50','llP','llA'].forEach(id=>document.getElementById(id).classList.remove('used'));
+  buildMtree(); loadMill();
+  document.getElementById('millBtn').style.display='none';
+  show('sc-mill');
+}
+function buildMtree(){
+  document.getElementById('mtree').innerHTML=MONEY.slice().reverse().map((v,i)=>{
+    const lvl=MONEY.length-1-i;
+    let cls='mitem';
+    if(lvl<millIdx) cls+=' won';
+    else if(lvl===millIdx) cls+=' cur';
+    return `<div class="${cls}"><span>${v.toLocaleString()}</span><span>${lvl===millIdx?'◀':''}</span></div>`;
+  }).join('');
+}
+function loadMill(){
+  const pool=shuffle(MILL_Qs), q=pool[millIdx%pool.length];
+  document.getElementById('mq').textContent=q.q;
+  document.getElementById('mopts').innerHTML=q.opts.map((o,i)=>`
+    <button class="mopt" id="mo${i}" onclick="ansMill(${i})"><b>${['A','B','C','D'][i]}.</b> ${o}</button>`).join('');
+  document.getElementById('mopts')._q=q;
+}
+function ansMill(sel){
+  const q=document.getElementById('mopts')._q;
+  document.querySelectorAll('.mopt').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.mopt')[q.ans].classList.add('ok');
+  if(sel!==q.ans) document.querySelectorAll('.mopt')[sel].classList.add('no');
+  if(sel===q.ans){
+    teams[curTeam].score+=MONEY[millIdx]; millIdx++;
+    buildMtree(); buildSbar('sbar1');
+    if(millIdx>=MONEY.length){setTimeout(()=>{toast('🏆 فاز بالمليون!','ok');surrenderMill();},1500);}
+    else setTimeout(loadMill,1500);
+  } else {
+    teams[curTeam].score=Math.floor(teams[curTeam].score/2);
+    buildSbar('sbar1');
+    setTimeout(()=>{toast(`❌ خسرت نصف نقاطك! بقي: ${teams[curTeam].score}`,'no');surrenderMill();},1800);
+  }
+}
+function useLL(type){
+  if(millLL[type]) return; millLL[type]=true;
+  const ids={50:'ll50',phone:'llP',aud:'llA'};
+  document.getElementById(ids[type]).classList.add('used');
+  const q=document.getElementById('mopts')._q;
+  if(type===50){
+    shuffle(q.opts.map((_,i)=>i).filter(i=>i!==q.ans)).slice(0,2).forEach(i=>{
+      const b=document.getElementById('mo'+i); b.style.opacity='.18'; b.disabled=true;});
+  } else if(type==='phone'){
+    if(Math.random()>.25) document.getElementById('mo'+q.ans).style.boxShadow='0 0 0 3px var(--gold)';
+    toast('📞 صديقك: أعتقد أن الإجابة صحيحة…','ok');
+  } else {
+    const pcts=shuffle(['45%','27%','19%','9%']);
+    toast(`📊 أ=${pcts[0]}  ب=${pcts[1]}  ج=${pcts[2]}  د=${pcts[3]}`,'ok');
+  }
+}
+function surrenderMill(){
+  buildSbar('sbar1'); qIdx++;
+  let tries=0;
+  do{curTeam=(curTeam+1)%teams.length;tries++;}
+  while(teams[curTeam].lives<=0&&tries<teams.length);
+  if(teams.every(t=>t.lives<=0)||qIdx>=qPool.length){endGame();return;}
+  buildSbar('sbar1'); show('sc-game'); loadQ();
+}
 
-  // Flip cards — works on touch AND click
-  let _lastTouch = 0;
-  document.addEventListener('touchend', function(e) {
-    const card = e.target.closest('[data-number-card]');
-    if (card && !e.target.closest('.numbers-toolbar')) {
-      e.preventDefault();
-      _lastTouch = Date.now();
-      card.classList.toggle('flipped');
-    }
-  }, { passive: false });
-  document.addEventListener('click', function(e) {
-    if (Date.now() - _lastTouch < 400) return; // avoid double-fire on touch devices
-    const card = e.target.closest('[data-number-card]');
-    if (card && !e.target.closest('.numbers-toolbar')) {
-      card.classList.toggle('flipped');
-    }
+// ─────────────────── BANANAGRAMS ───────────────────
+const BWORDS=[
+  {de:'HALLO',ar:'مرحباً'},{de:'GUTEN',ar:'جيد/صباح'},{de:'ABEND',ar:'مساء'},
+  {de:'DANKE',ar:'شكراً'},{de:'BITTE',ar:'من فضلك'},{de:'NAME',ar:'اسم'},
+  {de:'LAND',ar:'بلد'},{de:'KURS',ar:'دورة'},{de:'BUCH',ar:'كتاب'},
+  {de:'TAG',ar:'يوم'},{de:'NACHT',ar:'ليل'},{de:'EINS',ar:'واحد'},
+  {de:'VIER',ar:'أربعة'},{de:'ACHT',ar:'ثمانية'},{de:'AUCH',ar:'أيضاً'},
+];
+let bTarget=[],bFound=[],bSel=[],bTiles=[];
+function initBanana(){
+  bFound=[];bSel=[];
+  bTarget=shuffle(BWORDS).slice(0,3);
+  renderBWords();
+  const grid=document.getElementById('bGrid'); grid.innerHTML='';
+  let letters=[]; bTarget.forEach(w=>letters.push(...w.de.split('')));
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').sort(()=>Math.random()-.5).slice(0,7).forEach(c=>letters.push(c));
+  shuffle(letters).forEach(letter=>{
+    const tile=document.createElement('div'); tile.className='btile'; tile.textContent=letter;
+    tile.onclick=()=>selBTile(letter,tile); grid.appendChild(tile); bTiles.push(tile);
   });
+  document.getElementById('bFound').innerHTML='';
+  updBDisp();
+}
+function renderBWords(){
+  document.getElementById('bTargetWords').innerHTML=bTarget.map(w=>`
+    <div class="bword ${bFound.includes(w.de)?'found':''}">${w.de} (${w.de.length}) — ${w.ar}</div>`).join('');
+}
+function selBTile(letter,tile){
+  if(tile.classList.contains('used')) return;
+  if(tile.classList.contains('sel')){tile.classList.remove('sel');bSel=bSel.filter(x=>x.tile!==tile);}
+  else{tile.classList.add('sel');bSel.push({letter,tile});}
+  updBDisp();
+}
+function updBDisp(){
+  const d=document.getElementById('bDisp'), word=bSel.map(x=>x.letter).join('');
+  if(!word){d.textContent='اضغط الحروف…';d.className='bdisp empty';return;}
+  d.textContent=word; d.className='bdisp';
+  if(bTarget.find(w=>w.de===word)&&!bFound.includes(word)) d.classList.add('valid');
+}
+function checkBanana(){
+  const word=bSel.map(x=>x.letter).join(''); if(!word){toast('اختر حروفاً','no');return;}
+  const match=bTarget.find(w=>w.de===word);
+  if(match&&!bFound.includes(word)){
+    bFound.push(word); bSel.forEach(x=>x.tile.classList.replace('sel','used')); bSel=[];
+    const b=document.createElement('div'); b.className='fbadge'; b.textContent=word+' ✓';
+    document.getElementById('bFound').appendChild(b);
+    renderBWords(); toast(`✅ ${word} — ${match.ar}`,'ok');
+    if(bTarget.every(w=>bFound.includes(w.de))) setTimeout(()=>{toast('🏆 أكملت جميع الكلمات!','ok');initBanana();},800);
+  } else if(bFound.includes(word)){toast('وجدتها مسبقاً','sk');}
+  else toast('❌ ليست كلمة مطلوبة','no');
+  updBDisp();
+}
+function clearBanana(){bSel.forEach(x=>x.tile.classList.remove('sel'));bSel=[];updBDisp();}
+function shuffleBanana(){bTiles=[];initBanana();}
 
-  function flipAllNumberCards()   { document.querySelectorAll('[data-number-card]').forEach(c => c.classList.add('flipped')); }
-  function resetNumberCards()     { document.querySelectorAll('[data-number-card]').forEach(c => c.classList.remove('flipped')); }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    loadFields();
-    collectFields().forEach(f => f.addEventListener('input', saveFields));
+// ─────────────────── MEMORY ───────────────────
+const MEM_PAIRS=[
+  {de:'Hallo',ar:'مرحباً'},{de:'Danke',ar:'شكراً'},{de:'Bitte',ar:'من فضلك'},
+  {de:'Ja',ar:'نعم'},{de:'Nein',ar:'لا'},{de:'Buch',ar:'كتاب'},
+  {de:'Tag',ar:'يوم'},{de:'Nacht',ar:'ليل'},{de:'Land',ar:'بلد'},
+  {de:'Name',ar:'اسم'},{de:'Schule',ar:'مدرسة'},{de:'Wasser',ar:'ماء'},
+  {de:'Freund',ar:'صديق'},{de:'Arbeit',ar:'عمل'},{de:'Auto',ar:'سيارة'},
+];
+let mFlipped=[],mMatched=0,mPts=0,mTimeLeft=60,mTimerID=null,canFlip=true;
+function clearMemT(){clearInterval(mTimerID);}
+function initMemory(){
+  clearMemT(); mFlipped=[];mMatched=0;mPts=0;mTimeLeft=60;canFlip=true;
+  document.getElementById('memTimer').textContent='60';
+  document.getElementById('memTimer').className='mem-t ok';
+  document.getElementById('memPts').textContent='0';
+  document.getElementById('memDone').textContent='0 / 6 أزواج';
+  const sel=shuffle(MEM_PAIRS).slice(0,6);
+  const cards=shuffle([...sel.map(p=>({...p,side:'de'})),...sel.map(p=>({...p,side:'ar'}))]);
+  const grid=document.getElementById('mgrid'); grid.innerHTML='';
+  cards.forEach(c=>{
+    const el=document.createElement('div'); el.className='mcard';
+    el.dataset.key=c.de; el.dataset.side=c.side; el.dataset.matched='false';
+    el.innerHTML='<div class="mc-q">?</div>'; el.onclick=()=>flipCard(el,c); grid.appendChild(el);
   });
+  mTimerID=setInterval(()=>{
+    mTimeLeft--;
+    const t=document.getElementById('memTimer'); t.textContent=mTimeLeft;
+    if(mTimeLeft<=10) t.className='mem-t';
+    if(mTimeLeft<=0){clearInterval(mTimerID);toast('⏰ انتهى الوقت!','no');}
+  },1000);
+}
+function flipCard(el,c){
+  if(!canFlip||el.dataset.matched==='true'||mFlipped.includes(el)) return;
+  el.classList.add('flipped');
+  el.innerHTML=`<div class="mc-de">${c.de}</div><div class="mc-ar">${c.ar}</div>`;
+  mFlipped.push(el);
+  if(mFlipped.length===2){canFlip=false;checkMemMatch();}
+}
+function checkMemMatch(){
+  const[a,b]=mFlipped;
+  if(a.dataset.key===b.dataset.key&&a.dataset.side!==b.dataset.side){
+    setTimeout(()=>{
+      a.classList.add('matched');b.classList.add('matched');
+      a.dataset.matched='true';b.dataset.matched='true';
+      mMatched++;mPts+=100+(mTimeLeft>30?50:0);
+      document.getElementById('memPts').textContent=mPts;
+      document.getElementById('memDone').textContent=`${mMatched} / 6 أزواج`;
+      mFlipped=[];canFlip=true;
+      if(mMatched===6){clearInterval(mTimerID);toast(`🎉 أكملت! ${mPts} نقطة`,'ok');}
+    },400);
+  } else {
+    a.classList.add('wrong');b.classList.add('wrong');
+    setTimeout(()=>{
+      [a,b].forEach(c=>{c.classList.remove('flipped','wrong');c.innerHTML='<div class="mc-q">?</div>';});
+      mPts=Math.max(0,mPts-10); document.getElementById('memPts').textContent=mPts;
+      mFlipped=[];canFlip=true;
+    },900);
+  }
+}
+
+// ─────────────────── MAD LIBS ───────────────────
+const ML_STORIES=[
+  {title:'التعريف — Vorstellung',
+   tpl:'Ich heiße {name}. Ich komme aus {land}. Ich bin {age} Jahre alt. Ich spreche {sprache}.',
+   tr:'اسمي {name}. أنا من {land}. عمري {age} سنة. أتكلم {sprache}.',
+   fields:[
+     {k:'name',label:'الاسم الأول',ph:'Ahmed',eg:'Sara / Ali / Maria'},
+     {k:'land',label:'البلد (بالألمانية)',ph:'Syrien',eg:'Ägypten / Deutschland / Iran'},
+     {k:'age',label:'العمر',ph:'25',eg:'18 / 30 / 42'},
+     {k:'sprache',label:'اللغة',ph:'Arabisch',eg:'Arabisch / Englisch'},
+   ]},
+  {title:'في الدرس — Im Kurs',
+   tpl:'Guten {tageszeit}! Ich bin {name}. Ich lerne Deutsch in {stadt}. Mein Lehrer heißt {lehrer}.',
+   tr:'!{tageszeit_ar} أنا {name}. أتعلم الألمانية في {stadt}. معلمي {lehrer}.',
+   fields:[
+     {k:'tageszeit',label:'وقت التحية بالألمانية',ph:'Morgen',eg:'Morgen / Tag / Abend'},
+     {k:'tageszeit_ar',label:'نفس الكلمة بالعربية',ph:'صباح الخير',eg:'صباح / نهار / مساء'},
+     {k:'name',label:'اسمك',ph:'Lara',eg:'Hassan / Sofia'},
+     {k:'stadt',label:'المدينة (بالألمانية)',ph:'Augsburg',eg:'Berlin / München'},
+     {k:'lehrer',label:'اسم المعلم',ph:'Herr Mayer',eg:'Frau Schneider'},
+   ]},
+];
+let mlStory=null;
+function initMadLib(){
+  mlStory=rand(ML_STORIES);
+  const c=document.getElementById('mlFields'); c.innerHTML=`<div class="ml-title">${mlStory.title}</div>`;
+  mlStory.fields.forEach(f=>{
+    const d=document.createElement('div'); d.className='ml-field';
+    d.innerHTML=`<div class="ml-label">${f.label}</div>
+      <input class="ml-inp" id="ml-${f.k}" placeholder="${f.ph}">
+      <div class="ml-eg">أمثلة: ${f.eg}</div>`;
+    c.appendChild(d);
+  });
+  document.getElementById('mlResult').className='ml-result';
+}
+function generateML(){
+  let de=mlStory.tpl, ar=mlStory.tr;
+  mlStory.fields.forEach(f=>{
+    const v=(document.getElementById('ml-'+f.k)||{}).value||f.ph;
+    const re=new RegExp(`\\{${f.k}\\}`,'g');
+    de=de.replace(re,`<b style="color:var(--gold)">${v}</b>`);
+    ar=ar.replace(re,`<b style="color:var(--cyan)">${v}</b>`);
+  });
+  const r=document.getElementById('mlResult');
+  r.innerHTML=`<div style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--grn);letter-spacing:.1em;margin-bottom:9px">🇩🇪 DEUTSCH</div>
+    <div class="ml-de">${de}</div>
+    <div style="font-family:'Space Mono',monospace;font-size:.55rem;color:var(--cyan);letter-spacing:.1em;margin:9px 0 7px">📝 ARABISCH</div>
+    <div class="ml-ar">${ar}</div>`;
+  r.className='ml-result show';
+}
+
+// ─────────────────── DER DIE DAS ───────────────────
+const DDD=[
+  {w:'Mann',art:'der',tr:'رجل'},{w:'Tisch',art:'der',tr:'طاولة'},{w:'Hund',art:'der',tr:'كلب'},
+  {w:'Tag',art:'der',tr:'يوم'},{w:'Kurs',art:'der',tr:'دورة'},{w:'Name',art:'der',tr:'اسم'},
+  {w:'Lehrer',art:'der',tr:'معلم'},{w:'Stuhl',art:'der',tr:'كرسي'},{w:'Vater',art:'der',tr:'أب'},
+  {w:'Bahnhof',art:'der',tr:'محطة قطار'},{w:'Brief',art:'der',tr:'رسالة'},{w:'Apfel',art:'der',tr:'تفاحة'},
+  {w:'Frau',art:'die',tr:'امرأة'},{w:'Tasche',art:'die',tr:'حقيبة'},{w:'Stadt',art:'die',tr:'مدينة'},
+  {w:'Katze',art:'die',tr:'قطة'},{w:'Schule',art:'die',tr:'مدرسة'},{w:'Straße',art:'die',tr:'شارع'},
+  {w:'Lehrerin',art:'die',tr:'معلمة'},{w:'Sprache',art:'die',tr:'لغة'},{w:'Mutter',art:'die',tr:'أم'},
+  {w:'Nummer',art:'die',tr:'رقم'},{w:'Karte',art:'die',tr:'بطاقة'},{w:'Familie',art:'die',tr:'عائلة'},
+  {w:'Kind',art:'das',tr:'طفل'},{w:'Buch',art:'das',tr:'كتاب'},{w:'Auto',art:'das',tr:'سيارة'},
+  {w:'Haus',art:'das',tr:'منزل'},{w:'Land',art:'das',tr:'بلد'},{w:'Wasser',art:'das',tr:'ماء'},
+  {w:'Formular',art:'das',tr:'استمارة'},{w:'Foto',art:'das',tr:'صورة'},{w:'Alphabet',art:'das',tr:'أبجدية'},
+];
+let dddPts=0,dddStr=0,dddQ=0,dddCur=null,dddLocked=false;
+function initDDD(){dddPts=0;dddStr=0;dddQ=0;dddLocked=false;updDDDhud();nextDDD();}
+function nextDDD(){
+  dddLocked=false; document.querySelectorAll('.ddb').forEach(b=>b.disabled=false);
+  document.getElementById('dddCard').className='ddd-card';
+  document.getElementById('drev').textContent='';
+  dddCur=rand(DDD);
+  document.getElementById('dword').textContent=dddCur.w;
+  document.getElementById('dtr').textContent=dddCur.tr;
+}
+function checkDDD(art){
+  if(dddLocked) return; dddLocked=true; dddQ++;
+  document.querySelectorAll('.ddb').forEach(b=>b.disabled=true);
+  const card=document.getElementById('dddCard');
+  if(art===dddCur.art){
+    card.classList.add('ok'); dddPts+=10+(dddStr>=2?dddStr*2:0); dddStr++;
+    document.getElementById('drev').textContent=`✅ ${dddCur.art} ${dddCur.w}`;
+    toast(`✅ +${10+(dddStr>2?(dddStr-1)*2:0)} · 🔥${dddStr}`,'ok');
+  } else {
+    card.classList.add('no'); dddPts=Math.max(0,dddPts-5); dddStr=0;
+    document.getElementById('drev').textContent=`❌ الصحيح: ${dddCur.art} ${dddCur.w}`;
+    toast(`❌ الصحيح: ${dddCur.art} ${dddCur.w}`,'no');
+  }
+  updDDDhud();
+  if(dddQ>=20){setTimeout(()=>toast(`🏁 انتهى! ${dddPts} نقطة`,'ok'),500);return;}
+  setTimeout(nextDDD,art===dddCur.art?850:1500);
+}
+function updDDDhud(){
+  document.getElementById('dddPts').textContent=dddPts;
+  document.getElementById('dddStreak').textContent=dddStr>1?`🔥${dddStr}`:'';
+  document.getElementById('dddProg').textContent=`${dddQ}/20`;
+  document.getElementById('dprogf').style.width=(dddQ/20*100)+'%';
+}
+
+// ─────────────────── LEVEL 3 ───────────────────
+
+// ── Satzpuzzle ──
+const SATZ=[
+  {de:['Ich','heiße','Ahmed','.'],tr:'اسمي أحمد.'},
+  {de:['Ich','komme','aus','Syrien','.'],tr:'أنا من سوريا.'},
+  {de:['Ich','spreche','Arabisch','.'],tr:'أنا أتكلم العربية.'},
+  {de:['Wie','heißen','Sie','?'],tr:'ما اسمك (رسمي)؟'},
+  {de:['Woher','kommen','Sie','?'],tr:'من أين أنت؟'},
+  {de:['Ich','wohne','in','Augsburg','.'],tr:'أسكن في أوغسبورغ.'},
+  {de:['Das','ist','mein','Name','.'],tr:'هذا اسمي.'},
+  {de:['Guten','Morgen','!'],tr:'صباح الخير!'},
+  {de:['Ich','lerne','Deutsch','.'],tr:'أتعلم الألمانية.'},
+  {de:['Entschuldigung',',','wo','ist','der','Bahnhof','?'],tr:'عذراً، أين المحطة؟'},
+];
+let spPts=0,spQ=0,spWords=[],spPlaced=[];
+function initSatz(){spPts=0;spQ=0;nextSatz();}
+function nextSatz(){
+  if(spQ>=10){toast(`🏁 انتهى! ${spPts} نقطة`,'ok');return;}
+  const s=SATZ[spQ]; spWords=shuffle(s.de); spPlaced=[];
+  document.getElementById('spAr').textContent=s.tr;
+  document.getElementById('spRef').style.display='none';
+  document.getElementById('spRef').textContent=s.de.join(' ');
+  document.getElementById('spProg').textContent=`${spQ+1}/10`;
+  document.getElementById('spProgBar').style.width=((spQ/10)*100)+'%';
+  document.getElementById('spPts').textContent=spPts;
+  renderSatz();
+}
+function renderSatz(){
+  const sent=document.getElementById('spSentence');
+  const pool=document.getElementById('spPool');
+  sent.className='sp-sentence';
+  sent.innerHTML=spPlaced.length?spPlaced.map((w,i)=>`
+    <span class="word-chip placed" onclick="unplace(${i})">${w}</span>`).join('')
+    :`<span style="color:var(--dim);font-size:.8rem">اضغط الكلمات لترتيبها…</span>`;
+  pool.innerHTML=spWords.map((w,i)=>`
+    <span class="word-chip" onclick="placeWord(${i})">${w}</span>`).join('');
+}
+function placeWord(i){spPlaced.push(spWords[i]);spWords.splice(i,1);renderSatz();}
+function unplace(i){spWords.push(spPlaced[i]);spPlaced.splice(i,1);renderSatz();}
+function resetSatz(){const s=SATZ[spQ];spWords=shuffle(s.de);spPlaced=[];renderSatz();}
+function checkSatz(){
+  if(!spPlaced.length){toast('رتّب الكلمات أولاً','no');return;}
+  const s=SATZ[spQ];
+  const ok=spPlaced.join(' ')===s.de.join(' ');
+  const sent=document.getElementById('spSentence');
+  sent.classList.add(ok?'ok':'no');
+  document.getElementById('spRef').style.display='block';
+  if(ok){spPts+=20;toast('✅ ممتاز! +20','ok');}
+  else toast('❌ ترتيب خاطئ','no');
+  setTimeout(()=>{spQ++;nextSatz();},1400);
+}
+
+// ── Lückentext ──
+const LUECKE=[
+  {tpl:'Ich ___ Ahmed.',tr:'اسمي أحمد.',blank:'heiße',wrong:['komme','bin','spreche']},
+  {tpl:'Ich ___ aus Syrien.',tr:'أنا من سوريا.',blank:'komme',wrong:['heiße','wohne','lerne']},
+  {tpl:'Guten ___ !',tr:'صباح الخير!',blank:'Morgen',wrong:['Abend','Tag','Nacht']},
+  {tpl:'Ich ___ Arabisch.',tr:'أتكلم العربية.',blank:'spreche',wrong:['lerne','heiße','bin']},
+  {tpl:'Wie ___ Sie?',tr:'ما اسمك (رسمي)؟',blank:'heißen',wrong:['kommen','wohnen','sprechen']},
+  {tpl:'Ich wohne ___ Augsburg.',tr:'أسكن في أوغسبورغ.',blank:'in',wrong:['aus','nach','bei']},
+  {tpl:'Ich lerne ___ .',tr:'أتعلم الألمانية.',blank:'Deutsch',wrong:['Arabisch','Englisch','Französisch']},
+  {tpl:'___ Wiedersehen!',tr:'إلى اللقاء!',blank:'Auf',wrong:['Mit','Für','Bei']},
+  {tpl:'Mein ___ ist Müller.',tr:'اسم عائلتي مولر.',blank:'Familienname',wrong:['Vorname','Adresse','Beruf']},
+  {tpl:'___ Sie Arabisch?',tr:'هل تتكلم العربية (رسمي)؟',blank:'Sprechen',wrong:['Kommen','Heißen','Wohnen']},
+];
+let ltPts=0,ltStr=0,ltIdx=0;
+function initLuecke(){ltPts=0;ltStr=0;ltIdx=0;nextLuecke();}
+function nextLuecke(){
+  if(ltIdx>=LUECKE.length){toast(`🏁 انتهى! ${ltPts} نقطة`,'ok');return;}
+  const q=LUECKE[ltIdx];
+  document.getElementById('ltSentence').innerHTML=q.tpl.replace('___',`<span class="lt-blank">___</span>`);
+  document.getElementById('ltTr').textContent=q.tr;
+  const opts=shuffle([q.blank,...q.wrong]).slice(0,4);
+  document.getElementById('ltChoices').innerHTML=opts.map(o=>`
+    <button class="lt-opt" onclick="checkLuecke('${o}','${q.blank}')">${o}</button>`).join('');
+  document.getElementById('ltPts').textContent=ltPts;
+  document.getElementById('ltStreak').textContent=ltStr>1?`🔥${ltStr}`:'';
+}
+function checkLuecke(sel,ans){
+  document.querySelectorAll('.lt-opt').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.lt-opt').forEach(b=>{if(b.textContent===ans)b.classList.add('ok');});
+  if(sel!==ans) document.querySelector(`.lt-opt:not(.ok)`).classList.add('no');
+  const ok=sel===ans;
+  if(ok){ltPts+=10+(ltStr>=2?5:0);ltStr++;toast('✅ صحيح','ok');}
+  else{ltStr=0;toast(`❌ الصحيح: ${ans}`,'no');}
+  document.getElementById('ltSentence').innerHTML=LUECKE[ltIdx].tpl.replace('___',
+    `<span class="lt-blank" style="color:var(--grn)">${ans}</span>`);
+  ltIdx++;
+  setTimeout(nextLuecke,1300);
+}
+
+// ── Bildwörterbuch ──
+const BILD=[
+  {emoji:'🏠',q:'ما هذا؟',tr:'What is this?',ans:'das Haus',wrong:['der Tisch','die Katze','das Auto']},
+  {emoji:'📚',q:'ما هذا؟',tr:'What is this?',ans:'das Buch',wrong:['der Stuhl','die Tasche','das Land']},
+  {emoji:'🚗',q:'ما هذا؟',tr:'What is this?',ans:'das Auto',wrong:['das Haus','die Straße','der Hund']},
+  {emoji:'🐕',q:'ما هذا؟',tr:'What is this?',ans:'der Hund',wrong:['die Katze','das Kind','der Mann']},
+  {emoji:'🐈',q:'ما هذا؟',tr:'What is this?',ans:'die Katze',wrong:['der Hund','das Kind','die Frau']},
+  {emoji:'👨',q:'ما هذا؟',tr:'What is this?',ans:'der Mann',wrong:['die Frau','das Kind','der Lehrer']},
+  {emoji:'👩',q:'ما هذا؟',tr:'What is this?',ans:'die Frau',wrong:['der Mann','das Kind','die Lehrerin']},
+  {emoji:'🧒',q:'ما هذا؟',tr:'What is this?',ans:'das Kind',wrong:['der Mann','die Frau','der Schüler']},
+  {emoji:'🏫',q:'ما هذا؟',tr:'What is this?',ans:'die Schule',wrong:['der Bahnhof','das Haus','die Straße']},
+  {emoji:'🚉',q:'ما هذا؟',tr:'What is this?',ans:'der Bahnhof',wrong:['das Auto','die Schule','der Bus']},
+  {emoji:'💧',q:'ما هذا؟',tr:'What is this?',ans:'das Wasser',wrong:['der Tee','die Milch','der Kaffee']},
+  {emoji:'📱',q:'ما هذا؟',tr:'What is this?',ans:'das Handy',wrong:['das Buch','die Karte','das Foto']},
+];
+let bwPts=0,bwQ=0,bwPool=[];
+function initBild(){bwPts=0;bwQ=0;bwPool=shuffle(BILD);nextBild();}
+function nextBild(){
+  if(bwQ>=10){toast(`🏁 انتهى! ${bwPts} نقطة`,'ok');return;}
+  const q=bwPool[bwQ];
+  document.getElementById('bwQ').textContent=q.q;
+  document.getElementById('bwTr').textContent=q.tr;
+  document.getElementById('bwEmoji').textContent=q.emoji;
+  document.getElementById('bwPts').textContent=bwPts;
+  document.getElementById('bwProg').textContent=`${bwQ+1}/10`;
+  document.getElementById('bwProgBar').style.width=((bwQ/10)*100)+'%';
+  const opts=shuffle([q.ans,...q.wrong]).slice(0,4);
+  document.getElementById('bwOpts').innerHTML=opts.map(o=>`
+    <button class="bw-opt" onclick="checkBild('${o}','${q.ans}')">${o}</button>`).join('');
+}
+function checkBild(sel,ans){
+  document.querySelectorAll('.bw-opt').forEach(b=>b.disabled=true);
+  document.querySelectorAll('.bw-opt').forEach(b=>{if(b.textContent===ans)b.classList.add('ok');});
+  if(sel!==ans) document.querySelectorAll('.bw-opt').forEach(b=>{if(b.textContent===sel)b.classList.add('no');});
+  if(sel===ans){bwPts+=15;toast('✅ صحيح +15','ok');}else toast(`❌ الصحيح: ${ans}`,'no');
+  bwQ++; setTimeout(nextBild,1200);
+}
+
+// ── Rollenspiel ──
+const ROLLE=[
+  {context:'📍 أنت في مكتب التسجيل. الموظف يسألك.',
+   dialog:[{role:'them',de:'Guten Morgen! Wie heißen Sie?',ar:'صباح الخير! ما اسمك؟'}],
+   opts:[
+     {de:'Guten Morgen! Ich heiße Ahmed.',ar:'صباح الخير! اسمي أحمد.',ok:true},
+     {de:'Auf Wiedersehen!',ar:'وداعاً!',ok:false},
+     {de:'Ich spreche kein Deutsch.',ar:'لا أتكلم الألمانية.',ok:false},
+   ]},
+  {context:'📍 الموظف يسألك عن بلدك.',
+   dialog:[{role:'them',de:'Woher kommen Sie?',ar:'من أين أنت؟'}],
+   opts:[
+     {de:'Ich komme aus Syrien.',ar:'أنا من سوريا.',ok:true},
+     {de:'Ich heiße Ahmed.',ar:'اسمي أحمد.',ok:false},
+     {de:'Auf Wiedersehen!',ar:'وداعاً!',ok:false},
+   ]},
+  {context:'📍 الموظف يريد رقم هاتفك.',
+   dialog:[{role:'them',de:'Wie ist Ihre Telefonnummer?',ar:'ما رقم هاتفك؟'}],
+   opts:[
+     {de:'Meine Nummer ist 0176-123456.',ar:'رقمي هو 0176-123456.',ok:true},
+     {de:'Ich wohne in Augsburg.',ar:'أسكن في أوغسبورغ.',ok:false},
+     {de:'Danke schön!',ar:'شكراً جزيلاً!',ok:false},
+   ]},
+  {context:'📍 في نهاية التسجيل.',
+   dialog:[{role:'them',de:'Vielen Dank! Auf Wiedersehen!',ar:'شكراً جزيلاً! إلى اللقاء!'}],
+   opts:[
+     {de:'Auf Wiedersehen! Danke!',ar:'إلى اللقاء! شكراً!',ok:true},
+     {de:'Guten Morgen!',ar:'صباح الخير!',ok:false},
+     {de:'Ich komme aus Syrien.',ar:'أنا من سوريا.',ok:false},
+   ]},
+  {context:'📞 أنت تتصل لحجز موعد في العيادة.',
+   dialog:[{role:'them',de:'Arztpraxis Müller, guten Tag!',ar:'عيادة مولر، النهار بخير!'}],
+   opts:[
+     {de:'Guten Tag! Ich möchte einen Termin.',ar:'النهار بخير! أريد موعداً.',ok:true},
+     {de:'Auf Wiederhören!',ar:'إلى اللقاء (هاتف)!',ok:false},
+     {de:'Wo ist der Bahnhof?',ar:'أين المحطة؟',ok:false},
+   ]},
+  {context:'🏪 أنت في السوبرماركت وتسأل عن شيء.',
+   dialog:[{role:'them',de:'Kann ich Ihnen helfen?',ar:'هل يمكنني مساعدتك؟'}],
+   opts:[
+     {de:'Ja, wo finde ich das Brot?',ar:'نعم، أين أجد الخبز؟',ok:true},
+     {de:'Ich komme aus Syrien.',ar:'أنا من سوريا.',ok:false},
+     {de:'Guten Morgen!',ar:'صباح الخير!',ok:false},
+   ]},
+  {context:'🚌 في الحافلة، تسأل عن المحطة.',
+   dialog:[{role:'them',de:'Wohin möchten Sie?',ar:'إلى أين تريد الذهاب؟'}],
+   opts:[
+     {de:'Zum Bahnhof, bitte.',ar:'إلى المحطة، من فضلك.',ok:true},
+     {de:'Danke schön.',ar:'شكراً جزيلاً.',ok:false},
+     {de:'Mein Name ist Ahmed.',ar:'اسمي أحمد.',ok:false},
+   ]},
+  {context:'🏫 في أول يوم بالدورة، تتعرف على مشارك آخر.',
+   dialog:[{role:'them',de:'Hallo! Ich bin Maria. Wie heißt du?',ar:'مرحباً! أنا ماريا. ما اسمك؟'}],
+   opts:[
+     {de:'Hallo Maria! Ich heiße Ahmed. Woher kommst du?',ar:'مرحباً ماريا! اسمي أحمد. من أين أنتِ؟',ok:true},
+     {de:'Auf Wiedersehen!',ar:'وداعاً!',ok:false},
+     {de:'Ich spreche Arabisch.',ar:'أتكلم العربية.',ok:false},
+   ]},
+];
+let rsPts=0,rsQ=0;
+function initRolle(){rsPts=0;rsQ=0;nextRolle();}
+function nextRolle(){
+  if(rsQ>=ROLLE.length){toast(`🏁 انتهى! ${rsPts} نقطة`,'ok');return;}
+  const r=ROLLE[rsQ];
+  const scene=document.getElementById('rsScene');
+  scene.innerHTML=`<div class="rs-context">${r.context}</div>`;
+  r.dialog.forEach(d=>{
+    scene.innerHTML+=`<div class="rs-label">${d.role==='them'?'الموظف / المحاور':'أنت'}</div>
+      <div class="rs-bubble ${d.role}"><b style="direction:ltr;font-family:'Space Mono',monospace;font-size:.85rem">${d.de}</b><br><span style="color:var(--dim);font-size:.82rem">${d.ar}</span></div>`;
+  });
+  document.getElementById('rsProg').textContent=`${rsQ+1}/${ROLLE.length}`;
+  document.getElementById('rsPts').textContent=rsPts;
+  const opts=shuffle(r.opts);
+  document.getElementById('rsChoices').innerHTML=opts.map((o,i)=>`
+    <button class="rs-opt" id="ro${i}" onclick="checkRolle(${i},${o.ok},${opts.length})">
+      <div style="font-family:'Space Mono',monospace;font-size:.78rem;color:var(--dim);direction:ltr;margin-bottom:4px">${o.de}</div>
+      <div style="font-size:.88rem">${o.ar}</div>
+    </button>`).join('');
+  document.getElementById('rsChoices')._opts=opts;
+}
+function checkRolle(sel,ok,n){
+  const opts=document.getElementById('rsChoices')._opts;
+  document.querySelectorAll('.rs-opt').forEach(b=>b.disabled=true);
+  const correct=opts.findIndex(o=>o.ok);
+  document.getElementById('ro'+correct).classList.add('ok');
+  if(!ok) document.getElementById('ro'+sel).classList.add('no');
+  if(ok){rsPts+=25;toast('✅ إجابة ممتازة! +25','ok');}
+  else toast(`❌ الأفضل: ${opts[correct].de}`,'no');
+  rsQ++; setTimeout(nextRolle,1600);
+}
 </script>
-
-
 
 </body>
 </html>
