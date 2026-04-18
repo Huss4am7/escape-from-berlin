@@ -34,7 +34,7 @@ background:linear-gradient(90deg,var(–pink),var(–gold),var(–cyan));
 .gamesub{text-align:center;color:var(–dim);font-size:.82rem;margin-bottom:22px}
 
 /* PANEL */
-.panel{background:#151523!important;border:1px solid #25253a;border-radius:10px;padding:18px;margin-bottom:12px}
+.panel{background:var(–s2);border:1px solid var(–bd);border-radius:10px;padding:18px;margin-bottom:12px}
 .ptitle{font-family:‘Space Mono’,monospace;font-size:.6rem;color:var(–gold);letter-spacing:.13em;text-transform:uppercase;margin-bottom:12px}
 
 /* BUTTONS */
@@ -64,11 +64,9 @@ text-align:center;cursor:pointer;transition:transform .2s,box-shadow .2s,border-
 /* TEAM SETUP */
 .teamrow{display:flex;align-items:center;gap:9px;margin-bottom:9px}
 .dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
-.tf{flex:1;background:#1c1c2e!important;border:1px solid #25253a!important;color:#eff0f8!important;
-padding:10px 13px;border-radius:6px;font-family:‘Tajawal’,sans-serif;font-size:.93rem;transition:border-color .2s;
--webkit-appearance:none;appearance:none}
-.tf:focus{outline:none;border-color:#f5c518!important}
-input,button{-webkit-appearance:none;appearance:none}
+.tf{flex:1;background:var(–s3);border:1px solid var(–bd);color:var(–txt);
+padding:10px 13px;border-radius:6px;font-family:‘Tajawal’,sans-serif;font-size:.93rem;transition:border-color .2s}
+.tf:focus{outline:none;border-color:var(–gold)}
 
 /* SCOREBAR */
 .sbar{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none}
@@ -374,11 +372,6 @@ z-index:999;white-space:nowrap;pointer-events:none}
 </head>
 <body>
 
-<div style="position:fixed;top:0;left:0;right:0;z-index:500;background:#0e0e1c;border-bottom:1px solid #25253a;padding:8px 14px;display:flex;justify-content:space-between;align-items:center">
-  <span style="font-size:.75rem;color:#6a6a90">🇩🇪 الهروب من برلين</span>
-  <button onclick="dlSelf()" style="background:#f5c518;color:#000;border:none;border-radius:6px;padding:6px 14px;font-weight:900;font-size:.78rem;cursor:pointer">⬇️ حفظ HTML</button>
-</div>
-<div style="height:36px"></div>
 <div class="toast" id="toast"></div>
 
 <!-- OVERLAY -->
@@ -663,17 +656,6 @@ const TEAM_DEF=['التنانين','الصقور','البرق','النجوم'];
 const L4=['أ','ب','ج','د'];
 let pendingLevel=1;
 
-function dlSelf(){
-  try{
-    const html=document.documentElement.outerHTML;
-    const b=new Blob([html],{type:'text/html;charset=utf-8'});
-    const u=URL.createObjectURL(b);
-    const a=document.createElement('a');
-    a.href=u;a.download='الهروب-من-برلين.html';
-    document.body.appendChild(a);a.click();
-    document.body.removeChild(a);URL.revokeObjectURL(u);
-  }catch(e){toast('افتح في متصفح خارجي للتحميل','no');}
-}
 function show(id){
   document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
   document.getElementById(id).classList.add('on');
