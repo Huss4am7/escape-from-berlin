@@ -6,14 +6,32 @@
 <title>الهروب من برلين 🇩🇪</title>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#07070f;--s1:#0e0e1c;--s2:#151523;--s3:#1c1c2e;--bd:#25253a;
-  --gold:#f5c518;--g2:#ffaa00;--cyan:#00e5ff;--pink:#ff2d78;
-  --grn:#00e676;--red:#ff3d5a;--purp:#7c4dff;
-  --txt:#eff0f8;--dim:#6a6a90;
+:root {
+  /* Helle, freundliche Hintergründe */
+  --bg: #f8fafc;       /* Sehr helles Grau-Blau für den Body */
+  --s1: #ffffff;       /* Reines Weiß für Hauptelemente */
+  --s2: #ffffff;       /* Reines Weiß für Panels/Karten */
+  --s3: #f1f5f9;       /* Leichtes Grau für Optionen/Inputs */
+  --bd: #e2e8f0;       /* Sanfte Ränder (Borders) */
+
+  /* Klar lesbare Textfarben */
+  --txt: #0f172a;      /* Fast Schwarz für perfekten Kontrast */
+  --dim: #64748b;      /* Mittleres Grau für Sekundärtexte */
+
+  /* Frische, aber nicht blendende Akzentfarben */
+  --gold: #eab308;     /* Warmes Gelb/Gold */
+  --g2: #ca8a04;
+  --cyan: #0ea5e9;     /* Freundliches Blau statt grellem Neon-Cyan */
+  --pink: #ec4899;     /* Sanftes Pink */
+  --grn: #22c55e;      /* Positives Grün (für Richtig) */
+  --red: #ef4444;      /* Deutliches Rot (für Falsch) */
+  --purp: #8b5cf6;     /* Angenehmes Lila */
 }
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{min-height:100%;background:var(--bg);color:var(--txt);font-family:'Tajawal',sans-serif;overflow-x:hidden}
+
+/* WICHTIG: Entferne oder deaktiviere den Ambient-Glow, da er auf hellem Grund schmutzig wirkt */
+body::before {
+  display: none; 
+}
 
 /* AMBIENT */
 body::before{content:'';position:fixed;inset:0;pointer-events:none;
