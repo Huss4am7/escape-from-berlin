@@ -1,178 +1,273 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>الهروب من برلين 🇩🇪</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
-<style>
-:root {
-  /* Frisches, helles Farbschema */
-  --bg: #f0f4f8;       /* Sanfter blau-grauer Hintergrund */
-  --s1: #ffffff;       /* Weiß für Container */
-  --s2: #ffffff;       
-  --s3: #f8fafc;       /* Sehr helles Grau für Eingabefelder */
-  --bd: #d1d5db;       /* Dezente Rahmen */
-  
-  /* Akzentfarben (etwas gesättigter für bessere Sichtbarkeit auf Weiß) */
-  --gold: #d97706;     
-  --g2: #b45309;
-  --cyan: #0284c7;     
-  --pink: #db2777;     
-  --grn: #059669;      
-  --red: #dc2626;      
-  --purp: #7c3aed;
-  
-  /* Textfarben */
-  --txt: #1e293b;      /* Dunkles Schiefergrau für beste Lesbarkeit */
-  --dim: #64748b;      /* Mittleres Grau für Nebentexte */
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>الهروب من برلين - تعلم الألمانية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&family=Bebas+Neue&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f4f7fa;
+            --panel: #ffffff;
+            --text: #1a202c;
+            --dim: #718096;
+            --border: #e2e8f0;
+            --primary: #3182ce; /* Blue */
+            --accent-1: #ed64a6; /* Pink */
+            --accent-2: #38a169; /* Green */
+            --accent-3: #ecc94b; /* Gold */
+            --danger: #e53e3e;
+            --radius: 16px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
 
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{min-height:100%;background:var(--bg);color:var(--txt);font-family:'Tajawal',sans-serif;overflow-x:hidden}
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Tajawal', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
 
-/* AMBIENT BACKGROUND */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;
-  background: radial-gradient(circle at 0% 0%, rgba(2,132,199,0.05) 0%, transparent 50%),
-              radial-gradient(circle at 100% 100%, rgba(219,39,119,0.05) 0%, transparent 50%);
-}
+        /* --- Utility Classes --- */
+        .hidden { display: none !important; }
+        .sc { max-width: 600px; margin: 0 auto; padding: 20px; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* SCREENS */
-.sc{display:none;position:relative;z-index:1;max-width:680px;margin:0 auto;padding:20px 15px 40px}
-.sc.on{display:block;animation:fadeUp .4s cubic-bezier(0.16, 1, 0.3, 1)}
+        /* --- UI Elements --- */
+        .card { 
+            background: var(--panel); 
+            border-radius: var(--radius); 
+            padding: 25px; 
+            box-shadow: var(--shadow); 
+            border: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .btn {
+            display: block; width: 100%; padding: 16px; border: none; border-radius: 12px;
+            font-size: 1.1rem; font-weight: 900; cursor: pointer; transition: all 0.2s;
+            text-align: center; margin-bottom: 12px; font-family: 'Tajawal', sans-serif;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+        }
+        .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.1); }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-ghost { background: var(--bg); color: var(--dim); border: 1px solid var(--border); box-shadow: none; }
 
-/* TITLE */
-.gametitle{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;text-align:center;padding:20px 0 5px;
-color: var(--txt); letter-spacing:1px;}
-.gamesub{text-align:center;color:var(--dim);font-size:1rem;margin-bottom:30px;font-weight:700}
+        .title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; text-align: center; color: var(--primary); margin-bottom: 5px; }
+        .subtitle { text-align: center; color: var(--dim); margin-bottom: 30px; }
 
-/* PANEL */
-.panel{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:20px;margin-bottom:15px;
-box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);}
+        /* --- Scoreboard --- */
+        .scoreboard { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 15px; margin-bottom: 20px; }
+        .score-item { 
+            background: white; padding: 10px 15px; border-radius: 12px; border: 2px solid var(--border);
+            min-width: 100px; text-align: center; transition: all 0.3s;
+        }
+        .score-item.active { border-color: var(--primary); background: #ebf8ff; }
+        .score-name { font-size: 0.8rem; color: var(--dim); font-weight: bold; }
+        .score-pts { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--text); }
 
-.ptitle{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:15px;font-weight:900}
+        /* --- Grid Layouts --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 
-/* BUTTONS */
-.btn{display:block;width:100%;padding:16px;border:none;border-radius:12px;
-font-family:'Tajawal',sans-serif;font-size:1.1rem;font-weight:900;cursor:pointer;
-transition:all .2s;margin-bottom:12px;box-shadow: 0 4px 0 rgba(0,0,0,0.1)}
+        /* --- Specific Game UI --- */
+        .q-text { font-size: 1.3rem; font-weight: bold; margin-bottom: 20px; text-align: center; }
+        .opt-btn { 
+            background: white; border: 2px solid var(--border); padding: 15px; border-radius: 12px;
+            text-align: right; margin-bottom: 10px; cursor: pointer; transition: 0.2s; font-weight: bold;
+        }
+        .opt-btn:hover { border-color: var(--primary); background: #f7fafc; }
+        .opt-btn.correct { background: var(--accent-2); color: white; border-color: var(--accent-2); }
+        .opt-btn.wrong { background: var(--danger); color: white; border-color: var(--danger); }
 
-.btn:active{transform:translateY(2px);box-shadow: 0 2px 0 rgba(0,0,0,0.1)}
-
-.bg{background:var(--gold);color:#fff}
-.bc{background:var(--cyan);color:#fff}
-.bp{background:var(--pink);color:#fff}
-.bpu{background:var(--purp);color:#fff}
-.bgr{background:var(--grn);color:#fff}
-.br{background:var(--red);color:#fff}
-.bx{background:var(--s3);border:1px solid var(--bd);color:var(--dim)}
-.bx:hover{background:var(--bd);color:var(--txt)}
-
-/* LEVEL CARDS */
-.lvl-grid{display:grid;gap:15px;margin-bottom:25px}
-.lvl{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:30px 20px;
-text-align:center;cursor:pointer;transition:all .3s ease;
-box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05)}
-
-.lvl:hover{transform:translateY(-5px);border-color:var(--cyan);box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1)}
-
-.lvl-icon{font-size:3rem;margin-bottom:10px}
-.lvl-name{font-family:'Tajawal',sans-serif;font-size:1.4rem;font-weight:900;margin-bottom:5px}
-.lvl-desc{font-size:.85rem;color:var(--dim);line-height:1.4}
-
-/* TEAM SETUP */
-.teamrow{display:flex;align-items:center;gap:12px;margin-bottom:12px}
-.dot{width:14px;height:14px;border-radius:50%;flex-shrink:0}
-.tf{flex:1;background:var(--s3);border:1px solid var(--bd);color:var(--txt);
-padding:12px 15px;border-radius:10px;font-family:'Tajawal',sans-serif;font-size:1rem;transition:all .2s}
-.tf:focus{outline:none;border-color:var(--cyan);background:#fff;box-shadow: 0 0 0 3px rgba(2,132,199,0.1)}
-
-/* SCOREBAR */
-.sbar{display:flex;gap:10px;padding-bottom:10px;margin-bottom:20px;overflow-x:auto}
-.spill{flex-shrink:0;background:var(--s1);border:1px solid var(--bd);border-radius:12px;
-padding:12px 15px;text-align:center;min-width:90px;box-shadow: 0 2px 4px rgba(0,0,0,0.05)}
-.spill.cur{border-color:var(--cyan);border-width:2px;background:rgba(2,132,199,0.05)}
-.sname{font-size:.75rem;font-weight:700;color:var(--dim)}
-.spts{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--txt)}
-
-/* QUIZ */
-.qcard{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:25px;margin-bottom:15px;box-shadow: 0 4px 10px rgba(0,0,0,0.03)}
-.qtext{font-size:1.3rem;font-weight:900;line-height:1.5;margin-bottom:20px;color:var(--txt)}
-
-.opt{background:var(--s3);border:1px solid var(--bd);color:var(--txt);
-padding:15px;border-radius:12px;cursor:pointer;font-weight:700;
-transition:all .2s;text-align:right;margin-bottom:10px;width:100%;display:flex;align-items:center;gap:10px}
-
-.opt:hover{border-color:var(--cyan);background:#fff}
-.opt.ok{background:var(--grn);color:#fff;border-color:var(--grn)}
-.opt.no{background:var(--red);color:#fff;border-color:var(--red)}
-
-/* PROGRESS */
-.progbar{height:8px;background:var(--bd);border-radius:10px;margin-bottom:20px;overflow:hidden}
-.progfill{height:100%;background:linear-gradient(90deg, var(--cyan), var(--purp));transition:width .4s}
-
-/* TIMER */
-.tnum{font-family:'Space Mono',monospace;font-size:1rem;font-weight:900;color:var(--txt)}
-.tring circle{stroke:var(--bd)}
-
-/* OVERLAY */
-.overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;
-background:rgba(30,41,59,0.7);backdrop-filter:blur(8px)}
-.obox{background:#fff;border-radius:24px;padding:40px;text-align:center;width:90%;max-width:400px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25)}
-
-/* L2/L3 Grid */
-.l2grid, .l3grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:20px 0}
-.l2btn, .l3btn{background:#fff;border:1px solid var(--bd);border-radius:16px;padding:20px;cursor:pointer;transition:all .2s}
-.l2btn:hover, .l3btn:hover{transform:translateY(-3px);box-shadow:0 10px 15px rgba(0,0,0,0.05);border-color:var(--cyan)}
-.li{font-size:2.5rem;margin-bottom:10px;display:block}
-.ln{font-weight:900;font-size:1rem;display:block}
-
-@media(max-width:480px){
-  .gametitle{font-size:2rem}
-  .l2grid, .l3grid{grid-template-columns:1fr 1fr}
-}
-</style>
+        /* --- Overlay --- */
+        .overlay { 
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px);
+            z-index: 1000; display: flex; align-items: center; justify-content: center;
+        }
+        .modal { background: white; padding: 40px; border-radius: 24px; text-align: center; width: 90%; max-width: 400px; }
+    </style>
 </head>
 <body>
 
-<div class="toast" id="toast"></div>
-
-<div class="overlay hidden" id="overlay">
-  <div class="obox">
-    <div class="oicon" id="oIcon" style="font-size:4rem;margin-bottom:15px">🎯</div>
-    <div class="otitle" id="oTitle" style="font-size:2rem;font-weight:900;margin-bottom:10px">النتيجة</div>
-    <div class="odetail" id="oDetail" style="margin-bottom:25px;color:var(--dim)"></div>
-    <button class="btn bc" onclick="nextRound()">التالي ←</button>
-  </div>
+<div id="overlay" class="overlay hidden">
+    <div class="modal">
+        <h2 id="modal-title" style="font-size: 2rem; margin-bottom: 10px;">🏆 ممتاز!</h2>
+        <p id="modal-body" style="color: var(--dim); margin-bottom: 25px;">لقد حصلت على نقاط إضافية.</p>
+        <button class="btn btn-primary" onclick="closeOverlay()">متابعة</button>
+    </div>
 </div>
 
-<div id="sc-levels" class="sc on">
-  <h1 class="gametitle">الهروب من برلين</h1>
-  <p class="gamesub">تعلّم الألمانية بالمنافسة 🇩🇪</p>
-  
-  <div class="lvl-grid">
-    <div class="lvl" onclick="goSetup(1)" style="border-bottom: 4px solid var(--pink)">
-      <div class="lvl-icon">🏃</div>
-      <div class="lvl-name" style="color:var(--pink)">المستوى الأول</div>
-      <div class="lvl-desc">مسابقة أسئلة + تحدي المليون</div>
+<div id="sc-levels" class="sc">
+    <h1 class="title">الهروب من برلين</h1>
+    <p class="subtitle">تحدَّ أصدقاءك في اللغة الألمانية 🇩🇪</p>
+    
+    <div class="card" onclick="startSetup(1)" style="cursor:pointer; border-right: 8px solid var(--accent-1);">
+        <h2 style="color: var(--accent-1)">المستوى 1: المبتدئين</h2>
+        <p>أسئلة عامة + من سيربح المليون</p>
     </div>
     
-    <div class="lvl" onclick="goSetup(2)" style="border-bottom: 4px solid var(--cyan)">
-      <div class="lvl-icon">🎮</div>
-      <div class="lvl-name" style="color:var(--cyan)">المستوى الثاني</div>
-      <div class="lvl-desc">Bananagrams · ذاكرة · Mad Libs</div>
+    <div class="card" onclick="startSetup(2)" style="cursor:pointer; border-right: 8px solid var(--primary);">
+        <h2 style="color: var(--primary)">المستوى 2: المتوسط</h2>
+        <p>قواعد، ذاكرة، وتحدي الكلمات</p>
     </div>
     
-    <div class="lvl" onclick="goSetup(3)" style="border-bottom: 4px solid var(--grn)">
-      <div class="lvl-icon">🚀</div>
-      <div class="lvl-name" style="color:var(--grn)">المستوى الثالث</div>
-      <div class="lvl-desc">Satzpuzzle · Lückentext · Rollenspiel</div>
+    <div class="card" onclick="startSetup(3)" style="cursor:pointer; border-right: 8px solid var(--accent-2);">
+        <h2 style="color: var(--accent-2)">المستوى 3: المتقدم</h2>
+        <p>بناء الجمل، نصوص، ومحادثات</p>
     </div>
-  </div>
 </div>
+
+<div id="sc-setup" class="sc hidden">
+    <h2 class="title">تجهيز الفرق</h2>
+    <div class="card">
+        <p style="margin-bottom: 15px;">أدخل أسماء الفرق (2-4 فرق):</p>
+        <div id="team-inputs">
+            <input type="text" class="btn btn-ghost" placeholder="الفريق الأول" style="text-align: right; cursor: text;">
+            <input type="text" class="btn btn-ghost" placeholder="الفريق الثاني" style="text-align: right; cursor: text;">
+        </div>
+        <button class="btn btn-primary" onclick="initGame()">ابدأ اللعب الآن</button>
+        <button class="btn btn-ghost" onclick="showScreen('sc-levels')">رجوع</button>
+    </div>
+</div>
+
+<div id="sc-quiz" class="sc hidden">
+    <div id="quiz-scoreboard" class="scoreboard"></div>
+    <div class="card">
+        <div id="q-category" style="font-size: 0.7rem; color: var(--primary); font-weight: bold; text-transform: uppercase;">Grammatik</div>
+        <div id="q-text" class="q-text">Wie sagt man "Hello" auf Deutsch?</div>
+        <div id="q-options"></div>
+    </div>
+    <div class="grid-2">
+        <button class="btn btn-ghost" onclick="showScreen('sc-levels')">انسحاب</button>
+        <button class="btn btn-primary" id="next-q-btn" onclick="nextQuestion()">السؤال التالي</button>
+    </div>
+</div>
+
+<script>
+    // --- Global State ---
+    let state = {
+        level: 1,
+        teams: [],
+        currentTeamIdx: 0,
+        questions: [],
+        currentQIdx: 0,
+        scores: []
+    };
+
+    const QUESTIONS_POOL = [
+        { q: "Was ist der Artikel von 'Tisch'?", options: ["Der", "Die", "Das"], correct: 0, cat: "Artikel" },
+        { q: "Wie heißt 'Book' auf Deutsch?", options: ["Buch", "Heft", "Stift"], correct: 0, cat: "Vokabeln" },
+        { q: "Ich ___ nach Berlin.", options: ["gehe", "geht", "gehst"], correct: 0, cat: "Verben" },
+        { q: "Wie spät ist es? (14:00)", options: ["Zwei Uhr", "Drei Uhr", "Eins Uhr"], correct: 0, cat: "Zeit" }
+    ];
+
+    // --- Core Functions ---
+    function showScreen(screenId) {
+        document.querySelectorAll('.sc').forEach(s => s.classList.add('hidden'));
+        document.getElementById(screenId).classList.remove('hidden');
+    }
+
+    function startSetup(lvl) {
+        state.level = lvl;
+        showScreen('sc-setup');
+    }
+
+    function initGame() {
+        const inputs = document.querySelectorAll('#team-inputs input');
+        state.teams = [];
+        state.scores = [];
+        
+        inputs.forEach(inp => {
+            if(inp.value.trim() !== "") {
+                state.teams.push(inp.value.trim());
+                state.scores.push(0);
+            }
+        });
+
+        if(state.teams.length < 2) {
+            alert("يرجى إدخال فريقين على الأقل");
+            return;
+        }
+
+        state.currentTeamIdx = 0;
+        state.currentQIdx = 0;
+        state.questions = [...QUESTIONS_POOL].sort(() => Math.random() - 0.5);
+        
+        updateScoreboard();
+        loadQuestion();
+        showScreen('sc-quiz');
+    }
+
+    function updateScoreboard() {
+        const container = document.getElementById('quiz-scoreboard');
+        container.innerHTML = '';
+        state.teams.forEach((name, i) => {
+            const div = document.createElement('div');
+            div.className = `score-item ${i === state.currentTeamIdx ? 'active' : ''}`;
+            div.innerHTML = `
+                <div class="score-name">${name}</div>
+                <div class="score-pts">${state.scores[i]}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function loadQuestion() {
+        const q = state.questions[state.currentQIdx];
+        document.getElementById('q-text').innerText = q.q;
+        document.getElementById('q-category').innerText = q.cat;
+        
+        const optContainer = document.getElementById('q-options');
+        optContainer.innerHTML = '';
+        
+        q.options.forEach((opt, i) => {
+            const b = document.createElement('div');
+            b.className = 'opt-btn';
+            b.innerText = opt;
+            b.onclick = () => checkAnswer(i, b);
+            optContainer.appendChild(b);
+        });
+    }
+
+    function checkAnswer(idx, element) {
+        const q = state.questions[state.currentQIdx];
+        const allOpts = document.querySelectorAll('.opt-btn');
+        allOpts.forEach(btn => btn.style.pointerEvents = 'none');
+
+        if(idx === q.correct) {
+            element.classList.add('correct');
+            state.scores[state.currentTeamIdx] += 20;
+            openOverlay("✅ إجابة صحيحة", `أحسنت يا فريق ${state.teams[state.currentTeamIdx]}! حصلتم على 20 نقطة.`);
+        } else {
+            element.classList.add('wrong');
+            allOpts[q.correct].classList.add('correct');
+            state.scores[state.currentTeamIdx] = Math.max(0, state.scores[state.currentTeamIdx] - 10);
+            openOverlay("❌ للأسف!", "إجابة خاطئة. تم خصم 10 نقاط.");
+        }
+        updateScoreboard();
+    }
+
+    function nextQuestion() {
+        state.currentTeamIdx = (state.currentTeamIdx + 1) % state.teams.length;
+        state.currentQIdx = (state.currentQIdx + 1) % state.questions.length;
+        updateScoreboard();
+        loadQuestion();
+    }
+
+    // --- UI Helpers ---
+    function openOverlay(title, body) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-body').innerText = body;
+        document.getElementById('overlay').classList.remove('hidden');
+    }
+
+    function closeOverlay() {
+        document.getElementById('overlay').classList.add('hidden');
+    }
+</script>
 
 </body>
 </html>
