@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Deutsch A1 — Handout</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --black: #111;
+    --white: #fafaf8;
+    --yellow: #f5c518;
+    --red: #e63329;
+    --blue: #1a3a5c;
+    --lightblue: #e8f0f8;
+    --gray: #f0efec;
+    --border: #ddd;
+    --accent: #2d6a4f;
+    --accent-light: #e8f5ef;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Cairo', 'Noto Sans Arabic', sans-serif; background: var(--white); color: var(--black); font-size: 16px; line-height: 1.7; }
+
+  /* HEADER */
+  .header { background: var(--blue); color: white; padding: 20px 20px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--yellow); gap: 12px; }
+  .header-title { font-size: 1.4rem; font-weight: 900; }
+  .header-sub { font-size: 0.85rem; opacity: 0.8; margin-top: 3px; }
+  .header-flag { font-size: 2.2rem; flex-shrink: 0; }
+
+  /* NAV */
+  .nav { position: sticky; top: 0; z-index: 100; background: white; border-bottom: 1.5px solid var(--border); padding: 8px 12px; display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a { text-decoration: none; padding: 6px 12px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; color: var(--blue); background: var(--lightblue); white-space: nowrap; flex-shrink: 0; }
+  .nav a:hover, .nav a:active { background: var(--yellow); color: var(--black); }
+
+  /* PAGE */
+  .page { max-width: 960px; margin: 0 auto; padding: 0 14px 60px; }
+
+  /* LESSON HEADER */
+  .lesson-header { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 32px 0 20px; padding-bottom: 10px; border-bottom: 3px solid var(--yellow); }
+  .lesson-badge { background: var(--yellow); color: var(--black); font-weight: 900; font-size: 0.8rem; padding: 4px 10px; border-radius: 4px; white-space: nowrap; }
+  .lesson-title { font-size: 1.2rem; font-weight: 900; color: var(--blue); }
+  .lesson-emoji { font-size: 1.3rem; }
+
+  /* CARD */
+  .card { background: white; border: 1.5px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+  .card-title { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .card-title .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--yellow); display: inline-block; flex-shrink: 0; }
+
+  /* TABLES — always scrollable on mobile */
+  .t-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 8px; border-radius: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 300px; }
+  th { background: var(--blue); color: white; padding: 9px 12px; text-align: center; font-weight: 700; font-size: 0.85rem; }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); text-align: center; vertical-align: middle; }
+  tr:nth-child(even) td { background: var(--gray); }
+  tr:last-child td { border-bottom: none; }
+  .de { font-weight: 700; color: var(--blue); direction: ltr; }
+  .ar { color: #555; }
+  .ex { color: var(--accent); font-style: italic; font-size: 0.88em; direction: ltr; }
+  .conj-ltr { direction: ltr; }
+  .conj-ltr td, .conj-ltr th { text-align: left; direction: ltr; }
+
+  /* GRIDS — mobile-first: 1 col default, 2+ on wider */
+  .phrases-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-top: 8px; }
+  .phrase-item { background: var(--lightblue); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .phrase-de { font-weight: 700; color: var(--blue); direction: ltr; font-size: 0.95rem; }
+  .phrase-ar { color: #666; font-size: 0.85rem; }
+
+  .article-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+  .article-box { border-radius: 8px; padding: 14px; text-align: center; }
+  .article-box.masc { background: #e3eaf5; border: 2px solid #1a3a5c; }
+  .article-box.fem  { background: #fde8e8; border: 2px solid #e63329; }
+  .article-box.neu  { background: #e8f5ef; border: 2px solid #2d6a4f; }
+  .article-name { font-size: 1.5rem; font-weight: 900; display: block; margin-bottom: 4px; direction: ltr; }
+  .article-label { font-size: 0.82rem; color: #666; display: block; margin-bottom: 8px; }
+  .article-example { font-size: 0.9rem; font-weight: 600; direction: ltr; }
+  .article-ex-ar { font-size: 0.8rem; color: #888; margin-top: 2px; }
+
+  .verb-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+  .verb-card { border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .verb-card-header { background: var(--blue); color: white; text-align: center; padding: 8px 12px; font-weight: 700; direction: ltr; }
+  .verb-card-header span { font-size: 0.78rem; opacity: 0.8; display: block; font-weight: 400; direction: rtl; }
+  .verb-row { direction: ltr; display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; border-bottom: 1px solid var(--border); font-size: 0.9rem; gap: 8px; }
+  .verb-row:last-child { border-bottom: none; }
+  .verb-row:nth-child(even) { background: var(--gray); }
+  .verb-pronoun { color: #777; min-width: 55px; direction: ltr; flex-shrink: 0; }
+  .verb-form { font-weight: 700; color: var(--blue); direction: ltr; }
+  .verb-highlight { background: #fff8dc !important; }
+
+  .family-tree { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .family-member { border: 1.5px solid var(--border); border-radius: 8px; padding: 10px; text-align: center; background: white; }
+  .family-emoji { font-size: 1.6rem; display: block; margin-bottom: 4px; }
+  .family-de { font-weight: 700; color: var(--blue); direction: ltr; font-size: 0.9rem; }
+  .family-ar { font-size: 0.82rem; color: #666; }
+  .family-plural { font-size: 0.72rem; color: var(--red); direction: ltr; margin-top: 2px; }
+
+  .poss-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 8px; }
+  .poss-card { border-radius: 8px; overflow: hidden; border: 1.5px solid var(--border); }
+  .poss-header { background: var(--blue); color: white; padding: 8px 12px; text-align: center; font-weight: 700; direction: ltr; }
+  .poss-header small { display: block; font-size: 0.72rem; opacity: 0.8; font-weight: 400; direction: rtl; }
+  .poss-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; font-size: 0.88rem; border-bottom: 1px solid #eee; direction: ltr; gap: 8px; }
+  .poss-row:last-child { border-bottom: none; }
+  .poss-row:nth-child(even) { background: var(--gray); }
+  .poss-row .ar-note { direction: rtl; color: #888; font-size: 0.8rem; flex-shrink: 0; }
+
+  /* FLIP CARDS — numbers */
+  .numbers-toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0 14px; }
+  .numbers-toolbar button { border: 1.5px solid var(--border); background: white; color: var(--blue); border-radius: 999px; padding: 8px 14px; font-family: inherit; font-weight: 700; cursor: pointer; font-size: 0.85rem; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .numbers-toolbar button:active { background: var(--lightblue); }
+  .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+  .flip-card { perspective: 800px; height: 80px; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; user-select: none; }
+  .flip-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.45s; }
+  .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+  .flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--border); border-radius: 8px; background: white; padding: 8px 4px; }
+  .flip-face.back { transform: rotateY(180deg); background: #fff8dc; color: var(--blue); font-weight: 800; font-size: 0.9rem; direction: ltr; text-align: center; }
+  .flip-number { font-size: 1.6rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+
+  /* HIGHLIGHT BOXES */
+  .highlight-box { border-radius: 8px; padding: 14px 16px; margin-top: 12px; border-right: 4px solid; }
+  .highlight-box.yellow { background: #fffbe6; border-color: var(--yellow); }
+  .highlight-box.red    { background: #fef2f2; border-color: var(--red); }
+  .highlight-box.green  { background: var(--accent-light); border-color: var(--accent); }
+  .highlight-box.blue   { background: var(--lightblue); border-color: var(--blue); }
+  .highlight-box strong { color: var(--blue); }
+
+  /* DIALOG */
+  .dialog-box { background: var(--gray); border-radius: 10px; padding: 16px; margin-top: 12px; }
+  .dialog-line { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 10px; }
+  .dialog-line:last-child { margin-bottom: 0; }
+  .dialog-speaker { background: var(--blue); color: white; border-radius: 4px; padding: 2px 7px; font-size: 0.72rem; font-weight: 700; white-space: nowrap; margin-top: 3px; flex-shrink: 0; }
+  .dialog-text { font-size: 0.9rem; direction: ltr; }
+  .dialog-translation { font-size: 0.78rem; color: #888; direction: rtl; }
+
+  /* TIPS */
+  .tips-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 14px; }
+  .tip-item { background: linear-gradient(180deg,#fff 0%,#f7fbff 100%); border: 1.5px solid #d9e7f5; border-right: 5px solid var(--blue); border-radius: 12px; padding: 16px; }
+  .tip-kicker { display: inline-block; background: var(--yellow); color: var(--black); font-weight: 800; border-radius: 999px; padding: 3px 10px; font-size: 0.75rem; margin-bottom: 8px; }
+  .tip-title { font-weight: 800; color: var(--blue); margin-bottom: 8px; font-size: 0.95rem; }
+  .tip-body { font-size: 0.9rem; color: #2f3a44; line-height: 1.8; }
+  .tip-body strong { color: var(--blue); }
+  .tip-intro { background: linear-gradient(135deg,#eef5fc,#fffdf4); border: 1.5px solid #dde7f0; border-right: 5px solid var(--yellow); border-radius: 12px; padding: 16px; margin-bottom: 14px; color: #2f3a44; line-height: 1.8; font-size: 0.9rem; }
+  .tip-vision { margin-top: 14px; background: #0f2f4a; color: white; border-radius: 12px; padding: 16px; line-height: 1.85; font-size: 0.9rem; }
+  .tip-vision strong { color: var(--yellow); }
+
+  /* HOMEWORK */
+  .homework { background: var(--blue); color: white; border-radius: 10px; padding: 20px; margin-top: 32px; }
+  .homework h2 { font-size: 1.1rem; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .hw-item { background: rgba(255,255,255,0.1); border-radius: 8px; padding: 12px 14px; margin-bottom: 10px; border-right: 3px solid var(--yellow); font-size: 0.9rem; }
+  .hw-item:last-child { margin-bottom: 0; }
+  .hw-num { background: var(--yellow); color: var(--black); font-weight: 900; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.75rem; margin-left: 8px; }
+
+  /* FOOTER */
+  .footer { background: var(--gray); text-align: center; padding: 18px 16px; margin-top: 48px; font-size: 0.82rem; color: #888; border-top: 2px solid var(--border); }
+  .footer a { color: var(--blue); text-decoration: none; font-weight: 600; margin: 0 8px; }
+
+  /* INPUTS — all inputs: font-size 16px prevents iOS zoom */
+  input[type="text"], textarea {
+    font-family: inherit;
+    font-size: 16px !important; /* prevents iOS auto-zoom */
+    border: 1.5px dashed #aaa;
+    border-radius: 6px;
+    background: #fff;
+    padding: 8px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+  }
+  input[type="text"]:focus, textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    border-style: solid;
+    box-shadow: 0 0 0 3px rgba(26,58,92,0.08);
+  }
+  .verb-input { width: 100%; text-align: center; direction: ltr; }
+  .mini-input { text-align: center; }
+  .answer { display: none; margin-top: 5px; color: #555; font-size: 0.82rem; direction: rtl; font-style: italic; }
+  .show-answers .answer { display: block; }
+  .solution-inline { display: none; font-size: 0.82rem; color: #555; margin-inline-start: 6px; }
+  .show-answers .solution-inline { display: inline; }
+
+  /* WORKSHEET NOTE */
+  .worksheet-note { background: #fffbe6; border: 1.5px solid var(--yellow); border-radius: 10px; padding: 16px; margin: 20px 0 16px; font-size: 0.9rem; }
+  .toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+  .toolbar button { border: none; background: var(--blue); color: white; padding: 10px 14px; border-radius: 8px; font-family: inherit; font-size: 0.9rem; font-weight: 700; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; flex: 1 1 auto; min-width: 140px; }
+  .toolbar button.secondary { background: var(--accent); }
+  .toolbar button:active { opacity: 0.85; }
+  .save-status { font-size: 0.82rem; color: #666; margin-top: 8px; }
+
+  /* TEACHER TOOLS */
+  .teacher-toolbar { position: sticky; top: 48px; z-index: 150; max-width: 960px; margin: 12px auto 0; padding: 10px 12px; background: #fffdf5; border: 1.5px solid #ecd98b; border-radius: 10px; box-shadow: 0 4px 14px rgba(0,0,0,0.06); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .teacher-toolbar .tool-label { font-weight: 800; color: var(--blue); font-size: 0.88rem; }
+  .teacher-toolbar button { border: 1px solid #d8d8d8; background: white; color: var(--blue); border-radius: 999px; padding: 7px 12px; font-family: inherit; font-size: 0.82rem; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  .teacher-toolbar button:active, .teacher-toolbar button.active { background: var(--blue); color: white; border-color: var(--blue); }
+  .teacher-status { font-size: 0.78rem; color: #666; width: 100%; margin-top: 2px; }
+  .teacher-note-mode .teacher-note-target { cursor: pointer; outline: 2px dashed transparent; outline-offset: 3px; }
+  .teacher-note-mode .teacher-note-target:hover, .teacher-note-mode .teacher-note-target:active { outline-color: var(--yellow); }
+  .teacher-highlight { background: linear-gradient(transparent 35%,#fff1a8 35%,#fff1a8 88%,transparent 88%); border-radius: 2px; padding: 0 2px; }
+  .teacher-comment { background: #e9f4ff; border-bottom: 2px dotted #1a3a5c; cursor: help; padding: 0 2px; }
+  .teacher-comment::after { content: '📝'; font-size: 0.78rem; margin-inline-start: 3px; }
+  .teacher-marked { box-shadow: inset 4px 0 0 var(--yellow); background-image: linear-gradient(to left,rgba(245,197,24,0.10),rgba(245,197,24,0)); }
+  .teacher-note-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 0.8rem; color: #4f4f4f; background: #fff9dc; border: 1px solid #f0dfa0; border-radius: 999px; padding: 4px 10px; }
+  .teacher-note-badge button { all: unset; cursor: pointer; font-size: 0.8rem; color: var(--red); font-weight: 700; margin-inline-start: 4px; padding: 2px 4px; }
+
+  /* FILLED ANSWERS (handout) */
+  .filled-answer { color: var(--accent); font-weight: 600; }
+
+  /* HABEN GRID — stacks on mobile */
+  .haben-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+  /* MODAL — replaces prompt() for iOS compatibility */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 9000; align-items: center; justify-content: center; padding: 16px; }
+  .modal-overlay.open { display: flex; }
+  .modal-box { background: white; border-radius: 12px; padding: 20px; max-width: 400px; width: 100%; box-shadow: 0 8px 28px rgba(0,0,0,0.15); }
+  .modal-title { font-weight: 800; color: var(--blue); margin-bottom: 10px; font-size: 0.95rem; }
+  .modal-input { width: 100%; border: 1.5px solid var(--border); border-radius: 8px; padding: 10px 12px; font-family: inherit; font-size: 16px; margin-bottom: 12px; box-sizing: border-box; }
+  .modal-input:focus { outline: none; border-color: var(--blue); }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  .modal-actions button { padding: 9px 16px; border-radius: 8px; border: none; font-family: inherit; font-weight: 700; cursor: pointer; font-size: 0.9rem; }
+  .modal-btn-ok { background: var(--blue); color: white; }
+  .modal-btn-cancel { background: var(--gray); color: var(--black); }
+
+  /* RESPONSIVE: tablet 640px+ */
+  @media (min-width: 640px) {
+    .header { padding: 24px 32px 20px; }
+    .header-title { font-size: 1.8rem; }
+    .header-flag { font-size: 2.8rem; }
+    .page { padding: 0 20px 60px; }
+    .nav { padding: 8px 20px; }
+    .phrases-grid { grid-template-columns: 1fr 1fr; }
+    .article-grid { grid-template-columns: repeat(3, 1fr); }
+    .verb-grid { grid-template-columns: repeat(2, 1fr); }
+    .family-tree { grid-template-columns: repeat(3, 1fr); }
+    .poss-grid { grid-template-columns: repeat(3, 1fr); }
+    .numbers-grid { grid-template-columns: repeat(5, 1fr); }
+    .haben-grid { grid-template-columns: 1fr 1fr; }
+    .phrase-item { flex-direction: row; align-items: center; }
+  }
+
+  /* RESPONSIVE: desktop 960px+ */
+  @media (min-width: 960px) {
+    .verb-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">Deutsch A1 — Handout</div>
+    <div class="header-sub">ملخص كامل للطباعة أو المشاركة</div>
+  </div>
+  <div class="header-flag">🇩🇪</div>
+</div>
+<nav class="nav">
+  <a href="#lektion1">📘 درس 1</a>
+  <a href="#zahlen">🔢 الأرقام</a>
+  <a href="#artikel">📌 der/die/das</a>
+  <a href="#verben">🔄 الأفعال</a>
+  <a href="#lektion2">👨‍👩‍👧 درس 2</a>
+  <a href="#familie">👪 العائلة</a>
+  <a href="#possessiv">✋ الملكية</a>
+  <a href="#haben">🔑 haben</a>
+  <a href="#tipps">💡 نصائح</a>
+  <a href="#hausaufgabe">📝 الواجب</a>
+</nav>
+<div class="page">
+
+
+
+
+<!-- LEKTION 1 -->
+<div id="lektion1" class="lesson-header">
+  <span class="lesson-badge">مراجعة — درس 1</span>
+  <span class="lesson-title">Guten Tag! — التحية والتعريف</span>
+  <span class="lesson-emoji">👋</span>
+</div>
+
+<!-- Begrüßung -->
+<div class="card">
+  <div class="card-title"><span class="dot"></span> التحية والوداع — Begrüßung & Abschied</div>
+  <div class="phrases-grid">
+    <div class="phrase-item"><span class="phrase-de">Guten Morgen</span><span class="phrase-ar">صباح الخير (6–11)</span></div>
+    <div class="phrase-item"><span class="phrase-de">Guten Tag</span><span class="phrase-ar">نهارك سعيد (11–18)</span></div>
+    <div class="phrase-item"><span class="phrase-de">Guten Abend</span><span class="phrase-ar">مساء الخير (18+)</span></div>
+    <div class="phrase-item"><span class="phrase-de">Gute Nacht</span><span class="phrase-ar">ليلة سعيدة</span></div>
+    <div class="phrase-item"><span class="phrase-de">Hallo / Hi</span><span class="phrase-ar">مرحبا (غير رسمي)</span></div>
+    <div class="phrase-item"><span class="phrase-de">Auf Wiedersehen</span><span class="phrase-ar">مع السلامة (رسمي)</span></div>
+    <div class="phrase-item"><span class="phrase-de">Tschüss / Tschau</span><span class="phrase-ar">باي (غير رسمي)</span></div>
+    <div class="phrase-item"><span class="phrase-de">Wie geht's? — Gut, danke!</span><span class="phrase-ar">كيف حالك؟ — بخير!</span></div>
+  </div>
+</div>
+
+<!-- Sich vorstellen -->
+<div class="card">
+  <div class="card-title"><span class="dot"></span> التعريف بالنفس — Sich vorstellen</div>
+  <div class="t-wrap">
+  <table>
+    <thead><tr><th>الألمانية</th><th>المعنى</th><th>مثال</th></tr></thead>
+    <tbody>
+      <tr class=""><td class="de">Ich heiße …</td><td><span class="filled-answer">اسمي…</span></td><td class="ex">Ich heiße Sara.</td></tr>
+      <tr class=""><td class="de">Mein Name ist …</td><td><span class="filled-answer">اسمي…</span></td><td class="ex">Mein Name ist Ali.</td></tr>
+      <tr class=""><td class="de">Ich bin …</td><td><span class="filled-answer">أنا…</span></td><td class="ex">Ich bin Lara.</td></tr>
+      <tr class=""><td class="de">Ich komme aus …</td><td><span class="filled-answer">أنا من…</span></td><td class="ex">Ich komme aus Syrien.</td></tr>
+      <tr class=""><td class="de">Ich lebe / wohne in …</td><td><span class="filled-answer">أسكن في…</span></td><td class="ex">Ich wohne in Augsburg.</td></tr>
+      <tr class=""><td class="de">Ich spreche …</td><td><span class="filled-answer">أتحدث…</span></td><td class="ex">Ich spreche Arabisch.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="highlight-box yellow" style="margin-top:12px">
+    <strong>❓ أسئلة مهمة:</strong>
+    <span style="direction:ltr;display:block;margin-top:4px;font-size:0.88rem">
+      Wie heißen <strong>Sie</strong>? / Wie heißt <strong>du</strong>? → ما اسمك?<br>
+      Woher kommen <strong>Sie</strong>? / Woher kommst <strong>du</strong>? → من أين أنت?<br>
+      Wo wohnen <strong>Sie</strong>? / Wo wohnst <strong>du</strong>? → أين تسكن?
+    </span>
+  </div>
+  <div class="highlight-box blue" style="margin-top:10px">
+    <strong>🎩 Sie (رسمي) مقابل du (غير رسمي):</strong>
+    <span style="font-size:0.88rem;display:block">
+      <strong>du</strong> = مع الأصدقاء والزملاء ·
+      <strong>Sie</strong> (بالكبيرة) = مع الأساتذة والكبار
+    </span>
+  </div>
+</div>
+
+<!-- Pronomen -->
+<div class="card">
+  <div class="card-title"><span class="dot"></span> الضمائر — Personalpronomen</div>
+  <div class="t-wrap">
+  <table>
+    <thead><tr><th>الضمير</th><th>المعنى</th><th>مثال</th></tr></thead>
+    <tbody>
+      <tr class=""><td class="de">ich</td><td><span class="filled-answer">أنا</span></td><td class="ex">Ich bin …</td></tr>
+      <tr class=""><td class="de">du</td><td><span class="filled-answer">أنت</span></td><td class="ex">Du kommst aus …</td></tr>
+      <tr class=""><td class="de">er</td><td><span class="filled-answer">هو</span></td><td class="ex">Er heißt Tim.</td></tr>
+      <tr class=""><td class="de">sie</td><td><span class="filled-answer">هي</span></td><td class="ex">Sie heißt Lara.</td></tr>
+      <tr class=""><td class="de">es</td><td><span class="filled-answer">هو/هي (محايد)</span></td><td class="ex">Es ist ein Kind.</td></tr>
+      <tr class=""><td class="de">wir</td><td><span class="filled-answer">نحن</span></td><td class="ex">Wir kommen aus …</td></tr>
+      <tr class=""><td class="de">ihr</td><td><span class="filled-answer">أنتم</span></td><td class="ex">Ihr kommt aus …</td></tr>
+      <tr class=""><td class="de">sie / Sie</td><td><span class="filled-answer">هم / أنتم (رسمي)</span></td><td class="ex">Sie kommen aus …</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Zahlen -->
+<div id="zahlen" class="card">
+  <div class="card-title"><span class="dot"></span> الأرقام 1–20 — Zahlen</div>
+  
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px"><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">1</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">eins</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">2</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">zwei</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">3</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">drei</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">4</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">vier</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">5</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">fünf</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">6</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">sechs</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">7</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">sieben</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">8</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">acht</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">9</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">neun</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">10</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">zehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">11</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">elf</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">12</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">zwölf</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">13</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">dreizehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">14</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">vierzehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">15</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">fünfzehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">16</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">sechzehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">17</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">siebzehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">18</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">achtzehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">19</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">neunzehn</span></div><div class="num-box" style="border:1.5px solid var(--border);border-radius:8px;text-align:center;padding:10px 6px;background:white"><span style="font-size:1.5rem;font-weight:900;color:var(--yellow);display:block">20</span><span style="font-weight:700;color:var(--blue);direction:ltr;font-size:0.85rem">zwanzig</span></div></div>
+  <div class="highlight-box yellow" style="margin-top:12px">
+    <strong>📌 ملاحظة:</strong> من 13 إلى 19 نضيف <strong style="direction:ltr">-zehn</strong> (= zehn = 10). مثال: drei + zehn = dreizehn (13)
+  </div>
+</div>
+
+<!-- Artikel -->
+<div id="artikel" class="card">
+  <div class="card-title"><span class="dot"></span> أداة التعريف — Bestimmter Artikel</div>
+  <div class="article-grid">
+    <div class="article-box masc">
+      <span class="article-name" style="color:#1a3a5c">der</span>
+      <span class="article-label">مذكر — Maskulin</span>
+      <span class="article-example">der Mann</span><span class="article-ex-ar">الرجل</span>
+      <span class="article-example">der Vater</span><span class="article-ex-ar">الأب</span>
+    </div>
+    <div class="article-box fem">
+      <span class="article-name" style="color:#e63329">die</span>
+      <span class="article-label">مؤنث — Feminin</span>
+      <span class="article-example">die Frau</span><span class="article-ex-ar">المرأة</span>
+      <span class="article-example">die Mutter</span><span class="article-ex-ar">الأم</span>
+    </div>
+    <div class="article-box neu">
+      <span class="article-name" style="color:#2d6a4f">das</span>
+      <span class="article-label">محايد — Neutrum</span>
+      <span class="article-example">das Kind</span><span class="article-ex-ar">الطفل</span>
+      <span class="article-example">das Mädchen</span><span class="article-ex-ar">البنت</span>
+    </div>
+  </div>
+  <div class="highlight-box red" style="margin-top:12px">
+    <strong>⚠️ مهم:</strong> لا توجد قاعدة ثابتة لجنس الكلمة في الألمانية — يجب حفظ كل كلمة مع أداتها!<br>
+    <span style="font-size:0.88rem">✅ احفظ دائماً: <strong style="direction:ltr">der Mann</strong> وليس فقط <strong style="direction:ltr">Mann</strong></span>
+  </div>
+  <div class="highlight-box green" style="margin-top:8px">
+    <strong>📌 الجمع دائماً <span style="direction:ltr">die</span>:</strong>
+    <span style="direction:ltr;font-size:0.88rem;display:block">der Mann → <strong>die</strong> Männer · das Kind → <strong>die</strong> Kinder</span>
+  </div>
+</div>
+
+<!-- Verben -->
+<div id="verben" class="card">
+  <div class="card-title"><span class="dot"></span> تصريف الأفعال — Verbkonjugation</div>
+  <div class="verb-grid">
+    <div class="verb-card">
+        <div class="verb-card-header">sein<span>يكون</span></div>
+        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><span class="verb-form">bin</span></div><div class="verb-row"><span class="verb-pronoun">du</span><span class="verb-form">bist</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><span class="verb-form">ist</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><span class="verb-form">sind</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><span class="verb-form">seid</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><span class="verb-form">sind</span></div>
+      </div><div class="verb-card">
+        <div class="verb-card-header">heißen<span>يُدعى</span></div>
+        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><span class="verb-form">heiße</span></div><div class="verb-row"><span class="verb-pronoun">du</span><span class="verb-form">heißt</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><span class="verb-form">heißt</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><span class="verb-form">heißen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><span class="verb-form">heißt</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><span class="verb-form">heißen</span></div>
+      </div><div class="verb-card">
+        <div class="verb-card-header">kommen<span>يأتي / يكون من</span></div>
+        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><span class="verb-form">komme</span></div><div class="verb-row"><span class="verb-pronoun">du</span><span class="verb-form">kommst</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><span class="verb-form">kommt</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><span class="verb-form">kommen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><span class="verb-form">kommt</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><span class="verb-form">kommen</span></div>
+      </div><div class="verb-card">
+        <div class="verb-card-header">sprechen<span>يتكلم</span></div>
+        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><span class="verb-form">spreche</span></div><div class="verb-row"><span class="verb-pronoun">du</span><span class="verb-form">sprichst</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><span class="verb-form">spricht</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><span class="verb-form">sprechen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><span class="verb-form">sprecht</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><span class="verb-form">sprechen</span></div>
+      </div><div class="verb-card">
+        <div class="verb-card-header">wohnen<span>يسكن</span></div>
+        <div class="verb-row verb-highlight"><span class="verb-pronoun">ich</span><span class="verb-form">wohne</span></div><div class="verb-row"><span class="verb-pronoun">du</span><span class="verb-form">wohnst</span></div><div class="verb-row"><span class="verb-pronoun">er/sie/es</span><span class="verb-form">wohnt</span></div><div class="verb-row"><span class="verb-pronoun">wir</span><span class="verb-form">wohnen</span></div><div class="verb-row"><span class="verb-pronoun">ihr</span><span class="verb-form">wohnt</span></div><div class="verb-row"><span class="verb-pronoun">sie/Sie</span><span class="verb-form">wohnen</span></div>
+      </div>
+  </div>
+  <div class="highlight-box yellow" style="margin-top:14px">
+    <strong>📐 القاعدة:</strong>
+    <span style="direction:ltr;display:block;margin-top:4px;font-size:0.88rem">
+      ich → <strong>-e</strong> · du → <strong>-st</strong> · er/sie/es → <strong>-t</strong> · wir → <strong>-en</strong> · ihr → <strong>-t</strong> · sie/Sie → <strong>-en</strong>
+    </span>
+    <span style="font-size:0.82rem;color:#666">⚠️ sein شاذ تماماً · sprechen يتغير في du وer → يجب حفظهما</span>
+  </div>
+</div>
+
+<!-- LEKTION 2 -->
+<div id="lektion2" class="lesson-header" style="margin-top:40px">
+  <span class="lesson-badge">درس جديد — Lektion 2</span>
+  <span class="lesson-title">Meine Familie — عائلتي</span>
+  <span class="lesson-emoji">👨‍👩‍👧‍👦</span>
+</div>
+
+<!-- Familie -->
+<div id="familie" class="card">
+  <div class="card-title"><span class="dot"></span> أفراد العائلة — Familienmitglieder</div>
+  <div class="family-tree">
+    <div class="family-member">
+        <span class="family-emoji">👨</span>
+        <div class="family-de">der Vater</div>
+        <span class="filled-answer">الأب</span>
+        <div class="family-plural">Pl: die Väter</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👩</span>
+        <div class="family-de">die Mutter</div>
+        <span class="filled-answer">الأم</span>
+        <div class="family-plural">Pl: die Mütter</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👦</span>
+        <div class="family-de">der Sohn</div>
+        <span class="filled-answer">الابن</span>
+        <div class="family-plural">Pl: die Söhne</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👧</span>
+        <div class="family-de">die Tochter</div>
+        <span class="filled-answer">الابنة</span>
+        <div class="family-plural">Pl: die Töchter</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👱‍♂️</span>
+        <div class="family-de">der Bruder</div>
+        <span class="filled-answer">الأخ</span>
+        <div class="family-plural">Pl: die Brüder</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👱‍♀️</span>
+        <div class="family-de">die Schwester</div>
+        <span class="filled-answer">الأخت</span>
+        <div class="family-plural">Pl: die Schwestern</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👴</span>
+        <div class="family-de">der Großvater</div>
+        <span class="filled-answer">الجد</span>
+        <div class="family-plural">Pl: die Großväter</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👵</span>
+        <div class="family-de">die Großmutter</div>
+        <span class="filled-answer">الجدة</span>
+        <div class="family-plural">Pl: die Großmütter</div>
+      </div><div class="family-member">
+        <span class="family-emoji">🧒</span>
+        <div class="family-de">das Kind</div>
+        <span class="filled-answer">الطفل</span>
+        <div class="family-plural">Pl: die Kinder</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👰</span>
+        <div class="family-de">die Frau</div>
+        <span class="filled-answer">الزوجة</span>
+        <div class="family-plural">Pl: die Frauen</div>
+      </div><div class="family-member">
+        <span class="family-emoji">🤵</span>
+        <div class="family-de">der Mann</div>
+        <span class="filled-answer">الزوج</span>
+        <div class="family-plural">Pl: die Männer</div>
+      </div><div class="family-member">
+        <span class="family-emoji">👫</span>
+        <div class="family-de">die Geschwister</div>
+        <span class="filled-answer">الإخوة</span>
+        <div class="family-plural">Pl: (جمع فقط)</div>
+      </div>
+  </div>
+</div>
+
+<!-- Possessiv -->
+<div id="possessiv" class="card">
+  <div class="card-title"><span class="dot"></span> ضمائر الملكية — Possessivartikel</div>
+  <p style="font-size:0.88rem;color:#666;margin-bottom:12px">نهاية الضمير تتغير حسب جنس الاسم الذي يتبعه</p>
+  <div class="poss-grid">
+    <div class="poss-card">
+        <div class="poss-header">mein / meine<small>ملكيتي</small></div>
+        <div class="poss-row"><span class="ar-note">أخي (مذكر)</span><span class="filled-answer" style="direction:ltr">mein Bruder</span></div><div class="poss-row"><span class="ar-note">طفلي (محايد)</span><span class="filled-answer" style="direction:ltr">mein Kind</span></div><div class="poss-row"><span class="ar-note">ابنتي (مؤنث)</span><span class="filled-answer" style="direction:ltr">meine Tochter</span></div><div class="poss-row"><span class="ar-note">أطفالي (جمع)</span><span class="filled-answer" style="direction:ltr">meine Kinder</span></div>
+      </div><div class="poss-card">
+        <div class="poss-header">dein / deine<small>ملكيتك</small></div>
+        <div class="poss-row"><span class="ar-note">أخوك (مذكر)</span><span class="filled-answer" style="direction:ltr">dein Bruder</span></div><div class="poss-row"><span class="ar-note">طفلك (محايد)</span><span class="filled-answer" style="direction:ltr">dein Kind</span></div><div class="poss-row"><span class="ar-note">ابنتك (مؤنث)</span><span class="filled-answer" style="direction:ltr">deine Tochter</span></div><div class="poss-row"><span class="ar-note">أطفالك (جمع)</span><span class="filled-answer" style="direction:ltr">deine Kinder</span></div>
+      </div><div class="poss-card">
+        <div class="poss-header">Ihr / Ihre<small>ملكيتك (رسمي)</small></div>
+        <div class="poss-row"><span class="ar-note">أخوك (رسمي)</span><span class="filled-answer" style="direction:ltr">Ihr Bruder</span></div><div class="poss-row"><span class="ar-note">طفلك (رسمي)</span><span class="filled-answer" style="direction:ltr">Ihr Kind</span></div><div class="poss-row"><span class="ar-note">ابنتك (رسمي)</span><span class="filled-answer" style="direction:ltr">Ihre Tochter</span></div><div class="poss-row"><span class="ar-note">أطفالك (رسمي)</span><span class="filled-answer" style="direction:ltr">Ihre Kinder</span></div>
+      </div>
+  </div>
+  <div class="highlight-box yellow" style="margin-top:12px">
+    <strong>📐 القاعدة:</strong>
+    <span style="direction:ltr;display:block;margin-top:4px;font-size:0.88rem">
+      مذكر + محايد → <strong>mein / dein / Ihr</strong> (بدون -e)<br>
+      مؤنث + جمع &nbsp; → <strong>meine / deine / Ihre</strong> (مع -e)
+    </span>
+  </div>
+</div>
+
+<!-- haben -->
+<div id="haben" class="card">
+  <div class="card-title"><span class="dot"></span> فعل المِلك — haben (عنده / يملك)</div>
+  <div class="haben-grid">
+    <div>
+      <div class="t-wrap">
+      <table class="conj-ltr">
+        <thead><tr><th>الضمير</th><th>التصريف</th></tr></thead>
+        <tbody>
+          <tr><td class="de">ich</td><td><span class="filled-answer">habe</span></td></tr><tr><td class="de">du</td><td><span class="filled-answer">hast</span></td></tr><tr><td class="de">er / sie / es</td><td><span class="filled-answer">hat</span></td></tr><tr><td class="de">wir</td><td><span class="filled-answer">haben</span></td></tr><tr><td class="de">ihr</td><td><span class="filled-answer">habt</span></td></tr><tr><td class="de">sie / Sie</td><td><span class="filled-answer">haben</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div>
+      <div class="highlight-box green">
+        <strong>💬 أمثلة:</strong>
+        <div style="font-size:0.88rem;margin-bottom:8px"><span style="color:#555">→ عندي طفلان</span><br><span class="filled-answer" style="direction:ltr">Ich habe zwei Kinder.</span></div><div style="font-size:0.88rem;margin-bottom:8px"><span style="color:#555">→ عنده أخت</span><br><span class="filled-answer" style="direction:ltr">Er hat eine Schwester.</span></div><div style="font-size:0.88rem;margin-bottom:8px"><span style="color:#555">→ ليس عندنا أطفال</span><br><span class="filled-answer" style="direction:ltr">Wir haben keine Kinder.</span></div><div style="font-size:0.88rem;margin-bottom:8px"><span style="color:#555">→ هل عندكم أخ؟</span><br><span class="filled-answer" style="direction:ltr">Habt ihr einen Bruder?</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog -->
+<div class="card">
+  <div class="card-title"><span class="dot"></span> حوار نموذجي — Musterdialog</div>
+  <div class="dialog-box">
+    <div class="dialog-line"><span class="dialog-speaker">A</span><div><div class="dialog-text">Hallo! Ich heiße Matteo Steiner. Ich bin siebzehn.</div><div class="dialog-translation filled-answer">مرحباً! اسمي ماتيو. عمري سبعة عشر.</div></div></div><div class="dialog-line"><span class="dialog-speaker">B</span><div><div class="dialog-text">Woher kommst du?</div><div class="dialog-translation filled-answer">من أين أنت؟</div></div></div><div class="dialog-line"><span class="dialog-speaker">A</span><div><div class="dialog-text">Ich komme aus der Schweiz. Ich wohne in Basel. Und du?</div><div class="dialog-translation filled-answer">أنا من سويسرا. أسكن في بازل. وأنت؟</div></div></div><div class="dialog-line"><span class="dialog-speaker">B</span><div><div class="dialog-text">Ich komme aus Syrien. Ich habe zwei Geschwister.</div><div class="dialog-translation filled-answer">أنا من سوريا. عندي أخوان.</div></div></div>
+  </div>
+</div>
+
+<!-- Lernziele -->
+<div class="card">
+  <div class="card-title"><span class="dot"></span> ماذا تعلمت؟ — Was kann ich jetzt?</div>
+  <div class="t-wrap">
+  <table>
+    <thead><tr><th>أستطيع الآن…</th><th>✅</th></tr></thead>
+    <tbody>
+      <tr class=""><td>تحية الناس وتوديعهم حسب الوقت</td><td>☐</td></tr>
+      <tr class=""><td>التعريف بنفسي: الاسم، البلد، المدينة، اللغة</td><td>☐</td></tr>
+      <tr class=""><td>استخدام du و Sie بشكل صحيح</td><td>☐</td></tr>
+      <tr class=""><td>تصريف الأفعال: sein, heißen, kommen, sprechen, haben</td><td>☐</td></tr>
+      <tr class=""><td>الفرق بين der / die / das</td><td>☐</td></tr>
+      <tr class=""><td>تسمية أفراد العائلة بالألمانية</td><td>☐</td></tr>
+      <tr class=""><td>استخدام mein/meine, dein/deine, Ihr/Ihre</td><td>☐</td></tr>
+      <tr class=""><td>وصف العائلة بجمل بسيطة</td><td>☐</td></tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- Tips -->
+<div id="tipps" class="card">
+  <div class="card-title"><span class="dot"></span> نصائح للتعلم — Lerntipps</div>
+  <div class="tip-intro">أقوى طرق التعلّم ليست الأكثر بهرجة، بل الأكثر ثباتاً: <strong>الاسترجاع المتباعد</strong>، <strong>المدخلات المفهومة</strong>، <strong>الإنتاج مع تصحيح</strong>.</div>
+  <div class="tips-grid"><div class="tip-item"><div class="tip-kicker">1</div><div class="tip-title">🧠 الاسترجاع المتباعد</div><div class="tip-body">ابنِ رزمة من 20–30 كلمة، لكن لا تقرأها فقط: أجب من الذاكرة أولاً ثم اكشف الحل. كرر بعد يوم، 3 أيام، أسبوع، أسبوعين. في الألمانية احفظ دائماً: <strong style="direction:ltr">der Tisch</strong>، <strong style="direction:ltr">die Lampe</strong>، <strong style="direction:ltr">das Buch</strong> — الأداة جزء من الكلمة.</div></div><div class="tip-item"><div class="tip-kicker">2</div><div class="tip-title">📚 مدخلات مفهومة</div><div class="tip-body">اقرأ واستمع لمواد مفهومة: قصص مبسطة، بودكاست بطيء، حوارات قصيرة. الهدف ليس فهم كل كلمة، بل بناء تعرّض منتظم. التقط فقط الكلمات التي <strong>تتكرر فعلاً</strong> وتفيدك في الحياة اليومية.</div></div><div class="tip-item"><div class="tip-kicker">3</div><div class="tip-title">✍️ اكتب وصحّح</div><div class="tip-body">اكتب يومياً 5 جمل قصيرة عن نفسك أو عائلتك. صحح مباشرة. احتفظ بقائمة أكثر 3 أخطاء متكررة وتجنبها في اليوم التالي. هكذا يصبح التصحيح تدريباً حقيقياً.</div></div><div class="tip-item"><div class="tip-kicker">4</div><div class="tip-title">🏷️ احفظ الكلمة مع أداتها</div><div class="tip-body">لا تحفظ <strong style="direction:ltr">Kind</strong> بل <strong style="direction:ltr">das Kind</strong>. اختبر نفسك في الاتجاهين: Artikel → Nomen و Nomen → Artikel. هذا يبني أساساً أقوى من قاعدة نظرية.</div></div><div class="tip-item"><div class="tip-kicker">5</div><div class="tip-title">🗣️ تحدث بصوت عالٍ</div><div class="tip-body">سجّل دقيقتين يومياً، قارن نطقك مع نموذج. اختر هدفاً واحداً فقط: <strong>ä / ö / ü</strong> أو <strong style="direction:ltr">ch</strong>. التحسن يأتي من التركيز الضيق.</div></div></div>
+  <div class="tip-vision"><strong>الصورة الكبيرة:</strong> إذا التزمت بهذه الخطوات، لن يبقى الألماني جداول على الورق — بل سيصبح شيئاً <strong>يُستخدم</strong>.</div>
+</div>
+
+<!-- Hausaufgabe -->
+<div id="hausaufgabe" class="homework">
+  <h2>📝 الواجب — Hausaufgabe</h2>
+  <div class="hw-item"><span class="hw-num">1</span> اكتب 5–8 جمل عن نفسك وعائلتك بالألمانية. استخدم: <strong style="direction:ltr">Ich heiße … / Ich komme aus … / Ich habe … / Mein … heißt …</strong></div>
+  <div class="hw-item"><span class="hw-num">2</span> احفظ تصريف الأفعال: <strong style="direction:ltr">sein, heißen, kommen, sprechen, haben</strong></div>
+  <div class="hw-item"><span class="hw-num">3</span> تدرب على الأرقام 1–20 — سنختبرها في الدرس القادم 😊</div>
+</div>
+</div>
+<div class="footer">
+  <a href="index.html">📖 تفاعلي</a>
+  <a href="student.html">🎓 طالب</a>
+  <a href="handout.html">📄 Handout</a>
+  <a href="teacher.html">👩‍🏫 معلم</a><br>
+  <span style="color:#aaa;font-size:0.78rem">Deutsch A1 · A1 — لغة ألمانية</span>
+</div>
+
+<script>
+  const STORAGE_KEY = 'deutsch_a1_v3';
+
+  // Mobile-safe modal — replaces browser prompt() which is blocked on iOS GitHub Pages
+  function showModal(title, defaultValue) {
+    return new Promise((resolve) => {
+      const overlay = document.getElementById('modalOverlay');
+      const input = document.getElementById('modalInput');
+      const titleEl = document.getElementById('modalTitle');
+      const okBtn = document.getElementById('modalOk');
+      const cancelBtn = document.getElementById('modalCancel');
+      if (!overlay) { resolve(window.prompt(title, defaultValue || '')); return; }
+      titleEl.textContent = title;
+      input.value = defaultValue || '';
+      overlay.classList.add('open');
+      setTimeout(() => input.focus(), 80);
+      function cleanup() {
+        overlay.classList.remove('open');
+        okBtn.removeEventListener('click', onOk);
+        cancelBtn.removeEventListener('click', onCancel);
+        overlay.removeEventListener('click', onOutside);
+        input.removeEventListener('keydown', onKey);
+      }
+      function onOk()     { cleanup(); resolve(input.value); }
+      function onCancel() { cleanup(); resolve(null); }
+      function onOutside(e) { if (e.target === overlay) { cleanup(); resolve(null); } }
+      function onKey(e)   { if (e.key === 'Enter') onOk(); if (e.key === 'Escape') onCancel(); }
+      okBtn.addEventListener('click', onOk);
+      cancelBtn.addEventListener('click', onCancel);
+      overlay.addEventListener('click', onOutside);
+      input.addEventListener('keydown', onKey);
+    });
+  }
+
+  function collectFields() { return Array.from(document.querySelectorAll('input[data-key], textarea[data-key]')); }
+
+  function saveFields() {
+    try {
+      const data = {};
+      collectFields().forEach(f => { data[f.dataset.key] = f.value; });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      const box = document.getElementById('saveStatus');
+      if (box) box.textContent = 'تم الحفظ تلقائياً ✓';
+    } catch(e) {}
+  }
+
+  function loadFields() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      collectFields().forEach(f => { if (data[f.dataset.key] !== undefined) f.value = data[f.dataset.key]; });
+    } catch(e) {}
+  }
+
+  function clearAllFields() {
+    collectFields().forEach(f => f.value = '');
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    const box = document.getElementById('saveStatus');
+    if (box) box.textContent = 'تم مسح الإجابات.';
+  }
+
+  function toggleAnswers() { document.body.classList.toggle('show-answers'); }
+
+  // Flip cards — works on touch AND click
+  let _lastTouch = 0;
+  document.addEventListener('touchend', function(e) {
+    const card = e.target.closest('[data-number-card]');
+    if (card && !e.target.closest('.numbers-toolbar')) {
+      e.preventDefault();
+      _lastTouch = Date.now();
+      card.classList.toggle('flipped');
+    }
+  }, { passive: false });
+  document.addEventListener('click', function(e) {
+    if (Date.now() - _lastTouch < 400) return; // avoid double-fire on touch devices
+    const card = e.target.closest('[data-number-card]');
+    if (card && !e.target.closest('.numbers-toolbar')) {
+      card.classList.toggle('flipped');
+    }
+  });
+
+  function flipAllNumberCards()   { document.querySelectorAll('[data-number-card]').forEach(c => c.classList.add('flipped')); }
+  function resetNumberCards()     { document.querySelectorAll('[data-number-card]').forEach(c => c.classList.remove('flipped')); }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadFields();
+    collectFields().forEach(f => f.addEventListener('input', saveFields));
+  });
+</script>
+
+
+
+</body>
+</html>
