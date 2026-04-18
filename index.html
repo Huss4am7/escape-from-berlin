@@ -553,10 +553,6 @@ html{
     <div class="debox" id="deBox"></div>
     <div class="opts" id="opts"></div>
   </div>
-  <div class="qfooter">
-    <button class="btn bgr" onclick="adjScore(true)" style="margin:0">✅ صحيح +20</button>
-    <button class="btn br" onclick="adjScore(false)" style="margin:0">❌ خطأ −10</button>
-  </div>
   <button class="btn bg millbtn" id="millBtn" onclick="goMillionaire()">👑 تحدي المليون</button>
   <button class="btn bx" onclick="stopTimer();show('sc-levels')" style="margin-top:6px">← الرئيسية</button>
 </div>
@@ -1020,6 +1016,7 @@ function pickOpt(i){
   document.getElementById('qo'+i).classList.add(i===ans?'ok':'no');
   if(i!==ans) document.getElementById('qo'+ans).classList.add('ok');
   document.getElementById('deBox').style.display='block';
+  setTimeout(()=>adjScore(i===ans), 1200);
 }
 
 function adjScore(ok){
@@ -1078,13 +1075,6 @@ function startTimer(s){
   },1000);
 }
 function stopTimer(){clearInterval(timerID);}
-
-document.addEventListener('keydown',e=>{
-  if(document.getElementById('sc-game').classList.contains('on')){
-    if(e.key==='ArrowRight'){stopTimer();adjScore(true);}
-    if(e.key==='ArrowLeft'){stopTimer();adjScore(false);}
-  }
-});
 
 // ─────────────────── MILLIONAIRE ───────────────────
 let millIdx=0,millLL={};
