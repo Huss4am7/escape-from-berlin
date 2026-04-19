@@ -3,1311 +3,1372 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Wohnungsnot — A2 Survival 🏠</title>
+<title>Wohnungsnot — A2 Survival v3</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#06070b;
-  --s1:#0a0c14;
-  --s2:#0f111a;
-  --s3:#161925;
-  --bd:rgba(255,255,255,.06);
-  --bd2:rgba(255,255,255,.12);
-  --txt:#e8e6f0;
-  --dim:#5a5f7a;
-  --gold:#d4a843;
-  --gold2:#f0c96a;
-  --cyan:#00d4ff;
-  --pink:#ff3d8a;
-  --grn:#00e676;
-  --red:#ff4757;
-  --purp:#9c6bff;
-  --amber:#ff8c42;
+:root{
+  --bg:#06070b;--s1:#0a0c14;--s2:#0f111a;--s3:#161925;
+  --bd:rgba(255,255,255,.06);--bd2:rgba(255,255,255,.12);
+  --txt:#e8e6f0;--dim:#5a5f7a;
+  --gold:#d4a843;--gold2:#f0c96a;--cyan:#00d4ff;
+  --pink:#ff3d8a;--grn:#00e676;--red:#ff4757;
+  --purp:#9c6bff;--amber:#ff8c42;
 }
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--txt);
-  font-family:'Tajawal',sans-serif;font-size:16px;
-  min-height:100vh;direction:rtl;overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
-
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 55% 45% at 10% 15%,rgba(212,168,67,.06) 0%,transparent 65%),
-    radial-gradient(ellipse 40% 50% at 90% 80%,rgba(0,212,255,.04) 0%,transparent 65%);
-  animation:amb 20s ease-in-out infinite alternate;
-}
+body{background:var(--bg);color:var(--txt);font-family:'Tajawal',sans-serif;font-size:16px;min-height:100vh;direction:rtl;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse 55% 45% at 10% 15%,rgba(212,168,67,.06) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 90% 80%,rgba(0,212,255,.04) 0%,transparent 65%);animation:amb 20s ease-in-out infinite alternate}
 @keyframes amb{0%{opacity:1}100%{opacity:.6;transform:scale(1.08)}}
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
-  background-size:44px 44px;
-}
-
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:44px 44px}
 .sc{display:none;position:relative;z-index:1;max-width:720px;margin:0 auto;padding:16px 14px 80px}
 .sc.on{display:block;animation:fadeUp .4s cubic-bezier(.16,1,.3,1)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* RESOURCE BAR */
-.resbar{
-  position:sticky;top:0;z-index:100;
-  background:rgba(6,7,11,.95);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--bd);
-  padding:10px 14px;margin:-16px -14px 18px;
-  display:none;
-}
+/* === RESOURCE BAR === */
+.resbar{position:sticky;top:0;z-index:100;background:rgba(6,7,11,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);padding:10px 14px;margin:-16px -14px 18px;display:none}
 .resbar.on{display:block}
-.res-inner{display:flex;gap:6px;align-items:center;max-width:720px;margin:0 auto}
-.res{flex:1;background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:7px 6px;text-align:center;min-width:0;transition:all .3s}
+.res-inner{display:flex;gap:5px;align-items:center;max-width:720px;margin:0 auto}
+.res{flex:1;background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:6px 5px;text-align:center;min-width:0;transition:all .3s}
 .res.pulse{animation:resPulse .4s ease}
-@keyframes resPulse{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
-.res-val{font-family:'JetBrains Mono',monospace;font-size:.85rem;font-weight:700;line-height:1}
-.res-lbl{font-size:.5rem;color:var(--dim);margin-top:2px;letter-spacing:.06em}
+@keyframes resPulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+.res-val{font-family:'JetBrains Mono',monospace;font-size:.82rem;font-weight:700;line-height:1}
+.res-lbl{font-size:.48rem;color:var(--dim);margin-top:2px;letter-spacing:.06em}
 .res-bar-wrap{height:3px;background:var(--bd2);border-radius:2px;margin-top:4px;overflow:hidden}
 .res-bar-fill{height:100%;border-radius:2px;transition:width .6s cubic-bezier(.34,1.4,.64,1)}
-.res.money .res-val{color:var(--gold)}
-.res.time .res-val{color:var(--cyan)}
-.res.stress .res-val{color:var(--red)}
-.res.day .res-val{color:var(--purp);font-size:1.05rem}
+.res.money .res-val{color:var(--gold)}.res.time .res-val{color:var(--cyan)}.res.day .res-val{color:var(--purp);font-size:1rem}
+.res.stress.warn .res-val{color:var(--amber)}.res.stress.danger .res-val{color:var(--red);animation:dangerblink .8s ease infinite}
+@keyframes dangerblink{0%,100%{opacity:1}50%{opacity:.5}}
 
-/* TITLE */
-.title-hero{text-align:center;padding:36px 0 28px}
-.game-logo{
-  font-family:'Syne',sans-serif;font-size:2.6rem;font-weight:800;
-  letter-spacing:-.03em;line-height:1;
-  background:linear-gradient(135deg,var(--gold) 0%,var(--amber) 50%,var(--pink) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  filter:drop-shadow(0 0 30px rgba(212,168,67,.25));
-  margin-bottom:8px;
-}
-.game-sub{font-size:.82rem;color:var(--dim);letter-spacing:.08em;margin-bottom:6px}
-.game-tagline{font-family:'Syne',sans-serif;font-size:1rem;color:var(--txt);margin-bottom:28px;opacity:.8;line-height:1.6}
+/* === XP RINGS IN HUD === */
+.xp-rings{display:flex;gap:4px;align-items:center}
+.xp-ring{position:relative;width:36px;height:36px;cursor:pointer}
+.xp-ring svg{transform:rotate(-90deg)}
+.xp-ring circle{fill:none;stroke-width:3.5}
+.xp-ring .xp-bg{stroke:var(--bd2)}
+.xp-ring .xp-fill{stroke-linecap:round;transition:stroke-dashoffset .6s ease}
+.xp-ring .xp-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.xp-ring .xp-tip{display:none;position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:rgba(15,17,26,.98);border:1px solid var(--bd2);border-radius:6px;padding:6px 10px;font-size:.65rem;white-space:nowrap;z-index:200;pointer-events:none;font-family:'JetBrains Mono',monospace;color:var(--txt)}
+.xp-ring:hover .xp-tip{display:block}
+.xp-ring.levelup{animation:xpPulse .6s ease}
+@keyframes xpPulse{0%{transform:scale(1)}50%{transform:scale(1.25)}100%{transform:scale(1)}}
 
-.panel{
-  background:rgba(255,255,255,.035);border:1px solid var(--bd2);
-  border-radius:14px;padding:18px;margin-bottom:14px;
-  backdrop-filter:blur(10px);
-}
-.panel-title{
-  font-family:'JetBrains Mono',monospace;font-size:.58rem;
-  color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px;
-}
-
-.story-box{
-  background:linear-gradient(135deg,rgba(212,168,67,.07),rgba(255,61,138,.03));
-  border:1px solid rgba(212,168,67,.22);border-radius:12px;
-  padding:18px 20px;margin-bottom:18px;line-height:1.9;font-size:.92rem;
-  color:rgba(255,255,255,.75);
-}
+/* === PANELS / CARDS === */
+.panel{background:rgba(255,255,255,.035);border:1px solid var(--bd2);border-radius:14px;padding:18px;margin-bottom:14px;backdrop-filter:blur(10px)}
+.panel-title{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:var(--gold);letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.story-box{background:linear-gradient(135deg,rgba(212,168,67,.07),rgba(255,61,138,.03));border:1px solid rgba(212,168,67,.22);border-radius:12px;padding:18px 20px;margin-bottom:18px;line-height:1.9;font-size:.92rem;color:rgba(255,255,255,.75)}
 .story-box strong{color:var(--gold2)}
 
-.btn{
-  display:block;width:100%;padding:15px 20px;border:none;border-radius:12px;
-  font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;
-  letter-spacing:.02em;transition:all .22s cubic-bezier(.34,1.4,.64,1);
-  margin-bottom:9px;position:relative;overflow:hidden;
-}
-.btn:hover{transform:translateY(-2px)}
-.btn:active{transform:scale(.97)}
+/* === BUTTONS === */
+.btn{display:block;width:100%;padding:14px 20px;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:all .22s cubic-bezier(.34,1.4,.64,1);margin-bottom:9px;position:relative;overflow:hidden}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.97)}
 .btn-gold{background:linear-gradient(135deg,var(--gold),#b8860b);color:#06070d;box-shadow:0 4px 20px rgba(212,168,67,.22)}
-.btn-cyan{background:linear-gradient(135deg,var(--cyan),#0099cc);color:#06070d}
 .btn-ghost{background:rgba(255,255,255,.04);border:1px solid var(--bd2);color:var(--dim)}
 .btn-ghost:hover{border-color:var(--gold);color:var(--gold);background:rgba(212,168,67,.06)}
-.btn-red{background:linear-gradient(135deg,var(--red),#cc1122);color:#fff}
 .btn-grn{background:linear-gradient(135deg,var(--grn),#00a855);color:#06070d}
-.btn-sm{padding:9px 14px;font-size:.78rem;border-radius:8px;margin-bottom:6px}
+.btn-red{background:linear-gradient(135deg,var(--red),#cc1122);color:#fff}
+.btn-purp{background:linear-gradient(135deg,var(--purp),#6633cc);color:#fff}
+.btn-sm{padding:8px 14px;font-size:.78rem;border-radius:8px;margin-bottom:6px}
 .btn:disabled{opacity:.3;cursor:default;transform:none}
 
+/* === CHARACTER SELECT === */
+.char-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:16px}
+.char-card{background:rgba(255,255,255,.03);border:2px solid var(--bd);border-radius:14px;padding:16px 12px;cursor:pointer;transition:all .25s cubic-bezier(.34,1.2,.64,1);text-align:center;position:relative}
+.char-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.char-card.selected{border-color:var(--gold);background:rgba(212,168,67,.08);box-shadow:0 0 20px rgba(212,168,67,.2)}
+.char-card.locked{opacity:.45;cursor:not-allowed}
+.char-card.locked:hover{transform:none;box-shadow:none}
+.char-portrait{font-size:2.8rem;margin-bottom:8px;display:block;line-height:1}
+.char-name-ar{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:800;margin-bottom:2px;color:var(--gold2)}
+.char-name-de{font-size:.7rem;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.char-trait{font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.5}
+.char-stats{display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap}
+.char-stat{font-size:.6rem;font-family:'JetBrains Mono',monospace;padding:2px 6px;border-radius:4px}
+.char-lock-badge{position:absolute;top:8px;left:8px;font-size:.58rem;background:rgba(0,0,0,.6);border:1px solid var(--bd2);color:var(--dim);padding:2px 6px;border-radius:10px}
+
+/* === EVENTS === */
 .event-grid{display:grid;gap:11px;margin-bottom:16px}
-.event-card{
-  background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:14px;
-  padding:18px;cursor:pointer;transition:all .25s cubic-bezier(.34,1.2,.64,1);
-  position:relative;overflow:hidden;
-}
-.event-card::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:inherit}
-.event-card:hover::before{opacity:1}
+.event-card{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:14px;padding:17px;cursor:pointer;transition:all .25s cubic-bezier(.34,1.2,.64,1);position:relative;overflow:hidden}
 .event-card:hover{transform:translateY(-3px);border-color:var(--bd2);box-shadow:0 16px 40px rgba(0,0,0,.5)}
 .event-card.disabled{opacity:.3;cursor:not-allowed;pointer-events:none;transform:none}
+.event-card.urgent{border-color:rgba(255,71,87,.35);background:rgba(255,71,87,.03)}
+.event-card.urgent:hover{border-color:var(--red)}
+.event-card.delayed-trigger{border-color:rgba(156,107,255,.4);background:rgba(156,107,255,.04)}
 .ev-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
 .ev-icon{font-size:1.7rem;flex-shrink:0}
-.ev-title{font-family:'Syne',sans-serif;font-size:.98rem;font-weight:700}
-.ev-desc{font-size:.8rem;color:var(--dim);line-height:1.6}
-.ev-cost{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.ev-tag{
-  font-family:'JetBrains Mono',monospace;font-size:.58rem;
-  padding:3px 8px;border-radius:20px;letter-spacing:.05em;
-}
+.ev-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700}
+.ev-desc{font-size:.79rem;color:var(--dim);line-height:1.6}
+.ev-cost{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.ev-tag{font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:3px 8px;border-radius:20px;letter-spacing:.05em}
 .tag-time{background:rgba(0,212,255,.1);color:var(--cyan);border:1px solid rgba(0,212,255,.2)}
 .tag-money{background:rgba(212,168,67,.1);color:var(--gold);border:1px solid rgba(212,168,67,.2)}
 .tag-stress{background:rgba(255,71,87,.1);color:var(--red);border:1px solid rgba(255,71,87,.2)}
 .tag-grn{background:rgba(0,230,118,.1);color:var(--grn);border:1px solid rgba(0,230,118,.2)}
 .tag-info{background:rgba(156,107,255,.1);color:var(--purp);border:1px solid rgba(156,107,255,.2)}
 
-.scene-wrap{margin-bottom:16px}
-.scene-visual{
-  background:linear-gradient(160deg,var(--s2),var(--s3));
-  border:1px solid var(--bd2);border-radius:14px;
-  padding:28px 20px;text-align:center;margin-bottom:14px;
-  position:relative;overflow:hidden;min-height:140px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-}
-.scene-bg-emoji{font-size:5rem;opacity:.1;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
-.scene-npc{font-size:3rem;margin-bottom:10px;filter:drop-shadow(0 0 12px rgba(212,168,67,.3));position:relative;z-index:1}
-.scene-npc-name{font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
-
-.dialog-bubble{
-  background:rgba(255,255,255,.04);border:1px solid var(--bd2);
-  border-radius:12px 12px 12px 0;padding:14px 16px;
-  margin-bottom:14px;font-size:.9rem;line-height:1.75;position:relative;
-}
-.dialog-bubble.you{
-  background:rgba(0,212,255,.06);border-color:rgba(0,212,255,.18);
-  border-radius:12px 12px 0 12px;margin-right:0;margin-left:0;
-}
-.dialog-speaker{
-  font-family:'JetBrains Mono',monospace;font-size:.52rem;
-  color:var(--dim);letter-spacing:.1em;margin-bottom:6px;text-transform:uppercase;
-}
-.dialog-de{direction:ltr;text-align:left;font-size:.9rem;line-height:1.65;font-family:'JetBrains Mono',monospace;color:var(--gold2)}
-.dialog-ar{font-size:.78rem;color:var(--dim);margin-top:6px;font-style:italic}
-
+/* === SCENE / DIALOG === */
+.scene-visual{background:linear-gradient(160deg,var(--s2),var(--s3));border:1px solid var(--bd2);border-radius:14px;padding:28px 20px;text-align:center;margin-bottom:14px;position:relative;overflow:hidden;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.scene-bg-emoji{font-size:5rem;opacity:.09;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.scene-npc{font-size:2.8rem;margin-bottom:8px;position:relative;z-index:1;filter:drop-shadow(0 0 12px rgba(212,168,67,.25))}
+.scene-npc-name{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;position:relative;z-index:1}
+.dialog-bubble{background:rgba(255,255,255,.04);border:1px solid var(--bd2);border-radius:12px 12px 12px 0;padding:13px 16px;margin-bottom:13px;position:relative}
+.dialog-bubble.you{background:rgba(0,212,255,.06);border-color:rgba(0,212,255,.18);border-radius:12px 12px 0 12px}
+.dialog-speaker{font-family:'JetBrains Mono',monospace;font-size:.52rem;color:var(--dim);letter-spacing:.1em;margin-bottom:5px;text-transform:uppercase}
+.dialog-de{direction:ltr;text-align:left;font-size:.88rem;line-height:1.65;font-family:'JetBrains Mono',monospace;color:var(--gold2)}
+.dialog-ar{font-size:.78rem;color:var(--dim);margin-top:5px;font-style:italic}
 .choices{display:grid;gap:9px;margin-bottom:14px}
-.choice{
-  background:rgba(255,255,255,.04);border:1px solid var(--bd);
-  border-radius:10px;padding:13px 16px;cursor:pointer;
-  font-family:'Tajawal',sans-serif;font-size:.88rem;text-align:right;
-  transition:all .2s;
-}
+.choice{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:10px;padding:13px 16px;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:.88rem;text-align:right;transition:all .2s}
 .choice:hover{border-color:var(--cyan);background:rgba(0,212,255,.06);transform:translateX(-3px)}
-.choice .ch-de{direction:ltr;text-align:left;font-size:.85rem;font-family:'JetBrains Mono',monospace;color:var(--gold2);margin-bottom:4px}
+.choice .ch-de{direction:ltr;text-align:left;font-size:.84rem;font-family:'JetBrains Mono',monospace;color:var(--gold2);margin-bottom:4px}
 .choice .ch-ar{font-size:.78rem;color:var(--dim)}
 .choice.good:hover{border-color:var(--grn);background:rgba(0,230,118,.06)}
 .choice.risky:hover{border-color:var(--amber);background:rgba(255,140,66,.06)}
 .choice.bad:hover{border-color:var(--red);background:rgba(255,71,87,.06)}
 
-.doc-card{
-  background:var(--s1);border:2px solid rgba(212,168,67,.25);
-  border-radius:12px;padding:20px;margin-bottom:14px;
-  font-family:'JetBrains Mono',monospace;font-size:.76rem;
-  direction:ltr;text-align:left;line-height:1.9;position:relative;
-}
+/* === DOCUMENT === */
+.doc-card{background:var(--s1);border:2px solid rgba(212,168,67,.25);border-radius:12px;padding:20px;margin-bottom:14px;font-family:'JetBrains Mono',monospace;font-size:.76rem;direction:ltr;text-align:left;line-height:1.9;position:relative}
 .doc-stamp{position:absolute;top:14px;right:16px;font-size:.52rem;color:var(--gold);letter-spacing:.12em;border:1px solid rgba(212,168,67,.35);padding:3px 8px;border-radius:3px}
 .doc-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--gold2);margin-bottom:12px;direction:rtl;text-align:right}
 .doc-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--bd)}
-.doc-key{color:var(--dim)}
-.doc-val{color:var(--txt);font-weight:700}
-.doc-clause{
-  background:rgba(255,71,87,.05);border-right:2px solid var(--red);
-  padding:8px 10px;margin:8px 0;border-radius:0 6px 6px 0;
-  font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;
-  transition:all .2s;
-}
+.doc-key{color:var(--dim)}.doc-val{color:var(--txt);font-weight:700}
+.doc-clause{background:rgba(255,71,87,.05);border-right:2px solid rgba(255,71,87,.4);padding:8px 10px;margin:8px 0;border-radius:0 6px 6px 0;font-size:.72rem;color:rgba(255,255,255,.7);cursor:pointer;transition:all .2s}
 .doc-clause:hover{background:rgba(255,71,87,.1)}
 .doc-clause.active{background:rgba(255,71,87,.14);border-color:var(--red)}
-.doc-clause .tooltip{
-  display:none;margin-top:6px;padding:7px 10px;
-  background:rgba(255,71,87,.12);border-radius:6px;
-  font-size:.68rem;color:var(--red);line-height:1.6;
-}
+.doc-clause.safe{border-right-color:rgba(0,230,118,.4)}
+.doc-clause.safe.active{background:rgba(0,230,118,.08);border-color:var(--grn)}
+.doc-clause .tooltip{display:none;margin-top:6px;padding:7px 10px;background:rgba(255,71,87,.12);border-radius:6px;font-size:.68rem;color:var(--red);line-height:1.6}
+.doc-clause.safe .tooltip{background:rgba(0,230,118,.1);color:var(--grn)}
 .doc-clause.active .tooltip{display:block}
 
-.inventory{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-.inv-item{
-  background:rgba(255,255,255,.04);border:1px solid var(--bd2);
-  border-radius:8px;padding:7px 11px;font-size:.72rem;
-  font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all .2s;
-  display:flex;align-items:center;gap:5px;
-}
-.inv-item:hover{border-color:var(--gold);color:var(--gold)}
-.inv-item.new{border-color:var(--grn);animation:pulse 1.2s ease 3}
-@keyframes pulse{0%,100%{box-shadow:none}50%{box-shadow:0 0 12px rgba(0,230,118,.35)}}
+/* === FORM === */
+.form-row{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+.form-label{font-size:.78rem;color:var(--dim);direction:ltr;text-align:left}
+.form-slot{background:rgba(0,212,255,.06);border:2px dashed var(--bd2);border-radius:6px;padding:6px 12px;min-width:90px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--cyan);cursor:pointer;transition:all .2s}
+.form-slot:hover{border-color:var(--cyan);background:rgba(0,212,255,.1)}
+.form-slot.filled{border-style:solid;border-color:var(--grn);color:var(--grn);background:rgba(0,230,118,.08)}
+.form-slot.wrong{border-color:var(--red);background:rgba(255,71,87,.08);animation:shake .3s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.form-options{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.form-chip{background:rgba(255,255,255,.06);border:1px solid var(--bd2);border-radius:6px;padding:6px 10px;font-size:.72rem;font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all .2s}
+.form-chip:hover{border-color:var(--gold);color:var(--gold)}
+.form-chip.selected{border-color:var(--gold);color:var(--gold);background:rgba(212,168,67,.1)}
 
-.vocab-log{
-  background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.12);
-  border-radius:10px;padding:12px 14px;margin-bottom:12px;
-}
-.vocab-item{
-  display:flex;gap:10px;align-items:baseline;padding:5px 0;
-  border-bottom:1px solid var(--bd);font-size:.82rem;
-}
+/* === QUIZ === */
+.quiz-card{background:rgba(156,107,255,.06);border:1px solid rgba(156,107,255,.2);border-radius:12px;padding:18px;margin-bottom:14px}
+.quiz-question{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--purp);margin-bottom:6px;direction:ltr;text-align:left}
+.quiz-option{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:8px;padding:10px 14px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:.8rem;direction:ltr;text-align:left;margin-bottom:7px;transition:all .2s;color:var(--txt)}
+.quiz-option:hover{border-color:var(--purp);background:rgba(156,107,255,.08)}
+.quiz-option.correct{border-color:var(--grn);background:rgba(0,230,118,.1);color:var(--grn)}
+.quiz-option.wrong{border-color:var(--red);background:rgba(255,71,87,.08);color:var(--red)}
+
+/* === ACHIEVEMENTS === */
+.ach-grid{display:grid;gap:10px;margin-bottom:16px}
+.ach-card{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px;transition:all .2s}
+.ach-card.unlocked{border-color:rgba(212,168,67,.3);background:rgba(212,168,67,.06)}
+.ach-card.unlocked.legendary{border-color:rgba(156,107,255,.5);background:rgba(156,107,255,.08)}
+.ach-card.locked{opacity:.4;filter:grayscale(.8)}
+.ach-icon-wrap{font-size:1.8rem;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.05);flex-shrink:0}
+.ach-card.locked .ach-icon-wrap{filter:brightness(.2)}
+.ach-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:3px}
+.ach-desc{font-size:.74rem;color:var(--dim);line-height:1.5}
+.ach-card.locked .ach-name{color:var(--dim)}
+.ach-date{font-size:.6rem;color:var(--gold);font-family:'JetBrains Mono',monospace;margin-top:3px}
+.ach-progress-bar{width:100%;height:3px;background:var(--bd2);border-radius:2px;margin-top:5px;overflow:hidden}
+.ach-progress-fill{height:100%;background:var(--gold);border-radius:2px}
+
+/* === DAILY CHALLENGE === */
+.daily-card{background:linear-gradient(135deg,rgba(0,212,255,.07),rgba(156,107,255,.05));border:1px solid rgba(0,212,255,.25);border-radius:14px;padding:18px;margin-bottom:14px}
+.daily-seed{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:.1em;margin-bottom:6px}
+.daily-char{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:var(--gold2)}
+.score-bar-chart{margin-top:12px}
+.score-day-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-size:.65rem;font-family:'JetBrains Mono',monospace}
+.score-date{color:var(--dim);width:50px;flex-shrink:0}
+.score-bar-wrap{flex:1;background:var(--bd2);border-radius:2px;height:8px;overflow:hidden}
+.score-bar-inner{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--cyan),var(--purp));transition:width .5s ease}
+.score-val{color:var(--txt);width:50px;text-align:left}
+
+/* === DELAYED EVENT NOTIFICATION === */
+.delayed-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(156,107,255,.12);border:1px solid rgba(156,107,255,.3);border-radius:20px;padding:4px 10px;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--purp);margin-bottom:10px}
+.rückblende{background:rgba(156,107,255,.06);border:1px solid rgba(156,107,255,.2);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:.8rem;color:var(--purp);line-height:1.6}
+.rückblende::before{content:'⏮ ';opacity:.7}
+
+/* === VOCAB === */
+.vocab-log{background:rgba(0,212,255,.03);border:1px solid rgba(0,212,255,.12);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.vocab-item{display:flex;gap:10px;align-items:baseline;padding:5px 0;border-bottom:1px solid var(--bd);font-size:.82rem;cursor:pointer;transition:background .2s;border-radius:4px;padding:6px 4px}
+.vocab-item:hover{background:rgba(255,255,255,.03)}
 .vocab-item:last-child{border:none}
 .vocab-de{font-family:'JetBrains Mono',monospace;color:var(--gold2);direction:ltr;flex-shrink:0;font-size:.85rem}
 .vocab-ar{color:var(--dim);font-size:.8rem}
+.vocab-ex{font-size:.7rem;color:rgba(0,212,255,.6);direction:ltr;margin-top:3px;display:none;font-family:'JetBrains Mono',monospace}
+.vocab-item.expanded .vocab-ex{display:block}
 
-.result-overlay{
-  position:fixed;inset:0;z-index:300;
-  background:rgba(6,7,11,.92);backdrop-filter:blur(14px);
-  display:flex;align-items:center;justify-content:center;
-  animation:fadeIn .3s ease;
-}
+/* === RESULT OVERLAY === */
+.result-overlay{position:fixed;inset:0;z-index:300;background:rgba(6,7,11,.92);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}
 .result-overlay.hidden{display:none}
-.result-box{
-  background:rgba(15,17,26,.98);border:1px solid var(--bd2);
-  border-radius:20px;padding:40px 32px;text-align:center;
-  max-width:380px;width:90%;
-  animation:popIn .35s cubic-bezier(.34,1.56,.64,1);
-  box-shadow:0 40px 80px rgba(0,0,0,.6);
-}
+.result-box{background:rgba(15,17,26,.98);border:1px solid var(--bd2);border-radius:20px;padding:40px 32px;text-align:center;max-width:380px;width:90%;animation:popIn .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 40px 80px rgba(0,0,0,.6)}
 @keyframes popIn{from{transform:scale(.8) translateY(20px);opacity:0}to{transform:scale(1);opacity:1}}
 .result-icon{font-size:4rem;margin-bottom:14px;display:block;animation:bounce .5s .2s cubic-bezier(.34,1.8,.64,1) both}
 @keyframes bounce{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
 .result-title{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;margin-bottom:8px}
 .result-detail{font-size:.86rem;color:var(--dim);margin-bottom:24px;line-height:1.7}
 
-.toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);
-  background:rgba(15,17,26,.97);border:1px solid var(--bd2);
-  padding:11px 22px;border-radius:8px;font-size:.85rem;font-weight:700;
-  transition:transform .35s cubic-bezier(.34,1.4,.64,1);z-index:999;
-  white-space:nowrap;pointer-events:none;backdrop-filter:blur(12px);
-}
+/* === TOAST === */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:rgba(15,17,26,.97);border:1px solid var(--bd2);padding:11px 22px;border-radius:8px;font-size:.85rem;font-weight:700;transition:transform .35s cubic-bezier(.34,1.4,.64,1);z-index:999;white-space:nowrap;pointer-events:none;backdrop-filter:blur(12px)}
 .toast.show{transform:translateX(-50%) translateY(0)}
-.toast.ok{border-color:var(--grn);color:var(--grn)}
-.toast.no{border-color:var(--red);color:var(--red)}
-.toast.info{border-color:var(--cyan);color:var(--cyan)}
-.toast.gold{border-color:var(--gold);color:var(--gold)}
+.toast.ok{border-color:var(--grn);color:var(--grn)}.toast.no{border-color:var(--red);color:var(--red)}
+.toast.info{border-color:var(--cyan);color:var(--cyan)}.toast.gold{border-color:var(--gold);color:var(--gold)}
+.toast.ach{border-color:var(--purp);color:var(--purp)}
 
+/* === MISC === */
 .prog-bar{height:3px;background:var(--bd2);border-radius:99px;overflow:hidden;margin-bottom:16px}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--gold),var(--cyan));border-radius:99px;transition:width .5s ease;background-size:200% 100%;animation:shimmer 3s ease infinite}
 @keyframes shimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
-
 .day-summary{background:rgba(212,168,67,.05);border:1px solid rgba(212,168,67,.18);border-radius:12px;padding:18px;margin-bottom:14px}
 .summary-row{display:flex;justify-content:space-between;padding:5px 0;font-size:.84rem;border-bottom:1px solid var(--bd)}
 .summary-row:last-child{border:none;font-weight:700;padding-top:8px}
-.summary-plus{color:var(--grn)}
-.summary-minus{color:var(--red)}
-
-.wohnung-grid{display:grid;gap:12px;margin-bottom:16px}
-.wohnung-card{
-  background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:14px;
-  padding:18px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;
-}
-.wohnung-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 16px 40px rgba(0,0,0,.5)}
-.wohnung-card.selected{border-color:var(--grn);background:rgba(0,230,118,.05)}
-.wh-title{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:6px}
-.wh-details{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
-.wh-det{font-size:.74rem}
-.wh-det-key{color:var(--dim);margin-bottom:2px;font-family:'JetBrains Mono',monospace;font-size:.6rem}
-.wh-det-val{font-weight:700}
-.wh-badge{position:absolute;top:12px;left:12px;font-size:.58rem;font-family:'JetBrains Mono',monospace;padding:3px 8px;border-radius:20px;letter-spacing:.06em}
-
-/* Phone UI */
-.phone-ui{
-  background:var(--s2);border:2px solid var(--bd2);border-radius:20px;
-  padding:20px;margin-bottom:16px;text-align:center;max-width:300px;margin:0 auto 16px;
-}
-.phone-screen{
-  background:#000;border-radius:12px;padding:16px;margin-bottom:12px;
-  min-height:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;
-}
-.phone-caller{font-size:2.5rem;margin-bottom:8px}
-.phone-name{font-family:'Syne',sans-serif;font-size:.9rem;color:var(--gold);margin-bottom:4px}
-.phone-status{font-size:.75rem;color:var(--dim)}
-
-/* Form drag drop */
-.form-row{
-  background:rgba(255,255,255,.04);border:1px solid var(--bd);
-  border-radius:8px;padding:10px 12px;margin-bottom:8px;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.form-label{font-size:.78rem;color:var(--dim)}
-.form-slot{
-  background:rgba(0,212,255,.06);border:2px dashed var(--bd2);
-  border-radius:6px;padding:6px 12px;min-width:120px;text-align:center;
-  font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--cyan);
-  cursor:pointer;transition:all .2s;
-}
-.form-slot:hover{border-color:var(--cyan);background:rgba(0,212,255,.1)}
-.form-slot.filled{border-style:solid;border-color:var(--grn);color:var(--grn);background:rgba(0,230,118,.08)}
-.form-options{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
-.form-chip{
-  background:rgba(255,255,255,.06);border:1px solid var(--bd2);
-  border-radius:6px;padding:6px 10px;font-size:.72rem;
-  font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all .2s;
-}
-.form-chip:hover{border-color:var(--gold);color:var(--gold)}
-.form-chip.used{opacity:.3;pointer-events:none}
-
-/* Minigame: Typing */
-.type-target{
-  font-family:'JetBrains Mono',monospace;font-size:1.1rem;color:var(--gold2);
-  background:rgba(255,255,255,.04);border:1px solid var(--bd2);
-  border-radius:10px;padding:16px;text-align:center;margin-bottom:12px;
-  direction:ltr;
-}
-.type-input{
-  width:100%;background:rgba(255,255,255,.06);border:1px solid var(--bd2);
-  color:var(--txt);padding:12px;border-radius:8px;
-  font-family:'JetBrains Mono',monospace;font-size:1rem;text-align:center;
-  direction:ltr;margin-bottom:10px;
-}
-.type-input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(0,212,255,.1)}
-.type-input.correct{border-color:var(--grn);background:rgba(0,230,118,.08)}
-.type-input.wrong{border-color:var(--red);background:rgba(255,71,87,.08)}
-
-/* Tooltip system */
-[tooltip]{position:relative}
-[tooltip]::after{
-  content:attr(tooltip);position:absolute;bottom:100%;left:50%;
-  transform:translateX(-50%) translateY(-6px);background:rgba(15,17,26,.98);
-  border:1px solid var(--bd2);padding:6px 10px;border-radius:6px;
-  font-size:.72rem;color:var(--txt);white-space:nowrap;opacity:0;
-  pointer-events:none;transition:all .2s;z-index:50;
-}
-[tooltip]:hover::after{opacity:1;transform:translateX(-50%) translateY(-4px)}
-
-.save-indicator{
-  position:fixed;top:10px;left:10px;z-index:200;
-  background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);
-  color:var(--grn);padding:4px 10px;border-radius:20px;
-  font-size:.65rem;font-family:'JetBrains Mono',monospace;
-  opacity:0;transition:opacity .3s;pointer-events:none;
-}
-.save-indicator.show{opacity:1}
-
-@media(max-width:480px){
-  .game-logo{font-size:2rem}
-  .res-lbl{display:none}
-  .res-bar-wrap{display:none}
-  .btn{padding:13px 16px}
-}
+.summary-plus{color:var(--grn)}.summary-minus{color:var(--red)}
+.weather-strip{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:8px;padding:7px 12px;margin-bottom:14px;font-size:.76rem;color:var(--dim)}
+.no-time-banner{background:rgba(255,71,87,.1);border:1px solid rgba(255,71,87,.3);border-radius:10px;padding:10px 14px;font-size:.8rem;color:var(--red);text-align:center;margin-bottom:12px;display:none}
+.no-time-banner.show{display:block}
+.save-ind{position:fixed;top:10px;left:10px;z-index:200;background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);color:var(--grn);padding:4px 10px;border-radius:20px;font-size:.65rem;font-family:'JetBrains Mono',monospace;opacity:0;transition:opacity .3s;pointer-events:none}
+.save-ind.show{opacity:1}
+.share-box{background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:.75rem;direction:ltr;text-align:left;line-height:1.7;color:var(--cyan);margin-bottom:12px;word-break:break-all}
+.nachbar-card{background:linear-gradient(135deg,rgba(0,212,255,.05),rgba(156,107,255,.03));border:1px solid rgba(0,212,255,.18);border-radius:12px;padding:16px;margin-bottom:14px}
+.achievement{display:flex;align-items:center;gap:10px;background:rgba(212,168,67,.07);border:1px solid rgba(212,168,67,.25);border-radius:10px;padding:10px 14px;margin-bottom:8px}
+.ach-icon{font-size:1.5rem}.ach-title{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;color:var(--gold)}
+.ach-desc{font-size:.72rem;color:var(--dim)}
+.xp-unlock-notice{background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:8px;padding:8px 12px;font-size:.76rem;color:var(--grn);margin-top:8px}
+@media(max-width:480px){.char-grid{grid-template-columns:1fr 1fr}.res-lbl{display:none}.res-bar-wrap{display:none}}
 </style>
 </head>
 <body>
-
-<div class="save-indicator" id="saveInd">💾 تم الحفظ</div>
+<div class="save-ind" id="saveInd">💾 تم الحفظ</div>
 <div class="toast" id="toast"></div>
 
+<!-- RESULT OVERLAY -->
 <div class="result-overlay hidden" id="result-overlay">
   <div class="result-box">
     <span class="result-icon" id="r-icon">🏠</span>
-    <div class="result-title" id="r-title">العنوان</div>
+    <div class="result-title" id="r-title"></div>
     <div class="result-detail" id="r-detail"></div>
-    <button class="btn btn-gold" id="r-btn" onclick="closeResult()">متابعة ←</button>
+    <button class="btn btn-gold" onclick="closeResult()">متابعة ←</button>
   </div>
 </div>
 
+<!-- RESOURCE BAR -->
 <div class="resbar" id="resbar">
   <div class="res-inner">
-    <div class="res day" id="res-day-box">
-      <div class="res-val" id="res-day">1</div>
-      <div class="res-lbl">يوم</div>
-    </div>
-    <div class="res money" id="res-money-box">
-      <div class="res-val" id="res-money">1200€</div>
-      <div class="res-lbl">مال</div>
-      <div class="res-bar-wrap"><div class="res-bar-fill" id="bar-money" style="width:100%;background:var(--gold)"></div></div>
-    </div>
-    <div class="res time" id="res-time-box">
-      <div class="res-val" id="res-time">8h</div>
-      <div class="res-lbl">وقت</div>
-      <div class="res-bar-wrap"><div class="res-bar-fill" id="bar-time" style="width:100%;background:var(--cyan)"></div></div>
-    </div>
-    <div class="res stress" id="res-stress-box">
-      <div class="res-val" id="res-stress">20%</div>
-      <div class="res-lbl">توتر</div>
-      <div class="res-bar-wrap"><div class="res-bar-fill" id="bar-stress" style="width:20%;background:var(--red)"></div></div>
-    </div>
+    <div class="res day"><div class="res-val" id="res-day">1</div><div class="res-lbl">يوم</div></div>
+    <div class="res money" id="res-money-box"><div class="res-val" id="res-money">1200€</div><div class="res-lbl">مال</div><div class="res-bar-wrap"><div class="res-bar-fill" id="bar-money" style="width:60%;background:var(--gold)"></div></div></div>
+    <div class="res time" id="res-time-box"><div class="res-val" id="res-time">8h</div><div class="res-lbl">وقت</div><div class="res-bar-wrap"><div class="res-bar-fill" id="bar-time" style="width:100%;background:var(--cyan)"></div></div></div>
+    <div class="res stress" id="res-stress-box"><div class="res-val" id="res-stress">20%</div><div class="res-lbl">توتر</div><div class="res-bar-wrap"><div class="res-bar-fill" id="bar-stress" style="width:20%;background:var(--red)"></div></div></div>
+    <div class="xp-rings" id="xp-rings-hud"></div>
   </div>
 </div>
 
-<!-- TITLE -->
+<!-- ══ TITLE ══ -->
 <div id="sc-title" class="sc on">
-  <div class="title-hero">
-    <div class="game-logo">Wohnungsnot</div>
-    <div class="game-sub">أزمة السكن — A2 Survival</div>
-    <div class="game-tagline">
-      أسبوعان في ألمانيا.<br>
-      <strong style="color:var(--gold)">14 يوم</strong> تفصلك عن الشارع أو عن بيتك.
-    </div>
+  <div style="text-align:center;padding:32px 0 24px">
+    <div style="font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--gold) 0%,var(--amber) 50%,var(--pink) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(212,168,67,.25))">Wohnungsnot</div>
+    <div style="font-size:.82rem;color:var(--dim);letter-spacing:.08em;margin:6px 0">أزمة السكن — A2 Survival · v3</div>
+    <div style="font-family:'Syne',sans-serif;font-size:.95rem;color:var(--txt);opacity:.75;line-height:1.6;margin-bottom:24px">14 يوماً تفصلك عن الشارع أو عن بيتك.<br>الألمانية هنا سلاح البقاء.</div>
   </div>
-
-  <div class="story-box">
-    📍 <strong>أوغسبورغ، أكتوبر 2026</strong><br><br>
-    الفندق يكلف <strong>60€</strong> في الليلة. راتبك لم يأتِ بعد. الشقق تطلب <strong>Schufa</strong> و<strong>Kaution</strong> و<strong>Anmeldung</strong>.<br><br>
-    الألمانية هنا ليست مجرد لغة — هي <strong>سلاح البقاء</strong>.
-  </div>
-
-  <div class="panel">
-    <div class="panel-title">⚡ كيف تلعب</div>
-    <div style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.9">
-      🏠 <strong>الهدف:</strong> إيجاد شقة خلال 14 يوماً<br>
-      💬 <strong>اللغة:</strong> محادثات حقيقية A2 — أخطاؤك تكلفك<br>
-      📄 <strong>الوثائق:</strong> اقرأ كل عقد قبل التوقيع<br>
-      ⚖️ <strong>الموازنة:</strong> مال + وقت + توتر + سمعة
-    </div>
-  </div>
-
-  <button class="btn btn-gold" onclick="startGame()">🏠 ابدأ رحلة جديدة</button>
+  <div class="story-box">📍 <strong>أوغسبورغ، أكتوبر 2026</strong><br><br>الفندق يكلفك <strong>55€</strong> الليلة. راتبك لم يأتِ. الشقق تطلب <strong>Schufa + Kaution + Anmeldung</strong>. والألمانية هنا ليست اختياراً.</div>
+  <div class="panel"><div class="panel-title">⚡ كيف تلعب</div><div style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.9">🏠 <strong>الهدف:</strong> شقة خلال 14 يوماً<br>💬 <strong>اللغة:</strong> كل حوار حقيقي A2<br>📄 <strong>الوثائق:</strong> اقرأ العقود<br>🎭 <strong>الشخصية:</strong> تؤثر على كل شيء<br>⏰ <strong>الزمن:</strong> قراراتك اليوم تظهر غداً</div></div>
+  <button class="btn btn-gold" onclick="show('sc-char-select')">🎭 اختر شخصيتك وابدأ</button>
+  <button class="btn btn-purp" onclick="startDailyChallenge()">📅 تحدي اليوم — Daily Challenge</button>
   <button class="btn btn-ghost" onclick="loadGame()">📂 استمرّ من آخر حفظ</button>
+  <button class="btn btn-ghost" onclick="show('sc-achievements')">🏆 الإنجازات</button>
   <button class="btn btn-ghost" onclick="showVocab()">📖 قاموس اللعبة</button>
+  <div id="title-best" style="text-align:center;font-size:.7rem;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:6px"></div>
 </div>
 
-<!-- DAY -->
+<!-- ══ CHARACTER SELECT ══ -->
+<div id="sc-char-select" class="sc">
+  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:6px;color:var(--gold)">🎭 اختر شخصيتك</div>
+  <div style="font-size:.8rem;color:var(--dim);margin-bottom:16px">كل شخصية تعيش تجربة مختلفة. الأولى ثلاث متاحة دائماً.</div>
+  <div class="char-grid" id="char-grid"></div>
+  <div id="char-confirm" style="display:none" class="panel">
+    <div id="char-detail"></div>
+    <button class="btn btn-gold" onclick="confirmCharacter()">ابدأ اللعبة ←</button>
+  </div>
+  <button class="btn btn-ghost" onclick="show('sc-title')">← رجوع</button>
+</div>
+
+<!-- ══ DAY SCREEN ══ -->
 <div id="sc-day" class="sc">
   <div class="panel" style="border-color:rgba(156,107,255,.25)">
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-      <div>
-        <div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--purp)" id="day-title">اليوم الأول</div>
-        <div style="font-size:.76rem;color:var(--dim)" id="day-date">الإثنين، 2 أكتوبر</div>
-      </div>
-      <div style="font-size:2.4rem" id="day-icon">🌅</div>
+      <div><div style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;color:var(--purp)" id="day-title">اليوم الأول</div><div style="font-size:.76rem;color:var(--dim)" id="day-date"></div></div>
+      <div style="font-size:2.2rem" id="day-icon">🌅</div>
     </div>
     <div id="day-msg" style="font-size:.86rem;color:rgba(255,255,255,.65);line-height:1.75;border-top:1px solid var(--bd);padding-top:10px"></div>
   </div>
-
+  <div class="weather-strip"><span id="weather-icon">☀️</span><span id="weather-text" style="flex:1"></span><span id="weather-effect" style="font-size:.65rem;color:var(--amber);font-family:'JetBrains Mono',monospace"></span></div>
+  <div id="delayed-notice" style="display:none"></div>
+  <div class="no-time-banner" id="no-time-banner">⏰ وقت غير كافٍ — نَم مبكراً</div>
   <div class="prog-bar"><div class="prog-fill" id="day-progress"></div></div>
-
   <div class="panel-title" style="margin-bottom:12px">🎯 ماذا تفعل اليوم؟</div>
   <div class="event-grid" id="event-grid"></div>
-
-  <div id="inventory-section" style="display:none">
-    <div class="panel-title" style="margin-bottom:8px">🗂 وثائقك</div>
-    <div class="inventory" id="inventory"></div>
-  </div>
-
-  <div id="reputation-section" style="display:none;margin-top:8px">
-    <div style="font-size:.72rem;color:var(--dim);margin-bottom:6px">السمعة لدى المالكين</div>
-    <div id="reputation-bar" style="height:6px;background:var(--bd2);border-radius:3px;overflow:hidden">
-      <div id="reputation-fill" style="height:100%;width:50%;background:var(--grn);border-radius:3px;transition:width .4s"></div>
-    </div>
-  </div>
+  <div id="inventory-section" style="display:none"><div class="panel-title" style="margin-bottom:8px">🗂 وثائقك</div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px" id="inventory"></div></div>
 </div>
 
-<!-- BESICHTIGUNG -->
+<!-- ══ BESICHTIGUNG ══ -->
 <div id="sc-besichtigung" class="sc">
-  <div class="scene-wrap">
-    <div class="scene-visual" id="bscht-visual">
-      <div class="scene-bg-emoji">🏢</div>
-      <div class="scene-npc" id="verm-icon">👴</div>
-      <div class="scene-npc-name" id="verm-name">Herr Müller</div>
-    </div>
-    <div class="dialog-bubble them" id="bscht-dialog">
-      <div class="dialog-speaker">المالك</div>
-      <div class="dialog-de" id="bscht-de">Guten Tag! Schön, dass Sie gekommen sind.</div>
-      <div class="dialog-ar" id="bscht-ar">أهلاً وسهلاً! يسعدني مجيئك.</div>
-    </div>
-  </div>
-  <div id="bscht-content"></div>
-  <div class="choices" id="bscht-choices"></div>
-  <button class="btn btn-ghost btn-sm" style="margin-top:6px" onclick="backToDay()">← الرجوع</button>
+  <div class="scene-visual" id="bscht-visual"><div class="scene-bg-emoji">🏢</div><div class="scene-npc" id="verm-icon">👴</div><div class="scene-npc-name" id="verm-name">Herr Müller</div></div>
+  <div class="dialog-bubble"><div class="dialog-speaker">المالك</div><div class="dialog-de" id="bscht-de"></div><div class="dialog-ar" id="bscht-ar"></div></div>
+  <div id="bscht-content"></div><div class="choices" id="bscht-choices"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
 </div>
 
-<!-- AMT -->
+<!-- ══ AMT ══ -->
 <div id="sc-amt" class="sc">
-  <div class="scene-wrap">
-    <div class="scene-visual" style="background:linear-gradient(160deg,#0a1018,#101820)">
-      <div class="scene-bg-emoji">🏛️</div>
-      <div class="scene-npc">👩‍💼</div>
-      <div class="scene-npc-name">Frau Weber — Sachbearbeiterin</div>
-    </div>
-    <div class="dialog-bubble them">
-      <div class="dialog-speaker">الموظفة</div>
-      <div class="dialog-de" id="amt-de">Guten Morgen. Was kann ich für Sie tun?</div>
-      <div class="dialog-ar" id="amt-ar">صباح الخير. كيف يمكنني مساعدتك؟</div>
-    </div>
-  </div>
-  <div id="amt-content"></div>
-  <div class="choices" id="amt-choices"></div>
-  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← الرجوع</button>
+  <div class="scene-visual" style="background:linear-gradient(160deg,#0a1018,#101820)"><div class="scene-bg-emoji">🏛️</div><div class="scene-npc">👩‍💼</div><div class="scene-npc-name">Frau Weber — Sachbearbeiterin</div></div>
+  <div class="dialog-bubble"><div class="dialog-speaker">الموظفة</div><div class="dialog-de" id="amt-de"></div><div class="dialog-ar" id="amt-ar"></div></div>
+  <div id="amt-content"></div><div class="choices" id="amt-choices"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
 </div>
 
-<!-- ARBEIT -->
-<div id="sc-arbeit" class="sc">
-  <div class="scene-wrap">
-    <div class="scene-visual" style="background:linear-gradient(160deg,#081510,#0f2015)">
-      <div class="scene-bg-emoji">🏗️</div>
-      <div class="scene-npc">👷</div>
-      <div class="scene-npc-name">Klaus — Vorarbeiter</div>
-    </div>
-    <div class="dialog-bubble them">
-      <div class="dialog-speaker">المشرف</div>
-      <div class="dialog-de" id="arb-de">Morgen! Heute haben wir viel zu tun.</div>
-      <div class="dialog-ar" id="arb-ar">صباح الخير! عندنا شغل كتير اليوم.</div>
-    </div>
-  </div>
-  <div id="arb-content"></div>
-  <div class="choices" id="arb-choices"></div>
-  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← الرجوع</button>
-</div>
-
-<!-- BANK -->
+<!-- ══ BANK ══ -->
 <div id="sc-bank" class="sc">
-  <div class="scene-wrap">
-    <div class="scene-visual" style="background:linear-gradient(160deg,#0f1520,#1a1f30)">
-      <div class="scene-bg-emoji">🏦</div>
-      <div class="scene-npc">👨‍💼</div>
-      <div class="scene-npc-name">Herr Schmidt — Bankberater</div>
-    </div>
-    <div class="dialog-bubble them">
-      <div class="dialog-speaker">المستشار المالي</div>
-      <div class="dialog-de" id="bank-de">Guten Tag. Möchten Sie ein Girokonto eröffnen?</div>
-      <div class="dialog-ar" id="bank-ar">النهار بخير. هل تريد فتح حساب جاري؟</div>
-    </div>
-  </div>
-  <div id="bank-content"></div>
-  <div class="choices" id="bank-choices"></div>
-  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← الرجوع</button>
+  <div class="scene-visual" style="background:linear-gradient(160deg,#0f1520,#1a1f30)"><div class="scene-bg-emoji">🏦</div><div class="scene-npc">👨‍💼</div><div class="scene-npc-name">Herr Schmidt — Bankberater</div></div>
+  <div class="dialog-bubble"><div class="dialog-speaker">المستشار</div><div class="dialog-de" id="bank-de"></div><div class="dialog-ar" id="bank-ar"></div></div>
+  <div id="bank-content"></div><div class="choices" id="bank-choices"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
 </div>
 
-<!-- TELEFONAT -->
+<!-- ══ ARBEIT ══ -->
+<div id="sc-arbeit" class="sc">
+  <div class="scene-visual" style="background:linear-gradient(160deg,#081510,#0f2015)"><div class="scene-bg-emoji">🏗️</div><div class="scene-npc">👷</div><div class="scene-npc-name">Klaus — Vorarbeiter</div></div>
+  <div class="dialog-bubble"><div class="dialog-speaker">المشرف</div><div class="dialog-de" id="arb-de"></div><div class="dialog-ar" id="arb-ar"></div></div>
+  <div id="arb-content"></div><div class="choices" id="arb-choices"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
+</div>
+
+<!-- ══ PHONE ══ -->
 <div id="sc-phone" class="sc">
-  <div class="phone-ui">
-    <div class="phone-screen">
-      <div class="phone-caller" id="phone-caller">👴</div>
-      <div class="phone-name" id="phone-name">Herr Müller</div>
-      <div class="phone-status" id="phone-status">يتصل...</div>
+  <div style="background:var(--s2);border:2px solid var(--bd2);border-radius:20px;padding:20px;margin-bottom:16px;text-align:center;max-width:280px;margin:0 auto 16px">
+    <div style="background:#000;border-radius:12px;padding:16px;margin-bottom:12px;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <div style="font-size:2.5rem;margin-bottom:8px" id="phone-caller">📞</div>
+      <div style="font-family:'Syne',sans-serif;font-size:.88rem;color:var(--gold)" id="phone-name"></div>
+      <div style="font-size:.72rem;color:var(--dim);animation:dangerblink 1.5s ease infinite" id="phone-status">يتصل...</div>
     </div>
   </div>
-  <div id="phone-content"></div>
-  <div class="choices" id="phone-choices"></div>
+  <div id="phone-content"></div><div class="choices" id="phone-choices"></div>
   <button class="btn btn-ghost btn-sm" onclick="backToDay()">← إنهاء المكالمة</button>
 </div>
 
-<!-- VERTRAG -->
+<!-- ══ VERTRAG ══ -->
 <div id="sc-vertrag" class="sc">
-  <div style="font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:14px;color:var(--gold)">
-    📄 اقرأ العقد قبل التوقيع
-  </div>
-  <div id="vertrag-content"></div>
-  <div class="choices" id="vertrag-choices"></div>
+  <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--gold)">📄 اقرأ العقد — اضغط البنود!</div>
+  <div id="vertrag-content"></div><div class="choices" id="vertrag-choices"></div>
   <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع بدون توقيع</button>
 </div>
 
-<!-- SUPERMARKT -->
+<!-- ══ SCHUFA ══ -->
+<div id="sc-schufa" class="sc">
+  <div class="scene-visual" style="background:linear-gradient(160deg,#0f1520,#1a1f30);margin-bottom:14px"><div class="scene-bg-emoji">📊</div><div class="scene-npc">🏢</div><div class="scene-npc-name">SCHUFA — مكتب الائتمان</div></div>
+  <div id="schufa-content"></div><div class="choices" id="schufa-choices"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
+</div>
+
+<!-- ══ QUIZ ══ -->
+<div id="sc-quiz" class="sc">
+  <div style="font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--purp)">🧠 اختبار سريع</div>
+  <div id="quiz-content"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← تخطّ</button>
+</div>
+
+<!-- ══ NACHBAR ══ -->
+<div id="sc-nachbar" class="sc">
+  <div class="scene-visual" style="background:linear-gradient(160deg,#120a18,#1a0f25)"><div class="scene-bg-emoji">🏘️</div><div class="scene-npc">👵</div><div class="scene-npc-name">Frau Berger — Nachbarin</div></div>
+  <div class="dialog-bubble"><div class="dialog-speaker">Frau Berger</div><div class="dialog-de" id="nachbar-de"></div><div class="dialog-ar" id="nachbar-ar"></div></div>
+  <div id="nachbar-content"></div><div class="choices" id="nachbar-choices"></div>
+  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
+</div>
+
+<!-- ══ SUPERMARKT ══ -->
 <div id="sc-supermarkt" class="sc">
-  <div class="scene-wrap">
-    <div class="scene-visual" style="background:linear-gradient(160deg,#15100a,#201810)">
-      <div class="scene-bg-emoji">🛒</div>
-      <div class="scene-npc">👩‍🦰</div>
-      <div class="scene-npc-name">Lisa — Kassiererin</div>
-    </div>
-    <div class="dialog-bubble them">
-      <div class="dialog-speaker">الكاشيرة</div>
-      <div class="dialog-de" id="sm-de">Hallo! Das macht zusammen 23,45 Euro.</div>
-      <div class="dialog-ar" id="sm-ar">مرحباً! المجموع 23.45 يورو.</div>
-    </div>
-  </div>
-  <div id="sm-content"></div>
-  <div class="choices" id="sm-choices"></div>
+  <div class="scene-visual" style="background:linear-gradient(160deg,#15100a,#201810)"><div class="scene-bg-emoji">🛒</div><div class="scene-npc">👩‍🦰</div><div class="scene-npc-name">Lisa — Kassiererin</div></div>
+  <div class="dialog-bubble"><div class="dialog-speaker">الكاشيرة</div><div class="dialog-de" id="sm-de">Hallo! Das macht 23,45 Euro.</div><div class="dialog-ar">مرحباً! المجموع 23.45 يورو.</div></div>
+  <div id="sm-content"></div><div class="choices" id="sm-choices"></div>
   <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
 </div>
 
-<!-- BAHN -->
-<div id="sc-bahn" class="sc">
-  <div class="scene-wrap">
-    <div class="scene-visual" style="background:linear-gradient(160deg,#0a1018,#101820)">
-      <div class="scene-bg-emoji">🚉</div>
-      <div class="scene-npc">🚆</div>
-      <div class="scene-npc-name">Durchsage — الإذاعة</div>
-    </div>
-    <div class="dialog-bubble them">
-      <div class="dialog-speaker">إذاعة المحطة</div>
-      <div class="dialog-de" id="bahn-de" style="font-style:italic">Achtung! Der Zug nach München fährt heute von Gleis 7 ab.</div>
-      <div class="dialog-ar" id="bahn-ar">انتباه! القطار المتجه لميونيخ سيغادر اليوم من الرصيف 7.</div>
-    </div>
-  </div>
-  <div id="bahn-content"></div>
-  <div class="choices" id="bahn-choices"></div>
-  <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
-</div>
-
-<!-- DAY END -->
+<!-- ══ DAY END ══ -->
 <div id="sc-dayend" class="sc">
   <div style="text-align:center;padding:20px 0;margin-bottom:16px">
     <div style="font-size:3rem;margin-bottom:8px" id="dayend-icon">🌙</div>
     <div style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:800" id="dayend-title">نهاية اليوم</div>
   </div>
   <div class="day-summary" id="dayend-summary"></div>
-  <div id="dayend-vocab" style="display:none">
-    <div class="panel-title" style="margin-bottom:8px">📚 تعلّمت اليوم</div>
-    <div class="vocab-log" id="vocab-log"></div>
-  </div>
+  <div id="dayend-xp" style="margin-bottom:12px"></div>
+  <div id="dayend-ach" style="margin-bottom:10px"></div>
+  <div id="dayend-vocab" style="display:none"><div class="panel-title" style="margin-bottom:8px">📚 تعلّمت اليوم</div><div class="vocab-log" id="vocab-log"></div></div>
   <button class="btn btn-gold" onclick="nextDay()">اليوم التالي ←</button>
 </div>
 
-<!-- VOCAB -->
-<div id="sc-vocab" class="sc">
-  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:16px;color:var(--gold)">📖 قاموس اللعبة</div>
-  <div class="vocab-log" id="vocab-all"></div>
-  <button class="btn btn-ghost" onclick="backToTitle()">← رجوع</button>
+<!-- ══ ACHIEVEMENTS ══ -->
+<div id="sc-achievements" class="sc">
+  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:6px;color:var(--gold)">🏆 الإنجازات</div>
+  <div style="font-size:.76rem;color:var(--dim);margin-bottom:4px" id="ach-progress-text"></div>
+  <div class="prog-bar"><div class="prog-fill" id="ach-progress-bar" style="animation:none"></div></div>
+  <div class="ach-grid" id="ach-grid"></div>
+  <button class="btn btn-ghost" onclick="show('sc-title')">← رجوع</button>
 </div>
 
-<!-- GAME OVER -->
+<!-- ══ DAILY CHALLENGE ══ -->
+<div id="sc-daily" class="sc">
+  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:14px;color:var(--cyan)">📅 تحدي اليوم</div>
+  <div class="daily-card" id="daily-card"></div>
+  <div id="daily-history"></div>
+  <div id="daily-share" style="display:none"></div>
+  <button class="btn btn-ghost" onclick="show('sc-title')">← رجوع</button>
+</div>
+
+<!-- ══ VOCAB ══ -->
+<div id="sc-vocab" class="sc">
+  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:6px;color:var(--gold)">📖 قاموس اللعبة</div>
+  <div style="font-size:.76rem;color:var(--dim);margin-bottom:12px">اضغط على كلمة لرؤية مثال</div>
+  <div class="vocab-log" id="vocab-all"></div>
+  <button class="btn btn-ghost" onclick="show('sc-title')">← رجوع</button>
+</div>
+
+<!-- ══ GAMEOVER ══ -->
 <div id="sc-gameover" class="sc">
   <div style="text-align:center;padding:30px 0">
     <div style="font-size:4rem;margin-bottom:14px" id="go-icon">😔</div>
-    <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--red);margin-bottom:10px" id="go-title">انتهت اللعبة</div>
-    <div style="font-size:.88rem;color:var(--dim);line-height:1.8;margin-bottom:28px" id="go-detail"></div>
-    <button class="btn btn-gold" onclick="restartGame()">🔄 العب مجدداً</button>
-    <button class="btn btn-ghost" onclick="backToTitle()">← القائمة الرئيسية</button>
+    <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--red);margin-bottom:10px" id="go-title"></div>
+    <div style="font-size:.88rem;color:var(--dim);line-height:1.8;margin-bottom:16px" id="go-detail"></div>
+    <div id="go-tip" style="background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);border-radius:10px;padding:14px;margin-bottom:20px;font-size:.82rem;color:var(--cyan);text-align:right;line-height:1.7"></div>
+    <button class="btn btn-gold" onclick="show('sc-char-select')">🔄 العب مجدداً</button>
+    <button class="btn btn-ghost" onclick="show('sc-title')">← القائمة الرئيسية</button>
   </div>
 </div>
 
-<!-- WIN -->
+<!-- ══ WIN ══ -->
 <div id="sc-win" class="sc">
   <div style="text-align:center;padding:30px 0">
     <div style="font-size:4rem;margin-bottom:14px">🎉</div>
     <div style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--grn);margin-bottom:10px">مبروك!</div>
     <div style="font-size:.88rem;color:var(--dim);line-height:1.8;margin-bottom:16px" id="win-detail"></div>
-    <div class="panel" id="win-stats"></div>
-    <button class="btn btn-gold" onclick="restartGame()">🔄 العب مجدداً</button>
+    <div class="panel" id="win-stats" style="margin-bottom:14px"></div>
+    <div id="win-share" style="margin-bottom:14px"></div>
+    <div id="win-ach" style="margin-bottom:16px"></div>
+    <button class="btn btn-gold" onclick="show('sc-char-select')">🔄 العب مجدداً</button>
+    <button class="btn btn-ghost" onclick="show('sc-title')">← القائمة الرئيسية</button>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════
-// GAME STATE ENGINE
-// ═══════════════════════════════════════
-const SAVE_KEY = 'wohnungsnot_a2_v1';
+// ════════════════════════════════════════════════════
+// SEEDED RNG (Mulberry32)
+// ════════════════════════════════════════════════════
+function mulberry32(seed){
+  return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296};
+}
+function hashStr(s){let h=0;for(let i=0;i<s.length;i++){h=(Math.imul(31,h)+s.charCodeAt(i))|0}return Math.abs(h)}
+function getTodaySeed(){const d=new Date();return hashStr(`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`)}
 
-const G = {
-  day: 1, money: 1200, timeLeft: 8, stress: 20,
-  wohnung: null, inventory: [], vocabLearned: [], dayVocab: [],
-  jobFound: false, anmeldung: false, bankAccount: false, krankenkasse: false,
-  reputation: 50, // 0-100
-  currentEvent: null, currentApt: null,
-  bschtStep: 0, amtStep: 0, arbStep: 0, bankStep: 0, phoneStep: 0,
-  vertragData: null, resultCallback: null, visitedToday: [],
-  flags: { liedAtAmt: false, badReputation: false, scamUsed: false, phoneUsed: false },
-  tutorialSeen: false,
+let G_RNG = Math.random; // default
+
+function rng(){return G_RNG()}
+function rngItem(arr){return arr[Math.floor(rng()*arr.length)]}
+function rngShuffle(arr){return [...arr].sort(()=>rng()-.5)}
+
+// ════════════════════════════════════════════════════
+// DATA — CHARACTERS
+// ════════════════════════════════════════════════════
+const CHARACTERS = {
+  ahmad:{
+    id:'ahmad', portrait:'👨‍🔧', nameAr:'أحمد', nameDe:'Ahmad — Bauarbeiter aus Syrien',
+    startMoney:1000, startStress:10,
+    trait:'يعمل في البناء — Klaus يعرفه مسبقاً. يحتاج أكثر جهداً في المكاتب.',
+    traitEn:'baustelle job immediate / −10% Behörden-XP',
+    xpBonus:{street:1.3, lang:1.0, office:0.9},
+    uniqueEventDay:4, uniqueEvent:'ahmad_landsmann',
+    unlocked:true,
+    statColor:'var(--amber)'
+  },
+  fatima:{
+    id:'fatima', portrait:'👩‍⚕️', nameAr:'فاطمة', nameDe:'Fatima — Krankenschwester aus Marokko',
+    startMoney:800, startStress:15,
+    trait:'تعمل في المستشفى — سمعتها جيدة. النوبات الليلية تأكل وقتها.',
+    traitEn:'+20% Ruf bei weiblichen NPCs / Nachtschicht -1h',
+    xpBonus:{street:1.0, lang:1.2, office:1.0},
+    uniqueEventDay:6, uniqueEvent:'fatima_kollegin',
+    unlocked:true,
+    statColor:'var(--pink)'
+  },
+  muhammad:{
+    id:'muhammad', portrait:'🎓', nameAr:'محمد', nameDe:'Muhammad — Student aus Ägypten',
+    startMoney:600, startStress:5,
+    trait:'WG-Zimmer متاح من اليوم الأول. جدول الدراسة يأكل ساعة يومياً.',
+    traitEn:'WG-Option sofort / −1h täglich / −100€ Start',
+    xpBonus:{street:0.9, lang:1.3, office:1.0},
+    uniqueEventDay:3, uniqueEvent:'muhammad_aushang',
+    unlocked:true,
+    statColor:'var(--cyan)'
+  },
+  layla:{
+    id:'layla', portrait:'💻', nameAr:'ليلى', nameDe:'Layla — Designerin, Freelance',
+    startMoney:900, startStress:20,
+    trait:'تعمل من البيت — لكن دخلها غير منتظم. عندها +2h يومياً.',
+    traitEn:'Von zu Hause arbeiten +2h / Einkommen ±30%',
+    xpBonus:{street:1.1, lang:1.1, office:0.8},
+    uniqueEventDay:5, uniqueEvent:'layla_client',
+    unlocked:false, unlockCondition:'negotiator',
+    statColor:'var(--purp)'
+  },
+  yusuf:{
+    id:'yusuf', portrait:'👴‍🦳', nameAr:'يوسف', nameDe:'Yusuf — Rentner، Familiennachzug',
+    startMoney:1200, startStress:0,
+    trait:'موثوق — المالكون يحبونه. لكن الضغط النفسي يؤثر عليه أكثر.',
+    traitEn:'+Ruf bei Vermietern / Stress ×1.5',
+    xpBonus:{street:0.8, lang:0.9, office:1.4},
+    uniqueEventDay:7, uniqueEvent:'yusuf_enkel',
+    unlocked:false, unlockCondition:'first_win',
+    statColor:'var(--grn)'
+  }
 };
 
-const DAYS_MAX = 14;
-const MONEY_MAX = 2000;
-
-// ═══════════════════════════════════════
-// VOCABULARY DATABASE (A2 Expanded)
-// ═══════════════════════════════════════
-const VOCAB = [
-  {de:'die Wohnung',ar:'الشقة'},{de:'die Miete',ar:'الإيجار'},
-  {de:'die Kaution',ar:'الوديعة'},{de:'die Nebenkosten',ar:'التكاليف الإضافية'},
-  {de:'der Mietvertrag',ar:'عقد الإيجار'},{de:'der Vermieter',ar:'المالك'},
-  {de:'der Mieter',ar:'المستأجر'},{de:'die Kündigung',ar:'إنهاء العقد'},
-  {de:'die Kündigungsfrist',ar:'مدة الإشعار المسبق'},{de:'das Einwohnermeldeamt',ar:'مكتب تسجيل السكان'},
-  {de:'die Anmeldung',ar:'التسجيل الرسمي'},{de:'der Lohnzettel',ar:'قسيمة الراتب'},
-  {de:'die Schufa',ar:'سجل الائتمان'},{de:'warm',ar:'شامل التدفئة'},
-  {de:'kalt',ar:'بدون تدفئة'},{de:'die Besichtigung',ar:'جولة المعاينة'},
-  {de:'der Grundriss',ar:'مخطط الشقة'},{de:'das Zimmer',ar:'الغرفة'},
-  {de:'unterschreiben',ar:'يوقّع'},{de:'der Arbeitsvertrag',ar:'عقد العمل'},
-  {de:'das Girokonto',ar:'الحساب الجاري'},{de:'die Bank',ar:'البنك'},
-  {de:'die Krankenkasse',ar:'شركة التأمين الصحي'},{de:'die Versicherung',ar:'التأمين'},
-  {de:'der Schalter',ar:'الشباك'},{de:'die Wartenummer',ar:'رقم الدور'},
-  {de:'der Termin',ar:'الموعد'},{de:'die Verspätung',ar:'التأخير'},
-  {de:'umsteigen',ar:'تغيير القطار'},{de:'das Gleis',ar:'الرصيف'},
-  {de:'die Rückfahrkarte',ar:'تذكرة الذهاب والعودة'},{de:'bar zahlen',ar:'الدفع نقداً'},
-  {de:'mit Karte zahlen',ar:'الدفع بالبطاقة'},{de:'der Bon',ar:'الإيصال'},
-  {de:'das Angebot',ar:'العرض'},{de:'die Quittung',ar:'الوصل'},
-];
-
-// ═══════════════════════════════════════
-// APARTMENTS
-// ═══════════════════════════════════════
+// ════════════════════════════════════════════════════
+// DATA — APARTMENTS
+// ════════════════════════════════════════════════════
 const APARTMENTS = [
-  {
-    id:'apt1', name:'شقة في der Innenstadt', emoji:'🏙️',
-    vermieter:'Herr Müller', vermIcon:'👴',
-    kaltmiete:720, nebenkosten:110, warmmiete:830, kaution:1440,
-    zimmer:2, qm:52, badge:'غالية', badgeColor:'var(--red)',
-    condition:'good', available:true,
-    notes:'قريبة من العمل. الكاوشن يحتاج 1440€.',
-    phoneIntro:'Hallo, hier Müller. Sie haben auf meine Anzeige geantwortet.',
-    clauses:[
-      {text:'§3 Mietdauer: Das Mietverhältnis beginnt am 01.11. Die Kündigungsfrist beträgt 3 Monate.',ar:'مدة الإيجار تبدأ 1 نوفمبر. مدة الإشعار 3 أشهر.', risk:false},
-      {text:'§5 Kaution: Der Mieter zahlt eine Kaution in Höhe von 2 Kaltmieten.',ar:'الكاوشن = 2× الإيجار البارد = 1440€. مبلغ ضخم!', risk:true},
-      {text:'§8 Haustiere: Haustiere sind nicht erlaubt.',ar:'الحيوانات الأليفة ممنوعة.', risk:false},
-    ]
-  },
-  {
-    id:'apt2', name:'WG-Zimmer في Oberhausen', emoji:'🏘️',
-    vermieter:'Jana', vermIcon:'👩',
-    kaltmiete:380, nebenkosten:60, warmmiete:440, kaution:380,
-    zimmer:1, qm:18, badge:'مناسبة', badgeColor:'var(--grn)',
-    condition:'good', available:true,
-    notes:'غرفة في شقة مشتركة. رخيصة لكن صغيرة.',
-    phoneIntro:'Hi, hier Jana! Du willst das Zimmer sehen, oder?',
-    clauses:[
-      {text:'§2 Mietzins: Die monatliche Miete beträgt 380€ kalt plus 60€ NK.',ar:'الإيجار 380€ + 60€ تكاليف = 440€ شهرياً.', risk:false},
-      {text:'§4 Kaution: Kaution in Höhe von einer Monatsmiete.',ar:'الكاوشن = شهر واحد فقط = 380€. ممتاز!', risk:false},
-      {text:'§7 Gemeinschaftsräume: Küche und Bad werden geteilt.',ar:'المطبخ والحمام مشتركان.', risk:false},
-    ]
-  },
-  {
-    id:'apt3', name:'Wohnung في Lechhausen', emoji:'🏠',
-    vermieter:'Frau Schmidt', vermIcon:'👩‍🦳',
-    kaltmiete:580, nebenkosten:90, warmmiete:670, kaution:1160,
-    zimmer:2, qm:45, badge:'وسط', badgeColor:'var(--gold)',
-    condition:'medium', available:true,
-    notes:'منطقة هادئة. يحتاج Schufa.',
-    phoneIntro:'Guten Tag, Schmidt am Apparat. Wie kann ich Ihnen helfen?',
-    clauses:[
-      {text:'§3 Bonitätsnachweis: Der Mieter hat eine aktuelle Schufa-Auskunft vorzulegen.',ar:'مطلوب تقرير Schufa. قد تكون مشكلة.', risk:true},
-      {text:'§4 Kaution: 2 Monatskaltmieten = 1.160€.',ar:'الكاوشن 1160€.', risk:false},
-      {text:'§6 Schönheitsreparaturen: Der Mieter ist zur Renovierung beim Auszug verpflichtet.',ar:'عليك طلاء الشقة عند المغادرة. تكلفة إضافية!', risk:true},
-    ]
-  }
+  {id:'apt1',name:'شقة في der Innenstadt',emoji:'🏙️',vermieter:'Herr Müller',vermIcon:'👴',kaltmiete:720,nebenkosten:110,warmmiete:830,kaution:1440,zimmer:2,qm:52,badge:'مركزية',requiresSchufa:true,requiresJob:true,vermGender:'m',
+   phoneIntro:'Hier Müller. Sie haben geantwortet?',
+   clauses:[{text:'§3 Kündigungsfrist: 3 Monate.',ar:'مدة الإشعار 3 أشهر.',risk:false},{text:'§5 Kaution: 2 Kaltmieten = 1.440€.',ar:'الكاوشن 1440€ — غالٍ!',risk:true},{text:'§9 Schufa + Lohnzettel erforderlich.',ar:'يطلب Schufa وقسيمة راتب.',risk:true}]},
+  {id:'apt2',name:'WG-Zimmer في Oberhausen',emoji:'🏘️',vermieter:'Jana',vermIcon:'👩',kaltmiete:380,nebenkosten:60,warmmiete:440,kaution:380,zimmer:1,qm:18,badge:'مناسبة',requiresSchufa:false,requiresJob:false,vermGender:'f',
+   phoneIntro:'Hi, hier Jana! Du willst das Zimmer?',
+   clauses:[{text:'§2 Miete: 380€ + 60€ NK.',ar:'المجموع 440€ شهرياً.',risk:false},{text:'§4 Kaution: 380€.',ar:'الكاوشن شهر واحد فقط!',risk:false},{text:'§7 Küche und Bad werden geteilt.',ar:'مطبخ وحمام مشترك.',risk:false}]},
+  {id:'apt3',name:'Wohnung في Lechhausen',emoji:'🏠',vermieter:'Frau Schmidt',vermIcon:'👩‍🦳',kaltmiete:580,nebenkosten:90,warmmiete:670,kaution:1160,zimmer:2,qm:45,badge:'متوسطة',requiresSchufa:false,requiresJob:true,vermGender:'f',
+   phoneIntro:'Schmidt am Apparat. Guten Tag.',
+   clauses:[{text:'§3 Lohnzettel der letzten 3 Monate.',ar:'يطلب قسيمة راتب.',risk:true},{text:'§4 Kaution: 1.160€.',ar:'الكاوشن 1160€.',risk:false},{text:'§6 Renovierung bei Auszug.',ar:'طلاء الشقة عند المغادرة.',risk:true}]}
 ];
 
-// ═══════════════════════════════════════
+// ════════════════════════════════════════════════════
+// DATA — VOCABULARY
+// ════════════════════════════════════════════════════
+const VOCAB=[
+  {de:'die Wohnung',ar:'الشقة',ex:'Ich suche eine Wohnung in Augsburg.',track:'lang'},
+  {de:'die Miete',ar:'الإيجار',ex:'Die Miete beträgt 700 Euro.',track:'office'},
+  {de:'die Kaution',ar:'الوديعة',ex:'Die Kaution ist zwei Monatsmieten.',track:'office'},
+  {de:'die Nebenkosten',ar:'التكاليف الإضافية',ex:'Strom und Wasser sind Nebenkosten.',track:'office'},
+  {de:'der Mietvertrag',ar:'عقد الإيجار',ex:'Bitte unterschreiben Sie hier.',track:'office'},
+  {de:'der Vermieter',ar:'المالك',ex:'Der Vermieter heißt Herr Müller.',track:'lang'},
+  {de:'die Kaution',ar:'الوديعة',ex:'Die Kaution beträgt drei Monatsmieten.',track:'office'},
+  {de:'die Kündigungsfrist',ar:'مدة الإشعار',ex:'Die Kündigungsfrist ist 3 Monate.',track:'office'},
+  {de:'das Einwohnermeldeamt',ar:'مكتب تسجيل السكان',ex:'Ich muss mich anmelden.',track:'office'},
+  {de:'die Anmeldung',ar:'التسجيل الرسمي',ex:'Ohne Anmeldung — kein Konto!',track:'office'},
+  {de:'der Lohnzettel',ar:'قسيمة الراتب',ex:'Der Vermieter möchte den Lohnzettel.',track:'office'},
+  {de:'die Schufa',ar:'سجل الائتمان',ex:'Haben Sie eine Schufa-Auskunft?',track:'office'},
+  {de:'warm',ar:'شامل التدفئة',ex:'780€ warm — alles inklusive.',track:'lang'},
+  {de:'kalt',ar:'بدون تدفئة',ex:'600€ kalt plus Nebenkosten.',track:'lang'},
+  {de:'die Besichtigung',ar:'جولة المعاينة',ex:'Wann ist die Besichtigung?',track:'street'},
+  {de:'unterschreiben',ar:'يوقّع',ex:'Ich möchte unterschreiben.',track:'office'},
+  {de:'der Arbeitsvertrag',ar:'عقد العمل',ex:'Ich habe einen Arbeitsvertrag.',track:'office'},
+  {de:'das Girokonto',ar:'الحساب الجاري',ex:'Ich möchte ein Konto eröffnen.',track:'office'},
+  {de:'der Dauerauftrag',ar:'التحويل الآلي',ex:'Richte einen Dauerauftrag ein.',track:'office'},
+  {de:'die Überweisung',ar:'تحويل بنكي',ex:'Ich mache eine Überweisung.',track:'office'},
+  {de:'verhandeln',ar:'يتفاوض',ex:'Kann man über den Preis verhandeln?',track:'street'},
+  {de:'die Freizeit',ar:'وقت الفراغ',ex:'Freizeit ist auch wichtig!',track:'lang'},
+  {de:'sich erholen',ar:'يستريح',ex:'Ich muss mich erholen.',track:'lang'},
+  {de:'der Nachbar',ar:'الجار',ex:'Die Nachbarin ist sehr nett.',track:'street'},
+  {de:'das Telefonat',ar:'المكالمة',ex:'Das Telefonat hat 5 Minuten gedauert.',track:'lang'},
+  {de:'Auf Wiederhören',ar:'إلى اللقاء (هاتف)',ex:'Auf Wiederhören! Bis morgen.',track:'lang'},
+  {de:'der Betrug / Betrugsmasche',ar:'النصب',ex:'Das ist ein Betrug!',track:'street'},
+  {de:'die Bonität',ar:'الجدارة الائتمانية',ex:'Meine Bonität ist sehr gut.',track:'office'},
+  {de:'amtlich',ar:'رسمي / حكومي',ex:'Das Dokument ist amtlich.',track:'office'},
+  {de:'bar zahlen',ar:'الدفع نقداً',ex:'Kann ich bar zahlen?',track:'street'},
+  {de:'mit Karte zahlen',ar:'الدفع ببطاقة',ex:'Ich zahle mit Karte.',track:'street'},
+  {de:'die Verspätung',ar:'التأخير',ex:'Der Zug hat 10 Minuten Verspätung.',track:'street'},
+  {de:'umsteigen',ar:'تغيير القطار',ex:'Bitte in München umsteigen.',track:'street'},
+  {de:'das Gleis',ar:'الرصيف',ex:'Gleis 7, bitte!',track:'street'},
+  {de:'die Wartenummer',ar:'رقم الدور',ex:'Nehmen Sie eine Wartenummer.',track:'office'},
+];
+
+// ════════════════════════════════════════════════════
+// DATA — ACHIEVEMENTS
+// ════════════════════════════════════════════════════
+const ACHIEVEMENT_DEFS = [
+  {id:'first_apartment',icon:'🏠',title:'أول مسكن',desc:'وقّعت أول عقد إيجار',hint:'وقّع على شقة',rarity:'common'},
+  {id:'honest_amt',icon:'✅',title:'Ehrlichkeit zahlt sich aus',desc:'صادق في مكتب التسجيل',hint:'كن صادقاً في الـ Amt',rarity:'common'},
+  {id:'negotiator',icon:'🤝',title:'المفاوض',desc:'خفّضت الإيجار بالتفاوض',hint:'جرّب التفاوض مع مالك',rarity:'rare'},
+  {id:'speed_run',icon:'⚡',title:'عداء السرعة',desc:'وجدت شقة قبل اليوم 8',hint:'كن سريعاً',rarity:'rare'},
+  {id:'vocab_master',icon:'📖',title:'Wortschatz-König',desc:'تعلّمت 25+ كلمة',hint:'تعلّم الكلمات باستمرار',rarity:'common'},
+  {id:'no_stress',icon:'😎',title:'Kein Stress!',desc:'انهيت بتوتر أقل من 35%',hint:'راقب مستوى التوتر',rarity:'rare'},
+  {id:'rich',icon:'💰',title:'Sparfuchs',desc:'انهيت بأكثر من 900€',hint:'وفّر وأنفق بذكاء',rarity:'rare'},
+  {id:'good_reputation',icon:'⭐',title:'Guter Ruf',desc:'سمعتك وصلت 85+',hint:'تصرف بمهذب دائماً',rarity:'rare'},
+  {id:'scam_detector',icon:'🛡️',title:'مكشوف النصب',desc:'تعرّفت على النصب وأبلّغت',hint:'انتبه للإعلانات المشبوهة',rarity:'common'},
+  {id:'lang_pro',icon:'🗣️',title:'Sprach-Profi',desc:'وصلت Stufe 3 في Sprach-XP',hint:'تعلّم وجاوب بشكل صحيح',rarity:'legendary'},
+  {id:'street_pro',icon:'🏙️',title:'Straßen-Profi',desc:'وصلت Stufe 3 في Straßen-XP',hint:'تعامل بذكاء في الشارع',rarity:'legendary'},
+  {id:'office_pro',icon:'📋',title:'Behörden-Profi',desc:'وصلت Stufe 3 في Behörden-XP',hint:'أكمل جميع الوثائق',rarity:'legendary'},
+  {id:'first_win',icon:'🎊',title:'أول انتصار',desc:'أنهيت اللعبة بنجاح',hint:'ابحث حتى النهاية',rarity:'common'},
+  {id:'daily_first',icon:'📅',title:'أول تحدٍّ يومي',desc:'أكملت أول Daily Challenge',hint:'جرّب تحدي اليوم',rarity:'common'},
+  {id:'streak_3',icon:'🔥',title:'Fleißig!',desc:'3 أيام منتجة متتالية',hint:'كن منتجاً كل يوم',rarity:'common'},
+];
+
+// ════════════════════════════════════════════════════
+// DATA — QUIZ BANK
+// ════════════════════════════════════════════════════
+const QUIZZES=[
+  {q:'Was bedeutet "Warmmiete"?',context:'Der Vermieter: "700€ warm."',options:['الإيجار شاملاً التدفئة والماء','الإيجار الصيفي فقط','رسوم التدفئة منفصلاً'],correct:0,vocab:'warm',xpTrack:'office'},
+  {q:'Was ist eine "Kaution"?',context:'"Sie müssen drei Monate Kaution zahlen."',options:['الإيجار الشهري','وديعة ترد عند المغادرة','رسوم التسجيل'],correct:1,vocab:'die Kaution',xpTrack:'office'},
+  {q:'Was bedeutet "Verspätung"?',context:'Durchsage: "Der Zug hat Verspätung."',options:['القطار مبكر','القطار متأخر','القطار ملغى'],correct:1,vocab:'die Verspätung',xpTrack:'street'},
+  {q:'Was ist ein "Dauerauftrag"?',context:'"Möchten Sie einen Dauerauftrag einrichten?"',options:['قرض شهري','تحويل آلي متكرر','بطاقة ائتمان'],correct:1,vocab:'der Dauerauftrag',xpTrack:'office'},
+  {q:'Was bedeutet "Kündigung"?',context:'"Die Kündigung muss 3 Monate vorher erfolgen."',options:['تجديد العقد','التفاوض على السعر','إنهاء العقد رسمياً'],correct:2,vocab:'die Kündigungsfrist',xpTrack:'office'},
+  {q:'Was ist die "Schufa"?',context:'"Haben Sie eine Schufa-Auskunft?"',options:['تصريح عمل','سجل الائتمان المالي','تأمين صحي'],correct:1,vocab:'die Schufa',xpTrack:'office'},
+  {q:'Was bedeutet "Nebenkosten"?',context:'"600€ kalt, plus Nebenkosten."',options:['الإيجار الأساسي فقط','التكاليف الإضافية (ماء، تدفئة...)','عمولة الوسيط'],correct:1,vocab:'die Nebenkosten',xpTrack:'office'},
+  {q:'Was ist "umsteigen"?',context:'"Sie müssen in München umsteigen."',options:['ركوب نفس القطار','تغيير القطار في محطة وسط','شراء تذكرة جديدة'],correct:1,vocab:'umsteigen',xpTrack:'street'},
+];
+
+// ════════════════════════════════════════════════════
+// DATA — DELAYED EVENTS DEFINITIONS
+// ════════════════════════════════════════════════════
+const DELAYED_DEFS={
+  amt_rueckfrage:{
+    icon:'📬',title:'رسالة من الـ Amt',
+    desc:'قبل أيام سجّلوا ملاحظة في ملفك. يطلبون إيضاحات.',
+    effect:(G)=>{G.stress=Math.min(100,G.stress+12);G.reputation=Math.max(0,G.reputation-15)},
+    rückblende:'قبل أيام — كذبت في مكتب التسجيل'
+  },
+  mueller_warning:{
+    icon:'📞',title:'Herr Müller اتصل بـ Frau Schmidt',
+    desc:'Müller تكلّم مع Schmidt عنك. سمعتك تضررت عندها.',
+    effect:(G)=>{G.reputation=Math.max(0,G.reputation-20)},
+    rückblende:'قبل أيام — أسأت مع Herr Müller'
+  },
+  berger_wg:{
+    icon:'🏠',title:'Frau Berger عندها خبر!',
+    desc:'صديقتها تبحث عن مستأجر. رخيص وبدون Schufa.',
+    effect:(G)=>{G.money+=0;G.reputation+=10;toast('Frau Berger تعطيك فرصة خاصة!','gold')},
+    rückblende:'قبل أيام — كنت مهذباً مع Frau Berger',
+    specialAction:'berger_bonus_apt'
+  },
+  stress_migraine:{
+    icon:'🤕',title:'صداع نصفي اليوم',
+    desc:'الضغط المتراكم أثّر على صحتك. تفقد ساعة من وقتك.',
+    effect:(G)=>{G.timeLeft=Math.max(0,G.timeLeft-1);G.stress=Math.min(100,G.stress+8)},
+    rückblende:'يومان متتاليان بتوتر ≥70%'
+  },
+  nebenkosten_shock:{
+    icon:'⚡',title:'فاتورة صادمة!',
+    desc:'قرأت العقد بسرعة — النفقات أكثر مما توقعت.',
+    effect:(G)=>{G.money=Math.max(0,G.money-80)},
+    rückblende:'قبل أيام — وقّعت بدون قراءة كل البنود'
+  },
+  scam_police:{
+    icon:'👮',title:'الشرطة تشكرك!',
+    desc:'إبلاغك عن النصب ساعد في القبض على المحتال. +مال ومعنويات.',
+    effect:(G)=>{G.money+=50;G.reputation+=10;G.stress=Math.max(0,G.stress-10)},
+    rückblende:'قبل أيام — أبلّغت عن الإعلان المشبوه'
+  },
+  productive_boost:{
+    icon:'💪',title:'ثلاثة أيام منتجة!',
+    desc:'جهدك المستمر أثمر. طاقة إيجابية — توتر أقل.',
+    effect:(G)=>{G.stress=Math.max(0,G.stress-20)},
+    rückblende:'3 أيام منتجة متتالية'
+  },
+  ahmad_landsmann:{
+    icon:'🤝',title:'لانڤسمان يتصل!',
+    desc:'زميلك السوري Ahmad يعرف شقة رخيصة — يرسل عنوانها.',
+    effect:(G)=>{toast('Ahmad: "في شارع Maximilianstraße شقة جيدة!"','gold')},
+    rückblende:'أنت أحمد — الشبكة تفيدك'
+  },
+  fatima_kollegin:{
+    icon:'👩‍⚕️',title:'زميلة في المستشفى',
+    desc:'الممرضة Jana تعرف وحدة سكن. قدّمت لك بالاسم.',
+    effect:(G)=>{G.reputation+=15},
+    rückblende:'فاطمة — السمعة المهنية تفيد'
+  },
+  muhammad_aushang:{
+    icon:'📌',title:'إعلان في الجامعة',
+    desc:'وجدت إعلان WG رخيص جداً على لوحة الجامعة.',
+    effect:(G)=>{G.money+=0;toast('WG جديدة بـ 320€ ظهرت!','gold')},
+    rückblende:'محمد — الجامعة توفر فرصاً'
+  },
+  layla_client:{
+    icon:'💸',title:'مشروع طارئ!',
+    desc:'عميل يدفع 150€ لتصميم عاجل. لكن يأكل 3 ساعات.',
+    effect:(G)=>{const accept=confirm('قبول المشروع؟ +150€ -3h');if(accept){G.money+=150;G.timeLeft=Math.max(0,G.timeLeft-3)}},
+    rückblende:'ليلى — العمل الحر متقلب'
+  },
+  yusuf_enkel:{
+    icon:'📱',title:'مكالمة مع الأحفاد',
+    desc:'رأيت أحفادك بالفيديو. يملأ قلبك. -30% توتر!',
+    effect:(G)=>{G.stress=Math.max(0,G.stress-30)},
+    rückblende:'يوسف — العائلة تعطي القوة'
+  }
+};
+
+// ════════════════════════════════════════════════════
+// GAME STATE
+// ════════════════════════════════════════════════════
+const SAVE_KEY='wohnungsnot_v3';
+const META_KEY='wohnungsnot_meta_v3';
+
+const G={
+  day:1, money:1200, timeLeft:8, stress:20,
+  wohnung:null, inventory:[], vocabLearned:[], dayVocab:[],
+  jobFound:false, anmeldung:false, bankAccount:false, hasSchufa:false,
+  reputation:50,
+  xp:{lang:0, street:0, office:0},
+  xpLevel:{lang:0, street:0, office:0},
+  streak:0, totalEarned:0,
+  character:null,
+  pendingEvents:[],
+  visitedToday:[],
+  flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
+  formAnswers:{}, selectedChip:null,
+  currentApt:null, bschtStep:0, amtStep:0,
+  vertragData:null, resultCallback:null,
+  weather:null, isDaily:false, dailySeed:null,
+};
+
+const DAYS_MAX=14; const MONEY_MAX=2000;
+
+// XP Thresholds
+const XP_LEVELS=[{name:'Anfänger',min:0,color:'#5a5f7a'},{name:'Gewandt',min:50,color:'var(--gold)'},{name:'Profi',min:150,color:'var(--purp)'}];
+
+// ════════════════════════════════════════════════════
+// META (persistent across runs)
+// ════════════════════════════════════════════════════
+let META={achievements:{},totalRuns:0,bestScore:0,bestGrade:'',firstWin:false,dailyHistory:[],charactersUnlocked:['ahmad','fatima','muhammad']};
+
+function loadMeta(){try{const m=JSON.parse(localStorage.getItem(META_KEY));if(m)Object.assign(META,m)}catch(e){}}
+function saveMeta(){try{localStorage.setItem(META_KEY,JSON.stringify(META))}catch(e){}}
+loadMeta();
+
+// ════════════════════════════════════════════════════
 // UTILITY
-// ═══════════════════════════════════════
+// ════════════════════════════════════════════════════
 let _toastTO;
-function toast(msg, type='info') {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.className = 'toast ' + type + ' show';
-  clearTimeout(_toastTO);
-  _toastTO = setTimeout(() => t.classList.remove('show'), 2800);
+function toast(msg,type='info'){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast '+type+' show';
+  clearTimeout(_toastTO);_toastTO=setTimeout(()=>t.classList.remove('show'),3000);
 }
 
-function show(id) {
-  document.querySelectorAll('.sc').forEach(s => s.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  window.scrollTo(0, 0);
+function show(id){
+  document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id)?.classList.add('on');
+  window.scrollTo(0,0);
 }
 
-function learnVocab(words) {
-  words.forEach(w => {
-    if (!G.vocabLearned.find(v => v.de === w.de)) {
-      G.vocabLearned.push(w);
-      G.dayVocab.push(w);
+function learnVocab(words){
+  words.forEach(w=>{
+    if(!G.vocabLearned.find(v=>v.de===w.de)){
+      G.vocabLearned.push(w);G.dayVocab.push(w);
+      // Give XP for learning
+      addXP(w.track||'lang',5);
     }
   });
 }
 
-function addToInventory(item) {
-  if (!G.inventory.includes(item)) {
-    G.inventory.push(item);
-    toast('📄 أُضيف لوثائقك: ' + item, 'ok');
+function addToInventory(item){
+  if(!G.inventory.includes(item)){G.inventory.push(item);toast('📄 أُضيف: '+item,'ok')}
+}
+
+function addXP(track,amount){
+  const char=G.character?CHARACTERS[G.character]:null;
+  const mult=char?char.xpBonus[track]:1;
+  G.xp[track]=Math.round(G.xp[track]+(amount*mult));
+  checkXPLevels();
+  renderXPRings();
+}
+
+function getXPLevel(track){
+  const xp=G.xp[track];
+  if(xp>=150)return 2;if(xp>=50)return 1;return 0;
+}
+
+function checkXPLevels(){
+  ['lang','street','office'].forEach(track=>{
+    const newLevel=getXPLevel(track);
+    if(newLevel>G.xpLevel[track]){
+      G.xpLevel[track]=newLevel;
+      const lvlName=XP_LEVELS[newLevel].name;
+      toast(`⬆️ ${trackLabel(track)}: ${lvlName}!`,'gold');
+      document.getElementById('xp-ring-'+track)?.classList.add('levelup');
+      setTimeout(()=>document.getElementById('xp-ring-'+track)?.classList.remove('levelup'),600);
+      // Achievement checks
+      if(G.xpLevel.lang>=2 && G.xpLevel.street>=2 && G.xpLevel.office>=2)checkAch('lang_pro');
+      if(newLevel===2){
+        if(track==='lang')checkAch('lang_pro');
+        if(track==='street')checkAch('street_pro');
+        if(track==='office')checkAch('office_pro');
+      }
+    }
+  });
+}
+
+function trackLabel(t){return{lang:'Sprach-XP',street:'Straßen-XP',office:'Behörden-XP'}[t]||t}
+function trackIcon(t){return{lang:'🗣️',street:'🏙️',office:'📋'}[t]||'✨'}
+function trackColor(t){return{lang:'var(--cyan)',street:'var(--amber)',office:'var(--purp)'}[t]||'var(--gold)'}
+
+function renderXPRings(){
+  const wrap=document.getElementById('xp-rings-hud');
+  if(!wrap)return;
+  const R=14,C=2*Math.PI*R;
+  wrap.innerHTML=['lang','street','office'].map(track=>{
+    const xp=G.xp[track];
+    const lvl=getXPLevel(track);
+    const maxXP=lvl===2?200:lvl===1?150:50;
+    const minXP=lvl===2?150:lvl===1?50:0;
+    const pct=Math.min(1,(xp-minXP)/(maxXP-minXP));
+    const col=trackColor(track);
+    const offset=C*(1-pct);
+    return `<div class="xp-ring levelup" id="xp-ring-${track}" style="cursor:pointer">
+      <svg width="36" height="36" viewBox="0 0 36 36"><circle class="xp-bg" cx="18" cy="18" r="${R}" stroke="rgba(255,255,255,.08)"/><circle class="xp-fill" cx="18" cy="18" r="${R}" stroke="${col}" stroke-dasharray="${C}" stroke-dashoffset="${offset}" stroke-linecap="round" fill="none" stroke-width="3.5"/></svg>
+      <div class="xp-icon">${trackIcon(track)}</div>
+      <div class="xp-tip">${trackLabel(track)}<br>${xp} XP · Stufe ${lvl+1}<br>${XP_LEVELS[lvl].name}</div>
+    </div>`;
+  }).join('');
+}
+
+function pulseRes(type){const el=document.getElementById('res-'+type+'-box');if(el){el.classList.add('pulse');setTimeout(()=>el.classList.remove('pulse'),400)}}
+
+function updateResBar(){
+  document.getElementById('res-day').textContent=G.day;
+  document.getElementById('res-money').textContent=G.money+'€';
+  document.getElementById('res-time').textContent=G.timeLeft+'h';
+  document.getElementById('res-stress').textContent=Math.round(G.stress)+'%';
+  document.getElementById('bar-money').style.width=Math.min(100,(G.money/MONEY_MAX)*100)+'%';
+  document.getElementById('bar-time').style.width=(G.timeLeft/8)*100+'%';
+  document.getElementById('bar-stress').style.width=Math.min(100,G.stress)+'%';
+  const sb=document.getElementById('res-stress-box');
+  sb.classList.remove('warn','danger');
+  if(G.stress>=80)sb.classList.add('danger');else if(G.stress>=60)sb.classList.add('warn');
+  document.getElementById('no-time-banner')?.classList.toggle('show',G.timeLeft<=1);
+  renderXPRings();
+}
+
+function spendRes(money=0,time=0,stress=0,rep=0,xpTrack=null,xpAmt=0){
+  if(money>0)G.money=Math.max(0,G.money-money);
+  if(money<0){G.money+=Math.abs(money);G.totalEarned+=Math.abs(money)}
+  G.timeLeft=Math.max(0,G.timeLeft-time);
+  const charMult=(G.character==='yusuf'&&stress>0)?1.5:1;
+  G.stress=Math.max(0,Math.min(100,G.stress+(stress*charMult)));
+  G.reputation=Math.max(0,Math.min(100,G.reputation+rep));
+  if(xpTrack&&xpAmt)addXP(xpTrack,xpAmt);
+  if(money!==0)pulseRes('money');if(time>0)pulseRes('time');if(stress!==0)pulseRes('stress');
+  updateResBar();
+  checkAchievementsPassive();
+}
+
+function showResult(icon,title,detail,color,callback){
+  document.getElementById('r-icon').textContent=icon;
+  document.getElementById('r-title').textContent=title;
+  document.getElementById('r-title').style.color=color||'var(--txt)';
+  document.getElementById('r-detail').innerHTML=detail;
+  document.getElementById('result-overlay').classList.remove('hidden');
+  G.resultCallback=callback||null;
+}
+
+function closeResult(){
+  document.getElementById('result-overlay').classList.add('hidden');
+  if(G.resultCallback){G.resultCallback();G.resultCallback=null}
+}
+
+// ════════════════════════════════════════════════════
+// ACHIEVEMENTS
+// ════════════════════════════════════════════════════
+function checkAch(id){
+  if(META.achievements[id])return;
+  const def=ACHIEVEMENT_DEFS.find(a=>a.id===id);
+  if(!def)return;
+  META.achievements[id]=Date.now();
+  saveMeta();
+  // Unlock characters
+  if(id==='negotiator'&&!META.charactersUnlocked.includes('layla')){META.charactersUnlocked.push('layla');saveMeta()}
+  if(id==='first_win'&&!META.charactersUnlocked.includes('yusuf')){META.charactersUnlocked.push('yusuf');saveMeta()}
+  setTimeout(()=>toast(`🏆 إنجاز: ${def.title}`,'ach'),500);
+}
+
+function checkAchievementsPassive(){
+  if(G.reputation>=85)checkAch('good_reputation');
+  if(G.vocabLearned.length>=25)checkAch('vocab_master');
+  if(G.streak>=3)checkAch('streak_3');
+}
+
+// ════════════════════════════════════════════════════
+// DELAYED EVENTS
+// ════════════════════════════════════════════════════
+function queueDelayed(type,daysLater,origin=''){
+  const triggerDay=G.day+daysLater;
+  if(!G.pendingEvents.find(e=>e.type===type&&e.triggerDay===triggerDay)){
+    G.pendingEvents.push({type,triggerDay,origin});
   }
 }
 
-function pulseRes(type) {
-  const el = document.getElementById('res-' + type + '-box');
-  if(el) { el.classList.add('pulse'); setTimeout(() => el.classList.remove('pulse'), 400); }
-}
-
-function updateResBar() {
-  document.getElementById('res-day').textContent = G.day;
-  document.getElementById('res-money').textContent = G.money + '€';
-  document.getElementById('res-time').textContent = G.timeLeft + 'h';
-  document.getElementById('res-stress').textContent = Math.round(G.stress) + '%';
-  document.getElementById('bar-money').style.width = Math.min(100, (G.money / MONEY_MAX) * 100) + '%';
-  document.getElementById('bar-time').style.width = (G.timeLeft / 8) * 100 + '%';
-  document.getElementById('bar-stress').style.width = Math.min(100, G.stress) + '%';
-
-  const repFill = document.getElementById('reputation-fill');
-  if(repFill) repFill.style.width = G.reputation + '%';
-}
-
-function spendResources(money=0, time=0, stressDelta=0, repDelta=0) {
-  G.money = Math.max(0, G.money - money);
-  G.timeLeft = Math.max(0, G.timeLeft - time);
-  G.stress = Math.max(0, Math.min(100, G.stress + stressDelta));
-  G.reputation = Math.max(0, Math.min(100, G.reputation + repDelta));
-  updateResBar();
-  if(money) pulseRes('money');
-  if(time) pulseRes('time');
-  if(stressDelta) pulseRes('stress');
-}
-
-function showResult(icon, title, detail, color, callback) {
-  document.getElementById('r-icon').textContent = icon;
-  document.getElementById('r-title').textContent = title;
-  document.getElementById('r-title').style.color = color || 'var(--txt)';
-  document.getElementById('r-detail').innerHTML = detail;
-  document.getElementById('result-overlay').classList.remove('hidden');
-  G.resultCallback = callback || null;
-}
-
-function closeResult() {
-  document.getElementById('result-overlay').classList.add('hidden');
-  if (G.resultCallback) { G.resultCallback(); G.resultCallback = null; }
-}
-
-function saveGame() {
-  try {
-    localStorage.setItem(SAVE_KEY, JSON.stringify({
-      day: G.day, money: G.money, stress: G.stress,
-      wohnung: G.wohnung, inventory: G.inventory,
-      vocabLearned: G.vocabLearned,
-      jobFound: G.jobFound, anmeldung: G.anmeldung,
-      bankAccount: G.bankAccount, krankenkasse: G.krankenkasse,
-      reputation: G.reputation, flags: G.flags,
-      apartments: APARTMENTS.map(a => ({id:a.id, available:a.available}))
-    }));
-    const ind = document.getElementById('saveInd');
-    ind.classList.add('show');
-    setTimeout(() => ind.classList.remove('show'), 1500);
-  } catch(e) { console.log('Save failed', e); }
-}
-
-function loadGame() {
-  try {
-    const data = JSON.parse(localStorage.getItem(SAVE_KEY));
-    if(!data) { toast('لا يوجد حفظ سابق','no'); return; }
-    Object.assign(G, data);
-    // Restore apartment states
-    if(data.apartments) {
-      data.apartments.forEach(saved => {
-        const apt = APARTMENTS.find(a => a.id === saved.id);
-        if(apt) apt.available = saved.available;
-      });
-    }
-    document.getElementById('resbar').classList.add('on');
+function processDelayedEvents(){
+  const toTrigger=G.pendingEvents.filter(e=>e.triggerDay===G.day);
+  G.pendingEvents=G.pendingEvents.filter(e=>e.triggerDay!==G.day);
+  if(toTrigger.length===0){document.getElementById('delayed-notice').style.display='none';return}
+  const notice=document.getElementById('delayed-notice');
+  notice.style.display='block';
+  notice.innerHTML=toTrigger.map(e=>{
+    const def=DELAYED_DEFS[e.type];
+    if(!def)return '';
+    def.effect(G);
     updateResBar();
-    buildDayScreen();
+    return `<div class="rückblende">
+      <strong>${def.icon} ${def.title}</strong><br>
+      ${def.desc}<br>
+      <span style="font-size:.68rem;opacity:.6">${def.rückblende||''}</span>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════════════════
+// SAVE / LOAD
+// ════════════════════════════════════════════════════
+function saveGame(){
+  try{
+    const data={
+      day:G.day,money:G.money,stress:G.stress,
+      wohnung:G.wohnung?.id||null,inventory:G.inventory,vocabLearned:G.vocabLearned,
+      jobFound:G.jobFound,anmeldung:G.anmeldung,bankAccount:G.bankAccount,hasSchufa:G.hasSchufa,
+      reputation:G.reputation,xp:G.xp,xpLevel:G.xpLevel,streak:G.streak,totalEarned:G.totalEarned,
+      character:G.character,pendingEvents:G.pendingEvents,flags:G.flags,
+      apartments:APARTMENTS.map(a=>({id:a.id,available:a.available,kaltmiete:a.kaltmiete,warmmiete:a.warmmiete})),
+      saveVersion:3
+    };
+    localStorage.setItem(SAVE_KEY,JSON.stringify(data));
+    const ind=document.getElementById('saveInd');
+    ind.classList.add('show');setTimeout(()=>ind.classList.remove('show'),1500);
+  }catch(e){}
+}
+
+function loadGame(){
+  try{
+    const data=JSON.parse(localStorage.getItem(SAVE_KEY));
+    if(!data||data.saveVersion!==3){toast('لا يوجد حفظ متوافق (v3)','no');return}
+    Object.assign(G,{day:data.day,money:data.money,stress:data.stress,
+      inventory:data.inventory||[],vocabLearned:data.vocabLearned||[],
+      jobFound:data.jobFound,anmeldung:data.anmeldung,bankAccount:data.bankAccount,hasSchufa:data.hasSchufa,
+      reputation:data.reputation||50,xp:data.xp||{lang:0,street:0,office:0},xpLevel:data.xpLevel||{lang:0,street:0,office:0},
+      streak:data.streak||0,totalEarned:data.totalEarned||0,character:data.character,
+      pendingEvents:data.pendingEvents||[],flags:data.flags||{}});
+    if(data.apartments)data.apartments.forEach(s=>{const a=APARTMENTS.find(x=>x.id===s.id);if(a){a.available=s.available;a.kaltmiete=s.kaltmiete;a.warmmiete=s.warmmiete}});
+    if(data.wohnung)G.wohnung=APARTMENTS.find(a=>a.id===data.wohnung)||null;
+    document.getElementById('resbar').classList.add('on');
+    updateResBar();buildDayScreen();
     toast('📂 تم استعادة الحفظ','ok');
-  } catch(e) { toast('خطأ في الحفظ','no'); }
+  }catch(e){toast('خطأ في الحفظ','no')}
 }
 
-// ═══════════════════════════════════════
-// INIT
-// ═══════════════════════════════════════
-function startGame() {
-  // Reset all
-  G.day = 1; G.money = 1200; G.timeLeft = 8; G.stress = 20;
-  G.wohnung = null; G.inventory = []; G.vocabLearned = []; G.dayVocab = [];
-  G.jobFound = false; G.anmeldung = false; G.bankAccount = false; G.krankenkasse = false;
-  G.reputation = 50; G.visitedToday = [];
-  G.flags = { liedAtAmt: false, badReputation: false, scamUsed: false, phoneUsed: false };
-  APARTMENTS.forEach(a => a.available = true);
+// ════════════════════════════════════════════════════
+// CHARACTER SELECT
+// ════════════════════════════════════════════════════
+let selectedChar=null;
 
+function buildCharSelect(){
+  const grid=document.getElementById('char-grid');
+  grid.innerHTML=Object.values(CHARACTERS).map(c=>{
+    const unlocked=META.charactersUnlocked.includes(c.id);
+    const lockMsg=!unlocked?`<div class="char-lock-badge">🔒 ${c.unlockCondition==='negotiator'?'Unlock: التفاوض':'Unlock: أول فوز'}</div>`:'';
+    return `<div class="char-card ${unlocked?'':'locked'}" onclick="${unlocked?`selectChar('${c.id}')`:'toast(\"أكمل إنجاز لفتح هذه الشخصية\",\"no\")'}" style="border-color:${selectedChar===c.id?c.statColor:'var(--bd)'}">
+      ${lockMsg}
+      <span class="char-portrait">${c.portrait}</span>
+      <div class="char-name-ar">${c.nameAr}</div>
+      <div class="char-name-de">${c.nameDe.split(' — ')[1]||c.nameDe}</div>
+      <div class="char-trait">${c.trait}</div>
+      <div class="char-stats">
+        <span class="char-stat" style="background:rgba(212,168,67,.1);color:var(--gold)">💰${c.startMoney}€</span>
+        <span class="char-stat" style="background:rgba(255,71,87,.1);color:var(--red)">😰${c.startStress}%</span>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function selectChar(id){
+  selectedChar=id;
+  document.getElementById('char-confirm').style.display='block';
+  const c=CHARACTERS[id];
+  document.getElementById('char-detail').innerHTML=`
+    <div style="font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;color:${c.statColor};margin-bottom:8px">${c.portrait} ${c.nameAr}</div>
+    <div style="font-size:.8rem;color:var(--dim);line-height:1.7">${c.trait}<br><br>
+    🎯 <strong>XP-Bonus:</strong> ${Object.entries(c.xpBonus).map(([k,v])=>`${trackLabel(k)}: ×${v}`).join(' · ')}</div>`;
+  buildCharSelect();
+}
+
+function confirmCharacter(){
+  if(!selectedChar){toast('اختر شخصية أولاً','no');return}
+  startGame(selectedChar);
+}
+
+// ════════════════════════════════════════════════════
+// GAME START
+// ════════════════════════════════════════════════════
+function startGame(charId){
+  const c=CHARACTERS[charId];
+  Object.assign(G,{
+    day:1,money:c.startMoney,timeLeft:8,stress:c.startStress,
+    wohnung:null,inventory:[],vocabLearned:[],dayVocab:[],
+    jobFound:false,anmeldung:false,bankAccount:false,hasSchufa:false,
+    reputation:50,xp:{lang:0,street:0,office:0},xpLevel:{lang:0,street:0,office:0},
+    streak:0,totalEarned:0,character:charId,
+    pendingEvents:[],visitedToday:[],
+    flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
+    formAnswers:{},selectedChip:null,currentApt:null,isDaily:false
+  });
+  // Character special setup
+  if(charId==='fatima')spendRes(0,1,0); // Nachtschicht penalty
+  if(charId==='layla')G.timeLeft=10; // Works from home
+  APARTMENTS.forEach(a=>{a.available=true});
+  APARTMENTS[0].kaltmiete=720;APARTMENTS[0].warmmiete=830;
+  APARTMENTS[1].kaltmiete=380;APARTMENTS[1].warmmiete=440;
+  APARTMENTS[2].kaltmiete=580;APARTMENTS[2].warmmiete=670;
+  // Schedule character unique event
+  queueDelayed(c.uniqueEvent,c.uniqueEventDay-1,'character');
+  META.totalRuns++;saveMeta();
   document.getElementById('resbar').classList.add('on');
-  updateResBar();
-  buildDayScreen();
+  updateResBar();buildDayScreen();
 }
 
-function restartGame() { show('sc-title'); document.getElementById('resbar').classList.remove('on'); }
-function backToTitle() { show('sc-title'); document.getElementById('resbar').classList.remove('on'); }
-function backToDay() { show('sc-day'); updateResBar(); }
+function backToTitle(){show('sc-title');document.getElementById('resbar').classList.remove('on');updateTitleBest()}
+function backToDay(){show('sc-day');updateResBar();buildEvents()}
 
-// ═══════════════════════════════════════
-// DAY SCREEN
-// ═══════════════════════════════════════
-const DAY_MESSAGES = [
-  'أول يوم حقيقي. كل شيء غريب لكن كل شيء ممكن.',
-  'مع كل يوم يمر، المال يقل والضغط يزيد.',
-  'الناس هنا يتكلمون بسرعة. لكن شيئاً فشيئاً، تبدأ تفهم.',
-  'نصف الوقت راح. كل زيارة تعلّمك شيئاً جديداً.',
-  'أسبوع كامل. ما تزال بدون شقة، لكن عندك وثائق أكثر.',
-  'المالك الأخير رفضك. هذا طبيعي. لا تستسلم.',
-  'الضغط يزيد، لكن كل كلمة ألمانية تعلّمتها هي سلاح.',
-  'الوقت ضيق. ركّز على ما هو ضروري.',
-  'يوم آخر. خطوة أخرى نحو البيت.',
-  'قريب من النهاية. كل يورو ودقيقة تحسب.',
-  'الأيام الأخيرة. يجب إيجاد حل.',
-  'ثلاثة أيام فقط. اتخذ قراراتك بحكمة.',
-  'يومان. لا مجال للتردد الآن.',
-  'آخر يوم. اليوم تحسم الأمور.',
+// ════════════════════════════════════════════════════
+// WEATHER
+// ════════════════════════════════════════════════════
+const WEATHERS=[
+  {icon:'☀️',text:'طقس جميل — مثالي للمعاينات',effect:'',timeBonus:0,stressMod:-3},
+  {icon:'⛅',text:'غائم جزئياً — يوم عادي',effect:'',timeBonus:0,stressMod:0},
+  {icon:'🌧️',text:'مطر — بعض المكاتب تُغلق مبكراً',effect:'-1h وقت',timeBonus:-1,stressMod:5},
+  {icon:'❄️',text:'صقيع — المواصلات بطيئة',effect:'+توتر',timeBonus:0,stressMod:8},
+  {icon:'🌤️',text:'غيوم خفيفة',effect:'',timeBonus:0,stressMod:0},
+  {icon:'🌩️',text:'عاصفة — ابقَ داخل ما أمكن',effect:'-2h',timeBonus:-2,stressMod:12},
 ];
 
-const DAY_ICONS = ['🌅','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','🌨️','🌩️','❄️','🌫️','🌪️','🏙️'];
+function rollWeather(){
+  const w=[25,30,20,8,25,5];const t=w.reduce((a,b)=>a+b,0);let r=rng()*t,c=0;
+  for(let i=0;i<w.length;i++){c+=w[i];if(r<=c)return WEATHERS[i]}return WEATHERS[0];
+}
 
-function buildDayScreen() {
-  G.dayVocab = [];
-  G.visitedToday = [];
-  G.timeLeft = 8;
+function applyWeather(w){
+  document.getElementById('weather-icon').textContent=w.icon;
+  document.getElementById('weather-text').textContent=w.text;
+  const eff=document.getElementById('weather-effect');
+  eff.textContent=w.effect||'';eff.style.display=w.effect?'':'none';
+  if(w.timeBonus<0)G.timeLeft=Math.max(1,G.timeLeft+w.timeBonus);
+  if(w.stressMod)spendRes(0,0,w.stressMod);
+}
+
+// ════════════════════════════════════════════════════
+// DAY SCREEN
+// ════════════════════════════════════════════════════
+const DAY_MSG=[
+  'أول يوم حقيقي. ابدأ بالأساسيات — التسجيل أولاً.',
+  'الفندق يأكل ميزانيتك. تحرك بسرعة.',
+  'بدأت تعرف الشوارع. الوثائق تكتمل.',
+  'نصف الأسبوع الأول. لا تتوقف.',
+  'أسبوع كامل تقريباً. الوثائق تفتح الأبواب.',
+  'المالك الأخير رفضك. هذا طبيعي.',
+  'التوتر يزيد — الاستراحة ضرورية.',
+  'الوقت يضيق. ركّز على المهم.',
+  'يوم آخر — خطوة نحو البيت.',
+  'قريب من النهاية. كل يورو يحسب.',
+  'الأيام الأخيرة. لا مجال للتردد.',
+  'ثلاثة أيام فقط. اجمع وثائقك.',
+  'يومان. اتصل بكل المالكين.',
+  'آخر يوم. الآن أو لن يكون.',
+];
+const DAY_ICONS=['🌅','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','🌨️','🌩️','❄️','🌫️','🌪️','🏙️'];
+
+function buildDayScreen(){
+  G.dayVocab=[];G.visitedToday=[];G.flags.quizDoneToday=false;G.timeLeft=8;
+  if(G.character==='layla')G.timeLeft=10;
+  G.weather=rollWeather();
+  applyWeather(G.weather);
+  processDelayedEvents();
   updateResBar();
-
-  const idx = Math.min(G.day - 1, 13);
-  document.getElementById('day-title').textContent = `اليوم ${arabDay(G.day)}`;
-  document.getElementById('day-date').textContent = getDayDate(G.day);
-  document.getElementById('day-icon').textContent = DAY_ICONS[idx];
-  document.getElementById('day-msg').textContent = DAY_MESSAGES[idx];
-  document.getElementById('day-progress').style.width = ((G.day - 1) / DAYS_MAX * 100) + '%';
-
-  if (G.stress >= 100) { gameOver('burnout'); return; }
-  if (G.day > DAYS_MAX && !G.wohnung) { gameOver('obdachlos'); return; }
-  if (G.day > DAYS_MAX && G.wohnung) { winGame(); return; }
-
-  buildEvents();
-  buildInventoryUI();
-  show('sc-day');
-  saveGame();
+  const idx=Math.min(G.day-1,13);
+  document.getElementById('day-title').textContent=`اليوم ${arabDay(G.day)}`;
+  document.getElementById('day-date').textContent=getDayDate(G.day);
+  document.getElementById('day-icon').textContent=DAY_ICONS[idx];
+  document.getElementById('day-msg').textContent=DAY_MSG[idx];
+  document.getElementById('day-progress').style.width=((G.day-1)/DAYS_MAX*100)+'%';
+  // Check game end
+  if(G.stress>=100){gameOver('burnout');return}
+  if(G.money<=0){gameOver('pleite');return}
+  if(G.day>DAYS_MAX&&!G.wohnung){gameOver('obdachlos');return}
+  if(G.day>DAYS_MAX&&G.wohnung){winGame();return}
+  buildEvents();buildInventoryUI();show('sc-day');saveGame();
 }
 
-function arabDay(n) {
-  const d = ['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن','التاسع','العاشر','الحادي عشر','الثاني عشر','الثالث عشر','الرابع عشر'];
-  return d[n-1] || n;
-}
+function arabDay(n){const d=['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن','التاسع','العاشر','الحادي عشر','الثاني عشر','الثالث عشر','الرابع عشر'];return d[n-1]||n}
+function getDayDate(day){const days=['الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت','الأحد'];return`${days[(day+6)%7]}، ${day+1} أكتوبر`}
 
-function getDayDate(day) {
-  const days = ['الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت','الأحد'];
-  return `${days[(day + 6) % 7]}، ${day + 1} أكتوبر`;
-}
-
-// ═══════════════════════════════════════
-// EVENT BUILDER
-// ═══════════════════════════════════════
-function buildEvents() {
-  const events = [];
-
-  // BESICHTIGUNG
-  APARTMENTS.filter(a => a.available).forEach(apt => {
+// ════════════════════════════════════════════════════
+// EVENTS
+// ════════════════════════════════════════════════════
+function buildEvents(){
+  const events=[];
+  // Besichtigung
+  APARTMENTS.filter(a=>a.available).forEach(apt=>{
+    const locked=apt.requiresSchufa&&!G.hasSchufa;
+    const noMoney=G.money<apt.kaution;
     events.push({
-      id: 'bscht_' + apt.id, icon: '🏠',
-      title: `معاينة: ${apt.name}`,
-      desc: `${apt.emoji} ${apt.warmmiete}€ warm · ${apt.zimmer} Zimmer · ${apt.qm}m²`,
-      timeCost: 2, moneyCost: 0, stressAdd: 5,
-      available: G.timeLeft >= 2 && !G.visitedToday.includes('bscht_' + apt.id),
-      action: () => startBesichtigung(apt),
-      tags: [{label:'-2h',cls:'tag-time'},{label:'+توتر',cls:'tag-stress'}]
+      id:'bscht_'+apt.id,icon:locked?'🔒':'🏠',
+      title:`معاينة: ${apt.name}`,
+      desc:`${apt.emoji} ${apt.warmmiete}€ warm · ${apt.zimmer}Zi · ${apt.qm}m²${locked?' — Schufa fehlt':''}${noMoney&&!locked?' ⚠️ كاوشن عالٍ':''}`,
+      timeCost:2,available:G.timeLeft>=2&&!G.visitedToday.includes('bscht_'+apt.id),
+      urgent:G.day>=8&&!G.wohnung,
+      action:()=>startBesichtigung(apt),
+      tags:[{label:'-2h',cls:'tag-time'},{label:apt.warmmiete+'€',cls:'tag-money'},...(locked?[{label:'Schufa!',cls:'tag-stress'}]:[])]
     });
   });
-
-  // PHONE (new!) - only if not visited phone for available apt
-  APARTMENTS.filter(a => a.available && !G.visitedToday.includes('phone_'+a.id) && G.day >= 2).forEach(apt => {
+  // Phone calls
+  APARTMENTS.filter(a=>a.available&&!G.flags.phoneBonusUsed[a.id]&&G.day>=2).forEach(apt=>{
     events.push({
-      id: 'phone_' + apt.id, icon: '📞',
-      title: `اتصال: ${apt.vermieter}`,
-      desc: 'اتصل بالمالك قبل المعاينة. يوفر وقت ويعطي انطباع أول.',
-      timeCost: 1, moneyCost: 0, stressAdd: 0,
-      available: G.timeLeft >= 1,
-      action: () => startPhone(apt),
-      tags: [{label:'-1h',cls:'tag-time'},{label:'سمعة',cls:'tag-info'}]
+      id:'phone_'+apt.id,icon:'📞',title:`اتصال بـ ${apt.vermieter}`,
+      desc:'انطباع أول جيد = أفضلية في المعاينة.',timeCost:1,
+      available:G.timeLeft>=1&&!G.visitedToday.includes('phone_'+apt.id),
+      action:()=>startPhone(apt),
+      tags:[{label:'-1h',cls:'tag-time'},{label:'+سمعة',cls:'tag-info'}]
     });
   });
-
   // AMT
-  if (!G.anmeldung) {
-    events.push({
-      id: 'amt', icon: '🏛️', title: 'Einwohnermeldeamt — التسجيل',
-      desc: 'سجّل نفسك رسمياً. بدون هذا، لا شقة ولا بنك.',
-      timeCost: 3, moneyCost: 0, stressAdd: 15,
-      available: G.timeLeft >= 3 && !G.visitedToday.includes('amt'),
-      action: () => startAmt(),
-      tags: [{label:'-3h',cls:'tag-time'},{label:'مهم جداً',cls:'tag-grn'}]
-    });
-  }
-
-  // BANK (new!)
-  if (G.anmeldung && !G.bankAccount) {
-    events.push({
-      id: 'bank', icon: '🏦', title: 'البنك — Girokonto',
-      desc: 'افتح حساباً جارياً. ضروري لتحويل الإيجار.',
-      timeCost: 2, moneyCost: 0, stressAdd: 10,
-      available: G.timeLeft >= 2 && !G.visitedToday.includes('bank'),
-      action: () => startBank(),
-      tags: [{label:'-2h',cls:'tag-time'},{label:'مالي',cls:'tag-info'}]
-    });
-  }
-
-  // ARBEIT
-  if (!G.jobFound) {
-    events.push({
-      id: 'arbeit', icon: '💼', title: 'البحث عن عمل',
-      desc: 'تحتاج راتباً لأي شقة. تكلّم مع Klaus.',
-      timeCost: 4, moneyCost: 0, stressAdd: 10,
-      available: G.timeLeft >= 4 && !G.visitedToday.includes('arbeit'),
-      action: () => startArbeit(),
-      tags: [{label:'-4h',cls:'tag-time'},{label:'ضروري',cls:'tag-grn'}]
-    });
-  } else {
-    events.push({
-      id: 'arbeit_shift', icon: '🔨', title: 'يوم عمل',
-      desc: 'اكسب 80€ في موقع البناء.',
-      timeCost: 6, moneyCost: -80, stressAdd: 5,
-      available: G.timeLeft >= 6 && !G.visitedToday.includes('arbeit_shift'),
-      action: () => workShift(),
-      tags: [{label:'+80€',cls:'tag-money'},{label:'-6h',cls:'tag-time'}]
-    });
-  }
-
-  // SUPERMARKT (new!)
-  events.push({
-    id: 'supermarkt', icon: '🛒', title: 'Supermarkt — تسوق',
-    desc: 'اشترِ طعاماً. لا يمكنك العمل وأنت جائع.',
-    timeCost: 1, moneyCost: 25, stressAdd: -5,
-    available: G.timeLeft >= 1 && !G.visitedToday.includes('supermarkt'),
-    action: () => startSupermarkt(),
-    tags: [{label:'-25€',cls:'tag-money'},{label:'-1h',cls:'tag-time'},{label:'-توتر',cls:'tag-grn'}]
+  if(!G.anmeldung)events.push({
+    id:'amt',icon:'🏛️',title:'Einwohnermeldeamt — التسجيل',
+    desc:'سجّل نفسك. بدون هذا لا شقة ولا بنك.',timeCost:3,
+    available:G.timeLeft>=3&&!G.visitedToday.includes('amt'),urgent:G.day>=3,
+    action:()=>startAmt(),
+    tags:[{label:'-3h',cls:'tag-time'},{label:'⭐إلزامي',cls:'tag-grn'}]
   });
-
-  // BAHN (new!)
-  if (G.day >= 3) {
-    events.push({
-      id: 'bahn', icon: '🚉', title: 'محطة القطار',
-      desc: 'تعلّم قراءة الجداول والإذاعات بالألمانية.',
-      timeCost: 2, moneyCost: 15, stressAdd: 5,
-      available: G.timeLeft >= 2 && !G.visitedToday.includes('bahn'),
-      action: () => startBahn(),
-      tags: [{label:'-15€',cls:'tag-money'},{label:'تنقل',cls:'tag-info'}]
-    });
-  }
-
+  // SCHUFA
+  if(!G.hasSchufa&&G.anmeldung&&G.bankAccount)events.push({
+    id:'schufa',icon:'📊',title:'طلب Schufa',
+    desc:'لبعض الشقق. مجاني مرة كل سنة.',timeCost:2,
+    available:G.timeLeft>=2&&!G.visitedToday.includes('schufa'),
+    action:()=>startSchufa(),
+    tags:[{label:'-2h',cls:'tag-time'},{label:'مجاني',cls:'tag-grn'}]
+  });
+  // BANK
+  if(G.anmeldung&&!G.bankAccount)events.push({
+    id:'bank',icon:'🏦',title:'البنك — Girokonto',
+    desc:'افتح حساباً. المالك يريد تحويلاً.',timeCost:2,
+    available:G.timeLeft>=2&&!G.visitedToday.includes('bank'),
+    action:()=>startBank(),
+    tags:[{label:'-2h',cls:'tag-time'},{label:'ضروري',cls:'tag-info'}]
+  });
+  // ARBEIT
+  if(!G.jobFound)events.push({
+    id:'arbeit',icon:'💼',title:'البحث عن عمل',
+    desc:'بدون Lohnzettel — معظم الملاك لن يقبلوك.',timeCost:4,
+    available:G.timeLeft>=4&&!G.visitedToday.includes('arbeit'),urgent:G.day>=5,
+    action:()=>startArbeit(),
+    tags:[{label:'-4h',cls:'tag-time'},{label:'Lohnzettel',cls:'tag-grn'}]
+  });else events.push({
+    id:'arbeit_shift',icon:'🔨',title:'يوم عمل — +80€',
+    desc:'اكسب مال مع Klaus.',timeCost:6,
+    available:G.timeLeft>=6&&!G.visitedToday.includes('arbeit_shift'),
+    action:()=>workShift(),
+    tags:[{label:'+80€',cls:'tag-money'},{label:'-6h',cls:'tag-time'}]
+  });
+  // LAYLA FREELANCE
+  if(G.character==='layla'&&G.jobFound)events.push({
+    id:'layla_work',icon:'💻',title:'عمل من البيت — +50€',
+    desc:'تصميم سريع. أقل وقتاً من البناء.',timeCost:2,
+    available:G.timeLeft>=2&&!G.visitedToday.includes('layla_work'),
+    action:()=>{spendRes(-50,2,3,0,'street',5);G.visitedToday.push('layla_work');showResult('💻','مشروع منجز!','+50€ من العمل الحر.','\var(--purp)',()=>backToDay())},
+    tags:[{label:'+50€',cls:'tag-money'},{label:'-2h',cls:'tag-time'}]
+  });
+  // NACHBAR
+  if(G.day>=3&&!G.flags.nachbarMet)events.push({
+    id:'nachbar',icon:'👵',title:'تحدّث مع Frau Berger',
+    desc:'تعرف كل شيء عن السكن في أوغسبورغ.',timeCost:1,
+    available:G.timeLeft>=1&&!G.visitedToday.includes('nachbar'),
+    action:()=>startNachbar(),
+    tags:[{label:'-1h',cls:'tag-time'},{label:'نصيحة',cls:'tag-info'}]
+  });
+  // QUIZ
+  if(!G.flags.quizDoneToday&&G.vocabLearned.length>0)events.push({
+    id:'quiz',icon:'🧠',title:'اختبار سريع — مكافأة مال',
+    desc:'اختبر معرفتك. +مال ومعنويات.',timeCost:1,
+    available:G.timeLeft>=1&&!G.visitedToday.includes('quiz'),
+    action:()=>startQuiz(),
+    tags:[{label:'-1h',cls:'tag-time'},{label:'+مكافأة',cls:'tag-grn'}]
+  });
+  // SUPERMARKT
+  events.push({
+    id:'supermarkt',icon:'🛒',title:'Supermarkt — طعام',
+    desc:'قهوة وأكل. -20€ -توتر.',timeCost:1,
+    available:G.timeLeft>=1&&G.money>=20&&!G.visitedToday.includes('supermarkt'),
+    action:()=>startSupermarkt(),
+    tags:[{label:'-20€',cls:'tag-money'},{label:'-8 توتر',cls:'tag-grn'}]
+  });
+  // SCAM (once after day 5)
+  if(G.day>=5&&!G.flags.scamUsed)events.push({
+    id:'scam',icon:'⚠️',title:'إعلان مشبوه على eBay',
+    desc:'شقة رخيصة بدون عقد. "أرسل 200€..."',timeCost:1,
+    available:G.timeLeft>=1&&!G.visitedToday.includes('scam'),
+    action:()=>scamEvent(),
+    tags:[{label:'⚠️ خطر',cls:'tag-stress'}]
+  });
   // FREIZEIT
   events.push({
-    id: 'freizeit', icon: '☕', title: 'استراحة — Freizeit',
-    desc: 'قهوة وهواء نقي. تخفيف التوتر ضروري.',
-    timeCost: 2, moneyCost: 8, stressAdd: -20,
-    available: G.timeLeft >= 2 && !G.visitedToday.includes('freizeit'),
-    action: () => doFreizeit(),
-    tags: [{label:'-20 توتر',cls:'tag-grn'},{label:'-8€',cls:'tag-money'}]
+    id:'freizeit',icon:'☕',title:'استراحة — Spaziergang',
+    desc:'هواء وقهوة. -25 توتر.',timeCost:2,
+    available:G.timeLeft>=2&&G.money>=5&&!G.visitedToday.includes('freizeit'),
+    action:()=>doFreizeit(),
+    tags:[{label:'-25 توتر',cls:'tag-grn'},{label:'-5€',cls:'tag-money'}]
   });
-
-  // SCAM (einmalig)
-  if (G.day >= 5 && !G.flags.scamUsed) {
-    events.push({
-      id: 'scam', icon: '⚠️', title: 'إعلان مشبوه',
-      desc: 'شقة رخيصة جداً بدون عقد رسمي.',
-      timeCost: 1, moneyCost: 200, stressAdd: 25,
-      available: G.timeLeft >= 1,
-      action: () => scamEvent(),
-      tags: [{label:'خطر',cls:'tag-stress'}]
-    });
-  }
-
-  // SCHLAFEN
+  // SLEEP
   events.push({
-    id: 'schlafen', icon: '🛌', title: 'نم مبكراً',
-    desc: 'أنهِ اليوم الآن.',
-    timeCost: 0, moneyCost: 0, stressAdd: -5,
-    available: true,
-    action: () => endDay(),
-    tags: [{label:'-5 توتر',cls:'tag-grn'}]
+    id:'schlafen',icon:'🛌',title:'نَم مبكراً',
+    desc:'أنهِ يومك.',timeCost:0,available:true,
+    action:()=>endDay(),
+    tags:[{label:'-8 توتر',cls:'tag-grn'}]
   });
 
-  const grid = document.getElementById('event-grid');
-  grid.innerHTML = events.map(ev => `
-    <div class="event-card ${ev.available ? '' : 'disabled'}" onclick="${ev.available ? `triggerEvent('${ev.id}')` : ''}">
-      <div class="ev-header">
-        <span class="ev-icon">${ev.icon}</span>
-        <div style="min-width:0">
-          <div class="ev-title">${ev.title}</div>
-          <div class="ev-desc">${ev.desc}</div>
-        </div>
-      </div>
-      <div class="ev-cost">${ev.tags.map(t => `<span class="ev-tag ${t.cls}">${t.label}</span>`).join('')}</div>
+  const grid=document.getElementById('event-grid');
+  grid.innerHTML=events.map(ev=>`
+    <div class="event-card ${ev.available?'':'disabled'} ${ev.urgent?'urgent':''}" data-id="${ev.id}" onclick="${ev.available?`triggerEvent('${ev.id}')`:''}" style="cursor:${ev.available?'pointer':'not-allowed'}">
+      <div class="ev-header"><span class="ev-icon">${ev.icon}</span><div style="min-width:0"><div class="ev-title">${ev.title}</div><div class="ev-desc">${ev.desc}</div></div></div>
+      <div class="ev-cost">${ev.tags.map(t=>`<span class="ev-tag ${t.cls}">${t.label}</span>`).join('')}</div>
     </div>`).join('');
-
-  window._events = {};
-  events.forEach(ev => window._events[ev.id] = ev);
+  window._events={};events.forEach(ev=>window._events[ev.id]=ev);
 }
 
-function triggerEvent(id) {
-  const ev = window._events[id];
-  if (!ev || !ev.available) return;
+function triggerEvent(id){
+  const ev=window._events[id];
+  if(!ev||!ev.available)return;
   G.visitedToday.push(id);
   ev.action();
 }
 
-function buildInventoryUI() {
-  const sec = document.getElementById('inventory-section');
-  if (G.inventory.length === 0) { sec.style.display = 'none'; return; }
-  sec.style.display = 'block';
-  const ICONS = {'Personalausweis':'🪪','Lohnzettel':'💰','Anmeldung':'📋','Arbeitsvertrag':'📑','Schufa':'📊','Mietvertrag':'📄','Bankkarte':'💳','Versicherungskarte':'🏥'};
-  document.getElementById('inventory').innerHTML = G.inventory.map(item =>
-    `<div class="inv-item ${G.dayVocab.length && item === G.inventory[G.inventory.length-1] ? 'new' : ''}"><span>${ICONS[item] || '📄'}</span>${item}</div>`
-  ).join('');
+function buildInventoryUI(){
+  const sec=document.getElementById('inventory-section');
+  if(!G.inventory.length){sec.style.display='none';return}
+  sec.style.display='block';
+  const ICONS={'Personalausweis':'🪪','Lohnzettel':'💰','Anmeldung':'📋','Arbeitsvertrag':'📑','Schufa':'📊','Mietvertrag':'📄','Bankkarte':'💳'};
+  document.getElementById('inventory').innerHTML=G.inventory.map(item=>`<div style="background:rgba(255,255,255,.04);border:1px solid var(--bd2);border-radius:8px;padding:7px 11px;font-size:.72rem;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:5px">${ICONS[item]||'📄'} ${item}</div>`).join('');
 }
 
-// ═══════════════════════════════════════
-// PHONE SYSTEM (NEW)
-// ═══════════════════════════════════════
-function startPhone(apt) {
-  G.currentApt = apt;
-  G.phoneStep = 0;
-  spendResources(0, 1, 2);
-  G.visitedToday.push('phone_' + apt.id);
-
-  learnVocab([{de:'das Telefonat',ar:'المكالمة الهاتفية'},{de:'sich vorstellen',ar:'التعريف بنفسك'}]);
-
-  document.getElementById('phone-caller').textContent = apt.vermIcon;
-  document.getElementById('phone-name').textContent = apt.vermieter;
-  document.getElementById('phone-status').textContent = 'متصل...';
-
-  renderPhoneStep();
-  show('sc-phone');
+// ════════════════════════════════════════════════════
+// PHONE
+// ════════════════════════════════════════════════════
+function startPhone(apt){
+  G.currentApt=apt;spendRes(0,1,2);
+  learnVocab([{de:'das Telefonat',ar:'المكالمة الهاتفية',track:'lang'},{de:'sich vorstellen',ar:'التعريف بنفسك',track:'lang'}]);
+  document.getElementById('phone-caller').textContent=apt.vermIcon;
+  document.getElementById('phone-name').textContent=apt.vermieter;
+  document.getElementById('phone-status').textContent='متصل...';
+  renderPhoneStep(0);show('sc-phone');
 }
 
-function renderPhoneStep() {
-  const apt = G.currentApt;
-  const content = document.getElementById('phone-content');
-  const choices = document.getElementById('phone-choices');
-
-  if (G.phoneStep === 0) {
-    content.innerHTML = `
-      <div class="dialog-bubble them">
-        <div class="dialog-speaker">${apt.vermieter}</div>
-        <div class="dialog-de">${apt.phoneIntro}</div>
-        <div class="dialog-ar">"أهلاً، ${apt.vermieter} هنا. رددت على إعلاني."</div>
-      </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="phoneStep(1,'good')">
-        <div class="ch-de">"Guten Tag, hier spricht Ahmed. Ich habe Ihre Anzeige gelesen und interessiere mich für die Wohnung."</div>
-        <div class="ch-ar">تحية مهذبة + تعريف + سبب الاتصال. (ممتاز)</div>
-      </div>
-      <div class="choice" onclick="phoneStep(1,'neutral')">
-        <div class="ch-de">"Hallo, Wohnung. Wie viel kostet das?"</div>
-        <div class="ch-ar">مرحباً، شقة. كم السعر؟ (مباشر جداً)</div>
-      </div>
-      <div class="choice risky" onclick="phoneStep(1,'bad')">
-        <div class="ch-de">"Ich brauche die Wohnung. Geben Sie mir Ihre Adresse!"</div>
-        <div class="ch-ar">أحتاج الشقة. أعطني العنوان! (وقح)</div>
-      </div>`;
-
-  } else if (G.phoneStep === 1) {
-    content.innerHTML = `
-      <div class="dialog-bubble them">
-        <div class="dialog-speaker">${apt.vermieter}</div>
-        <div class="dialog-de">Wann hätten Sie Zeit für eine Besichtigung? Ich bin morgen Nachmittag da.</div>
-        <div class="dialog-ar">متى يكون عندك وقت للمعاينة؟ غداً بعد الظهر أكون موجوداً.</div>
-      </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="phoneStep(2,'good')">
-        <div class="ch-de">"Morgen Nachmittag passt gut. Um wie viel Uhr genau?"</div>
-        <div class="ch-ar">غداً بعد الظهر يناسبني. في أي ساعة بالضبط؟ (مهذب + دقيق)</div>
-      </div>
-      <div class="choice" onclick="phoneStep(2,'neutral')">
-        <div class="ch-de">"Ja, okay."</div>
-        <div class="ch-ar">نعم، حسناً. (قصير جداً)</div>
-      </div>`;
-
-  } else {
-    // End call
-    content.innerHTML = `
-      <div class="dialog-bubble them">
-        <div class="dialog-speaker">${apt.vermieter}</div>
-        <div class="dialog-de">Alles klar, bis morgen dann. Auf Wiederhören!</div>
-        <div class="dialog-ar">تمام، إذاً حتى غداً. إلى اللقاء (هاتف)!</div>
-      </div>`;
-    choices.innerHTML = `
-      <div class="choice good" onclick="endPhone('good')">
-        <div class="ch-de">"Vielen Dank! Auf Wiederhören!"</div>
-        <div class="ch-ar">شكراً جزيلاً! إلى اللقاء!</div>
-      </div>`;
+function renderPhoneStep(step){
+  const apt=G.currentApt;
+  const c=document.getElementById('phone-content');
+  const ch=document.getElementById('phone-choices');
+  if(step===0){
+    c.innerHTML=`<div class="dialog-bubble"><div class="dialog-speaker">${apt.vermieter}</div><div class="dialog-de">${apt.phoneIntro}</div></div>`;
+    ch.innerHTML=`
+      <div class="choice good" onclick="phoneChoice(1,'good')"><div class="ch-de">"Guten Tag, hier spricht Ahmed. Ich interessiere mich für Ihre Wohnung."</div><div class="ch-ar">تحية + تعريف + سبب. ✅</div></div>
+      <div class="choice" onclick="phoneChoice(1,'neutral')"><div class="ch-de">"Hallo. Ich rufe wegen der Wohnung an."</div><div class="ch-ar">مقبول لكن بارد.</div></div>
+      <div class="choice bad" onclick="phoneChoice(1,'bad')"><div class="ch-de">"Adresse bitte! Wann kann ich kommen?"</div><div class="ch-ar">وقح ومتسرع. ❌</div></div>`;
+  }else if(step===1){
+    c.innerHTML=`<div class="dialog-bubble"><div class="dialog-speaker">${apt.vermieter}</div><div class="dialog-de">Wann könnten Sie zur Besichtigung kommen?</div><div class="dialog-ar">متى يمكنك المجيء؟</div></div>`;
+    ch.innerHTML=`
+      <div class="choice good" onclick="phoneChoice(2,'good')"><div class="ch-de">"Ich bin flexibel. Welcher Termin passt Ihnen?"</div><div class="ch-ar">مرن + يسأل عن وقته. ✅</div></div>
+      <div class="choice" onclick="phoneChoice(2,'neutral')"><div class="ch-de">"Morgen geht gut."</div><div class="ch-ar">غداً. محايد.</div></div>`;
+  }else{
+    c.innerHTML=`<div class="dialog-bubble"><div class="dialog-speaker">${apt.vermieter}</div><div class="dialog-de">Sehr gut! Auf Wiederhören!</div><div class="dialog-ar">ممتاز! مع السلامة!</div></div>`;
+    ch.innerHTML=`<div class="choice good" onclick="endPhone()"><div class="ch-de">"Vielen Dank! Auf Wiederhören!"</div><div class="ch-ar">شكراً! مع السلامة!</div></div>`;
   }
 }
 
-function phoneStep(step, quality) {
-  G.phoneStep = step;
-  if (quality === 'good') { G.reputation = Math.min(100, G.reputation + 10); toast('📞 انطباع جيد! +سمعة','ok'); }
-  if (quality === 'bad') { G.reputation = Math.max(0, G.reputation - 15); G.flags.badReputation = true; toast('📞 انطباع سيئ! -سمعة','no'); }
-  renderPhoneStep();
+function phoneChoice(nextStep,quality){
+  if(quality==='good'){spendRes(0,0,0,12,null);toast('📞 انطباع ممتاز! +12 سمعة','ok')}
+  else if(quality==='bad'){spendRes(0,0,0,-20);G.flags.badRep=true;queueDelayed('mueller_warning',3,'phone');toast('📞 انطباع سيئ. -20 سمعة','no')}
+  addXP('street',8);
+  renderPhoneStep(nextStep);
 }
 
-function endPhone(quality) {
-  if (quality === 'good') {
-    learnVocab([{de:'Auf Wiederhören',ar:'إلى اللقاء (هاتف)'},{de:'das Telefonat',ar:'المكالمة'}]);
-    toast('📞 انتهت المكالمة بنجاح','ok');
-  }
-  backToDay();
+function endPhone(){
+  if(!G.flags.phoneBonusUsed)G.flags.phoneBonusUsed={};
+  G.flags.phoneBonusUsed[G.currentApt.id]=true;
+  learnVocab([{de:'Auf Wiederhören',ar:'إلى اللقاء (هاتف)',track:'lang'}]);
+  toast('📞 المكالمة انتهت بنجاح','ok');backToDay();
 }
 
-// ═══════════════════════════════════════
+// ════════════════════════════════════════════════════
 // BESICHTIGUNG
-// ═══════════════════════════════════════
-function startBesichtigung(apt) {
-  G.currentApt = apt;
-  G.bschtStep = 0;
-  spendResources(0, 2, 5);
-
-  learnVocab([
-    {de:'die Besichtigung',ar:'جولة المعاينة'},
-    {de:'der Vermieter',ar:'المالك'},
-    {de:'die Wohnung',ar:'الشقة'},
-    {de:'warm/kalt',ar:'شامل/غير شامل التدفئة'},
-  ]);
-
-  if (G.flags.badReputation) {
-    spendResources(0, 0, 10);
-    toast('⚠️ المالك يبدو حذراً بسبب سمعتك.', 'no');
-  }
-
-  document.getElementById('verm-icon').textContent = apt.vermIcon;
-  document.getElementById('verm-name').textContent = apt.vermieter;
-  document.getElementById('bscht-de').textContent = `Herzlich willkommen! Das ist die Wohnung. ${apt.zimmer} Zimmer, ${apt.qm} Quadratmeter, ${apt.warmmiete} Euro warm.`;
-  document.getElementById('bscht-ar').textContent = `أهلاً! هذه الشقة. ${apt.zimmer} غرف، ${apt.qm} متر، ${apt.warmmiete} يورو شاملة التدفئة.`;
-
-  renderBschtStep(0);
-  show('sc-besichtigung');
+// ════════════════════════════════════════════════════
+function startBesichtigung(apt){
+  G.currentApt=apt;spendRes(0,2,5);
+  learnVocab([{de:'die Besichtigung',ar:'جولة المعاينة',track:'street'},{de:'warm/kalt',ar:'شامل/غير شامل',track:'lang'}]);
+  const mood=G.reputation>=70?'warm':G.reputation>=40?'neutral':'cold';
+  const greetings={
+    warm:{de:`Schön, dass Sie da sind! ${apt.zimmer} Zimmer, ${apt.qm}m², ${apt.warmmiete}€ warm.`,ar:'ممتاز أن تكون هنا!'},
+    neutral:{de:`Guten Tag. ${apt.zimmer} Zimmer, ${apt.warmmiete}€ warm.`,ar:'مرحباً.'},
+    cold:{de:`Wir haben viele Interessenten...`,ar:'عندنا كثيرون مهتمون...'}
+  };
+  document.getElementById('verm-icon').textContent=apt.vermIcon;
+  document.getElementById('verm-name').textContent=apt.vermieter;
+  document.getElementById('bscht-de').textContent=greetings[mood].de;
+  document.getElementById('bscht-ar').textContent=greetings[mood].ar;
+  renderBscht();show('sc-besichtigung');
 }
 
-function renderBschtStep(step) {
-  const apt = G.currentApt;
-  const content = document.getElementById('bscht-content');
-  const choices = document.getElementById('bscht-choices');
-
-  if (step === 0) {
-    content.innerHTML = `
-      <div class="panel" style="margin-bottom:14px">
-        <div class="panel-title">معلومات الشقة</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">WARMMIETE</div>
-            <div style="font-size:1.1rem;font-family:'Syne',sans-serif;font-weight:700;color:var(--gold)">${apt.warmmiete}€</div></div>
-          <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">KAUTION</div>
-            <div style="font-size:1.1rem;font-family:'Syne',sans-serif;font-weight:700;color:${apt.kaution > G.money ? 'var(--red)' : 'var(--grn)'}">${apt.kaution}€</div></div>
-          <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">GRÖßE</div>
-            <div style="font-weight:700">${apt.qm}m² · ${apt.zimmer} Zimmer</div></div>
-          <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">ZUSTAND</div>
-            <div style="font-weight:700;color:${apt.condition==='good'?'var(--grn)':'var(--amber)'}">${apt.condition==='good'?'جيد':'متوسط'}</div></div>
-        </div>
-        ${apt.kaution > G.money ? '<div style="margin-top:10px;padding:8px 10px;background:rgba(255,71,87,.08);border-radius:6px;font-size:.76rem;color:var(--red)">⚠️ الكاوشن أكبر من رصيدك!</div>' : ''}
-      </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="bschtAsk()">
-        <div class="ch-de">"Können wir den Mietvertrag besprechen?"</div>
-        <div class="ch-ar">هل يمكننا مناقشة العقد؟ (مهذب)</div>
+function renderBscht(){
+  const apt=G.currentApt;
+  const noMoney=G.money<apt.kaution;
+  const noSchufa=apt.requiresSchufa&&!G.hasSchufa;
+  document.getElementById('bscht-content').innerHTML=`
+    <div class="panel" style="margin-bottom:14px">
+      <div class="panel-title">نظرة على الشقة</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">WARMMIETE</div><div style="font-size:1.1rem;font-family:'Syne',sans-serif;font-weight:700;color:var(--gold)">${apt.warmmiete}€/mo</div></div>
+        <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">KAUTION</div><div style="font-size:1.1rem;font-family:'Syne',sans-serif;font-weight:700;color:${noMoney?'var(--red)':'var(--grn)'}">${apt.kaution}€</div></div>
+        <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">GRÖßE</div><div style="font-weight:700">${apt.qm}m² · ${apt.zimmer}Zi</div></div>
+        <div><div style="font-size:.6rem;color:var(--dim);font-family:'JetBrains Mono',monospace">SCHUFA</div><div style="font-weight:700;color:${noSchufa?'var(--red)':'var(--grn)'}">${noSchufa?'❌ مطلوب':'✅ OK'}</div></div>
       </div>
-      <div class="choice risky" onclick="bschtNegotiate()">
-        <div class="ch-de">"Die Miete ist zu hoch. Geht das auch günstiger?"</div>
-        <div class="ch-ar">الإيجار غالٍ. هل يمكن أرخص؟ (تفاوض)</div>
-      </div>
-      <div class="choice" onclick="bschtLeave()">
-        <div class="ch-de">"Ich melde mich. Danke für die Besichtigung."</div>
-        <div class="ch-ar">سأتواصل. شكراً للمعاينة. (مغادرة)</div>
-      </div>`;
-  } else if (step === 1) {
-    showVertrag(apt);
+      ${noMoney?`<div style="margin-top:8px;padding:7px 10px;background:rgba(255,71,87,.08);border-radius:6px;font-size:.76rem;color:var(--red)">⚠️ الكاوشن أكبر من رصيدك بـ ${apt.kaution-G.money}€</div>`:''}
+    </div>`;
+  document.getElementById('bscht-choices').innerHTML=`
+    <div class="choice good" onclick="bschtAsk()"><div class="ch-de">"Können wir den Mietvertrag besprechen?"</div><div class="ch-ar">هل يمكننا مناقشة العقد؟</div></div>
+    <div class="choice risky" onclick="bschtNegotiate()"><div class="ch-de">"Die Miete ist etwas hoch. Wäre ein Rabatt möglich?"</div><div class="ch-ar">الإيجار مرتفع — هل التفاوض ممكن؟</div></div>
+    <div class="choice" onclick="bschtLeave()"><div class="ch-de">"Danke. Ich melde mich."</div><div class="ch-ar">شكراً. سأفكر.</div></div>`;
+}
+
+function bschtAsk(){
+  learnVocab([{de:'der Mietvertrag',ar:'عقد الإيجار',track:'office'},{de:'die Kaution',ar:'الوديعة',track:'office'}]);
+  addXP('office',10);showVertrag(G.currentApt);
+}
+
+function bschtNegotiate(){
+  const apt=G.currentApt;
+  learnVocab([{de:'verhandeln',ar:'يتفاوض',track:'street'}]);
+  addXP('street',15);
+  const chance=G.reputation>=70?0.65:G.reputation>=50?0.4:0.15;
+  const success=rng()<chance;
+  if(success){
+    const d=Math.floor(rng()*3+2)*10;
+    apt.warmmiete-=d;apt.kaltmiete-=d;
+    checkAch('negotiator');
+    showResult('🤝','نجح التفاوض!',`خفّض ${apt.vermieter} الإيجار ${d}€! الجديد: ${apt.warmmiete}€/شهر`,'var(--grn)',()=>showVertrag(apt));
+  }else{
+    spendRes(0,0,5,G.reputation<50?-5:0);
+    showResult('😐','رفض التفاوض',`"Der Preis ist fix." السعر ثابت.${G.reputation<50?' سمعتك المنخفضة لم تساعد.':''}`,'var(--amber)',()=>showVertrag(apt));
   }
 }
 
-function bschtAsk() {
-  learnVocab([{de:'der Mietvertrag',ar:'عقد الإيجار'},{de:'die Kaution',ar:'الوديعة'}]);
-  G.bschtStep = 1;
-  renderBschtStep(1);
-}
+function bschtLeave(){toast('غادرت بدون قرار.','info');backToDay()}
 
-function bschtNegotiate() {
-  const apt = G.currentApt;
-  learnVocab([{de:'verhandeln',ar:'يتفاوض'},{de:'die Miete senken',ar:'تخفيض الإيجار'}]);
-  const success = Math.random() > 0.5 || G.reputation > 60;
-  if (success) {
-    apt.warmmiete -= 30; apt.kaltmiete -= 30;
-    showResult('🎉', 'نجح التفاوض!', `خفّض ${apt.vermieter} الإيجار 30€! الجديد: ${apt.warmmiete}€`, 'var(--grn)', () => renderBschtStep(1));
-  } else {
-    spendResources(0, 0, 10);
-    showResult('😤', 'رفض التفاوض', `"Der Preis ist fix." — السعر ثابت. ${apt.vermieter} غير مرتاح.`, 'var(--amber)', () => renderBschtStep(1));
-  }
-}
-
-function bschtLeave() {
-  toast('غادرت بدون قرار.', 'info');
-  backToDay();
-}
-
-// ═══════════════════════════════════════
+// ════════════════════════════════════════════════════
 // VERTRAG
-// ═══════════════════════════════════════
-function showVertrag(apt) {
-  G.vertragData = apt;
-  learnVocab([
-    {de:'die Kündigungsfrist',ar:'مدة الإشعار'},
-    {de:'die Nebenkosten',ar:'التكاليف الإضافية'},
-    {de:'unterschreiben',ar:'يوقّع'},
-  ]);
-
-  const content = document.getElementById('vertrag-content');
-  content.innerHTML = `
+// ════════════════════════════════════════════════════
+function showVertrag(apt){
+  G.vertragData=apt;
+  learnVocab([{de:'die Kündigungsfrist',ar:'مدة الإشعار',track:'office'},{de:'unterschreiben',ar:'يوقّع',track:'office'}]);
+  addXP('office',10);
+  document.getElementById('vertrag-content').innerHTML=`
     <div class="doc-card">
       <div class="doc-stamp">MIETVERTRAG</div>
       <div class="doc-title">📄 عقد إيجار — ${apt.name}</div>
@@ -1315,529 +1376,536 @@ function showVertrag(apt) {
       <div class="doc-row"><span class="doc-key">Kaltmiete</span><span class="doc-val">${apt.kaltmiete}€</span></div>
       <div class="doc-row"><span class="doc-key">Nebenkosten</span><span class="doc-val">${apt.nebenkosten}€</span></div>
       <div class="doc-row"><span class="doc-key">Warmmiete</span><span class="doc-val" style="color:var(--gold)">${apt.warmmiete}€</span></div>
-      <div class="doc-row"><span class="doc-key">Kaution</span><span class="doc-val" style="color:${apt.kaution > G.money ? 'var(--red)' : 'var(--grn)'}">${apt.kaution}€</span></div>
-      <div style="margin-top:14px;font-size:.7rem;color:var(--dim);margin-bottom:8px;letter-spacing:.08em">⬇ اضغط على البنود لفهمها:</div>
-      ${apt.clauses.map((c, i) => `
-        <div class="doc-clause" id="clause-${i}" onclick="toggleClause(${i})">
-          <div>${c.text}</div>
-          <div class="tooltip">${c.ar}</div>
-        </div>`).join('')}
+      <div class="doc-row"><span class="doc-key">Kaution</span><span class="doc-val" style="color:${apt.kaution>G.money?'var(--red)':'var(--grn)'}">${apt.kaution}€ ${apt.kaution>G.money?'❌':'✅'}</span></div>
+      <div style="margin:12px 0 8px;font-size:.7rem;color:var(--dim);letter-spacing:.08em">⬇ اضغط البنود لفهمها:</div>
+      ${apt.clauses.map((c,i)=>`<div class="doc-clause ${c.risk?'':'safe'}" id="cl-${i}" onclick="this.classList.toggle('active')"><div>${c.text}</div><div class="tooltip">${c.ar}</div></div>`).join('')}
     </div>`;
-
-  const hasMoney = G.money >= apt.kaution;
-  const hasAnmeldung = G.anmeldung;
-  const hasBank = G.bankAccount;
-
-  let warning = '';
-  if (!hasMoney) warning += '⚠️ ما عندك كافي للكاوشن. ';
-  if (!hasAnmeldung) warning += '⚠️ Anmeldung مطلوب. ';
-  if (!hasBank) warning += '⚠️ حساب بنكي مطلوب للتحويل. ';
-
-  document.getElementById('vertrag-choices').innerHTML = `
-    <div class="choice ${hasMoney && hasAnmeldung ? 'good' : 'risky'}" onclick="signVertrag()">
-      <div class="ch-de">"Ich möchte den Vertrag unterschreiben."</div>
-      <div class="ch-ar">أريد توقيع العقد. ${warning}</div>
-    </div>
-    <div class="choice" onclick="backToDay()">
-      <div class="ch-de">"Ich brauche noch Zeit zum Überlegen."</div>
-      <div class="ch-ar">أحتاج وقتاً للتفكير.</div>
-    </div>`;
-
+  const hasMoney=G.money>=apt.kaution;
+  const blockers=[];
+  if(!hasMoney)blockers.push(`💸 تحتاج ${apt.kaution-G.money}€ أكثر`);
+  if(!G.anmeldung)blockers.push('📋 مطلوب Anmeldung');
+  if(!G.bankAccount)blockers.push('🏦 مطلوب حساب بنكي');
+  if(apt.requiresSchufa&&!G.hasSchufa)blockers.push('📊 مطلوب Schufa');
+  if(apt.requiresJob&&!G.jobFound)blockers.push('💼 مطلوب Lohnzettel');
+  document.getElementById('vertrag-choices').innerHTML=`
+    ${blockers.length?`<div style="background:rgba(255,71,87,.07);border:1px solid rgba(255,71,87,.2);border-radius:8px;padding:12px;margin-bottom:10px;font-size:.78rem;line-height:1.8;color:var(--red)">${blockers.join('<br>')}</div>`:''}
+    <div class="choice ${blockers.length?'risky':'good'}" onclick="signVertrag()"><div class="ch-de">"Ich möchte unterschreiben."</div><div class="ch-ar">${blockers.length?'ستحاول رغم النقص...':'✅ كل شيء مكتمل!'}</div></div>
+    <div class="choice" onclick="backToDay()"><div class="ch-de">"Ich brauche noch Zeit."</div><div class="ch-ar">أحتاج وقتاً أكثر.</div></div>`;
   show('sc-vertrag');
 }
 
-function toggleClause(i) {
-  document.getElementById('clause-' + i).classList.toggle('active');
+function signVertrag(){
+  const apt=G.vertragData;
+  if(G.money<apt.kaution){showResult('💸','كاوشن غير كافٍ!',`تحتاج ${apt.kaution}€. عندك ${G.money}€.`,'var(--red)',()=>backToDay());return}
+  if(!G.anmeldung){showResult('📋','مطلوب Anmeldung!','اذهب للـ Einwohnermeldeamt أولاً.','var(--amber)',()=>backToDay());return}
+  if(!G.bankAccount){showResult('🏦','مطلوب حساب بنكي!','افتح Girokonto أولاً.','var(--amber)',()=>backToDay());return}
+  if(apt.requiresSchufa&&!G.hasSchufa){showResult('📊','مطلوب Schufa!','اطلب Schufa-Auskunft أولاً.','var(--amber)',()=>backToDay());return}
+  if(apt.requiresJob&&!G.jobFound){showResult('💼','مطلوب Lohnzettel!','جد عملاً أولاً.','var(--amber)',()=>backToDay());return}
+  spendRes(apt.kaution,0,-10,5,'office',20);
+  G.wohnung=apt;apt.available=false;addToInventory('Mietvertrag');
+  checkAch('first_apartment');if(G.day<=8)checkAch('speed_run');
+  queueDelayed('productive_boost',1,'signed'); // small reward
+  showResult('🏠','وقّعت العقد!',`"${apt.name}" بيتك الجديد! كاوشن: ${apt.kaution}€<br>الإيجار: <strong>${apt.warmmiete}€/شهر</strong>`,'var(--grn)',()=>{toast('🏠 عندك بيت!','ok');endDay()});
 }
 
-function signVertrag() {
-  const apt = G.vertragData;
-  if (G.money < apt.kaution) {
-    showResult('💸', 'الكاوشن غير كافٍ!', `تحتاج ${apt.kaution}€. عندك ${G.money}€ فقط.`, 'var(--red)', () => {});
-    return;
-  }
-  if (!G.anmeldung) {
-    showResult('📋', 'مطلوب Anmeldung!', 'المالك يطلب شهادة التسجيل. اذهب للـ Amt أولاً.', 'var(--amber)', () => {});
-    return;
-  }
-  if (!G.bankAccount) {
-    showResult('🏦', 'مطلوب حساب بنكي!', 'المالك يريد تحويلاً بنكياً شهرياً. افتح Girokonto أولاً.', 'var(--amber)', () => {});
-    return;
-  }
-
-  spendResources(apt.kaution, 0, -10);
-  G.wohnung = apt;
-  apt.available = false;
-  addToInventory('Mietvertrag');
-
-  showResult('🏠', 'وقّعت العقد!',
-    `مبروك! "${apt.name}" أصبحت بيتك. دفعت ${apt.kaution}€ كاوشن.`,
-    'var(--grn)', () => { toast('🏠 عندك بيت الآن!', 'ok'); endDay(); });
+// ════════════════════════════════════════════════════
+// AMT
+// ════════════════════════════════════════════════════
+function startAmt(){
+  spendRes(0,3,15);G.formAnswers={};G.selectedChip=null;
+  learnVocab([{de:'das Einwohnermeldeamt',ar:'مكتب التسجيل',track:'office'},{de:'die Anmeldung',ar:'التسجيل الرسمي',track:'office'},{de:'das Formular ausfüllen',ar:'ملء الاستمارة',track:'office'}]);
+  document.getElementById('amt-de').textContent='Guten Morgen. Haben Sie einen Termin?';
+  document.getElementById('amt-ar').textContent='صباح الخير. هل عندك موعد؟';
+  renderAmtStep(0);show('sc-amt');
 }
 
-// ═══════════════════════════════════════
-// AMT (Enhanced)
-// ═══════════════════════════════════════
-function startAmt() {
-  G.amtStep = 0;
-  spendResources(0, 3, 15);
-  learnVocab([
-    {de:'das Einwohnermeldeamt',ar:'مكتب تسجيل السكان'},
-    {de:'die Anmeldung',ar:'التسجيل الرسمي'},
-    {de:'der Personalausweis',ar:'بطاقة الهوية'},
-    {de:'das Formular ausfüllen',ar:'ملء الاستمارة'},
-  ]);
-  renderAmtStep(0);
-  show('sc-amt');
-}
-
-function renderAmtStep(step) {
-  const content = document.getElementById('amt-content');
-  const choices = document.getElementById('amt-choices');
-
-  if (step === 0) {
-    document.getElementById('amt-de').textContent = 'Guten Morgen. Haben Sie einen Termin?';
-    document.getElementById('amt-ar').textContent = 'صباح الخير. هل عندك موعد؟';
-
-    content.innerHTML = `
-      <div style="font-size:.8rem;color:var(--dim);line-height:1.75;padding:10px;background:rgba(0,212,255,.04);border-radius:8px;margin-bottom:12px">
-        💡 تلميح: في ألمانيا، الصدق أفضل سياسة. الكذب يسجل في النظام.
-      </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="amtStep1()">
-        <div class="ch-de">"Ich habe keinen Termin, aber ich brauche dringend eine Anmeldung."</div>
-        <div class="ch-ar">ما عندي موعد، لكن أحتاج التسجيل بشكل عاجل. (صريح)</div>
-      </div>
-      <div class="choice risky" onclick="amtStep1b()">
-        <div class="ch-de">"Ja, ich habe einen Termin." (nicht wahr)</div>
-        <div class="ch-ar">نعم عندي موعد. (كذب — خطر!)</div>
-      </div>`;
-
-  } else if (step === 1) {
-    document.getElementById('amt-de').textContent = 'Bitte füllen Sie dieses Formular aus. Ich brauche auch Ihren Pass.';
-    document.getElementById('amt-ar').textContent = 'املأ هذه الاستمارة. أحتاج جوازك أيضاً.';
-
-    content.innerHTML = `
-      <div class="panel" style="margin-bottom:14px">
+function renderAmtStep(step){
+  const c=document.getElementById('amt-content');const ch=document.getElementById('amt-choices');
+  if(step===0){
+    c.innerHTML=`<div style="font-size:.8rem;color:var(--dim);line-height:1.75;padding:10px;background:rgba(0,212,255,.04);border-radius:8px;margin-bottom:12px">💡 الصدق في ألمانيا ليس اختياراً — الأنظمة متصلة.</div>`;
+    ch.innerHTML=`
+      <div class="choice good" onclick="amtHonest()"><div class="ch-de">"Guten Morgen. Ich habe keinen Termin, brauche aber dringend eine Anmeldung."</div><div class="ch-ar">لا موعد لكن أحتاج تسجيلاً عاجلاً. ✅ صريح</div></div>
+      <div class="choice bad" onclick="amtLie()"><div class="ch-de">"Ja, ich habe einen Termin." (falsch)</div><div class="ch-ar">نعم عندي موعد. (كذب — خطر!)</div></div>`;
+  }else if(step===1){
+    document.getElementById('amt-de').textContent='Kein Problem. Bitte füllen Sie das Formular aus.';
+    document.getElementById('amt-ar').textContent='لا مشكلة. اختر الكلمة ثم اضغط الفراغ.';
+    G.formAnswers={};G.selectedChip=null;
+    c.innerHTML=`
+      <div class="panel">
         <div class="panel-title">📋 Anmeldeformular</div>
-        <div style="font-size:.78rem;color:var(--dim);margin-bottom:10px">املأ الفراغات بالكلمات الصحيحة:</div>
-        <div class="form-row"><span class="form-label">Mein Name ___ Ahmed.</span><span class="form-slot" id="slot-1" onclick="fillSlot(1)">___</span></div>
-        <div class="form-row"><span class="form-label">Ich ___ aus Syrien.</span><span class="form-slot" id="slot-2" onclick="fillSlot(2)">___</span></div>
-        <div class="form-row"><span class="form-label">Ich ___ in Augsburg.</span><span class="form-slot" id="slot-3" onclick="fillSlot(3)">___</span></div>
-        <div class="form-options" id="form-options">
-          <span class="form-chip" onclick="selectChip('ist')">ist</span>
-          <span class="form-chip" onclick="selectChip('komme')">komme</span>
-          <span class="form-chip" onclick="selectChip('wohne')">wohne</span>
-          <span class="form-chip" onclick="selectChip('bin')">bin</span>
-          <span class="form-chip" onclick="selectChip('heiße')">heiße</span>
+        <div style="font-size:.76rem;color:var(--dim);margin-bottom:12px;direction:ltr">① اختر كلمة → ② اضغط الفراغ</div>
+        <div class="form-row"><span class="form-label">Mein Name ___ Ahmed.</span><span class="form-slot" id="sl-1" onclick="fillSlot(1)">___</span></div>
+        <div class="form-row"><span class="form-label">Ich ___ aus Syrien.</span><span class="form-slot" id="sl-2" onclick="fillSlot(2)">___</span></div>
+        <div class="form-row"><span class="form-label">Ich ___ in Augsburg.</span><span class="form-slot" id="sl-3" onclick="fillSlot(3)">___</span></div>
+        <div class="form-options">
+          ${['ist','komme','wohne','bin','heiße'].map(w=>`<span class="form-chip" onclick="selChip(this,'${w}')">${w}</span>`).join('')}
         </div>
       </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="amtCheckForm()">
-        <div class="ch-de">"Hier bitte. Ich habe alles ausgefüllt."</div>
-        <div class="ch-ar">تفضل. أكملت كل شيء.</div>
-      </div>`;
-
-    G.formAnswers = {};
-    G.selectedChip = null;
+    ch.innerHTML=`<div class="choice good" onclick="checkForm()"><div class="ch-de">"Hier bitte. Fertig."</div><div class="ch-ar">تفضل. أكملت.</div></div>`;
   }
 }
 
-function selectChip(word) {
-  G.selectedChip = word;
-  document.querySelectorAll('.form-chip').forEach(c => c.style.borderColor = '');
-  event.target.style.borderColor = 'var(--gold)';
+function selChip(el,word){G.selectedChip=word;document.querySelectorAll('.form-chip').forEach(c=>c.classList.remove('selected'));el.classList.add('selected')}
+function fillSlot(n){if(!G.selectedChip){toast('اختر كلمة أولاً','info');return}const s=document.getElementById('sl-'+n);s.classList.remove('wrong');s.textContent=G.selectedChip;s.classList.add('filled');G.formAnswers[n]=G.selectedChip;G.selectedChip=null;document.querySelectorAll('.form-chip').forEach(c=>c.classList.remove('selected'))}
+
+function checkForm(){
+  const correct={1:'ist',2:'komme',3:'wohne'};let errors=0;
+  for(let k in correct){const s=document.getElementById('sl-'+k);if(!s)continue;if(G.formAnswers[k]!==correct[k]){s.classList.add('wrong');s.classList.remove('filled');errors++}else s.classList.remove('wrong')}
+  if(errors>0){toast(`❌ ${errors} خطأ — انقر الفراغ الأحمر وصحّح`,'no');spendRes(0,0,3)}
+  else{addXP('office',20);amtComplete()}
 }
 
-function fillSlot(n) {
-  if (!G.selectedChip) { toast('اختر كلمة أولاً', 'info'); return; }
-  const slot = document.getElementById('slot-' + n);
-  slot.textContent = G.selectedChip;
-  slot.classList.add('filled');
-  G.formAnswers[n] = G.selectedChip;
-  document.querySelectorAll('.form-chip').forEach(c => {
-    if (c.textContent === G.selectedChip) c.classList.add('used');
-  });
-  G.selectedChip = null;
+function amtHonest(){renderAmtStep(1)}
+function amtLie(){
+  G.flags.liedAtAmt=true;G.flags.badRep=true;
+  queueDelayed('amt_rueckfrage',6,'lie');
+  spendRes(0,0,20,0,'office',-10);
+  showResult('😬','كُشف الكذب!','سجّلت ملاحظة في ملفك. +20 توتر −10 سمعة. ستأتي رسالة لاحقاً.','var(--red)',()=>renderAmtStep(1));
 }
 
-function amtCheckForm() {
-  const correct = {1:'ist',2:'komme',3:'wohne'};
-  let ok = true;
-  for (let k in correct) {
-    if (G.formAnswers[k] !== correct[k]) {
-      document.getElementById('slot-' + k).style.borderColor = 'var(--red)';
-      ok = false;
-    }
-  }
-  if (!ok) {
-    toast('❌ هناك أخطاء في الاستمارة. حاول مرة أخرى.', 'no');
-    spendResources(0, 0, 5);
-  } else {
-    amtComplete();
-  }
+function amtComplete(){
+  G.anmeldung=true;addToInventory('Anmeldung');
+  if(!G.flags.liedAtAmt)checkAch('honest_amt');
+  learnVocab([{de:'amtlich',ar:'رسمي',track:'office'},{de:'die Wartenummer',ar:'رقم الدور',track:'office'}]);
+  showResult('✅','Anmeldung مكتمل!','أنت مسجّل رسمياً في أوغسبورغ. افتح حساباً الآن!','var(--grn)',()=>backToDay());
 }
 
-function amtStep1() {
-  G.amtStep = 1;
-  toast('"Kein Problem. Bitte warten Sie kurz."', 'info');
-  renderAmtStep(1);
-}
-
-function amtStep1b() {
-  G.flags.liedAtAmt = true;
-  G.flags.badReputation = true;
-  spendResources(0, 0, 20);
-  showResult('😬', 'اكتشفت الكذب!', 'تم تسجيلك كمشكلة في النظام. سمعتك تضررت بشدة.', 'var(--red)', () => { G.amtStep = 1; renderAmtStep(1); });
-}
-
-function amtComplete() {
-  G.anmeldung = true;
-  addToInventory('Anmeldung');
-  learnVocab([{de:'die Bestätigung',ar:'التأكيد'},{de:'amtlich',ar:'رسمي'}]);
-  showResult('✅', 'Anmeldung مكتملة!', 'أنت مقيم رسمياً في أوغسبورغ. هذا مفتاح كل شيء.', 'var(--grn)', () => backToDay());
-}
-
-// ═══════════════════════════════════════
-// BANK (NEW)
-// ═══════════════════════════════════════
-function startBank() {
-  G.bankStep = 0;
-  spendResources(0, 2, 10);
-  learnVocab([{de:'das Girokonto',ar:'الحساب الجاري'},{de:'die Bank',ar:'البنك'},{de:'der Bankberater',ar:'مستشار البنك'}]);
-  renderBankStep();
+// ════════════════════════════════════════════════════
+// BANK
+// ════════════════════════════════════════════════════
+function startBank(){
+  spendRes(0,2,10);
+  learnVocab([{de:'das Girokonto',ar:'الحساب الجاري',track:'office'},{de:'die Bank',ar:'البنك',track:'lang'}]);
+  document.getElementById('bank-de').textContent='Guten Tag. Möchten Sie ein Girokonto eröffnen?';
+  document.getElementById('bank-ar').textContent='النهار بخير. هل تريد فتح حساب جاري؟';
+  document.getElementById('bank-content').innerHTML=`<div style="font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.7;padding:10px;background:rgba(212,168,67,.04);border-radius:8px;margin-bottom:10px">💡 تحتاج: <strong style="color:var(--gold)">Personalausweis + Anmeldung</strong></div>`;
+  document.getElementById('bank-choices').innerHTML=`
+    <div class="choice good" onclick="bankStep1()"><div class="ch-de">"Ja, ich möchte ein Konto. Hier meine Unterlagen."</div><div class="ch-ar">نعم. هذه وثائقي. ✅</div></div>
+    <div class="choice risky" onclick="bankNoDocs()"><div class="ch-de">"Ich habe die Anmeldung noch nicht..."</div><div class="ch-ar">ما معي Anmeldung. (مشكلة)</div></div>`;
   show('sc-bank');
 }
 
-function renderBankStep() {
-  const content = document.getElementById('bank-content');
-  const choices = document.getElementById('bank-choices');
-
-  if (G.bankStep === 0) {
-    document.getElementById('bank-de').textContent = 'Guten Tag. Möchten Sie ein Girokonto eröffnen?';
-    document.getElementById('bank-ar').textContent = 'النهار بخير. هل تريد فتح حساب جاري؟';
-
-    content.innerHTML = `
-      <div style="font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:10px">
-        💡 لفتح حساب في ألمانيا تحتاج: <strong>Personalausweis</strong> + <strong>Anmeldung</strong>
-      </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="bankStep(1)">
-        <div class="ch-de">"Ja, ich möchte ein Girokonto eröffnen. Ich habe meine Anmeldung dabei."</div>
-        <div class="ch-ar">نعم أريد فتح حساب. معي Anmeldung. (ممتاز)</div>
-      </div>
-      <div class="choice" onclick="bankNoDocs()">
-        <div class="ch-de">"Ich habe noch keine Anmeldung."</div>
-        <div class="ch-ar">ما عندي Anmeldung بعد. (مشكلة)</div>
-      </div>`;
-  } else if (G.bankStep === 1) {
-    document.getElementById('bank-de').textContent = 'Sehr gut. Welche Art der Überweisung bevorzugen Sie?';
-    document.getElementById('bank-ar').textContent = 'ممتاز. أي نوع تحويل تفضل؟';
-
-    content.innerHTML = `
-      <div class="panel">
-        <div class="panel-title">🏦 معلومات مصرفية</div>
-        <div style="font-size:.82rem;line-height:1.8">
-          • <strong>Dauerauftrag:</strong> تحويل آلي شهري للإيجار<br>
-          • <strong>Überweisung:</strong> تحويل يدوي في كل مرة<br>
-          • <strong>Lastschrift:</strong> السماح للمالك بسحب الإيجار تلقائياً
-        </div>
-      </div>`;
-
-    choices.innerHTML = `
-      <div class="choice good" onclick="bankComplete('dauer')">
-        <div class="ch-de">"Ich möchte einen Dauerauftrag für die Miete einrichten."</div>
-        <div class="ch-ar">أريد تحويلاً آلياً شهرياً للإيجار. (ذكي)</div>
-      </div>
-      <div class="choice" onclick="bankComplete('normal')">
-        <div class="ch-de">"Eine normale Überweisung reicht mir."</div>
-        <div class="ch-ar">التحويل العادي يكفيني.</div>
-      </div>`;
-  }
+function bankStep1(){
+  document.getElementById('bank-de').textContent='Gut. Dauerauftrag für Miete einrichten?';
+  document.getElementById('bank-ar').textContent='تحويل آلي للإيجار؟';
+  document.getElementById('bank-choices').innerHTML=`
+    <div class="choice good" onclick="bankComplete('dauer')"><div class="ch-de">"Ja, Dauerauftrag bitte."</div><div class="ch-ar">نعم، تحويل آلي. ✅ الملاك يحبونه.</div></div>
+    <div class="choice" onclick="bankComplete('normal')"><div class="ch-de">"Normales Konto reicht mir."</div><div class="ch-ar">حساب عادي يكفي.</div></div>`;
 }
 
-function bankStep(s) { G.bankStep = s; renderBankStep(); }
+function bankNoDocs(){showResult('🏦','وثائق ناقصة','احتاج Anmeldung. اذهب للـ Amt أولاً.','var(--amber)',()=>backToDay())}
 
-function bankNoDocs() {
-  showResult('🏦', 'مستندات ناقصة', 'لا يمكن فتح حساب بدون Anmeldung. اذهب للـ Amt أولاً.', 'var(--amber)', () => backToDay());
+function bankComplete(type){
+  G.bankAccount=true;addToInventory('Bankkarte');
+  spendRes(0,0,0,type==='dauer'?8:3,'office',15);
+  learnVocab([{de:'der Dauerauftrag',ar:'التحويل الآلي',track:'office'},{de:'die Überweisung',ar:'تحويل بنكي',track:'office'}]);
+  showResult('💳','حساب بنكي مفتوح!',`${type==='dauer'?'+8 سمعة — Dauerauftrag ممتاز!':'+3 سمعة.'}`,'var(--grn)',()=>backToDay());
 }
 
-function bankComplete(type) {
-  G.bankAccount = true;
-  addToInventory('Bankkarte');
-  learnVocab([{de:'der Dauerauftrag',ar:'التحويل الآلي'},{de:'die Überweisung',ar:'التحويل البنكي'}]);
-  const bonus = type === 'dauer' ? 5 : 0;
-  if (bonus) toast('🏦 +5 سمعة لدى المالكين لأنك منظم', 'ok');
-  showResult('💳', 'حساب بنكي مفتوح!', 'يمكنك الآن تحويل الإيجار شهرياً. المالك سيقدر هذا.', 'var(--grn)', () => backToDay());
+// ════════════════════════════════════════════════════
+// SCHUFA
+// ════════════════════════════════════════════════════
+function startSchufa(){
+  spendRes(0,2,5);
+  learnVocab([{de:'die Schufa',ar:'سجل الائتمان',track:'office'},{de:'die Bonität',ar:'الجدارة الائتمانية',track:'office'}]);
+  document.getElementById('schufa-content').innerHTML=`
+    <div class="panel"><div class="panel-title">📊 ما هي Schufa؟</div><div style="font-size:.84rem;line-height:1.8;color:rgba(255,255,255,.65)">سجل الائتمان المالي في ألمانيا. كل شخص مسجّل فيها.<br><br>• Score: 0–100 (أعلى = أفضل)<br>• تقرير مجاني مرة كل سنة<br>• <strong style="color:var(--gold2)">نتيجتك: 92.5% — ممتاز!</strong></div></div>
+    <div class="nachbar-card"><div style="font-size:.78rem;color:var(--cyan)">جديد في ألمانيا + لا ديون = Score عالٍ.</div></div>`;
+  document.getElementById('schufa-choices').innerHTML=`
+    <div class="choice good" onclick="schufaComplete()"><div class="ch-de">"Ich beantrage meine kostenlose Schufa-Selbstauskunft."</div><div class="ch-ar">أطلب نسختي المجانية. ✅</div></div>
+    <div class="choice" onclick="backToDay()"><div class="ch-de">"Ich brauche das nicht."</div><div class="ch-ar">لا أحتاجه. (بعض الشقق ستُرفض)</div></div>`;
+  show('sc-schufa');
 }
 
-// ═══════════════════════════════════════
+function schufaComplete(){
+  G.hasSchufa=true;addToInventory('Schufa');
+  spendRes(0,0,0,5,'office',20);
+  showResult('📊','Schufa مكتمل!','Score: 92.5% — ممتاز! يمكنك الآن التقديم على شقق der Innenstadt.','var(--grn)',()=>backToDay());
+}
+
+// ════════════════════════════════════════════════════
 // ARBEIT
-// ═══════════════════════════════════════
-function startArbeit() {
-  spendResources(0, 4, 10);
-  learnVocab([
-    {de:'der Arbeitsvertrag',ar:'عقد العمل'},
-    {de:'der Lohn',ar:'الأجر'},
-    {de:'der Lohnzettel',ar:'قسيمة الراتب'},
-  ]);
-
-  document.getElementById('arb-de').textContent = 'Morgen! Wir brauchen Verstärkung auf der Baustelle. Kannst du anfangen?';
-  document.getElementById('arb-ar').textContent = 'صباح الخير! نحتاج مساعدة في موقع البناء. تقدر تبدأ؟';
-
-  const content = document.getElementById('arb-content');
-  content.innerHTML = `
-    <div class="panel">
-      <div class="panel-title">💼 عرض العمل</div>
-      <div style="font-size:.84rem;line-height:1.8;color:rgba(255,255,255,.7)">
-        • <strong style="color:var(--gold)">80€ يومياً</strong><br>
-        • ساعات: 7:00 — 15:00<br>
-        • ستحصل على <strong>Lohnzettel</strong> — ضروري للشقة
-      </div>
-    </div>`;
-
-  document.getElementById('arb-choices').innerHTML = `
-    <div class="choice good" onclick="acceptJob()">
-      <div class="ch-de">"Ja, ich nehme die Stelle. Wann kann ich anfangen?"</div>
-      <div class="ch-ar">نعم أقبل. متى أبدأ؟</div>
-    </div>
-    <div class="choice" onclick="askJobDetails()">
-      <div class="ch-de">"Können Sie mir mehr über die Stelle erzählen?"</div>
-      <div class="ch-ar">ممكن تحكيلي أكثر عن الوظيفة؟</div>
-    </div>
-    <div class="choice risky" onclick="declineJob()">
-      <div class="ch-de">"Ich überlege noch."</div>
-      <div class="ch-ar">لا زلت أفكر. (تضييع فرصة)</div>
-    </div>`;
-
+// ════════════════════════════════════════════════════
+function startArbeit(){
+  spendRes(0,4,10);
+  learnVocab([{de:'der Arbeitsvertrag',ar:'عقد العمل',track:'office'},{de:'der Lohnzettel',ar:'قسيمة الراتب',track:'office'}]);
+  document.getElementById('arb-de').textContent='Morgen! Wir suchen Leute. Kannst du anfangen?';
+  document.getElementById('arb-ar').textContent='صباح! نبحث عن عمال. تقدر تبدأ؟';
+  document.getElementById('arb-content').innerHTML=`<div class="panel"><div class="panel-title">💼 عرض العمل</div><div style="font-size:.84rem;line-height:1.9;color:rgba(255,255,255,.7)">• <strong style="color:var(--gold)">80€ يومياً</strong> نقداً<br>• دوام: 7:00–15:00<br>• <span style="color:var(--cyan)">Lohnzettel = تذكرة دخول أي شقة</span></div></div>`;
+  document.getElementById('arb-choices').innerHTML=`
+    <div class="choice good" onclick="acceptJob()"><div class="ch-de">"Ja, ich nehme die Stelle."</div><div class="ch-ar">نعم، أقبل. ✅</div></div>
+    <div class="choice risky" onclick="declineJob()"><div class="ch-de">"Ich muss noch überlegen."</div><div class="ch-ar">أحتاج تفكيراً. (ضياع فرصة)</div></div>`;
   show('sc-arbeit');
 }
 
-function acceptJob() {
-  G.jobFound = true;
-  addToInventory('Lohnzettel');
-  addToInventory('Arbeitsvertrag');
-  spendResources(0, 0, -5);
-  showResult('💪', 'وجدت عملاً!', 'Klaus سيعطيك Lohnzettel. هذا الوثيقة مهمة جداً.', 'var(--grn)', () => backToDay());
+function acceptJob(){
+  G.jobFound=true;addToInventory('Lohnzettel');addToInventory('Arbeitsvertrag');
+  spendRes(0,0,-5,0,'street',15);
+  showResult('💪','وجدت عملاً!','Klaus سيعطيك Lohnzettel كل شهر. ستُفتح معظم الشقق الآن!','var(--grn)',()=>backToDay());
 }
 
-function askJobDetails() {
-  document.getElementById('arb-de').textContent = 'Vollzeit, Montag bis Freitag. 80 Euro pro Tag, bar auf die Hand.';
-  document.getElementById('arb-ar').textContent = 'دوام كامل، إثنين-جمعة. 80 يورو يومياً نقداً.';
-  document.getElementById('arb-choices').innerHTML = `
-    <div class="choice good" onclick="acceptJob()">
-      <div class="ch-de">"Das klingt gut. Ich nehme es."</div>
-      <div class="ch-ar">يبدو جيداً. سأقبل.</div>
-    </div>`;
-}
+function declineJob(){spendRes(0,0,5);toast('ضيّعت فرصة عمل.','no');backToDay()}
 
-function declineJob() {
-  spendResources(0, 0, 5);
-  toast('ضيّعت فرصة عمل.', 'no');
-  backToDay();
-}
-
-function workShift() {
-  spendResources(-80, 6, 5);
+function workShift(){
+  G.money+=80;G.totalEarned+=80;G.timeLeft=Math.max(0,G.timeLeft-6);
+  spendRes(0,0,5,0,'street',10);
   G.visitedToday.push('arbeit_shift');
-  showResult('💰', 'أنهيت العمل!', '+80€. العمل الجسدي متعب لكنه ضروري.', 'var(--gold)', () => {
-    toast('+80€ — واصل البحث عن شقة!', 'ok');
-    buildEvents();
-    show('sc-day');
-  });
+  showResult('💰','يوم عمل منجز!','+80€. العمل متعب لكن ضروري.','var(--gold)',()=>{toast('+80€','ok');backToDay()});
 }
 
-// ═══════════════════════════════════════
-// SUPERMARKT (NEW)
-// ═══════════════════════════════════════
-function startSupermarkt() {
-  spendResources(25, 1, -5);
-  learnVocab([{de:'der Einkauf',ar:'التسوق'},{de:'die Quittung',ar:'الوصل'},{de:'bar zahlen',ar:'الدفع نقداً'}]);
+// ════════════════════════════════════════════════════
+// NACHBAR
+// ════════════════════════════════════════════════════
+function startNachbar(){
+  G.flags.nachbarMet=true;spendRes(5,1,-5,0,'street',5);
+  learnVocab([{de:'der Nachbar',ar:'الجار',track:'lang'}]);
+  const tips=[
+    {de:'"Jana im Oberhausen sucht noch Mitbewohner. Sehr nett!"',ar:'جانا في Oberhausen تبحث عن شريك. لطيفة!',effect:()=>{spendRes(0,0,0,5);queueDelayed('berger_wg',4,'nachbar')}},
+    {de:'"Melden Sie sich sofort an! Ohne Anmeldung ist alles schwierig."',ar:'سجّل نفسك فوراً!',effect:()=>{if(!G.anmeldung)spendRes(0,0,-5)}},
+    {de:'"Der Aldi um die Ecke ist günstig. Nehmen Sie bar mit!"',ar:'آلدي رخيص — لكنهم يقبلون نقداً فقط!',effect:()=>{G.money+=10;toast('Frau Berger أعطتك 10€ كترحيب!','gold')}},
+    {de:'"Herr Müller ist streng, aber fair. Zeigen Sie ihm Lohnzettel + Schufa!"',ar:'Herr Müller صارم لكن عادل.',effect:()=>{spendRes(0,0,0,5)}},
+  ];
+  const tip=rngItem(tips);
+  document.getElementById('nachbar-de').textContent=tip.de;
+  document.getElementById('nachbar-ar').textContent=tip.ar;
+  document.getElementById('nachbar-content').innerHTML=`<div class="nachbar-card"><div style="font-size:.78rem;color:var(--dim)">Frau Berger lives here for 30 years. She helps newcomers.</div></div>`;
+  document.getElementById('nachbar-choices').innerHTML=`
+    <div class="choice good" onclick="nachbarThanks('${btoa(JSON.stringify(tip.effect.toString()))}')"><div class="ch-de">"Vielen Dank, Frau Berger!"</div><div class="ch-ar">شكراً جزيلاً!</div></div>
+    <div class="choice" onclick="backToDay()"><div class="ch-de">"Danke. Ich muss weiter."</div><div class="ch-ar">شكراً. عندي شغل.</div></div>`;
+  window._nachbarTip=tip;
+  show('sc-nachbar');
+}
 
-  const content = document.getElementById('sm-content');
-  content.innerHTML = `
-    <div class="panel">
-      <div class="panel-title">🛒 سلة المشتريات</div>
-      <div style="font-size:.84rem;line-height:1.8">
-        • Brot — 2.50€<br>
-        • Milch — 1.20€<br>
-        • Käse — 4.80€<br>
-        • Äpfel — 3.45€<br>
-        • Wasser — 0.90€<br>
-        <div style="border-top:1px solid var(--bd);margin-top:8px;padding-top:8px;font-weight:700;color:var(--gold)">المجموع: 12.85€</div>
-      </div>
-    </div>`;
+function nachbarThanks(){window._nachbarTip?.effect();toast('👵 نصيحة مفيدة من Frau Berger!','ok');backToDay()}
 
-  document.getElementById('sm-choices').innerHTML = `
-    <div class="choice good" onclick="smComplete()">
-      <div class="ch-de">"Das bezahle ich bar, bitte."</div>
-      <div class="ch-ar">سأدفع نقداً، من فضلك.</div>
+// ════════════════════════════════════════════════════
+// QUIZ
+// ════════════════════════════════════════════════════
+function startQuiz(){
+  G.flags.quizDoneToday=true;spendRes(0,1,0);
+  const q=rngItem(QUIZZES);window._quiz=q;
+  document.getElementById('quiz-content').innerHTML=`
+    <div class="quiz-card">
+      <div class="quiz-question">${q.q}</div>
+      <div style="direction:ltr;background:rgba(255,255,255,.04);padding:10px;border-radius:8px;margin-bottom:12px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--gold2)">${q.context}</div>
+      ${q.options.map((opt,i)=>`<div class="quiz-option" id="qo-${i}" onclick="ansQuiz(${i})">${opt}</div>`).join('')}
     </div>
-    <div class="choice" onclick="smComplete()">
-      <div class="ch-de">"Kann ich mit Karte zahlen?"</div>
-      <div class="ch-ar">هل يمكن الدفع بالبطاقة؟</div>
-    </div>`;
+    <div id="quiz-fb" style="display:none"></div>`;
+  show('sc-quiz');
+}
 
+function ansQuiz(idx){
+  const q=window._quiz;
+  document.querySelectorAll('.quiz-option').forEach(o=>o.style.pointerEvents='none');
+  if(idx===q.correct){
+    document.getElementById('qo-'+idx).classList.add('correct');
+    const reward=15+Math.floor(rng()*10);
+    G.money+=reward;G.totalEarned+=reward;
+    addXP(q.xpTrack,20);spendRes(0,0,-5,5);
+    learnVocab(VOCAB.filter(v=>v.de===q.vocab));
+    document.getElementById('quiz-fb').innerHTML=`<div style="background:rgba(0,230,118,.08);border:1px solid rgba(0,230,118,.25);border-radius:10px;padding:14px;font-size:.84rem;color:var(--grn)">✅ صحيح! +${reward}€ + XP<br><span style="color:var(--dim);font-size:.76rem">"${q.vocab}"</span></div><button class="btn btn-grn btn-sm" style="margin-top:10px" onclick="backToDay()">متابعة ←</button>`;
+    document.getElementById('quiz-fb').style.display='block';
+  }else{
+    document.getElementById('qo-'+idx).classList.add('wrong');
+    document.getElementById('qo-'+q.correct).classList.add('correct');
+    spendRes(0,0,5);
+    document.getElementById('quiz-fb').innerHTML=`<div style="background:rgba(255,71,87,.06);border:1px solid rgba(255,71,87,.2);border-radius:10px;padding:14px;font-size:.84rem;color:var(--amber)">❌ الصحيح: ${q.options[q.correct]}</div><button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="backToDay()">متابعة ←</button>`;
+    document.getElementById('quiz-fb').style.display='block';
+  }
+}
+
+// ════════════════════════════════════════════════════
+// SUPERMARKT
+// ════════════════════════════════════════════════════
+function startSupermarkt(){
+  spendRes(20,1,-8);
+  learnVocab([{de:'bar zahlen',ar:'الدفع نقداً',track:'street'},{de:'mit Karte zahlen',ar:'الدفع ببطاقة',track:'street'}]);
+  document.getElementById('sm-content').innerHTML=`<div class="panel"><div class="panel-title">🛒 Einkaufszettel</div><div style="font-family:'JetBrains Mono',monospace;font-size:.74rem;line-height:2;direction:ltr">Brot 1.99€ / Milch 1.19€ / Käse 3.49€<br>Äpfel 2.69€ / Wasser 3.89€<br><strong>Gesamt: 13.25€</strong></div></div>`;
+  document.getElementById('sm-choices').innerHTML=`
+    <div class="choice good" onclick="smPay('bar')"><div class="ch-de">"Das bezahle ich bar."</div><div class="ch-ar">سأدفع نقداً.</div></div>
+    <div class="choice ${G.bankAccount?'':'risky'}" onclick="smPay('karte')"><div class="ch-de">"Kann ich mit Karte zahlen?"</div><div class="ch-ar">${G.bankAccount?'الدفع ببطاقة. ✅':'هل عندك بطاقة؟ ⚠️'}</div></div>`;
   show('sc-supermarkt');
 }
 
-function smComplete() {
-  showResult('🛒', 'تم الشراء!', 'طعام ليومين. -25€. لا تنسى الحفاظ على المال.', 'var(--grn)', () => backToDay());
+function smPay(method){
+  if(method==='karte'&&!G.bankAccount){showResult('💳','لا بطاقة!','ما عندك Bankkarte بعد.','var(--amber)',()=>{spendRes(0,0,5);backToDay()});return}
+  showResult('🛒','تم التسوق!','طعام لأيام. -20€. توتر أقل.','var(--grn)',()=>backToDay());
 }
 
-// ═══════════════════════════════════════
-// BAHN (NEW)
-// ═══════════════════════════════════════
-function startBahn() {
-  spendResources(15, 2, 5);
-  learnVocab([{de:'das Gleis',ar:'الرصيف'},{de:'die Verspätung',ar:'التأخير'},{de:'umsteigen',ar:'تغيير القطار'}]);
-
-  const content = document.getElementById('bahn-content');
-  content.innerHTML = `
-    <div class="panel">
-      <div class="panel-title">🚉 فهم الإذاعة</div>
-      <div style="font-size:.82rem;color:var(--dim);line-height:1.7;margin-bottom:10px">
-        استمع للإذاعة واختر المعنى الصحيح:
-      </div>
-      <div style="background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:8px;padding:12px;margin-bottom:12px;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:var(--gold2);direction:ltr">
-        "Achtung, Fahrgäste! Der Regionalexpress nach München hat 10 Minuten Verspätung. Er fährt heute von Gleis 7 ab. Wir bitten um Entschuldigung."
-      </div>
-    </div>`;
-
-  document.getElementById('bahn-choices').innerHTML = `
-    <div class="choice good" onclick="bahnCorrect()">
-      <div class="ch-de">القطار متأخر 10 دقائق ويغادر من الرصيف 7.</div>
-      <div class="ch-ar">فهمت الإذاعة بشكل صحيح!</div>
-    </div>
-    <div class="choice" onclick="bahnWrong()">
-      <div class="ch-de">القطار ملغى تماماً.</div>
-      <div class="ch-ar">فهم خاطئ. "Verspätung" تعني تأخير لا إلغاء.</div>
-    </div>
-    <div class="choice" onclick="bahnWrong()">
-      <div class="ch-de">يجب تغيير القطار في ميونيخ.</div>
-      <div class="ch-ar">فهم خاطئ. لم يُذكر تغيير القطار.</div>
-    </div>`;
-
-  show('sc-bahn');
-}
-
-function bahnCorrect() {
-  spendResources(0, 0, -5);
-  showResult('🚉', 'فهمت!', 'قراءة الإذاعات مهمة في ألمانيا. -5 توتر.', 'var(--grn)', () => backToDay());
-}
-
-function bahnWrong() {
-  spendResources(0, 0, 10);
-  showResult('🚉', 'فهم خاطئ', 'Verspätung = تأخير. nicht = ليس. دقق في الكلمات.', 'var(--amber)', () => backToDay());
-}
-
-// ═══════════════════════════════════════
+// ════════════════════════════════════════════════════
 // FREIZEIT & SCAM
-// ═══════════════════════════════════════
-function doFreizeit() {
-  spendResources(8, 2, -20);
-  learnVocab([{de:'die Freizeit',ar:'وقت الفراغ'},{de:'sich erholen',ar:'يستريح'}]);
-  showResult('☕', 'استرحت!', 'قهوة وهواء نقي. -20 توتر.', 'var(--cyan)', () => {
-    toast('-20 توتر — أحسنت!', 'ok');
-    buildEvents();
-    show('sc-day');
-  });
+// ════════════════════════════════════════════════════
+function doFreizeit(){
+  spendRes(5,2,-25,0,'lang',5);
+  const wasProductive=G.visitedToday.some(id=>['arbeit_shift','amt','bank','schufa','quiz'].includes(id)||id.startsWith('bscht_'));
+  if(wasProductive)G.streak++;else G.streak=0;
+  checkAchievementsPassive();
+  showResult('☕','استرحت!','-25 توتر. الاستراحة جزء من النجاح.','var(--cyan)',()=>{toast('-25 توتر','ok');backToDay()});
 }
 
-function scamEvent() {
-  G.flags.scamUsed = true;
-  spendResources(200, 1, 25);
-  const success = Math.random() > 0.7;
-  if (!success) {
-    showResult('😱', 'نصب!', 'دفعت 200€ واختفى الشخص. درس قاسٍ.', 'var(--red)', () => backToDay());
-  } else {
-    G.money += 200;
-    showResult('😮', 'نجوت!', 'لاحظت التلاعب واسترجعت مالك.', 'var(--grn)', () => backToDay());
-  }
+function scamEvent(){
+  G.flags.scamUsed=true;G.visitedToday.push('scam');
+  showResult('⚠️','إعلان مشبوه!','شقة 350€ بدون كاوشن — "أرسل 200€ وصورة هويتك." كيف ترد؟','var(--amber)',null);
+  // Inject scam choices
+  const box=document.querySelector('.result-box');
+  const prev=box.querySelector('.scam-ch');if(prev)prev.remove();
+  const div=document.createElement('div');div.className='scam-ch';
+  div.innerHTML=`
+    <div class="choice good" onclick="scamDecline()" style="text-align:right;margin-bottom:8px"><div class="ch-de">"Das ist Betrug. Ich zahle nichts."</div><div class="ch-ar">هذا نصب. ✅</div></div>
+    <div class="choice bad" onclick="scamFall()" style="text-align:right"><div class="ch-de">"Klingt gut! Ich schicke das Geld."</div><div class="ch-ar">يبدو جيداً! سأرسل. ❌</div></div>`;
+  box.appendChild(div);
+  document.getElementById('result-overlay').querySelector('.btn-gold').style.display='none';
 }
 
-// ═══════════════════════════════════════
+function scamDecline(){
+  document.querySelector('.scam-ch')?.remove();
+  document.getElementById('result-overlay').querySelector('.btn-gold').style.display='';
+  checkAch('scam_detector');
+  queueDelayed('scam_police',5,'scam');
+  showResult('🛡️','نجوت من النصب!','الشقق الرخيصة جداً دائماً نصب. +سمعة لذكائك.','var(--grn)',()=>{spendRes(0,0,0,8);backToDay()});
+}
+
+function scamFall(){
+  document.querySelector('.scam-ch')?.remove();
+  document.getElementById('result-overlay').querySelector('.btn-gold').style.display='';
+  showResult('😱','وقعت في النصب!','دفعت 200€ واختفى. Betrug! درس قاسٍ.','var(--red)',()=>{spendRes(200,0,20);backToDay()});
+}
+
+// ════════════════════════════════════════════════════
 // DAY END
-// ═══════════════════════════════════════
-function endDay() {
-  const hotelCost = G.wohnung ? 0 : (60 + (G.day * 5));
-  if (!G.wohnung) spendResources(hotelCost, 0, 5);
-
-  if (G.stress >= 100) { gameOver('burnout'); return; }
-  if (G.money <= 0) { gameOver('pleite'); return; }
-
-  const summary = document.getElementById('dayend-summary');
-  summary.innerHTML = `
-    <div class="summary-row"><span>بدأت بـ</span><span>${G.money + hotelCost}€</span></div>
-    ${hotelCost > 0 ? `<div class="summary-row"><span>🏨 الفندق</span><span class="summary-minus">-${hotelCost}€</span></div>` : ''}
-    ${G.wohnung ? `<div class="summary-row"><span>🏠 ${G.wohnung.name}</span><span style="color:var(--grn)">بيتك</span></div>` : ''}
-    <div class="summary-row"><span>التوتر</span><span style="color:${G.stress>60?'var(--red)':'var(--gold)'}">${Math.round(G.stress)}%</span></div>
-    <div class="summary-row"><span>السمعة</span><span style="color:${G.reputation>60?'var(--grn)':'var(--amber)'}">${G.reputation}%</span></div>
+// ════════════════════════════════════════════════════
+function endDay(){
+  const hotelCost=G.wohnung?0:Math.min(55+G.day*2,90);
+  if(!G.wohnung)spendRes(hotelCost,0,3);
+  const wasProductive=G.visitedToday.some(id=>['arbeit_shift','amt','bank','schufa','quiz'].includes(id)||id.startsWith('bscht_'));
+  if(wasProductive)G.streak++;else G.streak=0;
+  checkAchievementsPassive();
+  if(G.stress>=100){gameOver('burnout');return}
+  if(G.money<=0){gameOver('pleite');return}
+  // DAY-END XP summary
+  const xpSummary=['lang','street','office'].map(t=>`<span style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:${trackColor(t)}">${trackIcon(t)} ${G.xp[t]} XP (${XP_LEVELS[G.xpLevel[t]].name})</span>`).join('  ');
+  document.getElementById('dayend-xp').innerHTML=`<div style="background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:8px;padding:10px 12px;font-size:.76rem;color:var(--dim);margin-bottom:6px">📊 XP اليوم: ${xpSummary}</div>`;
+  // Summary
+  const moneyStart=G.money+hotelCost;
+  document.getElementById('dayend-summary').innerHTML=`
+    <div class="summary-row"><span>بدأت بـ</span><span>${moneyStart}€</span></div>
+    ${hotelCost>0?`<div class="summary-row"><span>🏨 الفندق</span><span class="summary-minus">-${hotelCost}€</span></div>`:''}
+    ${G.wohnung?`<div class="summary-row"><span>🏠 ${G.wohnung.name}</span><span style="color:var(--grn)">بيتك</span></div>`:''}
+    <div class="summary-row"><span>أيام متبقية</span><span style="color:${DAYS_MAX-G.day<=3?'var(--red)':'var(--amber)'}">${DAYS_MAX-G.day}</span></div>
+    <div class="summary-row"><span>توتر</span><span style="color:${G.stress>60?'var(--red)':'var(--gold)'}">${Math.round(G.stress)}%</span></div>
+    <div class="summary-row"><span>سمعة</span><span style="color:${G.reputation>=60?'var(--grn)':'var(--amber)'}">${G.reputation}%</span></div>
     <div class="summary-row"><span style="color:var(--gold)">💰 رصيدك</span><span class="summary-plus">${G.money}€</span></div>`;
-
-  if (G.dayVocab.length > 0) {
-    document.getElementById('dayend-vocab').style.display = 'block';
-    document.getElementById('vocab-log').innerHTML = G.dayVocab.map(v =>
-      `<div class="vocab-item"><span class="vocab-de">${v.de}</span><span class="vocab-ar">${v.ar}</span></div>`
-    ).join('');
-  } else {
-    document.getElementById('dayend-vocab').style.display = 'none';
-  }
-
-  const icon = G.wohnung ? '🏠' : (G.stress > 70 ? '😰' : '🌙');
-  const title = G.wohnung ? `ليلة في بيتك!` : `ليلة ${G.day} في الفندق`;
-  document.getElementById('dayend-icon').textContent = icon;
-  document.getElementById('dayend-title').textContent = title;
-
-  G.day++;
-  show('sc-dayend');
+  // Achievements
+  const recentAch=Object.keys(META.achievements).slice(-2).map(id=>{const d=ACHIEVEMENT_DEFS.find(a=>a.id===id);return d?`<div class="achievement"><span class="ach-icon">${d.icon}</span><div><div class="ach-title">${d.title}</div><div class="ach-desc">${d.desc}</div></div></div>`:''}).join('');
+  document.getElementById('dayend-ach').innerHTML=recentAch;
+  // Vocab
+  if(G.dayVocab.length>0){
+    document.getElementById('dayend-vocab').style.display='block';
+    document.getElementById('vocab-log').innerHTML=G.dayVocab.map(v=>`<div class="vocab-item"><span class="vocab-de">${v.de}</span><span class="vocab-ar">${v.ar}</span></div>`).join('');
+  }else document.getElementById('dayend-vocab').style.display='none';
+  document.getElementById('dayend-icon').textContent=G.wohnung?'🏠':(G.stress>70?'😰':'🌙');
+  document.getElementById('dayend-title').textContent=G.wohnung?'ليلة في بيتك! 🎉':`ليلة ${G.day} في الفندق`;
+  G.day++;show('sc-dayend');saveGame();
 }
 
-function nextDay() {
-  if (G.day > DAYS_MAX && G.wohnung) { winGame(); return; }
-  if (G.day > DAYS_MAX) { gameOver('obdachlos'); return; }
+function nextDay(){
+  if(G.day>DAYS_MAX&&G.wohnung){winGame();return}
+  if(G.day>DAYS_MAX){gameOver('obdachlos');return}
   buildDayScreen();
 }
 
-// ═══════════════════════════════════════
-// ENDINGS
-// ═══════════════════════════════════════
-function gameOver(reason) {
+// ════════════════════════════════════════════════════
+// GAME OVER / WIN
+// ════════════════════════════════════════════════════
+function calcScore(){return G.money+(G.reputation*5)+(G.vocabLearned.length*10)-(G.stress*3)+(G.streak*50)}
+
+function gameOver(reason){
   document.getElementById('resbar').classList.remove('on');
-  const reasons = {
-    burnout: { icon:'😮‍💨', title:'انهيار عصبي', detail:'وصل توترك 100%. التوازن بين الشغل والراحة ضروري في ألمانيا.' },
-    obdachlos: { icon:'🏚️', title:'بدون مأوى', detail:'14 يوماً بدون شقة. الوثائق هي المفتاح.' },
-    pleite: { icon:'💸', title:'نفد المال', detail:'لم يبقِ ما يكفي. الميزانية أساسية للنجاة.' },
-  };
-  const r = reasons[reason] || reasons.obdachlos;
-  document.getElementById('go-icon').textContent = r.icon;
-  document.getElementById('go-title').textContent = r.title;
-  document.getElementById('go-detail').innerHTML = r.detail + `<br><br>تعلّمت <strong>${G.vocabLearned.length}</strong> كلمة ألمانية.`;
-  show('sc-gameover');
+  const r={
+    burnout:{icon:'😮‍💨',title:'انهيار عصبي',detail:'وصل التوتر 100%. الراحة جزء من النجاح.'},
+    obdachlos:{icon:'🏚️',title:'14 يوماً بلا مأوى',detail:'الوثائق والمال والسمعة — ثلاثتها مهمة.'},
+    pleite:{icon:'💸',title:'نفد المال',detail:'الفندق غالٍ بدون دخل منتظم.'},
+  }[reason]||{icon:'❌',title:'Game Over',detail:''};
+  document.getElementById('go-icon').textContent=r.icon;
+  document.getElementById('go-title').textContent=r.title;
+  document.getElementById('go-detail').innerHTML=`${r.detail}<br><br>تعلّمت <strong>${G.vocabLearned.length}</strong> كلمة في ${G.day-1} يوماً.`;
+  const tips={burnout:'استخدم الاستراحة كل يومين.',obdachlos:'ابدأ: Anmeldung → بنك → Schufa → وثائق → وقّع.',pleite:'العمل +80€/يوم. وقّع مبكراً.'};
+  document.getElementById('go-tip').textContent='💡 '+tips[reason]||'';
+  META.totalRuns++;saveMeta();show('sc-gameover');
 }
 
-function winGame() {
+function winGame(){
   document.getElementById('resbar').classList.remove('on');
-  const apt = G.wohnung;
-  document.getElementById('win-detail').textContent = `وجدت شقة "${apt.name}" وعشت تجربة حقيقية في ألمانيا.`;
-  document.getElementById('win-stats').innerHTML = `
+  const apt=G.wohnung;
+  checkAch('first_win');
+  if(G.money>=900)checkAch('rich');
+  if(G.stress<=35)checkAch('no_stress');
+  const score=calcScore();
+  let grade='C';let gradeColor='var(--amber)';
+  if(score>=1500){grade='S';gradeColor='var(--gold)'}
+  else if(score>=1000){grade='A';gradeColor='var(--grn)'}
+  else if(score>=600){grade='B';gradeColor='var(--cyan)'}
+  if(score>META.bestScore){META.bestScore=score;META.bestGrade=grade;META.firstWin=true;saveMeta()}
+  const shareCode=generateShareCode(score,grade);
+  document.getElementById('win-detail').innerHTML=`وجدت شقة <strong style="color:var(--gold)">"${apt.name}"</strong> وعشت ألمانيا الحقيقية.`;
+  document.getElementById('win-stats').innerHTML=`
     <div class="panel-title">📊 إحصائياتك</div>
-    <div class="summary-row"><span>الكلمات</span><span style="color:var(--gold)">${G.vocabLearned.length}</span></div>
-    <div class="summary-row"><span>الوثائق</span><span style="color:var(--cyan)">${G.inventory.length}</span></div>
-    <div class="summary-row"><span>المال</span><span style="color:var(--grn)">${G.money}€</span></div>
-    <div class="summary-row"><span>الإيجار</span><span style="color:var(--amber)">${apt.warmmiete}€/شهر</span></div>`;
-  show('sc-win');
+    <div style="text-align:center;margin-bottom:14px"><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:${gradeColor}">${grade}</div><div style="font-size:.7rem;color:var(--dim)">التقييم</div></div>
+    <div class="summary-row"><span>الكلمات المتعلّمة</span><span style="color:var(--gold)">${G.vocabLearned.length}/${VOCAB.length}</span></div>
+    <div class="summary-row"><span>المال المتبقي</span><span style="color:var(--grn)">${G.money}€</span></div>
+    <div class="summary-row"><span>السمعة</span><span style="color:var(--gold)">${G.reputation}%</span></div>
+    <div class="summary-row"><span>اليوم الذي وجدت الشقة</span><span style="color:var(--purp)">يوم ${G.day-1}</span></div>
+    <div class="summary-row"><span>النقاط</span><span style="color:var(--cyan)">${score}</span></div>`;
+  if(G.isDaily)saveDailyScore(score,grade);
+  document.getElementById('win-share').innerHTML=`<div class="share-box" id="share-text">${shareCode}</div><button class="btn btn-ghost btn-sm" onclick="copyShare()">📋 نسخ للمشاركة</button>`;
+  document.getElementById('win-ach').innerHTML=Object.keys(META.achievements).map(id=>{const d=ACHIEVEMENT_DEFS.find(a=>a.id===id);return d?`<div class="achievement"><span class="ach-icon">${d.icon}</span><div><div class="ach-title">${d.title}</div><div class="ach-desc">${d.desc}</div></div></div>`:''}).join('');
+  META.totalRuns++;saveMeta();updateTitleBest();show('sc-win');
 }
 
-function showVocab() {
-  document.getElementById('vocab-all').innerHTML = VOCAB.map(v =>
-    `<div class="vocab-item"><span class="vocab-de">${v.de}</span><span class="vocab-ar">${v.ar}</span></div>`
-  ).join('');
+// ════════════════════════════════════════════════════
+// DAILY CHALLENGE
+// ════════════════════════════════════════════════════
+function startDailyChallenge(){
+  const seed=getTodaySeed();
+  G_RNG=mulberry32(seed);
+  const charIds=Object.keys(CHARACTERS);
+  const todayCharId=charIds[new Date().getDay()%charIds.length];
+  selectedChar=todayCharId;
+  buildDailyScreen();show('sc-daily');
+}
+
+function buildDailyScreen(){
+  const seed=getTodaySeed();
+  const d=new Date();
+  const dateStr=`${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
+  const charIds=Object.keys(CHARACTERS);
+  const charId=charIds[d.getDay()%charIds.length];
+  const char=CHARACTERS[charId];
+  document.getElementById('daily-card').innerHTML=`
+    <div class="daily-seed">SEED: ${seed.toString(16).toUpperCase().padStart(8,'0')}</div>
+    <div style="font-size:.72rem;color:var(--dim);margin-bottom:6px">${dateStr}</div>
+    <div class="daily-char">${char.portrait} شخصية اليوم: ${char.nameAr}</div>
+    <div style="font-size:.78rem;color:var(--dim);margin-top:6px">${char.trait}</div>
+    <button class="btn btn-purp btn-sm" style="margin-top:12px" onclick="launchDaily()">🎮 ابدأ التحدي</button>`;
+  buildDailyHistory();
+}
+
+function launchDaily(){
+  const charIds=Object.keys(CHARACTERS);
+  const charId=charIds[new Date().getDay()%charIds.length];
+  G.isDaily=true;G.dailySeed=getTodaySeed();
+  G_RNG=mulberry32(G.dailySeed);
+  startGame(charId);
+  checkAch('daily_first');
+}
+
+function saveDailyScore(score,grade){
+  const today=new Date().toISOString().split('T')[0];
+  META.dailyHistory=META.dailyHistory.filter(d=>d.date!==today);
+  META.dailyHistory.unshift({date:today,score,grade,char:G.character,day:G.day-1});
+  META.dailyHistory=META.dailyHistory.slice(0,30);
+  saveMeta();
+}
+
+function buildDailyHistory(){
+  const wrap=document.getElementById('daily-history');
+  if(!META.dailyHistory.length){wrap.innerHTML='';return}
+  const maxScore=Math.max(...META.dailyHistory.map(d=>d.score));
+  wrap.innerHTML=`<div class="panel-title" style="margin-bottom:10px">📊 آخر ${META.dailyHistory.length} جلسة</div>`+
+    META.dailyHistory.slice(0,7).map(d=>`
+    <div class="score-day-row">
+      <span class="score-date">${d.date.slice(5)}</span>
+      <div class="score-bar-wrap"><div class="score-bar-inner" style="width:${Math.round((d.score/maxScore)*100)}%"></div></div>
+      <span class="score-val">${d.score} (${d.grade})</span>
+    </div>`).join('');
+}
+
+// ════════════════════════════════════════════════════
+// ACHIEVEMENTS SCREEN
+// ════════════════════════════════════════════════════
+function buildAchievementScreen(){
+  const total=ACHIEVEMENT_DEFS.length;
+  const unlocked=Object.keys(META.achievements).length;
+  document.getElementById('ach-progress-text').textContent=`${unlocked} / ${total} مفتوح`;
+  document.getElementById('ach-progress-bar').style.width=(unlocked/total*100)+'%';
+  document.getElementById('ach-grid').innerHTML=ACHIEVEMENT_DEFS.map(def=>{
+    const isUnlocked=!!META.achievements[def.id];
+    const unlockedDate=META.achievements[def.id]?new Date(META.achievements[def.id]).toLocaleDateString('ar'):'';
+    const rColor=def.rarity==='legendary'?'var(--purp)':def.rarity==='rare'?'var(--gold)':'var(--dim)';
+    return `<div class="ach-card ${isUnlocked?'unlocked '+def.rarity:'locked'}">
+      <div class="ach-icon-wrap">${def.icon}</div>
+      <div style="flex:1;min-width:0">
+        <div class="ach-name" style="color:${isUnlocked?rColor:'var(--dim)'}">${def.title}</div>
+        <div class="ach-desc">${isUnlocked?def.desc:def.hint}</div>
+        ${isUnlocked?`<div class="ach-date">✅ ${unlockedDate}</div>`:''}
+        <div style="font-size:.58rem;color:${rColor};font-family:'JetBrains Mono',monospace;margin-top:3px">${def.rarity.toUpperCase()}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════════════════
+// VOCAB SCREEN
+// ════════════════════════════════════════════════════
+function showVocab(){
+  document.getElementById('vocab-all').innerHTML=VOCAB.map(v=>`
+    <div class="vocab-item" onclick="this.classList.toggle('expanded')">
+      <span class="vocab-de">${v.de}</span>
+      <span class="vocab-ar">${v.ar}</span>
+      <div class="vocab-ex">${v.ex}</div>
+    </div>`).join('');
   show('sc-vocab');
 }
+
+// ════════════════════════════════════════════════════
+// SHARE CODE
+// ════════════════════════════════════════════════════
+function generateShareCode(score,grade){
+  const d=new Date();
+  const dateStr=`${d.getDate().toString().padStart(2,'0')}.${(d.getMonth()+1).toString().padStart(2,'0')}.${d.getFullYear()}`;
+  const char=G.character?CHARACTERS[G.character].nameAr:'؟';
+  return `🏠 Wohnungsnot Daily — ${dateStr}
+Score: ${score} | تقييم: ${grade}
+شخصية: ${char} · يوم ${G.day-1} · ${G.vocabLearned.length} كلمة
+Code: WN-${score.toString(36).toUpperCase().padStart(5,'0')}`;
+}
+
+function copyShare(){
+  const text=document.getElementById('share-text')?.textContent||'';
+  navigator.clipboard?.writeText(text).then(()=>toast('📋 تم النسخ!','ok')).catch(()=>toast('انسخ يدوياً','info'));
+}
+
+// ════════════════════════════════════════════════════
+// TITLE BEST
+// ════════════════════════════════════════════════════
+function updateTitleBest(){
+  const el=document.getElementById('title-best');if(!el)return;
+  const ach=Object.keys(META.achievements).length;
+  if(META.firstWin)el.textContent=`🏆 أفضل: ${META.bestScore} نقطة (${META.bestGrade}) · ${ach}/${ACHIEVEMENT_DEFS.length} إنجاز`;
+  else if(META.totalRuns>0)el.textContent=`🎮 ${META.totalRuns} جلسة سابقة · ${ach} إنجاز`;
+}
+
+// ════════════════════════════════════════════════════
+// KEYBOARD SHORTCUTS
+// ════════════════════════════════════════════════════
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){const overlay=document.getElementById('result-overlay');if(!overlay.classList.contains('hidden'))closeResult()}
+});
+
+// ════════════════════════════════════════════════════
+// INTERCEPT NAVIGATION TO ACHIEVEMENTS
+// ════════════════════════════════════════════════════
+const _showOrig=show;
+window.show=function(id){
+  if(id==='sc-achievements')buildAchievementScreen();
+  if(id==='sc-char-select'){buildCharSelect();selectedChar=null;document.getElementById('char-confirm').style.display='none'}
+  _showOrig(id);
+};
+
+// ════════════════════════════════════════════════════
+// BOOT
+// ════════════════════════════════════════════════════
+updateTitleBest();
 </script>
 </body>
 </html>
