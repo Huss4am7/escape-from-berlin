@@ -3,302 +3,165 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Wissenskarten A1.2 — كروت المعرفة 🇩🇪</title>
-<link href="https://fonts.goog<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>Wissenskarten A1.2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">leapis.com/css2?family=Tajawal:wght@400;700;900&family=Playfair+Display:wght@700;900&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"><style>.de{
+  direction:ltr;
+  text-align:left;
+  font-family:'JetBrains Mono',monospace;
+  display:inline-block;
+  unicode-bidi:isolate;
+  background:rgba(26,79,160,0.08);
+  padding:1px 5px;border-radius:3px;
+  font-size:.92em;color:#1a4fa0;
+}
+.ar{
+  direction:rtl;
+  text-align:right;
+  display:inline;
+  unicode-bidi:isolate;
+}
 :root{
-  --bg:#07080f;
-  --s1:#0c0e18;
-  --s2:#111420;
-  --s3:#181c2e;
-  --bd:rgba(255,255,255,0.07);
-  --bd2:rgba(255,255,255,0.13);
-  --txt:#eceaf5;
-  --dim:#5a6080;
-
-  --gold:#d4a843;
-  --gold2:#f0c96a;
-  --gold-glow:rgba(212,168,67,0.18);
-  --red:#c0392b;
-  --blue:#1a56a8;
-  --grn:#1a8a50;
-  --purp:#6c3fa8;
-  --orng:#c4610a;
-  --teal:#0a6b6b;
-
-  --card-bg:#0f1119;
-  --card-face:#f7f4ec;
+  --ink:#0d0d12;--paper:#faf8f2;--cream:#f2ede0;
+  --gold:#c9941a;--gold-light:#f0c040;
+  --red:#b5302a;--blue:#1a4fa0;
+  --border:#d8ceb8;--dim:#8a8070;--text:#1a1710;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{min-height:100%;background:var(--bg);font-family:'Tajawal',sans-serif;color:var(--txt);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+html,body{min-height:100%;background:var(--ink);font-family:'Tajawal',sans-serif;color:var(--text);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 70% 50% at 20% 20%,rgba(201,148,26,.05) 0%,transparent 60%),
+             radial-gradient(ellipse 60% 40% at 80% 80%,rgba(26,79,160,.04) 0%,transparent 60%);}
 
-/* ── AMBIENT ── */
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 55% 45% at 10% 15%,rgba(212,168,67,.07) 0%,transparent 65%),
-    radial-gradient(ellipse 45% 55% at 90% 85%,rgba(26,86,168,.06) 0%,transparent 65%),
-    radial-gradient(ellipse 35% 50% at 55% 45%,rgba(108,63,168,.04) 0%,transparent 70%);
-  animation:ambShift 18s ease-in-out infinite alternate;
-}
-@keyframes ambShift{0%{opacity:1}100%{opacity:.65;transform:scale(1.06)}}
-
-/* subtle grid */
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
-  background-size:48px 48px;
-}
-
-/* ── SCREEN ── */
-.screen{display:none;position:relative;z-index:1;max-width:640px;margin:0 auto;padding:14px 13px 56px}
-.screen.on{display:block;animation:pIn .4s cubic-bezier(.16,1,.3,1)}
+.screen{display:none;position:relative;z-index:1;max-width:680px;margin:0 auto;padding:14px 14px 56px}
+.screen.on{display:block;animation:pIn .3s ease}
 @keyframes pIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── HEADER ── */
-.hdr{text-align:center;padding:28px 0 18px;border-bottom:1px solid var(--bd);margin-bottom:22px;position:relative}
-.hdr::after{content:'';position:absolute;bottom:-1px;left:50%;transform:translateX(-50%);width:60px;height:1px;background:var(--gold);opacity:.6}
-.htitle{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.2rem;font-weight:700;
-  color:var(--card-face);letter-spacing:.04em;line-height:1;
-}
-.htitle span{color:var(--gold2);font-style:italic}
-.hsub{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--gold);letter-spacing:.22em;text-transform:uppercase;margin-top:7px;opacity:.85}
+.hdr{text-align:center;padding:26px 0 18px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:20px}
+.htitle{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#faf8f2;letter-spacing:.02em}
+.htitle span{color:#f0c040}
+.hsub{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#c9941a;letter-spacing:.2em;text-transform:uppercase;margin-top:5px}
+.level-badge{display:inline-block;background:rgba(201,148,26,.12);border:1px solid rgba(201,148,26,.4);color:#c9941a;
+  font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.15em;padding:3px 11px;border-radius:12px;margin-top:9px}
 
-/* ── STATS ── */
-.stats{display:flex;gap:8px;margin-bottom:15px}
-.sc{
-  flex:1;background:rgba(255,255,255,.03);
-  border:1px solid var(--bd);border-radius:8px;
-  padding:10px 6px;text-align:center;
-  transition:border-color .2s;
-}
-.sc:hover{border-color:var(--bd2)}
-.sc-n{font-family:'JetBrains Mono',monospace;font-size:1.4rem;color:var(--gold2);font-weight:700;line-height:1}
-.sc-l{font-size:.6rem;color:var(--dim);margin-top:3px;letter-spacing:.04em}
+.stats{display:flex;gap:7px;margin-bottom:14px}
+.sc{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:7px;padding:9px 6px;text-align:center}
+.sc-n{font-family:'JetBrains Mono',monospace;font-size:1.25rem;color:#f0c040;font-weight:700}
+.sc-l{font-size:.6rem;color:#8a8070;margin-top:2px}
 
-/* ── CATEGORY CARDS (Intro) ── */
-.icats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
-.ic{
-  border:1px solid;border-radius:12px;padding:18px 10px;text-align:center;
-  cursor:pointer;transition:all .25s cubic-bezier(.34,1.2,.64,1);
-  background:rgba(255,255,255,.025);position:relative;overflow:hidden;
-}
-.ic::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .3s;border-radius:inherit;background:linear-gradient(135deg,currentColor,transparent);opacity:0}
-.ic:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
-.ic:hover::before{opacity:.06}
-.ic-i{font-size:1.8rem;display:block;margin-bottom:7px}
-.ic-n{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1rem;display:block;margin-bottom:3px;letter-spacing:.02em}
-.ic-c{font-size:.62rem;color:var(--dim);font-family:'JetBrains Mono',monospace}
-
-.start-all{
-  display:block;width:100%;
-  background:linear-gradient(135deg,var(--gold),#b8860b);
-  color:#06070d;border:none;border-radius:10px;padding:16px;
-  font-size:.95rem;font-weight:900;font-family:'Tajawal',sans-serif;
-  cursor:pointer;margin-top:6px;
-  transition:all .2s cubic-bezier(.34,1.2,.64,1);
-  box-shadow:0 4px 20px rgba(212,168,67,.25);
-  letter-spacing:.02em;
-}
-.start-all:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(212,168,67,.35)}
-.start-all:active{transform:scale(.97)}
-
-.level-badge{
-  display:inline-block;background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.3);
-  color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.58rem;
-  letter-spacing:.18em;padding:4px 12px;border-radius:20px;margin-top:9px;
-}
-
-/* ── CATSTRIP (Game) ── */
-.catstrip{display:flex;margin-bottom:14px;border:1px solid var(--bd);border-radius:8px;overflow:hidden;background:rgba(255,255,255,.02)}
-.cpip{flex:1;padding:8px 2px;text-align:center;cursor:pointer;transition:background .2s;border-right:1px solid var(--bd)}
+.catstrip{display:flex;margin-bottom:13px;border:1px solid rgba(255,255,255,.07);border-radius:7px;overflow:hidden}
+.cpip{flex:1;padding:8px 2px;text-align:center;cursor:pointer;transition:background .2s;border-right:1px solid rgba(255,255,255,.05)}
 .cpip:last-child{border-right:none}
 .cp-i{font-size:1rem;display:block;margin-bottom:2px}
-.cp-n{font-size:.5rem;color:rgba(255,255,255,.35);font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+.cp-n{font-size:.5rem;color:rgba(255,255,255,.38);font-family:'JetBrains Mono',monospace;line-height:1.2}
 .cpip.on .cp-n{color:#fff}
 
-/* ── DOTS ── */
-.dots{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
-.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.08);transition:all .3s}
-.dot.seen{background:var(--gold);opacity:.4}
-.dot.cur{background:var(--gold2);opacity:1;transform:scale(1.6)}
+.dots{display:flex;gap:4px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.1);transition:all .3s}
+.dot.seen{background:#c9941a;opacity:.45}
+.dot.cur{background:#c9941a;opacity:1;transform:scale(1.4)}
 
-/* ── TOOLBAR ── */
-.toolbar{display:flex;gap:7px;margin-bottom:15px}
-.tb{
-  flex:1;background:rgba(255,255,255,.03);border:1px solid var(--bd);
-  color:var(--dim);padding:9px 4px;border-radius:7px;cursor:pointer;
-  font-family:'Tajawal',sans-serif;font-size:.78rem;transition:all .2s;text-align:center;
-}
-.tb:hover{background:rgba(255,255,255,.07);color:var(--txt);border-color:var(--bd2)}
+.toolbar{display:flex;gap:6px;margin-bottom:14px}
+.tb{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+    color:rgba(255,255,255,.5);padding:8px 4px;border-radius:6px;cursor:pointer;
+    font-family:'Tajawal',sans-serif;font-size:.76rem;transition:all .18s;text-align:center}
+.tb:hover{background:rgba(255,255,255,.08);color:#fff}
 
 /* ── CARD FRONT ── */
-.card-front{
-  background:var(--card-face);
-  border-radius:16px;overflow:hidden;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,.12),
-    0 8px 24px rgba(0,0,0,.28),
-    0 24px 60px rgba(0,0,0,.2);
-  margin-bottom:14px;
-}
+.card-front{background:#faf8f2;border-radius:13px;overflow:hidden;
+  box-shadow:0 8px 28px rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.1);margin-bottom:14px}
 .card-front.gone{display:none}
-
 .stripe{height:6px;width:100%}
-
-.cf-inner{padding:22px 20px 20px;display:flex;flex-direction:column;gap:15px}
-
+.cf-inner{padding:22px 20px 20px;display:flex;flex-direction:column;gap:14px}
 .cf-top{display:flex;align-items:center;justify-content:space-between}
-.cf-cat{font-family:'JetBrains Mono',monospace;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:5px}
-.cf-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.cf-num{font-family:'JetBrains Mono',monospace;font-size:.56rem;color:#8a8070;background:#ece8de;border:1px solid #d4cbb8;padding:2px 8px;border-radius:20px}
-
-.cf-word{
-  font-family:'JetBrains Mono',monospace;
-  font-size:1.05rem;font-weight:700;
-  direction:ltr;text-align:center;padding:16px 14px;border-radius:10px;
-  background:#0d0e16;color:var(--gold2);letter-spacing:.04em;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 3px 12px rgba(0,0,0,.4);
-  line-height:1.5;
-}
-
-.cf-q{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.12rem;line-height:1.65;
-  color:#1a1614;font-weight:700;
-  border-right:3px solid;padding-right:13px;
-}
-
-.cf-hint{
-  text-align:center;color:#a09080;font-size:.72rem;
-  display:flex;align-items:center;justify-content:center;gap:5px;
-  animation:brt 3s ease-in-out infinite;padding-top:2px;
-  font-family:'JetBrains Mono',monospace;letter-spacing:.04em;
-}
-@keyframes brt{0%,100%{opacity:.3}50%{opacity:.75}}
+.cf-cat{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;display:inline-flex;align-items:center;gap:5px}
+.cf-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cf-num{font-family:'JetBrains Mono',monospace;font-size:.58rem;color:#8a8070;background:#f2ede0;border:1px solid #d8ceb8;padding:2px 8px;border-radius:12px}
+.cf-word{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:700;direction:ltr;
+  text-align:center;padding:15px 12px;border-radius:8px;background:#0d0d12;color:#f0c040;
+  letter-spacing:.02em;box-shadow:0 3px 10px rgba(0,0,0,.25);line-height:1.5}
+.cf-q{font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.6;color:#1a1710;
+  font-weight:700;border-right:3px solid #c9941a;padding-right:12px}
+.cf-hint{text-align:center;color:#8a8070;font-size:.74rem;padding-top:2px;
+  display:flex;align-items:center;justify-content:center;gap:5px;opacity:.6}
 
 /* ── CARD BACK ── */
-.card-back{
-  background:var(--card-face);border-radius:16px;overflow:hidden;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,.12),
-    0 8px 24px rgba(0,0,0,.28),
-    0 24px 60px rgba(0,0,0,.2);
-  margin-bottom:14px;display:none;
-}
-.card-back.open{display:block;animation:revl .3s cubic-bezier(.16,1,.3,1)}
-@keyframes revl{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card-back{background:#faf8f2;border-radius:13px;overflow:hidden;
+  box-shadow:0 8px 28px rgba(0,0,0,.22),0 2px 8px rgba(0,0,0,.1);margin-bottom:14px;display:none}
+.card-back.open{display:block;animation:rev .25s ease}
+@keyframes rev{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-.cb-inner{padding:20px 18px 17px;display:flex;flex-direction:column;gap:12px}
-
-.cb-badge{
-  display:inline-block;font-family:'JetBrains Mono',monospace;
-  font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;
-  color:#fff;padding:4px 10px;border-radius:4px;
-}
-
-.cb-ans{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.08rem;font-weight:700;color:#1a1614;line-height:1.55;
-}
-
-.cb-div{height:1px;background:linear-gradient(90deg,transparent,#d4cbb8,transparent)}
-
-.cb-fl{
-  font-family:'JetBrains Mono',monospace;font-size:.54rem;
-  letter-spacing:.16em;color:var(--gold);text-transform:uppercase;
-  display:flex;align-items:center;gap:6px;
-}
-.cb-fl::before{content:'';width:16px;height:1px;background:var(--gold);opacity:.5}
-
-.cb-fact{font-size:.9rem;line-height:1.78;color:#2a2320}
-.cb-fact strong{color:#9b2218;font-weight:700}
-.cb-fact em{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.86em;color:#1a4fa0;background:rgba(26,79,160,.07);padding:1px 4px;border-radius:3px}
-
-.cb-ex{
-  background:#f0ece0;border:1px solid #d4cbb8;border-radius:9px;
-  padding:11px 13px;
-}
-.cb-ex-de{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#0d0e16;margin-bottom:6px;direction:ltr;line-height:1.6}
-.cb-ex-ar{font-size:.82rem;color:#6a6055;direction:rtl;text-align:right;line-height:1.55}
-
-.cb-hook{
-  background:linear-gradient(135deg,rgba(212,168,67,.09),rgba(212,168,67,.05));
-  border:1px solid rgba(212,168,67,.25);border-radius:9px;
-  padding:10px 13px;font-size:.85rem;color:#3a2e00;line-height:1.7;
-  position:relative;
-}
-.cb-hook::before{content:'🧠';position:absolute;top:10px;left:12px;font-size:.8rem}
-.cb-hook{padding-left:32px}
-
+.cb-inner{padding:20px 19px 18px;display:flex;flex-direction:column;gap:13px}
+.cb-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.58rem;
+  letter-spacing:.14em;text-transform:uppercase;color:#fff;padding:3px 10px;border-radius:3px}
+.cb-ans{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:#1a1710;line-height:1.55}
+.cb-div{height:1px;background:#d8ceb8}
+.cb-section-label{font-family:'JetBrains Mono',monospace;font-size:.54rem;letter-spacing:.14em;
+  color:#c9941a;text-transform:uppercase;margin-bottom:-4px}
+.cb-fact{font-size:.94rem;line-height:1.78;color:#2a2520;font-weight:400}
+.cb-fact strong{color:#1a1710;font-weight:700}
+.cb-fact em{font-style:normal;font-family:'JetBrains Mono',monospace;font-size:.88em;color:#1a4fa0}
+.cb-ex{background:#f2ede0;border:1px solid #d8ceb8;border-radius:8px;padding:12px 14px;display:flex;flex-direction:column;gap:7px}
+.cb-ex-label{font-family:'JetBrains Mono',monospace;font-size:.52rem;color:#8a8070;letter-spacing:.12em;text-transform:uppercase}
+.cb-ex-de{font-family:'JetBrains Mono',monospace;font-size:.82rem;color:#0d0d12;direction:ltr;line-height:1.6}
+.cb-ex-ar{font-size:.86rem;color:#4a3800;direction:rtl;text-align:right;line-height:1.6;border-top:1px solid #d8ceb8;padding-top:7px}
+.cb-hook{background:rgba(26,79,160,.06);border:1px solid rgba(26,79,160,.18);
+  border-radius:8px;padding:10px 13px;font-size:.87rem;color:#0d1a33;line-height:1.7}
+.cb-hook::before{content:'🔑 ';font-size:.82rem}
 .cb-back-row{text-align:center;padding-top:3px}
-.cb-back-btn{
-  background:transparent;border:1px solid #ccc4b0;color:#8a8070;
-  padding:7px 18px;border-radius:20px;cursor:pointer;
-  font-family:'Tajawal',sans-serif;font-size:.78rem;transition:all .2s;
-}
-.cb-back-btn:hover{border-color:var(--gold);color:#6a5000}
+.cb-back-btn{background:transparent;border:1px solid #d8ceb8;color:#8a8070;
+  padding:7px 18px;border-radius:18px;cursor:pointer;
+  font-family:'Tajawal',sans-serif;font-size:.8rem;transition:all .18s}
+.cb-back-btn:hover{border-color:#c9941a;color:#c9941a}
 
 /* ── DONE CARD ── */
-.done-card{
-  background:var(--card-face);border-radius:16px;padding:36px 22px;
-  text-align:center;margin-bottom:14px;
-  box-shadow:0 8px 32px rgba(0,0,0,.3);display:none;
-}
-.done-card.open{display:block;animation:pIn .4s ease}
-.done-title{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:#1a1614;margin-bottom:8px;font-style:italic}
+.done-card{background:#faf8f2;border-radius:13px;padding:34px 22px;text-align:center;
+  margin-bottom:14px;box-shadow:0 8px 28px rgba(0,0,0,.22);display:none}
+.done-card.open{display:block;animation:pIn .32s ease}
+.done-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#1a1710;margin-bottom:8px}
 .done-sub{font-size:.88rem;color:#8a8070;margin-bottom:22px;line-height:1.7}
-.done-btn{
-  background:var(--gold);color:#06070d;border:none;border-radius:9px;
-  padding:13px 28px;font-family:'Tajawal',sans-serif;
-  font-size:.92rem;font-weight:900;cursor:pointer;margin:4px;
-  transition:all .2s;box-shadow:0 4px 16px rgba(212,168,67,.3);
-}
-.done-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.done-btn{background:#c9941a;color:#0d0d12;border:none;border-radius:8px;
+  padding:12px 28px;font-family:'Tajawal',sans-serif;font-size:.95rem;font-weight:900;cursor:pointer;margin:4px}
+.done-btn:hover{background:#f0c040}
 
 /* ── NAV ── */
-.nav{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:12px}
-.nav-btn{
-  background:rgba(255,255,255,.04);border:1px solid var(--bd);
-  color:var(--dim);padding:12px 10px;border-radius:9px;
-  font-family:'Tajawal',sans-serif;font-size:.88rem;cursor:pointer;
-  transition:all .2s;text-align:center;
-}
-.nav-btn:hover{background:rgba(255,255,255,.08);color:var(--txt);border-color:var(--bd2)}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;gap:7px;align-items:center;margin-bottom:12px}
+.nav-btn{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.55);padding:11px 12px;border-radius:7px;
+  font-family:'Tajawal',sans-serif;font-size:.88rem;cursor:pointer;transition:all .18s;text-align:center}
+.nav-btn:hover{background:rgba(255,255,255,.09);color:#fff}
 .nav-btn:active{transform:scale(.96)}
-.nav-btn:disabled{opacity:.15;cursor:default;pointer-events:none}
-
-.flip-btn{
-  background:linear-gradient(135deg,var(--gold),#b8860b);
-  color:#06070d;border:none;
-  padding:12px 18px;border-radius:9px;
-  font-family:'Tajawal',sans-serif;font-size:.9rem;font-weight:900;
-  cursor:pointer;transition:all .2s;white-space:nowrap;
-  box-shadow:0 4px 16px rgba(212,168,67,.25);
-}
-.flip-btn:hover{background:linear-gradient(135deg,var(--gold2),var(--gold));transform:translateY(-1px)}
+.nav-btn:disabled{opacity:.18;cursor:default;pointer-events:none}
+.flip-btn{background:#c9941a;color:#0d0d12;border:none;padding:11px 18px;border-radius:7px;
+  font-family:'Tajawal',sans-serif;font-size:.92rem;font-weight:900;cursor:pointer;transition:all .18s;white-space:nowrap}
+.flip-btn:hover{background:#f0c040}
 .flip-btn:active{transform:scale(.96)}
+.ghost{display:block;width:100%;text-align:center;background:transparent;
+  border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.32);
+  padding:9px;border-radius:7px;cursor:pointer;
+  font-family:'Tajawal',sans-serif;font-size:.8rem;transition:all .18s}
+.ghost:hover{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.16)}
 
-.ghost{
-  display:block;width:100%;text-align:center;background:transparent;
-  border:1px solid var(--bd);color:var(--dim);
-  padding:10px;border-radius:8px;cursor:pointer;
-  font-family:'Tajawal',sans-serif;font-size:.8rem;transition:all .2s;
-}
-.ghost:hover{color:var(--txt);border-color:var(--bd2)}
+/* ── INTRO ── */
+.icats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:16px 0}
+.ic{border:2px solid;border-radius:9px;padding:15px 9px;text-align:center;cursor:pointer;
+  transition:all .2s;background:rgba(255,255,255,.02)}
+.ic:hover{transform:translateY(-2px);background:rgba(255,255,255,.05)}
+.ic-i{font-size:1.6rem;display:block;margin-bottom:5px}
+.ic-n{font-weight:700;font-size:.88rem;display:block;margin-bottom:2px}
+.ic-c{font-size:.64rem;color:#8a8070}
+.start-all{display:block;width:100%;background:linear-gradient(135deg,#c9941a,#e0a800);
+  color:#0d0d12;border:none;border-radius:9px;padding:15px;
+  font-size:.98rem;font-weight:900;font-family:'Tajawal',sans-serif;cursor:pointer;margin-top:5px}
+.start-all:hover{opacity:.9}
+.start-all:active{transform:scale(.98)}
 
 @media(max-width:380px){
-  .htitle{font-size:1.75rem}
-  .cf-word{font-size:.92rem}
-  .cf-q{font-size:1rem}
-  .cb-ans{font-size:.98rem}
+  .cf-word{font-size:.95rem}
+  .cf-q{font-size:.97rem}
+  .cb-ans{font-size:.97rem}
+  .cb-fact{font-size:.88rem}
 }
 </style>
 </head>
@@ -308,11 +171,11 @@ body::after{
   <div class="hdr">
     <div class="htitle">Wissens<span>karten</span></div>
     <div class="hsub">كروت المعرفة — الألمانية</div>
-    <div class="level-badge">✦ LEVEL A1.2 ✦</div>
+    <div class="level-badge">A1.2 — Frequenz & Funktion</div>
   </div>
-  <div style="color:rgba(255,255,255,.4);font-size:.85rem;text-align:center;line-height:1.9;margin-bottom:18px;padding:0 8px;font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic">
-    فروق دقيقة · لغة حقيقية · ما يقوله الألمان فعلاً<br>
-    <span style="color:var(--gold2);font-style:normal;font-family:'Tajawal',sans-serif;font-size:.85rem;letter-spacing:.03em">لا مفردات مدرسية — بل معرفة تُفرق المتحدث الحقيقي</span>
+  <div style="color:rgba(255,255,255,.45);font-size:.86rem;text-align:center;line-height:1.85;margin-bottom:18px;padding:0 4px">
+    كلمات تُستخدم يومياً · تعبيرات ثابتة جاهزة · مواقف من الحياة الحقيقية<br>
+    كل كرت يُجيب على سؤال: <strong style="color:#f0c040">ليش تحتاج هذا فعلاً؟</strong>
   </div>
   <div class="stats" id="istats"></div>
   <div class="icats" id="icats"></div>
@@ -324,9 +187,9 @@ body::after{
     <div class="htitle" style="font-size:1.3rem">🃏 <span>كروت المعرفة</span></div>
   </div>
   <div class="stats">
-    <div class="sc"><div class="sc-n" id="gCur">1</div><div class="sc-l">الكرت</div></div>
+    <div class="sc"><div class="sc-n" id="gCur">1</div><div class="sc-l">البطاقة</div></div>
     <div class="sc"><div class="sc-n" id="gTot">—</div><div class="sc-l">المجموع</div></div>
-    <div class="sc"><div class="sc-n" id="gSeen">0</div><div class="sc-l">قُرئ</div></div>
+    <div class="sc"><div class="sc-n" id="gSeen">0</div><div class="sc-l">تم الاطلاع</div></div>
   </div>
   <div class="dots" id="dots"></div>
   <div class="catstrip" id="catstrip"></div>
@@ -344,7 +207,7 @@ body::after{
       </div>
       <div class="cf-word" id="fword">—</div>
       <div class="cf-q" id="fq">—</div>
-      <div class="cf-hint">↩️ اضغط "اقلب" لكشف الإجابة والتفاصيل</div>
+      <div class="cf-hint">↩ اقلب البطاقة للإجابة والشرح</div>
     </div>
   </div>
 
@@ -354,9 +217,10 @@ body::after{
       <div><span class="cb-badge" id="bbadge">الإجابة</span></div>
       <div class="cb-ans" id="bans">—</div>
       <div class="cb-div"></div>
-      <div class="cb-fl">💡 المعرفة الأعمق</div>
+      <div class="cb-section-label">الشرح والاستخدام</div>
       <div class="cb-fact" id="bfact">—</div>
       <div class="cb-ex">
+        <div class="cb-ex-label">أمثلة</div>
         <div class="cb-ex-de" id="bde">—</div>
         <div class="cb-ex-ar" id="bar">—</div>
       </div>
@@ -368,7 +232,7 @@ body::after{
   </div>
 
   <div class="done-card" id="done">
-    <div class="done-title">🎉 أحسنت!</div>
+    <div class="done-title">تمّت الجولة</div>
     <div class="done-sub">أكملت جميع الكروت<br><strong id="done-count"></strong></div>
     <button class="done-btn" onclick="restartDeck()">🔀 إعادة عشوائية</button>
     <button class="done-btn" style="background:rgba(0,0,0,.08);color:#1a1710" onclick="goIntro()">⬡ الرئيسية</button>
@@ -379,349 +243,402 @@ body::after{
     <button class="flip-btn" id="flipbtn" onclick="flipCard()">↩ اقلب</button>
     <button class="nav-btn" id="next" onclick="go(1)">التالي →</button>
   </div>
-  <button class="ghost" onclick="goIntro()">← العودة للرئيسية</button>
+  <button class="ghost" onclick="goIntro()">← الرئيسية</button>
 </div>
 
 <script>
 const CATS={
-  wortschatz: {name:'المفردات',    icon:'📖', color:'#c9941a'},
-  phonetik:   {name:'الصوتيات',   icon:'🗣️', color:'#1a4fa0'},
-  grammatik:  {name:'القواعد',    icon:'📐', color:'#1a6b3c'},
-  kultur:     {name:'الثقافة',    icon:'🏛️', color:'#5c2d91'},
-  alltag:     {name:'الحياة اليومية', icon:'☕', color:'#c4610a'},
-  wortbildung:{name:'بناء الكلمات', icon:'🧩', color:'#0a6b6b'},
+  chunks:    {name:'تعبيرات ثابتة', icon:'💬', color:'#c9941a'},
+  kernverben:{name:'أفعال أساسية',  icon:'⚙️', color:'#1a4fa0'},
+  grammatik: {name:'قواعد',         icon:'📐', color:'#1a6b3c'},
+  alltag:    {name:'مواقف حياتية',  icon:'🏙️', color:'#c4610a'},
+  konnektoren:{name:'روابط',        icon:'🔗', color:'#7a1a6b'},
+  system:    {name:'نظام اللغة',    icon:'🧮', color:'#0a5a6b'},
 };
 
 const CARDS=[
-  // ══ WORTSCHATZ ══
-  {cat:'wortschatz',
-   word:'aufräumen ≠ putzen ≠ reinigen',
-   q:'لماذا "أنظّف غرفتي" لا تُترجم دائماً بـ putzen؟',
-   answer:'aufräumen=يُرتّب / putzen=يُنظّف الأوساخ / reinigen=ينظّف رسمياً — ثلاثة أفعال يخلطها المتعلمون',
-   fact:'غرفتك قد تكون مُرتَّبة (aufgeräumt) لكن متسخة — أو العكس. <strong>الأمهات الألمانيات يعرفن الفرق تماماً ولن يغفرن الخلط</strong>. reinigen يُستخدم في التعليمات الرسمية فقط.',
-   exDe:'"Räum dein Zimmer auf!" (رتّب!) ≠ "Putz das Bad!" (نظّف الوسخ!)',
-   exAr:'reinigen في التعليمات: "Nicht mit Wasser reinigen" — لا تنظّف بالماء',
-   hook:'auf+räumen = ضع في المكان الصح / putzen = أزل الوسخ — مختلفان تماماً'},
 
-  {cat:'wortschatz',
-   word:'ausmisten / entrümpeln',
-   q:'ما الفعل الذي يُقال حين تُنظّف غرفتك "كالحظيرة" أخيراً؟',
-   answer:'ausmisten = أصله إزالة روث الحيوانات — يُستخدم ساخراً للغرف والخزائن الفوضوية',
-   fact:'Mist = روث الحيوانات في الحظيرة. <strong>حين تقول لمراهق "Miste dein Zimmer aus!" فهي أبلغ من "aufräumen"</strong> — تقول له غرفتك كالحظيرة. entrümpeln = تفريغ المخزن من الأشياء القديمة.',
-   exDe:'"Ich muss endlich den Keller entrümpeln." — يجب تفريغ القبو من الكراكيب.',
-   exAr:'"Miste dein Zimmer aus!" للمراهق = رسالة قوية جداً عن مستوى الفوضى 😄',
-   hook:'Mist(روث) = أقصى درجات الفوضى. ausmisten = نظّف كما تُنظّف الحظيرة'},
+// ══════════════════════════════
+// CHUNKS — تعبيرات ثابتة (8)
+// ══════════════════════════════
+{cat:'chunks',
+ word:'keine Ahnung',
+ q:'كيف تقول "لا أعرف" بطريقة طبيعية بالألمانية اليومية؟',
+ answer:'"keine Ahnung" هو التعبير اللي تسمعه فعلاً في الحياة اليومية — أكثر بكثير من "ich weiß nicht',
+ fact:'"ich weiß nicht" صحيحة، لكن الناس ما تستخدمها بهالشكل في الواقع "keine Ahnung" هي ما تسمعه فعلاً. تُستخدم وحدها كجواب كامل أو في بداية جملة. الكلمة Ahnung تعني "حدس / توقع" — فـ"keine Ahnung" تعني حرفياً: لا حدس لديّ بالإجابة.',
+ exDe:'"Keine Ahnung, wo das ist." / "Keine Ahnung, was das kostet." / "Hast du eine Ahnung, wann er kommt?" — "Keine Ahnung."',
+ exAr:'"Keine Ahnung!" وحدها = لا أعرف. مع جملة: "Keine Ahnung, ob er kommt." — مع أي موضوع',
+ hook:'keine Ahnung = لا فكرة — أقصر وأسرع من ich weiß nicht'},
 
-  {cat:'wortschatz',
-   word:'verpeilen',
-   q:'ما الفعل الذي يقوله كل شاب ألماني حين ينسى شيئاً مهماً؟',
-   answer:'verpeilen = نسي تماماً / فقد الإشارة — عامية شائعة جداً بين الشباب',
-   fact:'Peilung = تحديد الاتجاه بالرادار. ver- = الضياع. <strong>verpeilen = فقد الإشارة كلياً</strong>. "verpeilt sein" كصفة = شخص مشتّت دائماً ومنسي. لا تُكتب في رسالة رسمية أبداً.',
-   exDe:'"Ich hab\' es total verpeilt, dich anzurufen." — نسيت تماماً أتصل بك.',
-   exAr:'"Du bist so verpeilt!" = أنت شخص منسي ومشتّت دائماً',
-   hook:'ver+Peilung(رادار) = فقد الإشارة = نسي كل شيء'},
+{cat:'chunks',
+ word:'auf jeden Fall',
+ q:'كيف تقول "بالتأكيد / حتماً" في جملة أو كرد منفرد؟',
+ answer:'"auf jeden Fall" = بالتأكيد، في كل الأحوال — تُستخدم وحدها أو في جملة',
+ fact:'من أكثر عبارات التأكيد والموافقة استخداماً في الألمانية المحكية. تعوض natürlich وsicher وbestimmt في كثير من السياقات. يمكن أن تكون الجملة كلها أو جزءاً منها.',
+ exDe:'"Kommst du morgen?" — "Auf jeden Fall!" / "Das mache ich auf jeden Fall." / "Auf jeden Fall kommen wir."',
+ exAr:'"Auf jeden Fall!" كرد = نعم بكل تأكيد. في جملة: "auf jeden Fall" يأتي في أي موضع',
+ hook:'na ja = "يعني" العربية تماماً — تردد خفيف بين الموافقة والتحفظ'},
+ // ══════════════════════════════
+// KERNVERBEN 
 
-  {cat:'wortschatz',
-   word:'der Muskelkater',
-   q:'لماذا تُسمى آلام العضلات بعد التمرين "خُمار العضلات"؟',
-   answer:'Kater = قطّ ذكر / أو خُمار ما بعد الكحول — الآلام تشبه حالة الخُمار',
-   fact:'Kater معناه الأول: قطّ ذكر 🐈. معناه الثاني: الحالة البائسة صباح اليوم التالي بعد شرب الكحول. <strong>Muskelkater يُشبّه ألم العضلات بهذه الحالة البائسة</strong>. الألم يظهر في اليوم الثاني غالباً لا الأول.',
-   exDe:'"Ich habe einen schrecklichen Muskelkater." — عضلاتي تؤلمني بشدة.',
-   exAr:'Muskelkater اليوم الثاني من التمرين = أسوأ من اليوم الأول دائماً',
-   hook:'Muskel+Kater = عضلة + خُمار — نفس الشعور البائس، مصدر مختلف'},
+{cat:'chunks',
+ word:'es gibt + Akkusativ',
+ q:'ما الفرق الحقيقي بين "es gibt" و"es ist" — ومتى تستخدم كل واحد؟',
+ answer:'"es gibt" = يوجد / هناك (للوجود العام) — دائماً مع Akkusativ. "es ist" للإشارة لشيء هنا الآن',
+ fact:'"es gibt" من أكثر التراكيب استخداماً في الألمانية وتأتي دائماً مع المفعول به (Akkusativ): "es gibt einen Park" لا "es gibt ein Park". "es gibt" للوجود العام أو السؤال عما هو متاح. "es ist/sind" للإشارة لشيء محدد في موقف بعينه.',
+ exDe:'"Es gibt hier einen guten Arzt." / "Es gibt kein Café in der Nähe." / "Was gibt es heute zu essen?"',
+ exAr:'"es gibt" + Akkusativ دائماً: einen(مذكر) / eine(مؤنث) / ein(محايد) / keinen/keine/kein للنفي',
+ hook:'es gibt = يوجد بشكل عام. Akkusativ بعدها دائماً. es gibt einen / eine / ein'},
 
-  {cat:'wortschatz',
-   word:'das Gift — Falsche Freunde',
-   q:'ما الكلمة التي تُصدم الناطقين بالإنجليزية حين يرونها في ألمانيا؟',
-   answer:'Gift بالألمانية = سُمّ — وليست "هدية" إطلاقاً!',
-   fact:'"Gift" الإنجليزية (هدية) و"Gift" الألمانية (سُمّ) متطابقتان في الكتابة ومتناقضتان في المعنى. <strong>هذا ما يُسمى "Falsche Freunde" = الأصدقاء الكاذبون بين اللغات</strong>. الهدية بالألمانية = das Geschenk فقط.',
-   exDe:'"Das ist kein Geschenk — das ist Gift für mich!" (ليست هدية — سُمّ لي!)',
-   exAr:'Gift Shop بالإنجليزية = محل هدايا. Gift Shop بالألمانية = محل سموم 😄',
-   hook:'Gift = سُمّ ☠️ — هدية الإنجليزية تقتل في الألمانية'},
+{cat:'chunks',
+ word:'ich hätte gern / ich möchte / ich will',
+ q:'كيف تطلب شيئاً في محل أو مطعم بالطريقة المناسبة؟',
+ answer:'"ich hätte gern" للطلب في المطعم/المحل / "ich möchte" للطلب العادي / "ich will" مباشر جداً للرفض',
+ fact:'"ich will" ليست وقحة لكنها مباشرة جداً في طلب شيء من شخص آخر — تناسب الرفض أكثر: "Ich will das nicht." "ich möchte" هي الخيار الأسلم في معظم المواقف. "ich hätte gern" هي الأنسب في المطعم والمحل لأنها تضيف مسافة مهذبة بشكل طبيعي.',
+ exDe:'"Ich hätte gern einen Kaffee, bitte." / "Ich möchte einen Termin vereinbaren." / "Das will ich nicht."',
+ exAr:'المطعم/المحل = hätte gern / طلب عادي = möchte / رفض مباشر = will nicht',
+ hook:'hätte gern(مطعم/محل) → möchte(طلب عادي) → will nicht(رفض). ثلاثة سياقات، ثلاثة تعبيرات'},
 
-  {cat:'wortschatz',
-   word:'ausnahmsweise',
-   q:'ما الكلمة الواحدة التي تعني "فقط هذه المرة كاستثناء"؟',
-   answer:'ausnahmsweise = باستثناء — أفعل هذا فقط اليوم كاستثناء من القاعدة',
-   fact:'Ausnahme = استثناء. <strong>ausnahmsweise هي الكلمة التي تُنقذك أمام الطبيب حين تفوّت تمريناً، أو أمام المدرّب حين تأكل الحلوى</strong>. "Nur ausnahmsweise" = مرة واحدة فقط.',
-   exDe:'"Ausnahmsweise lasse ich das Training heute ausfallen."',
-   exAr:'= اليوم فقط كاستثناء لن أتمرن — وكلنا نقول هذا كثيراً جداً 😄',
-   hook:'Ausnahme(استثناء)+weise(بطريقة) = بطريقة استثنائية هذه المرة'},
+{cat:'chunks',
+ word:'Bescheid sagen / Bescheid geben',
+ q:'ما التعبير الذي تسمعه في كل مكتب وعيادة حين يطلبون منك الإخبار؟',
+ answer:'"Bescheid sagen" أو "Bescheid geben" = يُخبر / يُبلّغ — من أكثر تعبيرات التواصل استخداماً',
+ fact:'Bescheid = إشعار رسمي. تسمعه في العيادة: "Geben Sie mir Bescheid." وفي المكتب: "Sagen Sie mir Bescheid, wenn Sie fertig sind." هذا التعبير يغطي الإخبار بأي نوع من التواصل، وأكثر طبيعية من "informieren" في الحياة اليومية.',
+ exDe:'"Sag mir Bescheid, wenn du ankommst." / "Kann ich Ihnen Bescheid geben?" / "Ich gebe dir Bescheid."',
+ exAr:'"Bescheid geben" أو "Bescheid sagen" — كلاهما صحيح ومتبادل. المعنى: سأُخبرك / أخبرني',
+ hook:'Bescheid sagen/geben = أخبر/سأخبر. ابحث عنها في كل موقف رسمي ويومي'},
 
-  {cat:'wortschatz',
-   word:'die Naschkatze / knabbern / naschen',
-   q:'ما الفرق بين naschen و knabbern وكيف تصف شغوف الحلوى؟',
-   answer:'naschen = يأكل حلوى خفية / knabbern = يأكل مقرمشات بدون جوع / Naschkatze = مدمن الحلوى',
-   fact:'Naschkatze = "القطة المتلصصة على الحلوى". القطة تسرق الطعام بصمت وخفة. <strong>تُستخدم للأطفال والكبار بلطف وحنان</strong>، ليست إهانة. knabbern = المضغ البطيء لمقرمشات دون جوع حقيقي.',
-   exDe:'"Sie ist eine echte Naschkatze — immer Schokolade dabei!"',
-   exAr:'naschen للحلوى / knabbern للمقرمشات (Chips, Nüsse) — فرق دقيق مهم',
-   hook:'Nasch+Katze = قطة الحلوى التي تتلصص — صورة لا تُنسى'},
+{cat:'chunks',
+ word:'Das stimmt. / Genau. / Eben!',
+ q:'كيف توافق على كلام شخص آخر بطريقة تُظهر أنك تسمع فعلاً؟',
+ answer:'"Das stimmt." = هذا صحيح / "Genau." = بالضبط / "Eben!" = تماماً — ثلاثة مستويات للموافقة',
+ fact:'"Ja, ja" المتكرر يبدو غير مهتم. هذه الثلاثة من أكثر ردود الموافقة استخداماً وأكثرها طبيعية. "Genau" الأكثر استخداماً في الثلاثة. "Eben!" للتأكيد القوي حين تريد قول "هذا بالضبط ما قلته أنا أيضاً".',
+ exDe:'"Der Zug war zu spät." — "Das stimmt, leider." / "Genau, das habe ich auch gedacht!" / "Eben!"',
+ exAr:'genau = بالضبط (الأكثر استخداماً) / das stimmt = هذا صحيح / eben = هذا تماماً ما قصدت',
+ hook:'genau = بالضبط
+كلمة بسيطة — لكنها تخليك تبان فاهم ومتابع'},
 
-  {cat:'wortschatz',
-   word:'vergeben / ledig / verheiratet',
-   q:'كيف تقول أنك "في علاقة" في الألمانية حتى بدون زواج؟',
-   answer:'vergeben sein = "محجوز/موزَّع" — تعبير يومي للعلاقة غير الرسمية',
-   fact:'في الاستمارات الرسمية: verheiratet/ledig/geschieden/verwitwet. لكن في المحادثة اليومية <strong>"vergeben sein" هو الجواب حين أنت في علاقة دون زواج</strong>. حرفياً: "تم توزيعي/إعطائي لشخص آخر".',
-   exDe:'"Bist du vergeben?" — هل أنت في علاقة؟ / "Ja, ich bin vergeben."',
-   exAr:'ledig = أعزب (للاستمارات الرسمية فقط) / vergeben = للمحادثة اليومية',
-   hook:'vergeben = وُزِّع/أُعطي لشخص — قلبك "مُعطى" لآخر'},
+{cat:'chunks',
+ word:'sich melden',
+ q:'ما التعبير الذي يعني "سأتواصل معك" بأي طريقة كانت؟',
+ answer:'"Ich melde mich." = سأتواصل معك — يشمل الهاتف والرسالة والبريد دون تحديد الطريقة',
+ fact:'"sich melden" = التواصل بأي وسيلة. "Ich melde mich morgen" = سأتواصل غداً — دون الحاجة لتحديد إذا كان هاتفاً أو رسالة. من أكثر جمل إنهاء المحادثة والاتفاقيات اليومية استخداماً.',
+ exDe:'"Ich melde mich, wenn ich Bescheid weiß." / "Melde dich bitte!" / "Hat er sich schon gemeldet?"',
+ exAr:'"sich melden" = أتواصل. "Melde dich!" = تواصل معي! طلب مباشر وصريح. يعمل مع كل أشكال التواصل',
+ hook:'sich melden = سأتواصل معك — تعبير مرن يشمل كل وسائل التواصل'},
 
-  // ══ PHONETIK ══
-  {cat:'phonetik',
-   word:'Hochzeit: das kurze O',
-   q:'لماذا ينطق الألمان "Hochzeit" بـ O قصيرة رغم أن "hoch" وحدها طويلة؟',
-   answer:'النطق يتغير في الكلمات المركبة — hoch وحدها طويلة، لكن Hochzeit تُقصَّر',
-   fact:'<em>hoch</em> وحدها = O طويلة [هوـخ]. في <em>Hochzeit</em> = O قصيرة [هُخ-تسايت]. <strong>هذا خطأ يكشف المتعلمين حتى في المستويات المتقدمة</strong>. لا قاعدة واضحة — احفظها كاستثناء.',
-   exDe:'hoch = [هوـخ] طويلة / Hochzeit = [هُخ-تسايت] قصيرة',
-   exAr:'والتشابه: الـ z في Hochzeit تُنطق [تس] لا [ز] — زوجان من الأخطاء معاً!',
-   hook:'Hoch+Zeit = العرس — لكن الـ O تتقلص. احفظها كما هي.'},
+{cat:'chunks',
+ word:'na ja / na und? / na, wie war es?',
+ q:'ما وظيفة الكلمة الصغيرة "na" وكيف تتغير بمجرد تغيير ما يأتي بعدها؟',
+ answer:'"na ja" = يعني / ما أدري تماماً / "na und?" = وماذا في ذلك؟ / "Na, wie war es?" = حسناً كيف كان؟',
+ fact:'"na" من الأدوات الأكثر تعدداً وظيفياً في الألمانية المحكية. "na ja" = تردد خفيف أو رأي محتاط، يشبه "يعني" بالعربية. "na und?" = تحدٍّ أو عدم اكتراث. "Na!" وحدها = تحذير خفيف أو استئناف. النبرة تحدد المعنى أكثر من الكلمة نفسها.',
+ exDe:'"War das gut?" — "Na ja, es geht so." / "Na, wie war der Film?" / "Na und? Das ist mir egal."',
+ exAr:'"na ja" = يعني، لا بأس / "na und?" = وماذا في ذلك؟ / "Na, wie war es?" = حسناً، كيف كان؟',
+ hook:'na ja = "يعني" العربية تماماً — تردد خفيف بين الموافقة والتحفظ'},
 
-  {cat:'phonetik',
-   word:'heiser ≠ heißer',
-   q:'كيف تقول "صوتي أجشّ" دون أن يُفهم "الجو أشد حرارة"؟',
-   answer:'heiser=[هايزر] (سين عادية) = أجشّ / heißer=[هايسر] (سين مشدّدة) = أكثر حرارة',
-   fact:'"Ich bin heiser" (صوتي أجشّ) و"Es wird heißer" (الجو يسخن) تبدوان متشابهتين. <strong>الفرق: ß تُنطق كـ ss حادة مشدّدة</strong>. الخلط يسبب مواقف محرجة جداً عند الطبيب.',
-   exDe:'"Ich bin heiser." (أجشّ) — s عادية / "Es ist heißer." — ss مشدّدة',
-   exAr:'عند طبيب الأنف والحنجرة: قل heiser بوضوح. ß = ss مشدّدة دائماً',
-   hook:'heiser(أجشّ) = s واحدة ناعمة / heißer(أحر) = ß = ss مشدّدة'},
+// ══════════════════════════════
+// KERNVERBEN — أفعال أساسية (7)
+// ══════════════════════════════
+{cat:'kernverben',
+ word:'machen — feste Verbindungen',
+ q:'لماذا "machen" من أكثر الأفعال استخداماً وما أبرز تعبيراتها الثابتة؟',
+ answer:'"machen" يظهر في: Urlaub machen، Sport machen، Pause machen، Fotos machen، das macht nichts',
+ fact:'"machen" من بين أكثر 30 فعلاً استخداماً في الألمانية. يدخل في مئات التعبيرات الثابتة. "das macht nichts" = لا يهم. "Mach dir keine Sorgen" = لا تقلق. "Was machst du?" = ماذا تفعل/تعمل. تعلّمه مع كولوكيشنز مباشرة أجدى من تعلمه بمعنى مجرد.',
+ exDe:'"Ich mache Urlaub." / "Mach eine Pause!" / "Das macht nichts." / "Was machst du beruflich?"',
+ exAr:'Urlaub machen = يأخذ إجازة / Pause machen = يأخذ استراحة / Fotos machen = يلتقط صوراً',
+ hook:'machen + اسم نشاط = يمارس/يأخذ. القاعدة تنطبق على عشرات النشاطات'},
 
-  {cat:'phonetik',
-   word:'-ig am Ende: [ɪç]',
-   q:'كيف تُنطق نهاية -ig في كلمات مثل "richtig" و"fertig"؟',
-   answer:'-ig في نهاية الكلمة تُنطق [إش] في الألمانية المعيارية — ليس [إغ]',
-   fact:'"richtig" لا تُنطق [ريختيغ] بل [ريختيش]. كذلك fertig=[فيرتيش]، ruhig=[روهيش]، König=[كونيش]. <strong>هذا الخطأ يكشف المتعلم فوراً</strong>. مصدره التأثير المباشر للكتابة.',
-   exDe:'richtig=[ريختيش] / fertig=[فيرتيش] / ruhig=[روهيش] / König=[كونيش]',
-   exAr:'في اللهجات البافارية والجنوبية: [إغ] مقبولة. لكن في Hochdeutsch: [إش]',
-   hook:'-ig آخر الكلمة → قُل [إش] دائماً — الكتابة تخدعك هنا'},
+{cat:'kernverben',
+ word:'gehen / kommen — Perspektive',
+ q:'متى تقول "ich gehe" ومتى "ich komme" عند الحديث عن نفس التنقل؟',
+ answer:'"gehen" = تغادر من مكانك الحالي / "kommen" = تصل إلى مكان المستمع — المنظور يحدد الاختيار',
+ fact:'الفرق يشبه go/come في الإنجليزية: المتحدث يستخدم "kommen" حين يتكلم من منظور الوجهة أو المستمع. "Ich komme zu dir" = من منظور مكانك أنت. "Ich gehe jetzt" = أغادر من هنا. الخطأ الشائع: "ich gehe zu dir" حين تقصد "ich komme zu dir".',
+ exDe:'"Ich gehe jetzt nach Hause." / "Ich komme morgen zu dir." / "Kommst du heute Abend?"',
+ exAr:'"komm her" = تعال إليّ / "geh weg" = ابتعد. المنظور هو المفتاح لا الاتجاه الجغرافي',
+ hook:'kommen = أصل إليك (منظور الوجهة) / gehen = أغادر من هنا (منظور البداية)'},
 
-  {cat:'phonetik',
-   word:'Satzmelodie: ↗ vs. ↘',
-   q:'كيف تعرف من النغمة وحدها إن كانت الجملة سؤالاً أم خبراً؟',
-   answer:'أسئلة نعم/لا: النغمة ترتفع ↗ في النهاية / أسئلة W: تنخفض ↘',
-   fact:'"Kommst du?" ↗ — الصوت يصعد. "Woher kommst du?" ↘ — الصوت ينزل. <strong>هذا النظام النغمي يجعل كلامك طبيعياً أو مصطنعاً</strong>. معظم المتعلمين ينطقون كل شيء بنفس النغمة.',
-   exDe:'↗ "Hast du Hunger?" / ↘ "Was hast du gegessen?"',
-   exAr:'↗ = هل...؟ (تصعد في النهاية) / ↘ = كيف/أين/متى (تنزل)',
-   hook:'↗ نعم/لا / ↘ معلومات — النغمة تقول كل شيء قبل الكلمة'},
+{cat:'kernverben',
+ word:'wissen ≠ kennen',
+ q:'لماذا لا تكفي كلمة واحدة لـ "know" الإنجليزية وتحتاج كلمتين في الألمانية؟',
+ answer:'"wissen" = يعلم معلومة (مع جملة) / "kennen" = يعرف شخصياً (مع اسم مباشر)',
+ fact:'"Ich weiß, wo er wohnt." = معلومة. "Ich kenne ihn." = معرفة شخصية. هذا التمييز موجود في العربية أيضاً: "أعلم" vs "أعرف". wissen يأتي مع جملة (dass/wo/wie/ob). kennen يأتي مع اسم مباشر بدون رابط.',
+ exDe:'"Ich weiß nicht, wie spät es ist." / "Kennen Sie diese Straße?" / "Ich weiß das, aber ich kenne ihn nicht."',
+ exAr:'wissen + dass/ob/wo/wie (معلومة) / kennen + اسم (شخص أو مكان تعرفه شخصياً)',
+ hook:'wissen = أعلم + جملة / kennen = أعرف + اسم مباشر. أعلم أن... / أعرف فلاناً'},
 
-  // ══ GRAMMATIK ══
-  {cat:'grammatik',
-   word:'Passiv: wird + Partizip II',
-   q:'ما الصيغة التي تسمعها في كل عيادة طبيب ومكتب حكومي؟',
-   answer:'"Was soll gemacht werden?" — المبني للمجهول: werden + Partizip II',
-   fact:'في عيادة الطبيب: "Was soll heute gemacht werden?" (ماذا نعمل لك اليوم؟). الفاعل غير مهم — <strong>المهم ما يُفعَل</strong>. هذا المبني للمجهول أبسط بكثير مما يُدرَّس.',
-   exDe:'"Das Formular muss ausgefüllt werden." / "Wann kann geliefert werden?"',
-   exAr:'الترتيب: werden في الموضع الثاني + Partizip في النهاية دائماً',
-   hook:'werden(موضع 2) + Partizip(النهاية) = يُفعَل — الفاعل يختفي'},
+{cat:'kernverben',
+ word:'sagen / sprechen / reden',
+ q:'ما الفرق بين الأفعال الثلاثة التي تعني "الكلام" واستخدامها؟',
+ answer:'"sagen" = يقول محتوى محدد / "sprechen" = يتكلم (لغة أو رسمياً) / "reden" = يتحدث غير رسمياً',
+ fact:'"sagen" للمحتوى: "Was hat er gesagt?" "sprechen" للغة والحديث الرسمي: "Sprechen Sie Deutsch?" الخطأ الشائع: "Ich sage Deutsch" — خطأ. يجب "Ich spreche Deutsch". "reden" للمحادثة المطوّلة: "Wir müssen reden." جملة جدية بنبرة مهمة.',
+ exDe:'"Er hat gesagt, dass er kommt." / "Sprechen Sie Englisch?" / "Wir müssen reden."',
+ exAr:'Deutsch sprechen (اللغة دائماً مع sprechen) / über etwas reden (موضوع) / sagen + محتوى',
+ hook:'sprechen Deutsch (لغة) / reden über (موضوع) / sagen was (محتوى). ثلاث وظائف منفصلة'},
 
-  {cat:'grammatik',
-   word:'beim + Infinitiv (Nominalisierung)',
-   q:'كيف تقول "أثناء التمرين" في جملة ألمانية طبيعية؟',
-   answer:'beim + فعل بحرف كبير = أثناء... — أي فعل يصير اسماً محايداً',
-   fact:'"beim Trainieren" = أثناء التمرين. "beim Essen" = أثناء الأكل. <strong>أي فعل يمكن تحويله لاسم بكتابة حرف أكبر في أوله</strong>. كلها محايدة (das) تلقائياً — لا تفكير في الجنس!',
-   exDe:'"Beim Lesen höre ich keine Musik." / "Beim Kochen trinke ich Wein." 🍷',
-   exAr:'beim = bei + dem. الاسم المحوّل دائماً das — لا تفكير في الجنس',
-   hook:'beim+فعل كبير = أثناء... الفعل يصير اسماً بحرف كبير فقط'},
+{cat:'kernverben',
+ word:'nehmen — feste Verbindungen',
+ q:'ما أبرز استخدامات "nehmen" في الحياة اليومية بخلاف "يأخذ" الحرفية؟',
+ answer:'"nehmen" في: Bus/Zug nehmen، Medikamente nehmen، Platz nehmen، Rücksicht nehmen',
+ fact:'"nehmen" يظهر في عشرات التعبيرات الثابتة. "Nehmen Sie Platz" = تفضل بالجلوس (رسمي). "Das nehme ich" = سآخذ هذا (في المحل). "Rücksicht nehmen" = يراعي/يحترم الآخرين. "ernst nehmen" = يأخذ بجدية.',
+ exDe:'"Nehmen Sie den Bus Nummer 7." / "Ich nehme die Tablette zweimal täglich." / "Nehmen Sie bitte Platz."',
+ exAr:'Platz nehmen = يجلس / ernst nehmen = يأخذ بجدية / Rücksicht nehmen = يراعي / Bus nehmen = يركب الحافلة',
+ hook:'nehmen + اسم = تعبير ثابت. تعلّم: Platz / Bus / Tablette / Rücksicht nehmen'},
 
-  {cat:'grammatik',
-   word:'nicht nur... sondern auch',
-   q:'ما الربط الذي يُظهر فوراً مستوى لغوياً أعلى في الكتابة والكلام؟',
-   answer:'nicht nur... sondern auch = ليس فقط... بل أيضاً — يربط فكرتين ويُقوّيهما معاً',
-   fact:'"Ich treibe nicht nur Sport, sondern ernähre mich auch gesund." — جملة واحدة بدل جملتين. <strong>هذا النمط يُظهر تحكماً في الربط المنطقي</strong>، مطلوب في B1 وما فوق لكن يمكن تعلمه الآن.',
-   exDe:'"Sie ist nicht nur klug, sondern auch sehr freundlich."',
-   exAr:'nicht nur → الجملة الأولى / sondern auch → إضافة أقوى من "und"',
-   hook:'nicht nur(ليس فقط) → انتظر sondern auch(بل أيضاً) — زوج لا يفترق'},
+{cat:'kernverben',
+ word:'brauchen — positiv und negativ',
+ q:'ما الفرق بين استخدام "brauchen" في الإيجاب والنفي وكيف يُغني عن müssen؟',
+ answer:'"ich brauche" = أحتاج / "nicht brauchen zu" = لا داعي لـ — بديل مهم لـ nicht müssen',
+ fact:'"Du musst nicht kommen" = لا يجب عليك المجيء. "Du brauchst nicht zu kommen" = لا داعي لمجيئك — أقرب للطمأنة. في الكلام اليومي يُستخدم أحياناً بدون "zu": "Du brauchst nicht kommen." كلاهما مسموع. "Ich brauche" في الإيجاب = أحتاج.',
+ exDe:'"Was brauchst du?" / "Du brauchst keine Angst zu haben." / "Ich brauche Hilfe, bitte."',
+ exAr:'"brauchen" إيجاب = أحتاج / "nicht brauchen" = لا داعي. أوضح وأسلس من التفكير في müssen/dürfen',
+ hook:'brauchen = أحتاج / nicht brauchen zu = لا داعي لـ. يغني عن "nicht müssen" في كثير من المواقف'},
 
-  {cat:'grammatik',
-   word:'sich + Reflexivverben',
-   q:'ما الأفعال التي "تعكس" على نفسك ولا تعمل بدون "sich"؟',
-   answer:'sich erkälten، sich verloben، sich verschlucken، sich beschweren — كلها لا تعمل بدون sich',
-   fact:'"Ich habe mich erkältet." (أُصبت بزكام) — لا يُقال بدون sich. كذلك <em>sich beschweren</em> (يشكو)، <em>sich verabschieden</em> (يودّع). <strong>الأفعال التي تحدث "مع ذاتك" تحتاج sich دائماً</strong>.',
-   exDe:'"Ich muss mich bei der Chefin beschweren." — يجب أن أشكو للمديرة.',
-   exAr:'sich = علامة الفعل المنعكس — صحّتك وعواطفك وعلاقاتك غالباً تحتاجه',
-   hook:'sich = نفسك. الزكام والشرق والوداع — كلها تحدث "معك أنت"'},
+{cat:'kernverben',
+ word:'lassen — vier Verwendungen',
+ q:'كيف يختلف فعل "lassen" حسب السياق وما وظائفه الأربع الأهم؟',
+ answer:'"lassen" = يترك / يدع / يجعل شخصاً يفعل / يُصلّح شيئاً عند متخصص',
+ fact:'(1) يترك: "Lass mich in Ruhe!" = اتركني. (2) يسمح: "Ich lasse dich gehen." = أدعك تذهب. (3) يطلب من آخر: "Ich lasse das Auto reparieren." = أُعطيه للميكانيكي. (4) في التعبيرات: "sich waschen lassen" = يمكن غسله. من أكثر الأفعال تعدداً في الألمانية.',
+ exDe:'"Lass mich in Ruhe!" / "Ich lasse das Fenster auf." / "Er lässt sich die Haare schneiden."',
+ exAr:'Ruhe lassen = اترك بسلام / auf lassen = يترك مفتوحاً / reparieren lassen = يُعطيه للإصلاح',
+ hook:'lassen = يترك/يدع/يجعل. "Lass mich" = اتركني. "lassen + Infinitiv" = يجعل/يُعطي للـ'},
 
-  {cat:'grammatik',
-   word:'seit + Präsens',
-   q:'لماذا يتفاجأ العرب من استخدام المضارع مع "منذ" في الألمانية؟',
-   answer:'seit + مضارع = الفعل لا يزال مستمراً — العربية تستخدم الماضي، الألمانية المضارع',
-   fact:'بالعربية: "أنا هنا منذ ساعتين" — ماضٍ. بالألمانية: "Ich bin seit zwei Stunden hier" — مضارع! <strong>لأن الحدث لم ينتهِ بعد، الألمانية تُعبّر بالمضارع</strong>. منطق مختلف تماماً.',
-   exDe:'"Ich lerne seit drei Monaten Deutsch." — أتعلم ألمانياً منذ 3 أشهر.',
-   exAr:'القاعدة: لا يزال يحدث الآن؟ استخدم المضارع مع seit — دائماً',
-   hook:'seit = منذ + مضارع — الحدث لم ينتهِ، إذاً لا ماضي'},
+// ══════════════════════════════
+// GRAMMATIK — قواعد (10)
+// ══════════════════════════════
+{cat:'grammatik',
+ word:'Verbzweitstellung — immer',
+ q:'ما القاعدة الأهم في بناء الجملة الألمانية وكيف تعمل حين لا يبدأ الفاعل الجملة؟',
+ answer:'الفعل المُصرَّف دائماً في الموضع الثاني — حتى حين يبدأ الجملة ظرف أو مكان أو موضوع',
+ fact:'هذه القاعدة لا استثناء لها في الجمل الرئيسية. الموضع الثاني يعني: أي شيء في الأول + الفعل مباشرة بعده + الباقي. حين تبدأ بكلمة غير الفاعل، الفاعل يتأخر لما بعد الفعل: "Morgen komme ich." — "ich" جاء بعد الفعل.',
+ exDe:'"Ich komme morgen." / "Morgen komme ich." / "Leider kann ich nicht kommen." — الفعل دائماً ثانٍ',
+ exAr:'الموضع 1: أي شيء / الموضع 2: الفعل دائماً / بعده: الباقي. مخالفة هذا تجعل الجملة مستغربة',
+ hook:'P2 = الفعل في الموضع الثاني دائماً. قبله أي شيء تريد، بعده الباقي بحرية نسبية'},
 
-  {cat:'grammatik',
-   word:'Konjunktiv II: hätte / wäre',
-   q:'ما أبسط صيغة لقول "كنت سأفعل" و"لو كنت" في الألمانية؟',
-   answer:'hätte = كان لديّ/كنت سأ / wäre = كنت — بابا التمني والندم في الألمانية',
-   fact:'"Ich hätte mehr gelernt." (كنت سأتعلم أكثر). "Ich wäre früher gekommen." (كنت سآتي مبكراً). <strong>هاتان الكلمتان تفتحان باب التعبير عن الندم والتمني</strong> — أكثر ما يُستخدم من Konjunktiv II.',
-   exDe:'"Das hätte ich nicht gedacht!" — لم أكن لأتوقع هذا أبداً!',
-   exAr:'hätte+Partizip = كنت سأ... / wäre+Partizip = كنت قد... — الزوج الأهم',
-   hook:'hätte+wäre = "لو كنت..." — أكثر كلمتَي ندم وتمني في الألمانية'},
+{cat:'grammatik',
+ word:'Modalverben: können / müssen / wollen / dürfen / sollen / mögen',
+ q:'كيف تبني جملة بفعل Modal وأين يذهب الفعل الرئيسي؟',
+ answer:'Modal مُصرَّف في الموضع الثاني + الفعل الرئيسي كـ Infinitiv في نهاية الجملة — دائماً',
+ fact:'البنية ثابتة بلا استثناء: [اسم] + [modal مُصرَّف] + [كلمات أخرى] + [Infinitiv في النهاية]. "Ich kann heute nicht kommen." التصريف الأهم: ich kann/muss/will، du kannst/musst/willst، er/sie/es kann/muss/will. كلها شاذة في المفرد — تحتاج حفظاً.',
+ exDe:'"Ich kann dir helfen." / "Du musst das nicht machen." / "Wir wollen morgen fahren."',
+ exAr:'Modal(موضع 2) مُصرَّف + Infinitiv(نهاية الجملة). البنية لا تتغير لأي فعل modal',
+ hook:'Modal يقود في الوسط، Infinitiv ينتظر في النهاية — نمط واحد ثابت للستة كلها'},
 
-  {cat:'grammatik',
-   word:'TeKaMoLo: Wortstellung',
-   q:'ما الترتيب السحري للظروف في الجملة الألمانية؟',
-   answer:'Te(متى)+Ka(لماذا)+Mo(كيف)+Lo(أين) — هذا الترتيب يجعل جملتك طبيعية',
-   fact:'"Ich fahre morgen(Te) mit dem Bus(Mo) in die Stadt(Lo)." — الزمان قبل الطريقة قبل المكان. <strong>مخالفة هذا الترتيب لا تمنع الفهم لكنها تكشف المتعلم فوراً</strong> أمام الناطق الأصلي.',
-   exDe:'"Ich gehe morgen(T) mit Freunden(M) ins Kino(L)."',
-   exAr:'TeKaMoLo = اختصار يُحفظ ويُغيّر مستواك. الترتيب ثابت لا يتغير.',
-   hook:'Te-Ka-Mo-Lo = متى-لماذا-كيف-أين — أربعة بالترتيب دائماً'},
+{cat:'grammatik',
+ word:'Negation: kein / nicht',
+ q:'كيف تنفي الاسم والفعل بالطريقة الصحيحة — ومتى تختار أيهما؟',
+ answer:'"kein" ينفي الاسم النكرة (حيث يمكن أن يكون "ein") / "nicht" ينفي الفعل أو الصفة أو الاسم المعرفة',
+ fact:'"kein" يتصرف مثل "ein/eine/ein" لكن بمعنى النفي. "Ich habe kein Geld" (لأنك كنت ستقول "ein Geld" في الإيجاب). "nicht" للفعل: "Ich komme nicht." للصفة: "Das ist nicht gut." للاسم المعرف: "Das ist nicht der Arzt." القاعدة: اسأل — هل يوجد مكان "ein" هنا؟ نعم → kein. لا → nicht.',
+ exDe:'"Ich habe keine Zeit." / "Ich verstehe das nicht." / "Das ist nicht richtig." / "Er ist kein Arzt."',
+ exAr:'اسم نكرة (يمكن قبله "ein") → kein/keine/kein. كل شيء آخر → nicht',
+ hook:'اسم نكرة + نفي = kein. "ein Arzt" → "kein Arzt". كل شيء آخر → nicht'},
 
-  // ══ KULTUR ══
-  {cat:'kultur',
-   word:'die Sprechstundenhilfe',
-   q:'من هي الشخصية الأقوى في عيادة الطبيب الألمانية — وليست الطبيب؟',
-   answer:'الموظفة التي تستقبلك وتمنحك المواعيد — بدونها لا تصل للطبيب أبداً',
-   fact:'Sprechstunde = ساعة الحديث مع الطبيب. Hilfe = مساعِدة. <strong>هي التي تقرر: "اليوم أم بعد أسبوعين؟"</strong> — كن مهذباً جداً معها. مع الطبيب يكفي أن تكون صادقاً.',
-   exDe:'"Ich hätte gerne einen Termin bei Doktor Müller, bitte."',
-   exAr:'قاعدة الحياة: الموظفة في الاستقبال أهم من الطبيب — في ألمانيا وغيرها',
-   hook:'Sprech+Stunden+Hilfe = مساعِدة ساعات الكلام — حارسة باب الطبيب'},
+{cat:'grammatik',
+ word:'Perfekt: haben + Partizip II',
+ q:'كيف تتحدث عن الماضي في الألمانية المحكية اليومية؟',
+ answer:'haben مُصرَّف (موضع 2) + Partizip II (نهاية الجملة) — هذا هو ماضي المحادثة الطبيعي',
+ fact:'Präteritum (كنت، ذهبت) موجود لكنه للكتابة في الغالب. في المحادثة اليومية يستخدم الألمان Perfekt حتى للأحداث البعيدة. Partizip II للأفعال المنتظمة: ge- + جذر الفعل + t. مثال: machen → gemacht، kaufen → gekauft، lernen → gelernt.',
+ exDe:'"Ich habe heute gearbeitet." / "Hast du das gemacht?" / "Wir haben zusammen Deutsch gelernt."',
+ exAr:'ge+Stamm+t للمنتظمة. haben مُصرَّف في الوسط + Partizip في النهاية. هذا الماضي المحكي',
+ hook:'haben (موضع 2) + ge-Stamm-t (نهاية) = الماضي في المحادثة. Präteritum للكتابة'},
 
-  {cat:'kultur',
-   word:'sich krankmelden',
-   q:'ما الإجراء الصحيح حين تمرض في ألمانيا ولا تستطيع الذهاب للعمل؟',
-   answer:'أخبر صاحب العمل صباحاً قبل دوامك — بعد 3 أيام يجب شهادة طبية',
-   fact:'sich krankmelden = يُخطر عن مرضه. <strong>الاتصال يجب أن يكون قبل بدء الدوام، لا بعده</strong>. بعد 3 أيام تحتاج "Krankmeldung" أو AU-Schein من الطبيب. تأخير الإخبار خطأ مهني فادح.',
-   exDe:'"Ich muss mich heute leider krankmelden." — أضطر للإخبار عن مرضي اليوم.',
-   exAr:'اتصل الساعة 8 صباحاً — لا الساعة 11. هذا الفرق مهم ثقافياً جداً',
-   hook:'krank+melden = أبلّغ عن مرضي — صباحاً دائماً، قبل الدوام'},
+{cat:'grammatik',
+ word:'Perfekt mit sein — welche Verben?',
+ q:'أي الأفعال تستخدم "sein" بدل "haben" في الماضي وما القاعدة؟',
+ answer:'أفعال الحركة من مكان لمكان + التغيير في الحالة تستخدم sein. الباقي haben',
+ fact:'القاعدة: هل تحرّك الشخص من نقطة A إلى B؟ → sein. هل حدث تغيير في الحالة (نام، استيقظ)؟ → sein. الباقي → haben. الأفعال الأهم مع sein: gehen، kommen، fahren، fliegen، laufen، ankommen، aufstehen، einschlafen. auch: bleiben، sein، werden.',
+ exDe:'"Ich bin nach Hause gegangen." / "Sie ist um 7 aufgestanden." / "Er ist eingeschlafen."',
+ exAr:'gehen, kommen, fahren, fliegen → sein / essen, trinken, arbeiten, kaufen → haben',
+ hook:'حركة من A→B → sein. تغيير في الحالة → sein. ما تبقى → haben. الشك؟ اسأل: هل تحرّك؟'},
 
-  {cat:'kultur',
-   word:'Erkältung vs. Grippe',
-   q:'لماذا يُخطئ كثيرون حين يقولون "Grippe" وهم يقصدون مجرد زكام؟',
-   answer:'Erkältung = زكام عادي / Grippe الحقيقية = إنفلونزا تجعلك طريح الفراش أسبوعين',
-   fact:'في ألمانيا يقول كثيرون "Ich habe Grippe" ويقصدون زكاماً بسيطاً. <strong>لكن الأطباء يُفرّقون تماماً</strong>: Erkältung = تعالج بالشاي والراحة. Grippe الحقيقية = محتمل المستشفى.',
-   exDe:'"Ich habe eine Erkältung." (زكام) ≠ "Ich habe echte Grippe."',
-   exAr:'القاعدة الشعبية: إذا كنت تستطيع المشي والشكوى، فهو Erkältung 😄',
-   hook:'Erkältung(بارد) = زكام / Grippe(إنفلونزا) = 5-7 أيام نوم — فرق كبير'},
+{cat:'grammatik',
+ word:'trennbare Verben: an- auf- ab- ein- aus- mit-',
+ q:'لماذا يذهب جزء من الفعل للنهاية في جمل كـ "Ich rufe dich an"؟',
+ answer:'الأفعال ذات البادئات القابلة للفصل تنقسم: الفعل في الموضع 2، البادئة تنتظر في النهاية',
+ fact:'البادئات القابلة للفصل الأهم: an-, auf-, ab-, ein-, aus-, mit-, vor-, zurück-, weg-. "anrufen" → "Ich rufe dich an." البادئة تقفز للنهاية دائماً في الجملة الرئيسية. هذا يُفسّر لماذا أحياناً لا تفهم الجملة إلا في نهايتها — المعنى الكامل يأتي آخراً.',
+ exDe:'"Ich rufe dich morgen an." / "Wann fährt der Zug ab?" / "Bitte machen Sie das Fenster auf."',
+ exAr:'aufmachen → "Ich mache auf" / anrufen → "Ich rufe an" / abfahren → "Der Zug fährt ab"',
+ hook:'بادئة الفصل تقفز للنهاية. aufmachen → Ich mache auf. انتظر نهاية الجملة دائماً'},
 
-  {cat:'kultur',
-   word:'Schmatzen & Schlürfen am Tisch',
-   q:'لماذا إصدار أصوات أثناء الأكل محرج في ألمانيا لكن مقبول في اليابان؟',
-   answer:'schmatzen و schlürfen = غير مقبولَين على المائدة الألمانية — يُعبّران عن قلة الأدب',
-   fact:'schmatzen = أصوات الفم أثناء المضغ. schlürfen = شرب بصخب. <strong>في اليابان schlürfen الشوربة إشارة استمتاع — في ألمانيا إهانة للمضيف</strong>. nippen (الارتشاف بهدوء) = الراقي على المائدة.',
-   exDe:'"Schmatze nicht am Tisch!" — لا تُصدر أصواتاً أثناء الأكل!',
-   exAr:'nippen(رقيق) ← schlürfen(مسموع) ← schmatzen(محرج) — تصاعد المشكلة',
-   hook:'schmatzen+schlürfen = أصوات المائدة المحظورة في ألمانيا'},
+{cat:'grammatik',
+ word:'Akkusativ: was ändert sich wirklich?',
+ q:'ما الذي يتغير فعلاً في Akkusativ وما الذي يبقى كما هو في معظم الحالات؟',
+ answer:'فقط المذكر (der/ein) يتغير → den/einen. المؤنث والمحايد لا يتغيران في Akkusativ',
+ fact:'هذا أهم ما يجب معرفته عن Akkusativ: المذكر فقط يتغير. der→den، ein→einen، kein→keinen، mein→meinen. die و das يبقيان. السؤال لتحديد Akkusativ: "wen?" (من) أو "was?" (ماذا) — هذا المفعول به المباشر.',
+ exDe:'"Ich kaufe den Apfel." / "Ich sehe einen Mann." / "Hast du meinen Schlüssel gesehen?"',
+ exAr:'der → den (مذكر فقط!) / die → die (لا تغيير) / das → das (لا تغيير). السؤال: ماذا/من يفعل به؟',
+ hook:'Akkusativ = المذكر وحده يتغير: der→den / ein→einen. die وdas يبقيان. هذا التغيير الوحيد'},
 
-  {cat:'kultur',
-   word:'Standesamt vs. Kirche',
-   q:'لماذا لا تعترف ألمانيا بالزواج الكنسي وحده قانونياً؟',
-   answer:'الزواج المدني (Standesamt) إلزامي قانونياً — الكنسي أو الديني اختياري وإضافي',
-   fact:'das Standesamt = مكتب الأحوال المدنية. <strong>لا يمكن الزواج دينياً فقط في ألمانيا — الدولة لا تعترف به</strong>. يجب التسجيل المدني أولاً. كثيرون يكتفون بالمدني بدون حفل.',
-   exDe:'"Wir heiraten standesamtlich." — نتزوج الزواج المدني الرسمي.',
-   exAr:'Standesamt أولاً (إلزامي) + كنيسة/مسجد (اختياري) — القانون واضح',
-   hook:'Standes+Amt = مكتب الحالة المدنية — الركيزة القانونية لكل زواج'},
+{cat:'grammatik',
+ word:'Dativ: mit / bei / von / nach / aus / zu / seit',
+ q:'ما الحيلة لتذكر أي حروف الجر تستلزم Dativ دائماً؟',
+ answer:'هذه السبعة تستلزم Dativ دائماً بلا استثناء: mit / bei / von / nach / aus / zu / seit',
+ fact:'احفظها كوحدة واحدة. كل منها يُحوّل الأداة: der→dem، die→der، das→dem، ein→einem. من أكثر حروف الجر استخداماً: mit (مع)، bei (عند/في)، von (من/لـ)، zu (إلى/لـ)، nach (بعد/إلى مدينة). هذه السبعة تظهر في كل محادثة.',
+ exDe:'"Ich fahre mit dem Bus." / "Ich bin bei der Arbeit." / "Ich komme aus dem Supermarkt."',
+ exAr:'مع/عند/من/بعد/من(مكان)/إلى/منذ = Dativ. der→dem, die→der, das→dem, ein→einem',
+ hook:'mit+bei+von+nach+aus+zu+seit = السبعة التي تستلزم Dativ دائماً. احفظها معاً'},
 
-  {cat:'kultur',
-   word:'die Bescherung — Doppelbedeutung',
-   q:'كيف تصبح "لحظة الهدايا في الكريسماس" سباباً ساخراً في نفس الوقت؟',
-   answer:'Bescherung = توزيع هدايا الكريسماس (الأصل) / أو: موقف فوضوي ومحرج (ساخر)',
-   fact:'"Die Bescherung" عند الكريسماس = لحظة فتح الهدايا مع العائلة — أجمل لحظة للأطفال. لكن "Das ist ja eine schöne Bescherung!" بنبرة ساخرة = <strong>"هذه كارثة!" — المعنى يُعكس كلياً بالنبرة</strong>.',
-   exDe:'"Na, das ist ja eine schöne Bescherung!" — (ساخر) هذه مصيبة وكارثة!',
-   exAr:'نفس الكلمة: فرح حقيقي / فوضى مجازية — النبرة وحدها تحدد',
-   hook:'Bescherung = هدايا (حرفي) / كارثة (ساخر) — الابتسامة الساخرة تبدّل كل شيء'},
+{cat:'grammatik',
+ word:'weil + Verb ans Ende / denn + normale Ordnung',
+ q:'كيف تقول "لأن" في الألمانية وما الفرق بين weil و denn؟',
+ answer:'"weil" = لأن + الفعل يذهب للنهاية (Nebensatz) / "denn" = لأن + ترتيب جملة عادي',
+ fact:'"Ich komme nicht, weil ich krank bin." — bin ذهب للنهاية. "Ich komme nicht, denn ich bin krank." — ترتيب عادي. كلاهما صحيح وبنفس المعنى. weil أكثر شيوعاً. denn أسهل لأنه لا يغيّر الترتيب — لكنه لا يأتي في بداية الجملة.',
+ exDe:'"Er schläft, weil er müde ist." / "Er schläft, denn er ist müde." — نفس المعنى',
+ exAr:'weil + Verb(نهاية) = أكثر شيوعاً وأهم. denn + ترتيب عادي = أسهل للمبتدئين',
+ hook:'weil = الفعل يهرب للنهاية. denn = الفعل يبقى مكانه. نفس المعنى، ترتيب مختلف'},
 
-  // ══ ALLTAG ══
-  {cat:'alltag',
-   word:'beim Zahnarzt: die 5 Schlüsselwörter',
-   q:'ما الكلمات الخمس التي تُنقذك في عيادة طبيب الأسنان؟',
-   answer:'Betäubung(تخدير) + Füllung(حشوة) + Karies(تسوّس) + bohren(يحفر) + Spritze(حقنة)',
-   fact:'"Bohren" = يحفر — الصوت المرعب في العيادة. "Kurzer Piks!" = ما يقوله الطبيب قبل الحقنة ("وخزة صغيرة"). <strong>"Können Sie mir bitte eine Betäubung geben?" — سؤال يُنقذ الجلسة كلها</strong>.',
-   exDe:'"Ich möchte eine Betäubung, bitte." / "Tut das weh?" (هل هذا يؤلم؟)',
-   exAr:'"Kurzer Piks!" = وخزة صغيرة — ما يقوله الطبيب كطمأنة قبل الإبرة',
-   hook:'Karies→bohren→Füllung = التسلسل الكلاسيكي في كل زيارة لطبيب الأسنان'},
+{cat:'grammatik',
+ word:'doch — als Antwort auf Verneinung',
+ q:'كيف ترد على سؤال منفي بـ "بلى" وما الكلمة التي لا مقابل لها في الإنجليزية؟',
+ answer:'"doch!" = بلى — الرد على سؤال منفي. الإنجليزية ليس عندها مقابل مباشر لهذا',
+ fact:'"Kommst du nicht?" — "Doch, ich komme!" = بلى آتي. هذا استخدامها الأهم. "doch" أيضاً في الطلبات: "Komm doch rein!" = تفضل ادخل — يُليّن الأمر. "Das ist doch klar!" = هذا واضح ألا ترى؟ — استنكار خفيف. النبرة تحدد الوظيفة.',
+ exDe:'"Du magst das nicht?" — "Doch, sehr!" / "Komm doch mit!" / "Das ist doch richtig!"',
+ exAr:'سؤال منفي → "Doch!" = بلى. في طلب → "Komm doch" = ألطف. في جملة → "das ist doch" = استنكار',
+ hook:'"Doch!" = بلى. رد على أي سؤال منفي. هذه الكلمة ليس لها مقابل مباشر في الإنجليزية'},
 
-  {cat:'alltag',
-   word:'der AU-Schein (Krankmeldung)',
-   q:'ما الورقة الأهم حين تمرض وتتغيب عن العمل في ألمانيا؟',
-   answer:'AU-Schein = Arbeitsunfähigkeitsbescheinigung — شهادة العجز عن العمل',
-   fact:'Arbeit=عمل + Unfähigkeit=عجز + Bescheinigung=شهادة = <strong>الكلمة الأطول لشيء بسيط: ورقة من الطبيب تثبت مرضك</strong>. مطلوبة في معظم العقود بعد يومين أو ثلاثة. بدونها: مشكلة.',
-   exDe:'"Ich brauche einen AU-Schein für meinen Arbeitgeber."',
-   exAr:'AU = الاختصار المهم للحياة اليومية. احفظ الاختصار لا الكلمة الطويلة',
-   hook:'AU-Schein = ورقة المرض — Arbeit(عمل)+Unfähigkeit(عجز) في ورقة صغيرة'},
+// ══════════════════════════════
+// ALLTAG — مواقف حياتية (8)
+// ══════════════════════════════
+{cat:'alltag',
+ word:'Sich vorstellen: der Standardaufbau',
+ q:'ما ترتيب المعلومات الطبيعي حين تُعرّف عن نفسك في أي موقف ألماني؟',
+ answer:'"Ich heiße..." + "Ich komme aus..." + "Ich wohne in..." + "Ich arbeite als..." / "Ich lerne..."',
+ fact:'هذا الترتيب طبيعي ومتوقع. "von Beruf" = من حيث المهنة. "Ich arbeite als Kellner" = أعمل كنادل. "als" هنا = كـ (Berufsbezeichnung). لا تقل "Ich bin Arzt" مع الأداة: لا يُقال "Ich bin ein Arzt" في المهنة — "Ich bin Arzt" بدون أداة هو الصحيح.',
+ exDe:'"Ich heiße Sara. Ich komme aus Syrien und wohne jetzt in Augsburg. Ich arbeite als Köchin."',
+ exAr:'heiße(اسم)+komme aus(أصل)+wohne in(سكن)+arbeite als(مهنة) — الترتيب المعياري المتوقع',
+ hook:'المهنة: "Ich bin Arzt" بدون أداة. "als" = كـ في "Ich arbeite als Arzt"'},
 
-  {cat:'alltag',
-   word:'absagen / verschieben / ausmachen',
-   q:'ما الفرق بين إلغاء الموعد وتأجيله وتحديده في الألمانية؟',
-   answer:'absagen=يُلغي نهائياً / verschieben=يُؤجّل لوقت آخر / ausmachen=يُحدّد موعداً',
-   fact:'في ألمانيا <strong>إلغاء موعد بدون إشعار مسبق خطأ ثقافي كبير</strong>. "Ich muss leider absagen" أفضل بكثير من الغياب بدون إخبار. الأخير يُفسد العلاقة أو يُغلق الباب.',
-   exDe:'"Kann ich den Termin auf Donnerstag verschieben?" — هل يمكن التأجيل للخميس؟',
-   exAr:'absagen(إلغاء كلي) ≠ verschieben(تأجيل) — الفرق مهم جداً في التواصل',
-   hook:'ab+sagen = قل "أُبعد" = ألغِ / ver+schieben = حرّك = أجّل'},
+{cat:'alltag',
+ word:'Beim Arzt: die wichtigsten Sätze',
+ q:'ما الجمل التي تحتاجها فعلاً في عيادة الطبيب من دخول الباب حتى الخروج؟',
+ answer:'"Ich habe Schmerzen." + "Hier tut es weh." + "Seit wann?" + "Ich brauche ein Rezept."',
+ fact:'"Wo tut es weh?" = أين يؤلم؟ والإجابة الطبيعية: "Hier tut es weh." + تشير. "Seit wann haben Sie die Schmerzen?" = السؤال الطبي الأكثر تكراراً — أجب بـ "seit gestern / seit einer Woche". "Ich brauche ein Rezept für..." = أحتاج وصفة لـ. "Krankenkasse" = بطاقة التأمين — خذها دائماً.',
+ exDe:'"Ich habe starke Kopfschmerzen seit gestern." / "Hier tut es weh." / "Brauche ich ein Rezept?"',
+ exAr:'Schmerzen = آلام (جمع دائماً) / seit gestern = منذ أمس / Rezept = وصفة طبية',
+ hook:'Schmerzen(آلام)+wo(أين)+seit wann(منذ متى)+Rezept(وصفة) = المربع الطبي الأساسي'},
 
-  {cat:'alltag',
-   word:'Spülmittel ≠ Waschmittel ≠ Reinigungsmittel',
-   q:'لماذا قد تُفسد ملابسك أو آلة الغسيل بالخلط بين هذه الثلاثة؟',
-   answer:'Spülmittel=لغسيل الصحون يدوياً / Waschmittel=للغسالة فقط / Reinigungsmittel=عام للتنظيف',
-   fact:'استخدام Spülmittel في الغسالة = رغوة تفيض من كل مكان. <strong>كل منتج له مكانه الصحيح</strong>. Spülmaschinentabs = أقراص غسالة الصحون الآلية — رابعة لا تُخلط مع الثلاثة.',
-   exDe:'Spülmittel(يد) / Spülmaschinentabs(آلة صحون) / Waschmittel(غسالة ملابس)',
-   exAr:'الخلط = فوضى أو عطل — كل منتج له مكان واحد فقط',
-   hook:'Spül(يد) / Spülmaschine(آلة) / Wasch(ملابس) — ثلاثة، ثلاثة أماكن'},
+{cat:'alltag',
+ word:'Am Telefon: Standardsätze',
+ q:'ما الفرق في طريقة الرد على الهاتف بين الألمانية والعربية؟',
+ answer:'في ألمانيا: المُتصَل به يقول اسمه أولاً عند الرد — أنت تنتظر ثم تقول "Hier spricht..."',
+ fact:'في ألمانيا التقليدية: من يرد يقول اسمه أولاً: "Müller, guten Tag." لذا حين تتصل وتسمع اسماً — هذا طبيعي. أنت تعرّف عن نفسك بـ "Hier spricht [اسمك]." "Einen Moment bitte." = لحظة واحدة. "Ich rufe später zurück." = سأتصل لاحقاً.',
+ exDe:'"Hier spricht Ahmed. Kann ich bitte mit Frau Müller sprechen?" / "Ich rufe wegen meines Termins an."',
+ exAr:'"Hier spricht..." = التعريف في الهاتف / "wegen + Genitiv" = بسبب. "Ich rufe wegen..." يشرح سبب الاتصال',
+ hook:'"Hier spricht [اسمك]" = بداية كل مكالمة رسمية. الألماني يرد باسمه أولاً — انتظر ثم تكلم'},
 
-  {cat:'alltag',
-   word:'der Wochenmarkt',
-   q:'لماذا يذهب الألمان للـ Wochenmarkt رغم أن السوبرماركت أقرب وأرخص؟',
-   answer:'Wochenmarkt = سوق أسبوعي من المزارعين مباشرة — تجربة اجتماعية لا مجرد تسوق',
-   fact:'Woche=أسبوع + Markt=سوق. يُقام مرة أو مرتين أسبوعياً في الساحة المركزية. <strong>ثقافياً: مكان التجمع والحديث مع الجيران</strong>. الجودة أعلى والأسعار أعلى قليلاً — والتجربة لا تُقدَّر بثمن.',
-   exDe:'"Ich kaufe Obst und Gemüse nur auf dem Wochenmarkt."',
-   exAr:'Wochenmarkt = قلب الحياة المحلية. القهوة والكلام والتسوق في مكان واحد',
-   hook:'Woche+Markt = سوق الأسبوع — تجربة اجتماعية قبل أن تكون تسوقاً'},
+{cat:'alltag',
+ word:'Termin vereinbaren / absagen / verschieben',
+ q:'كيف تُحدد أو تُلغي أو تُؤجل موعداً وما الجملة الكاملة التي تفتح كل الأبواب؟',
+ answer:'"Ich möchte einen Termin vereinbaren." هي الجملة الكاملة لكل موعد في ألمانيا',
+ fact:'"Ich würde gerne einen Termin bei Doktor Müller vereinbaren, bitte." — هذه الجملة تفتح كل العيادات والمكاتب. تحديد الوقت: "Geht es am Montagvormittag?" = هل يمكن يوم الاثنين قبل الظهر؟ إلغاء مسبق مهم ثقافياً — لا تغيب بدون إخبار مسبق.',
+ exDe:'"Ich möchte einen Termin vereinbaren." / "Ich muss leider absagen." / "Kann ich auf Freitag verschieben?"',
+ exAr:'vereinbaren = يتفق على (يحدد) / absagen = يلغي نهائياً / verschieben = يؤجل لوقت آخر',
+ hook:'vereinbaren(يحدد) → verschieben(يؤجل) → absagen(يلغي). المسار الكامل لأي موعد'},
 
-  {cat:'alltag',
-   word:'die Hausordnung: Ruhezeiten',
-   q:'ما الأوقات التي يُحظر فيها الضجيج قانونياً في المباني الألمانية؟',
-   answer:'22:00—07:00 ليلاً + 13:00—15:00 الظهيرة = Ruhezeiten المقدسة',
-   fact:'Ruhe = هدوء. Zeiten = أوقات. <strong>في هذه الأوقات لا موسيقى، لا مكنسة كهربائية، لا حفلات</strong>. مخالفتها تسبب شكاوى رسمية من الجيران. وقت الظهيرة يُفاجئ كثيراً من الأجانب.',
-   exDe:'"Bitte beachten Sie die Ruhezeiten." — الرجاء مراعاة أوقات الهدوء.',
-   exAr:'قاعدة البقاء في ألمانيا: الظهيرة صامتة. اكتشفها قبل أن يطرق الجار',
-   hook:'Ruhezeit = وقت الصمت المقدس — الظهيرة والليل ممنوع فيهما الضجيج'},
+{cat:'alltag',
+ word:'Im Supermarkt und Laden',
+ q:'ما الجمل التي تحتاجها فعلاً في المحل والسوبرماركت؟',
+ answer:'"Haben Sie...?" / "Was kostet das?" / "Das nehme ich." / "Kann ich mit Karte zahlen?"',
+ fact:'"Haben Sie...?" = هل عندكم؟ للبحث. "Wo finde ich...?" = أين أجد؟ للمساعدة. "Ich hätte gern..." في محل متخصص للطلب المهذب. "Getrennt oder zusammen?" = سؤال الكاشير في المطعم — منفصلاً أم معاً؟ EC-Karte = بطاقة الدفع المحلية. ليست كل المحلات تقبل Kreditkarte.',
+ exDe:'"Haben Sie das auch in Größe M?" / "Was kostet das Kilo Tomaten?" / "Kann ich mit Karte zahlen?"',
+ exAr:'bar(نقداً) / mit Karte(ببطاقة) / EC-Karte(بطاقة محلية) / Kreditkarte(فيزا/ماستر)',
+ hook:'zahlen(يدفع)+Karte(بطاقة)+bar(نقداً) = الكلمات الثلاث عند الكاشير في كل محل'},
 
-  // ══ WORTBILDUNG ══
-  {cat:'wortbildung',
-   word:'ver- als Fehler- und Wandel-Präfix',
-   q:'كيف تعرف أن ver- تعني "خطأ ما" أو "تحوّل ما"؟',
-   answer:'ver+ فعل = إما تحوّل (kaufen→verkaufen) أو خطأ/ضياع (fahren→verfahren)',
-   fact:'<em>verkaufen</em>=يبيع (تحوّل كامل لـ kaufen). <em>verfahren</em>=يتوه بالسيارة. <em>verschreiben</em>=يكتب خطأً أو يصف دواءً. <strong>السياق وحده يحدد المعنى — ver- تفعل المستحيل</strong>.',
-   exDe:'"Ich habe mich verfahren." (تُهت) / "Ich habe mich verschrieben." (كتبت خطأً)',
-   exAr:'ver- = إما قلب المعنى كلياً أو إضافة الخطأ — انظر للفعل الأصلي',
-   hook:'ver+ = تحوّل أو ضياع — fahren(يقود) → verfahren(يتوه)'},
+{cat:'alltag',
+ word:'Um Hilfe bitten: höflich und klar',
+ q:'كيف تطلب المساعدة أو تقول لم تفهم بطريقة مهذبة وواضحة؟',
+ answer:'"Können Sie mir helfen?" / "Ich habe das nicht verstanden." / "Könnten Sie das bitte wiederholen?"',
+ fact:'"Entschuldigung" = لو سمحت (لطلب انتباه) — لا يعني اعتذاراً فقط. "Ich habe das nicht verstanden" = النفي المهذب للفهم، أفضل من "Ich verstehe nicht". "Könnten Sie bitte langsamer sprechen?" = هل يمكنكم التكلم ببطء؟ — Konjunktiv II يُليّن الطلب بشكل طبيعي.',
+ exDe:'"Entschuldigung, können Sie mir helfen?" / "Ich habe das nicht verstanden. Können Sie das wiederholen?"',
+ exAr:'"Entschuldigung" = لو سمحت لطلب انتباه. "bitte" = من فضلك. الكلمتان الأهم في طلب المساعدة',
+ hook:'Entschuldigung(لو سمحت)+können Sie(هل يمكنكم)+bitte = الثلاثي لأي موقف تحتاج مساعدة'},
 
-  {cat:'wortbildung',
-   word:'ent- = Befreiung / Trennung',
-   q:'ما البادئة التي تعني دائماً "التحرر من" أو "الفصل عن"؟',
-   answer:'ent- = تحرر وخروج — entsorgen، entrümpeln، entkommen، entscheiden',
-   fact:'<em>entsorgen</em>=يتخلص من. <em>entkommen</em>=يهرب من. <em>entscheiden</em>=يقرر (يخرج من التردد حرفياً!). <strong>ent- = فك القيد من الشيء</strong>. كأنك تقول "أزل، افصل، اخرج".',
-   exDe:'"Wann entscheidest du dich endlich?" — متى ستقرر أخيراً؟',
-   exAr:'entscheiden = يخرج من التردد (scheiden=يفصل) — الإقرار = الفصل عن الشك',
-   hook:'ent- = اخرج من... فك القيد عن الكلمة وابدأ من جديد'},
+{cat:'alltag',
+ word:'Im Restaurant: von Anfang bis Ende',
+ q:'ما الجمل التي تحتاجها من لحظة الدخول للمطعم حتى الخروج؟',
+ answer:'"Ist hier noch frei?" + "Ich hätte gern..." + "Was empfehlen Sie?" + "Die Rechnung bitte."',
+ fact:'"Ist hier noch frei?" = هل هذا المقعد فارغ؟ — قبل الجلوس. "Was empfehlen Sie?" = ماذا تقترح؟. في ألمانيا لا تُحضر الفاتورة تلقائياً — يجب أن تطلبها. "Stimmt so." = خذ الباقي بقشيش. "Getrennt oder zusammen?" = يسألك النادل عند الدفع.',
+ exDe:'"Ist hier noch frei?" / "Ich hätte gern das Schnitzel, bitte." / "Die Rechnung bitte." / "Stimmt so."',
+ exAr:'"Die Rechnung bitte" = الجملة الأهم في نهاية الوجبة. لن تأتي الفاتورة وحدها في ألمانيا',
+ hook:'hätte gern(طلب) → Die Rechnung bitte(حساب) → Stimmt so(بقشيش). الدورة الكاملة'},
 
-  {cat:'wortbildung',
-   word:'Adjektive mit -los',
-   q:'كيف تقول "بدون" لأي شيء بإضافة مقطع واحد فقط؟',
-   answer:'-los = بدون/عديم — kostenlos، arbeitslos، hoffnungslos، sinnlos',
-   fact:'Kosten=تكاليف → kostenlos=مجاناً. Arbeit=عمل → arbeitslos=عاطل. Hoffnung=أمل → hoffnungslos=يائس. <strong>-los تُنتج صفات من أسماء فوراً بدون استثناءات</strong>. مثل "less" في الإنجليزية.',
-   exDe:'kostenlos(مجاني) / arbeitslos(عاطل) / hoffnungslos(يائس) / sinnlos(عبثي)',
-   exAr:'-los = أي اسم تضيف له -los يصبح "بدون ذلك الشيء" — قاعدة فورية',
-   hook:'-los = less بالإنجليزية. hope+less = Hoffnung+los = hoffnungslos'},
+{cat:'alltag',
+ word:'Wegbeschreibung: fragen und verstehen',
+ q:'ما الكلمات الأساسية لفهم الاتجاهات وسؤال عنها؟',
+ answer:'"Wie komme ich zum/zur...?" + geradeaus / links / rechts / gegenüber / an der Ampel',
+ fact:'"Wie komme ich zum Bahnhof?" = كيف أصل للمحطة؟ "Wie weit ist es?" = كم المسافة؟ الإجابات: an der Kreuzung(عند التقاطع) / an der Ampel(عند الإشارة الضوئية) / auf der linken Seite(على اليسار) / gegenüber(مقابل). "Es ist zu Fuß nicht weit." = ليست بعيدة مشياً.',
+ exDe:'"Gehen Sie geradeaus, dann links an der Ampel." / "Das ist gegenüber dem Supermarkt."',
+ exAr:'geradeaus(مستقيم)+links(يسار)+rechts(يمين)+gegenüber(مقابل)+Ampel(إشارة) = خمس كلمات لأي اتجاه',
+ hook:'geradeaus+links+rechts+gegenüber = مربع الاتجاهات الأساسي. هذه الأربعة تكفي لأي شارع'},
 
-  {cat:'wortbildung',
-   word:'Berufsbezeichnungen: -kraft / -mann / -frau',
-   q:'لماذا تُستخدم "Kraft" (قوة) في أسماء المهن الرسمية؟',
-   answer:'Reinigungskraft، Fachkraft، Hilfskraft — "قوة العمل" = المصطلح المهني المحايد',
-   fact:'"Putzfrau" (عاملة نظافة) = مقبول في المحادثة. "Reinigungskraft" = <strong>المصطلح الرسمي في السيرة الذاتية وإعلانات العمل</strong>. Fachkraft = متخصص مؤهل. Hilfskraft = عامل مساعد.',
-   exDe:'Reinigungskraft(في CV) ≠ Putzfrau(في المحادثة) — نفس الشخص، مستويان',
-   exAr:'Kraft = قوة — في المهن تصبح "طاقة عاملة". أرقى من Frau أو Mann.',
-   hook:'-kraft في المهن = مهني ورسمي. -frau/-mann = يومي وغير رسمي'},
+// ══════════════════════════════
+// KONNEKTOREN — روابط (4)
+// ══════════════════════════════
+{cat:'konnektoren',
+ word:'aber / sondern — der Unterschied',
+ q:'متى تقول "aber" ومتى يجب "sondern" وما الفخ الذي يقع فيه المتعلمون؟',
+ answer:'"aber" = لكن (تناقض عام بعد إيجاب أو نفي) / "sondern" = بل (بعد نفي + تصحيح مباشر)',
+ fact:'"Das ist teuer, aber gut." — تناقض عادي → aber. "Ich bin nicht müde, sondern krank." — نفيت الأول ثم صحّحت مباشرة → sondern. "sondern" يأتي فقط بعد نفي ثم تصحيح. الخطأ الشائع: "Ich bin nicht müde, aber krank" — مفهوم لكن sondern أدق وأكثر طبيعية.',
+ exDe:'"Das Essen ist nicht gut, sondern wirklich sehr lecker!" / "Er kommt, aber er ist spät."',
+ exAr:'نفي+تصحيح مباشر → sondern. أي تناقض آخر → aber. "nicht A sondern B" = نمط ثابت',
+ hook:'nicht...sondern = لا...بل (تصحيح مباشر). nicht...aber = لا...لكن (تناقض عادي)'},
 
-  {cat:'wortbildung',
-   word:'Nominalstil: das Nominalisieren',
-   q:'لماذا تبدو الجمل الرسمية الألمانية "ثقيلة" وكيف تفهمها؟',
-   answer:'الأسلوب الاسمي = تحويل الأفعال لأسماء في النصوص الرسمية والبيروقراطية',
-   fact:'"Die Durchführung der Überprüfung der Dokumente..." بدل "Wir prüfen die Dokumente." <strong>النصوص الحكومية والقانونية تُفضّل الأسماء على الأفعال</strong> — وهذا ما يجعلها صعبة الفهم.',
-   exDe:'"Die Bearbeitung Ihres Antrags dauert..." = "Wir bearbeiten Ihren Antrag..."',
-   exAr:'رأيت كلمة طويلة تنتهي بـ -ung؟ ابحث عن الفعل خلفها — سيسهل كل شيء',
-   hook:'-ung في النص الرسمي = فعل متنكر. Bearbeitung = bearbeiten + ung'},
+{cat:'konnektoren',
+ word:'deshalb / trotzdem / also',
+ q:'كيف تربط الجملة الثانية بالأولى منطقياً وما موضع هذه الكلمات في الجملة؟',
+ answer:'"deshalb" = لذلك (نتيجة) / "trotzdem" = رغم ذلك (معارضة) / "also" = إذن (استنتاج)',
+ fact:'هذه الكلمات تأتي في الموضع الأول من الجملة الثانية وتُسبب P2: "Ich bin krank, deshalb gehe ich nicht." — "deshalb" في الأول، الفعل "gehe" ثانياً مباشرة. وهذا ينطبق على trotzdem وalso. من أهم الروابط لبناء نص متماسك.',
+ exDe:'"Es regnet, deshalb nehme ich den Bus." / "Ich bin müde, trotzdem lerne ich." / "Also, was machen wir?"',
+ exAr:'deshalb+trotzdem+also = تأتي أولاً في الجملة + P2 الفعل بعدها مباشرة. نفس قاعدة الظروف',
+ hook:'deshalb(لذلك)+trotzdem(رغم ذلك)+also(إذن) = ثلاثة روابط + P2 الفعل بعدها مباشرة'},
+
+{cat:'konnektoren',
+ word:'dass / ob — Nebensatz',
+ q:'كيف تقول "أعرف أن..." و"لا أعرف إذا..." وما يحدث للفعل في كلتيهما؟',
+ answer:'"dass" = أن (certainty) / "ob" = إذا/هل (uncertainty) — كلاهما يُرسل الفعل للنهاية',
+ fact:'"dass" = أن، للإخبار عن شيء محدد. "ob" = إذا/هل، للتعبير عن عدم اليقين. كلاهما يُحوّل الجملة التالية لـ Nebensatz ويُرسل الفعل المُصرَّف للنهاية. "Ich denke, dass das richtig ist." / "Ich weiß nicht, ob er kommt."',
+ exDe:'"Ich glaube, dass es morgen regnet." / "Ich weiß nicht, ob das stimmt." / "Er sagt, dass er kommt."',
+ exAr:'dass(أن) + ob(إذا/هل) = كلاهما يرسل الفعل للنهاية. القاعدة واحدة للاثنين',
+ hook:'dass=أن(يقين) / ob=إذا(شك). كلاهما: الفعل للنهاية. "Ich weiß nicht, ob..." = تعبير يومي مهم'},
+
+{cat:'konnektoren',
+ word:'wenn (Gegenwart) vs. als (Vergangenheit)',
+ q:'لماذا لا تكفي كلمة "حين" في العربية لترجمة هذين الرابطين؟',
+ answer:'"wenn" = حين/كلما (حاضر ومستقبل وأحداث متكررة) / "als" = حين (ماضٍ مرة واحدة فقط)',
+ fact:'"Wenn ich Zeit habe, lese ich." = حين يكون لديّ وقت (متكرر). "Als ich Kind war..." = حين كنت طفلاً (مرة واحدة في الماضي، انتهت). الخطأ الشائع: "Wenn ich Kind war" — يُفهم لكن "als" هو الصحيح هنا. كلاهما يُرسل الفعل للنهاية.',
+ exDe:'"Wenn ich müde bin, gehe ich schlafen." / "Als ich in Berlin war, habe ich viel gelernt."',
+ exAr:'wenn = حين (حاضر/مستقبل/متكرر) / als = حين (ماضٍ مرة واحدة). كلاهما Verb ans Ende',
+ hook:'wenn=حاضر/مستقبل/متكرر. als=ماضٍ مرة واحدة فقط. "Als Kind" = دائماً als'},
+
+// ══════════════════════════════
+// SYSTEM — نظام اللغة (3)
+// ══════════════════════════════
+{cat:'system',
+ word:'Personalpronomen + Possessivpronomen',
+ q:'ما النمط الذي يربط الضمير الشخصي بضمير الملكية ويجعل تعلمهما معاً أسهل؟',
+ answer:'ich→mein / du→dein / er→sein / sie→ihr / wir→unser / ihr→euer / sie/Sie→ihr/Ihr',
+ fact:'النمط شبه منتظم. "sein" للمذكر و"ihr" للمؤنث يُسببان لبساً: "ihr" قد تعني "ملكها" أو "لكم" أو "ملكهم" حسب السياق. ضمائر الملكية تتصرف مثل "kein" في نهاياتها: mein+e/mein+en/mein+em حسب الجنس والحالة.',
+ exDe:'"Das ist mein Buch." / "Ist das dein Auto?" / "Wo ist ihr Mann?" (زوجها) / "Das ist unser Haus."',
+ exAr:'ich=mein / du=dein / er=sein / sie(هي)=ihr / wir=unser / ihr(أنتم)=euer / sie(هم)=ihr',
+ hook:'ich→mein / du→dein / er→sein. النمط: الضمير + شكل قريب منه. تعلّمهما معاً دائماً'},
+
+{cat:'system',
+ word:'"man" — das unpersönliche Pronomen',
+ q:'كيف تتكلم عن العادات والقواعد العامة دون الحاجة للقول "ich" أو "die Leute"؟',
+ answer:'"man" = واحد/الشخص العام — للقواعد والعادات والمواقف التي تنطبق على الجميع',
+ fact:'"man" من أكثر الضمائر فائدة وأقلها تعليماً للمبتدئين. يُستخدم مع تصريف المفرد الثالث (مثل er/sie/es): "man sagt", "man kann", "man muss". "Wie sagt man das auf Deutsch?" = جملة ستقولها ألف مرة. "Man darf hier nicht rauchen." = ممنوع التدخين هنا.',
+ exDe:'"Wie schreibt man das?" / "Was kann man hier machen?" / "Man sagt, dass..." / "Hier darf man parken."',
+ exAr:'"man" = "واحد" العربية أو "الشخص العام". تصريفه مثل er: man kann / man muss / man hat',
+ hook:'"man" + تصريف الثالث المفرد. "Wie sagt man?" = كيف يُقال؟ جملة أساسية تحتاجها دائماً'},
+
+{cat:'system',
+ word:'W-Fragen + Ja/Nein-Fragen: Satzstellung',
+ q:'ما الفرق في ترتيب الجملة بين سؤال W وسؤال نعم/لا؟',
+ answer:'نعم/لا: الفعل أولاً. W-Frage: كلمة W أولاً ثم الفعل ثانياً — P2 محفوظة في الحالتين',
+ fact:'ثلاثة أنماط مختلفة: (1) جملة خبرية: "Ich komme morgen." (2) سؤال نعم/لا: "Kommst du morgen?" — الفعل أول. (3) W-Frage: "Wann kommst du?" — W أول، فعل ثانٍ. الأسئلة السبعة: Wer/Was/Wo/Wann/Wie/Warum/Wohin.',
+ exDe:'"Kommen Sie heute?" (نعم/لا) / "Wann kommen Sie?" / "Woher kommen Sie?"',
+ exAr:'Ja/Nein: فعل+اسم / W-Frage: W+فعل+اسم. الفعل دائماً في موضعه الثاني عدا Ja/Nein',
+ hook:'نعم/لا → فعل أولاً / W → W أولاً+فعل ثانياً. ثلاثة أنماط جملة، كلها بنفس المنطق'},
+
 ];
 
 let deck=[...CARDS],idx=0,seen=new Set(),flipped=false,activeFilter=null;
@@ -734,8 +651,7 @@ function show(id){
 function goIntro(){show('s-intro');buildIntro();}
 
 function buildIntro(){
-  const t={};
-  CARDS.forEach(c=>{t[c.cat]=(t[c.cat]||0)+1;});
+  const t={};CARDS.forEach(c=>{t[c.cat]=(t[c.cat]||0)+1;});
   document.getElementById('istats').innerHTML=
     `<div class="sc"><div class="sc-n">${CARDS.length}</div><div class="sc-l">كرت</div></div>
      <div class="sc"><div class="sc-n">${Object.keys(CATS).length}</div><div class="sc-l">فئة</div></div>
@@ -745,21 +661,19 @@ function buildIntro(){
       <span class="ic-i">${c.icon}</span>
       <span class="ic-n">${c.name}</span>
       <span class="ic-c">${t[k]||0} كرت</span>
-     </div>`).join('');
+    </div>`).join('');
 }
-
 function startAll(){deck=[...CARDS].sort(()=>Math.random()-.5);activeFilter=null;startGame();}
 function startCat(cat){deck=CARDS.filter(c=>c.cat===cat).sort(()=>Math.random()-.5);activeFilter=cat;startGame();}
 function startGame(){idx=0;seen=new Set();flipped=false;buildStrip();render();show('s-game');}
 
 function buildStrip(){
   document.getElementById('catstrip').innerHTML=Object.entries(CATS).map(([k,c])=>
-    `<div class="cpip ${activeFilter===k?'on':''}" style="${activeFilter===k?'background:'+c.color+'25':''}" onclick="filterCat('${k}')">
+    `<div class="cpip ${activeFilter===k?'on':''}" style="${activeFilter===k?'background:'+c.color+'22':''}" onclick="filterCat('${k}')">
       <span class="cp-i">${c.icon}</span>
-      <span class="cp-n">${c.name.substring(0,4)}</span>
-     </div>`).join('');
+      <span class="cp-n">${c.name.substring(0,5)}</span>
+    </div>`).join('');
 }
-
 function filterCat(cat){
   activeFilter=(activeFilter===cat)?null:cat;
   deck=activeFilter?CARDS.filter(c=>c.cat===activeFilter).sort(()=>Math.random()-.5):[...CARDS].sort(()=>Math.random()-.5);
@@ -786,15 +700,14 @@ function render(){
   document.getElementById('bfact').innerHTML=card.fact;
   document.getElementById('bde').textContent=card.exDe;
   document.getElementById('bar').textContent=card.exAr;
-  document.getElementById('bhook').textContent=card.hook;
+  document.getElementById('bhook').innerHTML=card.hook;
   document.getElementById('prev').disabled=(idx===0);
   document.getElementById('next').disabled=false;
   document.getElementById('flipbtn').textContent='↩ اقلب';
   document.getElementById('gCur').textContent=idx+1;
   document.getElementById('gTot').textContent=deck.length;
   document.getElementById('gSeen').textContent=seen.size;
-  buildDots();
-  window.scrollTo(0,0);
+  buildDots();window.scrollTo(0,0);
 }
 
 function buildDots(){
@@ -817,20 +730,15 @@ function go(dir){
     document.getElementById('cf').classList.add('gone');
     document.getElementById('cb').classList.remove('open');
     document.getElementById('done').classList.add('open');
-    document.getElementById('done-count').textContent=deck.length+' كرت مكتملة ✅';
+    document.getElementById('done-count').textContent=deck.length+' كرت مكتملة';
     document.getElementById('next').disabled=true;
     return;
   }
   idx=Math.max(0,Math.min(deck.length-1,next));
   render();
 }
-
 function shuffleDeck(){deck.sort(()=>Math.random()-.5);idx=0;seen=new Set();render();}
-
-function restartDeck(){
-  document.getElementById('done').classList.remove('open');
-  shuffleDeck();
-}
+function restartDeck(){document.getElementById('done').classList.remove('open');shuffleDeck();}
 
 document.addEventListener('keydown',e=>{
   if(!document.getElementById('s-game').classList.contains('on'))return;
