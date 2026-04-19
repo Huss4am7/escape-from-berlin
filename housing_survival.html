@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Wohnungsnot — لعبة بقاء A2 تتعلم الألمانية أثناء البحث عن شقة في أوغسبورغ. شخصيات، تحدّيات يومية، نظام SRS.">
 <meta name="theme-color" content="#06070b">
-<title>Wohnungsnot — A2 Survival v4</title>
+<title>Wohnungsnot — A2 Survival v5</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -286,7 +286,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
   <div id="diff-hint" style="font-size:.68rem;color:var(--dim);text-align:center;margin-bottom:10px;font-family:'JetBrains Mono',monospace"></div>
 <button class="btn btn-gold" onclick="show('sc-char-select')">🎭 اختر شخصيتك وابدأ</button>
   <button class="btn btn-purp" onclick="startDailyChallenge()">📅 تحدي اليوم — Daily Challenge</button>
-  <button class="btn btn-ghost" onclick="loadGame()">📂 استمرّ من آخر حفظ</button>
+  <button class="btn btn-ghost" onclick="loadGame()">📂 استمرّ من آخر حفظ (v5)</button>
   <button class="btn btn-ghost" onclick="show('sc-achievements')">🏆 الإنجازات</button>
   <button class="btn btn-ghost" onclick="showVocab()">📖 قاموس اللعبة</button>
   <div id="title-best" style="text-align:center;font-size:.7rem;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-top:6px"></div>
@@ -404,6 +404,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
   <button class="btn btn-ghost btn-sm" onclick="backToDay()">← رجوع</button>
 </div>
 
+
+<!-- ══ ARTIKEL-SPRINT (v5) ══ -->
+<div id="sc-artikel" class="sc">
+  <div style="text-align:center;margin-bottom:14px">
+    <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--purp)">⚡ Artikel-Sprint</div>
+    <div style="font-size:.78rem;color:var(--dim)">der · die · das — 8 كلمات / 30 ثانية</div>
+  </div>
+  <div id="art-content"></div>
+  <button class="btn btn-ghost btn-sm" onclick="if(_artikelState&&_artikelState.timer)clearInterval(_artikelState.timer);_artikelState=null;backToDay()">← خروج</button>
+</div>
+
 <!-- ══ DAY END ══ -->
 <div id="sc-dayend" class="sc">
   <div style="text-align:center;padding:20px 0;margin-bottom:16px">
@@ -482,6 +493,16 @@ function getTodaySeed(){const d=new Date();return hashStr(`${d.getFullYear()}-${
 let G_RNG = Math.random; // default
 
 function rng(){return G_RNG()}
+
+function pickApartmentsForRun(){
+  const fixed=APARTMENTS_POOL.filter(a=>a.id==='apt1'||a.id==='apt2');
+  const pool=APARTMENTS_POOL.filter(a=>!fixed.includes(a));
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  APARTMENTS=[...fixed,pool[0]];
+  APARTMENTS_POOL.forEach(a=>{a.available=true});
+}
+function clampTime(){if(typeof G!=='undefined'&&G&&G.timeLeft<0)G.timeLeft=0;}
+
 function rngItem(arr){return arr[Math.floor(rng()*arr.length)]}
 function rngShuffle(arr){return [...arr].sort(()=>rng()-.5)}
 
@@ -544,17 +565,31 @@ const CHARACTERS = {
 // ════════════════════════════════════════════════════
 // DATA — APARTMENTS
 // ════════════════════════════════════════════════════
-const APARTMENTS = [
+const APARTMENTS_POOL = [
   {id:'apt1',name:'شقة في der Innenstadt',emoji:'🏙️',vermieter:'Herr Müller',vermIcon:'👴',kaltmiete:720,nebenkosten:110,warmmiete:830,kaution:1440,zimmer:2,qm:52,badge:'مركزية',requiresSchufa:true,requiresJob:true,vermGender:'m',traits:['streng','geldgierig'],
-   phoneIntro:'Hier Müller. Sie haben geantwortet?',
-   clauses:[{text:'§3 Kündigungsfrist: 3 Monate.',ar:'مدة الإشعار 3 أشهر.',risk:false},{text:'§5 Kaution: 2 Kaltmieten = 1.440€.',ar:'الكاوشن 1440€ — غالٍ!',risk:true},{text:'§9 Schufa + Lohnzettel erforderlich.',ar:'يطلب Schufa وقسيمة راتب.',risk:true}]},
-  {id:'apt2',name:'WG-Zimmer في Oberhausen',emoji:'🏘️',vermieter:'Jana',vermIcon:'👩',kaltmiete:380,nebenkosten:60,warmmiete:440,kaution:380,zimmer:1,qm:18,badge:'مناسبة',requiresSchufa:false,requiresJob:false,vermGender:'f',
-   phoneIntro:'Hi, hier Jana! Du willst das Zimmer?',
-   clauses:[{text:'§2 Miete: 380€ + 60€ NK.',ar:'المجموع 440€ شهرياً.',risk:false},{text:'§4 Kaution: 380€.',ar:'الكاوشن شهر واحد فقط!',risk:false},{text:'§7 Küche und Bad werden geteilt.',ar:'مطبخ وحمام مشترك.',risk:false}]},
-  {id:'apt3',name:'Wohnung في Lechhausen',emoji:'🏠',vermieter:'Frau Schmidt',vermIcon:'👩‍🦳',kaltmiete:580,nebenkosten:90,warmmiete:670,kaution:1160,zimmer:2,qm:45,badge:'متوسطة',requiresSchufa:false,requiresJob:true,vermGender:'f',
-   phoneIntro:'Schmidt am Apparat. Guten Tag.',
-   clauses:[{text:'§3 Lohnzettel der letzten 3 Monate.',ar:'يطلب قسيمة راتب.',risk:true},{text:'§4 Kaution: 1.160€.',ar:'الكاوشن 1160€.',risk:false},{text:'§6 Renovierung bei Auszug.',ar:'طلاء الشقة عند المغادرة.',risk:true}]}
+    phoneIntro:'Hier Müller. Sie haben geantwortet?',
+    phoneIntroByTrait:{streng:'Müller hier. Bitte fassen Sie sich kurz.',geldgierig:'Müller. Sie wissen — die Miete ist nicht verhandelbar.'},
+    clauses:[{text:'§3 Kündigungsfrist: 3 Monate.',ar:'مدة الإشعار 3 أشهر.',risk:false},{text:'§5 Kaution: 2 Kaltmieten = 1.440€.',ar:'الكاوشن 1440€ — غالٍ!',risk:true},{text:'§9 Schufa + Lohnzettel erforderlich.',ar:'يطلب Schufa وقسيمة راتب.',risk:true}]},
+   {id:'apt2',name:'WG-Zimmer في Oberhausen',emoji:'🏘️',vermieter:'Jana',vermIcon:'👩',kaltmiete:380,nebenkosten:60,warmmiete:440,kaution:380,zimmer:1,qm:18,badge:'مناسبة',requiresSchufa:false,requiresJob:false,vermGender:'f',traits:['nachsichtig','sprachfokussiert'],
+    phoneIntro:'Hi, hier Jana! Du willst das Zimmer?',
+    phoneIntroByTrait:{nachsichtig:'Hi! Hier Jana — kein Stress, lass uns einfach reden 😊',sprachfokussiert:'Hi! Sprichst du schon ein bisschen Deutsch? Toll!'},
+    clauses:[{text:'§2 Miete: 380€ + 60€ NK.',ar:'المجموع 440€ شهرياً.',risk:false},{text:'§4 Kaution: 380€.',ar:'الكاوشن شهر واحد فقط!',risk:false},{text:'§7 Küche und Bad werden geteilt.',ar:'مطبخ وحمام مشترك.',risk:false}]},
+   {id:'apt3',name:'Wohnung في Lechhausen',emoji:'🏠',vermieter:'Frau Schmidt',vermIcon:'👩‍🦳',kaltmiete:580,nebenkosten:90,warmmiete:670,kaution:1160,zimmer:2,qm:45,badge:'متوسطة',requiresSchufa:false,requiresJob:true,vermGender:'f',traits:['geldgierig','nachsichtig'],
+    phoneIntro:'Schmidt am Apparat. Guten Tag.',
+    phoneIntroByTrait:{geldgierig:'Schmidt. Pünktliche Mietzahlung ist mir wichtig.',nachsichtig:'Schmidt. Schön, dass Sie anrufen — wir finden eine Lösung.'},
+    clauses:[{text:'§3 Lohnzettel der letzten 3 Monate.',ar:'يطلب قسيمة راتب.',risk:true},{text:'§4 Kaution: 1.160€.',ar:'الكاوشن 1160€.',risk:false},{text:'§6 Renovierung bei Auszug.',ar:'طلاء الشقة عند المغادرة.',risk:true}]},
+   {id:'apt4',name:'Altbau في Pfersee',emoji:'🏚️',vermieter:'Herr Yilmaz',vermIcon:'🧔',kaltmiete:520,nebenkosten:80,warmmiete:600,kaution:1040,zimmer:2,qm:48,badge:'قديمة',requiresSchufa:false,requiresJob:true,vermGender:'m',traits:['einsam','nachsichtig'],
+    phoneIntro:'Yilmaz hier. Hallo!',
+    phoneIntroByTrait:{einsam:'Yilmaz hier. Schön, mal jemanden zu hören!',nachsichtig:'Yilmaz. Kein Problem — ich bin Migrant gewesen, ich verstehe.'},
+    clauses:[{text:'§2 Miete: 520€ + 80€ NK.',ar:'المجموع 600€ شهرياً.',risk:false},{text:'§4 Kaution: 2 Monate = 1.040€.',ar:'الكاوشن شهرين.',risk:false},{text:'§8 Heizung läuft nicht immer perfekt.',ar:'التدفئة ليست مثالية.',risk:true}]},
+   {id:'apt5',name:'Studio في Göggingen',emoji:'🏬',vermieter:'Frau König',vermIcon:'💼',kaltmiete:640,nebenkosten:100,warmmiete:740,kaution:1280,zimmer:1,qm:34,badge:'حديثة',requiresSchufa:true,requiresJob:false,vermGender:'f',traits:['streng','sprachfokussiert'],
+    phoneIntro:'König. Mit wem spreche ich?',
+    phoneIntroByTrait:{streng:'König. Bitte halten Sie sich an die Termine — ich bin sehr genau.',sprachfokussiert:'König. Bitte sprechen Sie deutlich — ich teste das immer.'},
+    clauses:[{text:'§1 Schufa-Auskunft Pflicht.',ar:'Schufa إلزامي.',risk:true},{text:'§4 Kaution: 1.280€.',ar:'الكاوشن 1280€.',risk:false},{text:'§5 Möbliert — pflegliche Behandlung.',ar:'مفروشة — رعاية جيدة.',risk:false}]}
 ];
+
+// 3 Apartments pro Run (apt1+apt2 fix, eines aus apt3/4/5 zufällig)
+let APARTMENTS = APARTMENTS_POOL.slice(0,3);
 
 // ════════════════════════════════════════════════════
 // DATA — VOCABULARY
@@ -714,10 +749,10 @@ const DELAYED_DEFS={
 // ════════════════════════════════════════════════════
 // GAME STATE
 // ════════════════════════════════════════════════════
-const SAVE_KEY='wohnungsnot_v4';
-const SAVE_KEY_LEGACY='wohnungsnot_v3';
-const META_KEY='wohnungsnot_meta_v4';
-const META_KEY_LEGACY='wohnungsnot_meta_v3';
+const SAVE_KEY='wohnungsnot_v5';
+const SAVE_KEY_LEGACY='wohnungsnot_v4';
+const META_KEY='wohnungsnot_meta_v5';
+const META_KEY_LEGACY='wohnungsnot_meta_v4';
 
 const G={
   day:1, money:1200, timeLeft:8, stress:20,
@@ -747,7 +782,7 @@ const XP_LEVELS=[{name:'Anfänger',min:0,color:'#5a5f7a'},{name:'Gewandt',min:50
 // ════════════════════════════════════════════════════
 let META={achievements:{},totalRuns:0,bestScore:0,bestGrade:'',firstWin:false,dailyHistory:[],charactersUnlocked:['ahmad','fatima','muhammad'],vocabBox:{},errorLog:[],difficulty:'normal',endingsUnlocked:[]};
 
-function loadMeta(){try{let raw=localStorage.getItem(META_KEY)||localStorage.getItem(META_KEY_LEGACY);if(raw){const m=JSON.parse(raw);if(m)Object.assign(META,m);}if(!META.vocabBox)META.vocabBox={};if(!META.errorLog)META.errorLog=[];if(!META.dailyHistory)META.dailyHistory=[];META.dailyHistory=META.dailyHistory.slice(0,30);}catch(e){console.warn('loadMeta',e)}}
+function loadMeta(){try{let raw=localStorage.getItem(META_KEY)||localStorage.getItem(META_KEY_LEGACY);if(raw){const m=JSON.parse(raw);if(m)Object.assign(META,m);}if(!META.vocabBox)META.vocabBox={};if(!META.errorLog)META.errorLog=[];if(!META.dailyHistory)META.dailyHistory=[];META.dailyHistory=META.dailyHistory.slice(0,30);if(META.achievements){const valid=new Set(ACHIEVEMENT_DEFS.map(d=>d.id));META.achievements=META.achievements.filter(id=>valid.has(id))}}catch(e){console.warn('loadMeta',e)}}
 function saveMeta(){try{localStorage.setItem(META_KEY,JSON.stringify(META))}catch(e){}}
 loadMeta();
 
@@ -775,8 +810,16 @@ function learnVocab(words){
   });
 }
 // SRS helpers (Boxes 1..5; daily review pulls from boxes 1-2)
-function srsCorrect(de){const cur=META.vocabBox[de]||1;META.vocabBox[de]=Math.min(5,cur+1);saveMeta();}
-function srsWrong(de){META.vocabBox[de]=1;saveMeta();META.errorLog.unshift({de,t:Date.now()});META.errorLog=META.errorLog.slice(0,40);saveMeta();}
+function srsCorrect(de){const cur=META.vocabBox[de]||1;META.vocabBox[de]=Math.min(5,cur+1);saveMeta();srsCorrectReset(de);}
+function srsWrong(de){
+  META.vocabBox[de]=1;
+  if(!META.srsFails)META.srsFails={};
+  META.srsFails[de]=(META.srsFails[de]||0)+1;
+  if(META.srsFails[de]>=5){META.vocabBox[de]=0;toast('💤 كلمة معلّقة مؤقتاً: '+de,'info')}
+  META.errorLog.unshift({de,t:Date.now()});META.errorLog=META.errorLog.slice(0,40);
+  saveMeta();
+}
+function srsCorrectReset(de){if(META.srsFails)delete META.srsFails[de];}
 function srsDuePool(){const learned=G.vocabLearned.map(v=>v.de);return learned.filter(de=>(META.vocabBox[de]||1)<=2);}
 function pickReviewVocab(n=3){const pool=srsDuePool();if(pool.length<n)return null;const shuffled=[...pool].sort(()=>rng()-.5).slice(0,n);return shuffled.map(de=>VOCAB.find(v=>v.de===de)||G.vocabLearned.find(v=>v.de===de)).filter(Boolean);}
 
@@ -946,8 +989,8 @@ function saveGame(){
       jobFound:G.jobFound,anmeldung:G.anmeldung,bankAccount:G.bankAccount,hasSchufa:G.hasSchufa,
       reputation:G.reputation,xp:G.xp,xpLevel:G.xpLevel,streak:G.streak,totalEarned:G.totalEarned,
       character:G.character,pendingEvents:G.pendingEvents,flags:G.flags,
-      apartments:APARTMENTS.map(a=>({id:a.id,available:a.available,kaltmiete:a.kaltmiete,warmmiete:a.warmmiete})),
-      saveVersion:4
+      apartments:APARTMENTS.map(a=>({id:a.id,available:a.available,kaltmiete:a.kaltmiete,warmmiete:a.warmmiete})),aptIds:APARTMENTS.map(a=>a.id),
+      saveVersion:5
     };
     localStorage.setItem(SAVE_KEY,JSON.stringify(data));
     const ind=document.getElementById('saveInd');
@@ -958,15 +1001,17 @@ function saveGame(){
 function loadGame(){
   try{
     const data=JSON.parse(localStorage.getItem(SAVE_KEY));
-    if(!data||data.saveVersion!==4){toast('لا يوجد حفظ متوافق (v4)','no');return}
+    if(!data||(data.saveVersion!==5&&data.saveVersion!==4)){toast('لا يوجد حفظ متوافق','no');return}
+    if(data.saveVersion===4)toast('🔄 تم ترقية الحفظ من v4','info');
     Object.assign(G,{day:data.day,money:data.money,stress:data.stress,
       inventory:data.inventory||[],vocabLearned:data.vocabLearned||[],
       jobFound:data.jobFound,anmeldung:data.anmeldung,bankAccount:data.bankAccount,hasSchufa:data.hasSchufa,
       reputation:data.reputation||50,xp:data.xp||{lang:0,street:0,office:0},xpLevel:data.xpLevel||{lang:0,street:0,office:0},
       streak:data.streak||0,totalEarned:data.totalEarned||0,character:data.character,
       pendingEvents:data.pendingEvents||[],flags:data.flags||{}});
-    if(data.apartments)data.apartments.forEach(s=>{const a=APARTMENTS.find(x=>x.id===s.id);if(a){a.available=s.available;a.kaltmiete=s.kaltmiete;a.warmmiete=s.warmmiete}});
-    if(data.wohnung)G.wohnung=APARTMENTS.find(a=>a.id===data.wohnung)||null;
+    if(data.aptIds&&data.aptIds.length){APARTMENTS=data.aptIds.map(id=>APARTMENTS_POOL.find(a=>a.id===id)).filter(Boolean);if(APARTMENTS.length<3)APARTMENTS=APARTMENTS_POOL.slice(0,3)}
+    if(data.apartments)data.apartments.forEach(s=>{const a=APARTMENTS_POOL.find(x=>x.id===s.id);if(a){a.available=s.available;a.kaltmiete=s.kaltmiete;a.warmmiete=s.warmmiete}});
+    if(data.wohnung)G.wohnung=APARTMENTS_POOL.find(a=>a.id===data.wohnung)||null;
     document.getElementById('resbar').classList.add('on');
     updateResBar();buildDayScreen();
     toast('📂 تم استعادة الحفظ','ok');
@@ -1036,7 +1081,7 @@ function startGame(charId){
   // Character special setup
   if(charId==='fatima')spendRes(0,1,0); // Nachtschicht penalty
   if(charId==='layla')G.timeLeft=10; // Works from home
-  APARTMENTS.forEach(a=>{a.available=true});
+  pickApartmentsForRun();APARTMENTS.forEach(a=>{a.available=true});
   APARTMENTS[0].kaltmiete=720;APARTMENTS[0].warmmiete=830;
   APARTMENTS[1].kaltmiete=380;APARTMENTS[1].warmmiete=440;
   APARTMENTS[2].kaltmiete=580;APARTMENTS[2].warmmiete=670;
@@ -1098,7 +1143,7 @@ const DAY_MSG=[
 const DAY_ICONS=['🌅','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','🌨️','🌩️','❄️','🌫️','🌪️','🏙️'];
 
 function buildDayScreen(){
-  G.dayVocab=[];G.visitedToday=[];G.flags.quizDoneToday=false;G.flags.srsDoneToday=false;G.timeLeft=8;
+  G.dayVocab=[];G.visitedToday=[];G.flags.quizDoneToday=false;G.flags.srsDoneToday=false;G.flags.artikelDoneToday=false;G.timeLeft=8;
   if(G.character==='layla')G.timeLeft=10;
   G.weather=rollWeather();
   applyWeather(G.weather);
@@ -1225,6 +1270,14 @@ function buildEvents(){
       });
     }
   }
+  // ARTIKEL-SPRINT (v5) — 1× pro Tag
+  if(!G.flags.artikelDoneToday)events.push({
+    id:'artikel_sprint',icon:'⚡',title:'Artikel-Sprint — der/die/das',
+    desc:'8 كلمات في 30 ثانية. +Sprach-XP.',timeCost:1,
+    available:G.timeLeft>=1&&!G.visitedToday.includes('artikel_sprint'),
+    action:()=>startArtikelSprint(),
+    tags:[{label:'-1h',cls:'tag-time'},{label:'+Sprach-XP',cls:'tag-grn'}]
+  });
   // SUPERMARKT
   events.push({
     id:'supermarkt',icon:'🛒',title:'Supermarkt — طعام',
@@ -1298,7 +1351,20 @@ function renderPhoneStep(step){
   const c=document.getElementById('phone-content');
   const ch=document.getElementById('phone-choices');
   if(step===0){
-    c.innerHTML=`<div class="dialog-bubble"><div class="dialog-speaker">${apt.vermieter}</div><div class="dialog-de">${apt.phoneIntro}</div></div>`;
+    let intro=apt.phoneIntro;
+    if(apt.phoneIntroByTrait&&apt.traits&&apt.traits.length){
+      const t=apt.traits[Math.floor(rng()*apt.traits.length)];
+      if(apt.phoneIntroByTrait[t])intro=apt.phoneIntroByTrait[t];
+    }
+    const charHooks={
+      'Herr Müller':{fatima:' Krankenschwester? Schichtdienst? Hmm.',muhammad:' Studenten zahlen oft unpünktlich — Eltern als Bürgen?'},
+      'Frau Schmidt':{muhammad:' Studierende? Ich gebe gern Sonderkonditionen.',ahmad:' Familie? Das Haus ist eher ruhig.'},
+      'Herr Yilmaz':{ahmad:' Aus Syrien? Willkommen, Bruder!',yusuf:' Im Alter? Hier ist es ruhig — perfekt.'},
+      'Frau König':{layla:' Selbstständig? Sie brauchen Steuerbescheid.',fatima:' Krankenschwester — geregeltes Einkommen, sehr gut.'}
+    };
+    const hook=charHooks[apt.vermieter]&&charHooks[apt.vermieter][G.character];
+    if(hook)intro+=hook;
+    c.innerHTML=`<div class="dialog-bubble"><div class="dialog-speaker">${apt.vermieter}</div><div class="dialog-de">${intro}</div></div>`;
     ch.innerHTML=`
       <div class="choice good" onclick="phoneChoice(1,'good')"><div class="ch-de">"Guten Tag, hier spricht Ahmed. Ich interessiere mich für Ihre Wohnung."</div><div class="ch-ar">تحية + تعريف + سبب. ✅</div></div>
       <div class="choice" onclick="phoneChoice(1,'neutral')"><div class="ch-de">"Hallo. Ich rufe wegen der Wohnung an."</div><div class="ch-ar">مقبول لكن بارد.</div></div>
@@ -1384,6 +1450,7 @@ function bschtNegotiate(){
   if(tr.includes('nachsichtig'))chance+=0.20;
   if(tr.includes('geldgierig'))chance-=0.10;
   if(tr.includes('einsam')&&G.flags.nachbarMet)chance+=0.10;
+  if(tr.includes('sprachfokussiert')&&G.xp&&G.xp.lang>=20)chance+=0.15;
   chance=Math.max(0.05,Math.min(0.85,chance));
   const success=rng()<chance;
   if(success){
@@ -1393,7 +1460,10 @@ function bschtNegotiate(){
     showResult('🤝','نجح التفاوض!',`خفّض ${apt.vermieter} الإيجار ${d}€! الجديد: ${apt.warmmiete}€/شهر`,'var(--grn)',()=>showVertrag(apt));
   }else{
     spendRes(0,0,5,G.reputation<50?-5:0);
-    showResult('😐','رفض التفاوض',`"Der Preis ist fix." السعر ثابت.${G.reputation<50?' سمعتك المنخفضة لم تساعد.':''}`,'var(--amber)',()=>showVertrag(apt));
+    const refusalByTrait={streng:'"Der Preis ist fix. Punkt."',geldgierig:'"Ich brauche jeden Euro — kein Rabatt."',nachsichtig:'"Tut mir leid, dieses Mal nicht möglich."',einsam:'"Vielleicht ein anderes Mal."',sprachfokussiert:'"Ihr Deutsch ist gut, aber der Preis ist fix."'};
+    const tline=tr.find(t=>refusalByTrait[t]);
+    const refusal=tline?refusalByTrait[tline]:'"Der Preis ist fix."';
+    showResult('😐','رفض التفاوض',`${refusal} السعر ثابت.${G.reputation<50?' سمعتك المنخفضة لم تساعد.':''}`,'var(--amber)',()=>showVertrag(apt));
   }
 }
 
@@ -1452,8 +1522,17 @@ function signVertrag(){
 function startAmt(){
   spendRes(0,3,15);G.formAnswers={};G.selectedChip=null;
   learnVocab([{de:'das Einwohnermeldeamt',ar:'مكتب التسجيل',track:'office'},{de:'die Anmeldung',ar:'التسجيل الرسمي',track:'office'},{de:'das Formular ausfüllen',ar:'ملء الاستمارة',track:'office'}]);
-  document.getElementById('amt-de').textContent='Guten Morgen. Haben Sie einen Termin?';
-  document.getElementById('amt-ar').textContent='صباح الخير. هل عندك موعد؟';
+  const weberLines={
+    ahmad:{de:'Guten Morgen. Syrien? Die Unterlagen sind oft komplizierter — sorgfältig bitte.',ar:'صباح الخير. سوريا؟ الوثائق غالباً معقدة — بدقة.'},
+    fatima:{de:'Guten Morgen. Pflegekraft? Ihre Anerkennung ist hier registriert?',ar:'صباح الخير. ممرضة؟ شهادتك مسجلة هنا؟'},
+    muhammad:{de:'Guten Morgen. Studierende kommen oft her — Immatrikulation dabei?',ar:'صباح الخير. الطلاب يأتون كثيراً — معك شهادة التسجيل؟'},
+    layla:{de:'Guten Morgen. Selbstständig? Bitte später beim Finanzamt melden.',ar:'صباح الخير. عمل حر؟ سجّلي في مكتب الضرائب لاحقاً.'},
+    yusuf:{de:'Guten Morgen. Bitte setzen Sie sich, wir nehmen uns Zeit.',ar:'صباح الخير. تفضّل بالجلوس، عندنا وقت.'},
+    _default:{de:'Guten Morgen. Haben Sie einen Termin?',ar:'صباح الخير. هل عندك موعد؟'}
+  };
+  const wl=weberLines[G.character]||weberLines._default;
+  document.getElementById('amt-de').textContent=wl.de;
+  document.getElementById('amt-ar').textContent=wl.ar;
   renderAmtStep(0);show('sc-amt');
 }
 
@@ -1853,6 +1932,7 @@ function launchDaily(){
   const charId=charIds[new Date().getDay()%charIds.length];
   G.isDaily=true;G.dailySeed=getTodaySeed();
   G_RNG=mulberry32(G.dailySeed);
+  if(G.character&&META.charactersUnlocked&&!META.charactersUnlocked.includes(G.character)){toast('🔒 شخصية اليوم مقفلة — استخدام أحمد','info');G.character='ahmad';}
   startGame(charId);
   checkAch('daily_first');
 }
@@ -2038,6 +2118,69 @@ document.querySelectorAll('.diff-opt').forEach(b=>b.addEventListener('click',()=
 }));
 syncDiffUI();
 updateTitleBest();
+
+// ════════════════════════════════════════════════════
+// v5 — ARTIKEL-SPRINT (der/die/das, 30s)
+// ════════════════════════════════════════════════════
+const ARTIKEL_NOMEN=[
+  {w:'Wohnung',a:'die'},{w:'Vertrag',a:'der'},{w:'Amt',a:'das'},
+  {w:'Miete',a:'die'},{w:'Vermieter',a:'der'},{w:'Formular',a:'das'},
+  {w:'Kaution',a:'die'},{w:'Lohnzettel',a:'der'},{w:'Konto',a:'das'},
+  {w:'Schufa',a:'die'},{w:'Nachbar',a:'der'},{w:'Zimmer',a:'das'},
+  {w:'Anmeldung',a:'die'},{w:'Termin',a:'der'},{w:'Haus',a:'das'},
+  {w:'Küche',a:'die'},{w:'Bahnhof',a:'der'},{w:'Bad',a:'das'},
+  {w:'Stadt',a:'die'},{w:'Mietvertrag',a:'der'},{w:'Geld',a:'das'}
+];
+let _artikelState=null;
+function startArtikelSprint(){
+  const pool=[...ARTIKEL_NOMEN];
+  for(let i=pool.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+  _artikelState={words:pool.slice(0,8),idx:0,correct:0,wrong:0,timeLeft:30,timer:null};
+  G.flags.artikelDoneToday=true;
+  show('sc-artikel');
+  renderArtikel();
+  _artikelState.timer=setInterval(()=>{
+    if(!_artikelState)return;
+    _artikelState.timeLeft--;
+    const tEl=document.getElementById('art-timer');
+    if(tEl)tEl.textContent=_artikelState.timeLeft+'s';
+    if(_artikelState.timeLeft<=0)endArtikelSprint();
+  },1000);
+}
+function renderArtikel(){
+  const s=_artikelState;
+  if(!s||s.idx>=s.words.length){endArtikelSprint();return}
+  const cur=s.words[s.idx];
+  const c=document.getElementById('art-content');if(!c)return;
+  c.innerHTML=`
+    <div style="text-align:center;margin:20px 0">
+      <div style="font-family:'Syne',sans-serif;font-size:.78rem;color:var(--dim);margin-bottom:6px">الكلمة ${s.idx+1}/${s.words.length} · ⏱ <span id="art-timer">${s.timeLeft}s</span></div>
+      <div style="font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--gold);margin:18px 0">___ ${cur.w}</div>
+      <div style="font-size:.72rem;color:var(--dim)">صحيح: ${s.correct} · خطأ: ${s.wrong}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">
+      <button class="btn" onclick="answerArtikel('der')" style="font-family:'Syne',sans-serif;font-size:1.1rem;padding:14px">der</button>
+      <button class="btn" onclick="answerArtikel('die')" style="font-family:'Syne',sans-serif;font-size:1.1rem;padding:14px;background:var(--purp);color:#fff">die</button>
+      <button class="btn" onclick="answerArtikel('das')" style="font-family:'Syne',sans-serif;font-size:1.1rem;padding:14px;background:var(--gold);color:#000">das</button>
+    </div>`;
+}
+function answerArtikel(a){
+  const s=_artikelState;if(!s)return;
+  const cur=s.words[s.idx];
+  if(a===cur.a){s.correct++;toast('✅ '+cur.a+' '+cur.w,'ok')}
+  else{s.wrong++;toast('❌ '+cur.a+' '+cur.w,'no')}
+  s.idx++;
+  if(s.idx>=s.words.length)endArtikelSprint();else renderArtikel();
+}
+function endArtikelSprint(){
+  const s=_artikelState;if(!s)return;
+  if(s.timer){clearInterval(s.timer);s.timer=null}
+  const xp=s.correct*5;
+  addXP('lang',xp);
+  if(s.correct>=7)checkAch('lang_pro');
+  showResult('🎯','Artikel-Sprint!',`صحيح: ${s.correct}/${s.words.length} · +${xp} Sprach-XP`,'var(--purp)',()=>{_artikelState=null;backToDay()});
+}
+
 </script>
 </body>
 </html>
