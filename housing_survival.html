@@ -2,8 +2,10 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Wohnungsnot — A2 Survival v3</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Wohnungsnot — لعبة بقاء A2 تتعلم الألمانية أثناء البحث عن شقة في أوغسبورغ. شخصيات، تحدّيات يومية، نظام SRS.">
+<meta name="theme-color" content="#06070b">
+<title>Wohnungsnot — A2 Survival v4</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -244,7 +246,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
 </head>
 <body>
 <div class="save-ind" id="saveInd">💾 تم الحفظ</div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <!-- RESULT OVERLAY -->
 <div class="result-overlay hidden" id="result-overlay">
@@ -276,7 +278,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
   </div>
   <div class="story-box">📍 <strong>أوغسبورغ، أكتوبر 2026</strong><br><br>الفندق يكلفك <strong>55€</strong> الليلة. راتبك لم يأتِ. الشقق تطلب <strong>Schufa + Kaution + Anmeldung</strong>. والألمانية هنا ليست اختياراً.</div>
   <div class="panel"><div class="panel-title">⚡ كيف تلعب</div><div style="font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.9">🏠 <strong>الهدف:</strong> شقة خلال 14 يوماً<br>💬 <strong>اللغة:</strong> كل حوار حقيقي A2<br>📄 <strong>الوثائق:</strong> اقرأ العقود<br>🎭 <strong>الشخصية:</strong> تؤثر على كل شيء<br>⏰ <strong>الزمن:</strong> قراراتك اليوم تظهر غداً</div></div>
-  <button class="btn btn-gold" onclick="show('sc-char-select')">🎭 اختر شخصيتك وابدأ</button>
+    <div style="display:flex;gap:6px;margin-bottom:10px" id="diff-row">
+    <button class="btn btn-ghost btn-sm diff-opt" data-diff="easy" style="flex:1;margin:0">🟢 سهل</button>
+    <button class="btn btn-ghost btn-sm diff-opt" data-diff="normal" style="flex:1;margin:0">🟡 عادي</button>
+    <button class="btn btn-ghost btn-sm diff-opt" data-diff="nightmare" style="flex:1;margin:0">🔴 كابوس</button>
+  </div>
+  <div id="diff-hint" style="font-size:.68rem;color:var(--dim);text-align:center;margin-bottom:10px;font-family:'JetBrains Mono',monospace"></div>
+<button class="btn btn-gold" onclick="show('sc-char-select')">🎭 اختر شخصيتك وابدأ</button>
   <button class="btn btn-purp" onclick="startDailyChallenge()">📅 تحدي اليوم — Daily Challenge</button>
   <button class="btn btn-ghost" onclick="loadGame()">📂 استمرّ من آخر حفظ</button>
   <button class="btn btn-ghost" onclick="show('sc-achievements')">🏆 الإنجازات</button>
@@ -537,7 +545,7 @@ const CHARACTERS = {
 // DATA — APARTMENTS
 // ════════════════════════════════════════════════════
 const APARTMENTS = [
-  {id:'apt1',name:'شقة في der Innenstadt',emoji:'🏙️',vermieter:'Herr Müller',vermIcon:'👴',kaltmiete:720,nebenkosten:110,warmmiete:830,kaution:1440,zimmer:2,qm:52,badge:'مركزية',requiresSchufa:true,requiresJob:true,vermGender:'m',
+  {id:'apt1',name:'شقة في der Innenstadt',emoji:'🏙️',vermieter:'Herr Müller',vermIcon:'👴',kaltmiete:720,nebenkosten:110,warmmiete:830,kaution:1440,zimmer:2,qm:52,badge:'مركزية',requiresSchufa:true,requiresJob:true,vermGender:'m',traits:['streng','geldgierig'],
    phoneIntro:'Hier Müller. Sie haben geantwortet?',
    clauses:[{text:'§3 Kündigungsfrist: 3 Monate.',ar:'مدة الإشعار 3 أشهر.',risk:false},{text:'§5 Kaution: 2 Kaltmieten = 1.440€.',ar:'الكاوشن 1440€ — غالٍ!',risk:true},{text:'§9 Schufa + Lohnzettel erforderlich.',ar:'يطلب Schufa وقسيمة راتب.',risk:true}]},
   {id:'apt2',name:'WG-Zimmer في Oberhausen',emoji:'🏘️',vermieter:'Jana',vermIcon:'👩',kaltmiete:380,nebenkosten:60,warmmiete:440,kaution:380,zimmer:1,qm:18,badge:'مناسبة',requiresSchufa:false,requiresJob:false,vermGender:'f',
@@ -706,8 +714,10 @@ const DELAYED_DEFS={
 // ════════════════════════════════════════════════════
 // GAME STATE
 // ════════════════════════════════════════════════════
-const SAVE_KEY='wohnungsnot_v3';
-const META_KEY='wohnungsnot_meta_v3';
+const SAVE_KEY='wohnungsnot_v4';
+const SAVE_KEY_LEGACY='wohnungsnot_v3';
+const META_KEY='wohnungsnot_meta_v4';
+const META_KEY_LEGACY='wohnungsnot_meta_v3';
 
 const G={
   day:1, money:1200, timeLeft:8, stress:20,
@@ -720,7 +730,7 @@ const G={
   character:null,
   pendingEvents:[],
   visitedToday:[],
-  flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
+  flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,srsDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
   formAnswers:{}, selectedChip:null,
   currentApt:null, bschtStep:0, amtStep:0,
   vertragData:null, resultCallback:null,
@@ -735,21 +745,18 @@ const XP_LEVELS=[{name:'Anfänger',min:0,color:'#5a5f7a'},{name:'Gewandt',min:50
 // ════════════════════════════════════════════════════
 // META (persistent across runs)
 // ════════════════════════════════════════════════════
-let META={achievements:{},totalRuns:0,bestScore:0,bestGrade:'',firstWin:false,dailyHistory:[],charactersUnlocked:['ahmad','fatima','muhammad']};
+let META={achievements:{},totalRuns:0,bestScore:0,bestGrade:'',firstWin:false,dailyHistory:[],charactersUnlocked:['ahmad','fatima','muhammad'],vocabBox:{},errorLog:[],difficulty:'normal',endingsUnlocked:[]};
 
-function loadMeta(){try{const m=JSON.parse(localStorage.getItem(META_KEY));if(m)Object.assign(META,m)}catch(e){}}
+function loadMeta(){try{let raw=localStorage.getItem(META_KEY)||localStorage.getItem(META_KEY_LEGACY);if(raw){const m=JSON.parse(raw);if(m)Object.assign(META,m);}if(!META.vocabBox)META.vocabBox={};if(!META.errorLog)META.errorLog=[];if(!META.dailyHistory)META.dailyHistory=[];META.dailyHistory=META.dailyHistory.slice(0,30);}catch(e){console.warn('loadMeta',e)}}
 function saveMeta(){try{localStorage.setItem(META_KEY,JSON.stringify(META))}catch(e){}}
 loadMeta();
 
 // ════════════════════════════════════════════════════
 // UTILITY
 // ════════════════════════════════════════════════════
-let _toastTO;
-function toast(msg,type='info'){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.className='toast '+type+' show';
-  clearTimeout(_toastTO);_toastTO=setTimeout(()=>t.classList.remove('show'),3000);
-}
+const _toastQ=[];let _toastBusy=false;
+function toast(msg,type='info'){_toastQ.push({msg,type});if(!_toastBusy)_toastNext();}
+function _toastNext(){const t=document.getElementById('toast');const it=_toastQ.shift();if(!it){_toastBusy=false;return;}_toastBusy=true;t.textContent=it.msg;t.className='toast '+it.type+' show';setTimeout(()=>{t.classList.remove('show');setTimeout(_toastNext,180);},2400);}
 
 function show(id){
   document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
@@ -761,11 +768,17 @@ function learnVocab(words){
   words.forEach(w=>{
     if(!G.vocabLearned.find(v=>v.de===w.de)){
       G.vocabLearned.push(w);G.dayVocab.push(w);
-      // Give XP for learning
       addXP(w.track||'lang',5);
+      // SRS: new word starts at box 1
+      if(!META.vocabBox[w.de]){META.vocabBox[w.de]=1;saveMeta();}
     }
   });
 }
+// SRS helpers (Boxes 1..5; daily review pulls from boxes 1-2)
+function srsCorrect(de){const cur=META.vocabBox[de]||1;META.vocabBox[de]=Math.min(5,cur+1);saveMeta();}
+function srsWrong(de){META.vocabBox[de]=1;saveMeta();META.errorLog.unshift({de,t:Date.now()});META.errorLog=META.errorLog.slice(0,40);saveMeta();}
+function srsDuePool(){const learned=G.vocabLearned.map(v=>v.de);return learned.filter(de=>(META.vocabBox[de]||1)<=2);}
+function pickReviewVocab(n=3){const pool=srsDuePool();if(pool.length<n)return null;const shuffled=[...pool].sort(()=>rng()-.5).slice(0,n);return shuffled.map(de=>VOCAB.find(v=>v.de===de)||G.vocabLearned.find(v=>v.de===de)).filter(Boolean);}
 
 function addToInventory(item){
   if(!G.inventory.includes(item)){G.inventory.push(item);toast('📄 أُضيف: '+item,'ok')}
@@ -903,7 +916,7 @@ function queueDelayed(type,daysLater,origin=''){
   }
 }
 
-function processDelayedEvents(){
+function processDelayedEvents(){if(!Array.isArray(G.pendingEvents))G.pendingEvents=[];
   const toTrigger=G.pendingEvents.filter(e=>e.triggerDay===G.day);
   G.pendingEvents=G.pendingEvents.filter(e=>e.triggerDay!==G.day);
   if(toTrigger.length===0){document.getElementById('delayed-notice').style.display='none';return}
@@ -912,7 +925,7 @@ function processDelayedEvents(){
   notice.innerHTML=toTrigger.map(e=>{
     const def=DELAYED_DEFS[e.type];
     if(!def)return '';
-    def.effect(G);
+    try{def.effect(G);}catch(_e){console.warn('delayed effect failed',_e)};
     updateResBar();
     return `<div class="rückblende">
       <strong>${def.icon} ${def.title}</strong><br>
@@ -934,7 +947,7 @@ function saveGame(){
       reputation:G.reputation,xp:G.xp,xpLevel:G.xpLevel,streak:G.streak,totalEarned:G.totalEarned,
       character:G.character,pendingEvents:G.pendingEvents,flags:G.flags,
       apartments:APARTMENTS.map(a=>({id:a.id,available:a.available,kaltmiete:a.kaltmiete,warmmiete:a.warmmiete})),
-      saveVersion:3
+      saveVersion:4
     };
     localStorage.setItem(SAVE_KEY,JSON.stringify(data));
     const ind=document.getElementById('saveInd');
@@ -945,7 +958,7 @@ function saveGame(){
 function loadGame(){
   try{
     const data=JSON.parse(localStorage.getItem(SAVE_KEY));
-    if(!data||data.saveVersion!==3){toast('لا يوجد حفظ متوافق (v3)','no');return}
+    if(!data||data.saveVersion!==4){toast('لا يوجد حفظ متوافق (v4)','no');return}
     Object.assign(G,{day:data.day,money:data.money,stress:data.stress,
       inventory:data.inventory||[],vocabLearned:data.vocabLearned||[],
       jobFound:data.jobFound,anmeldung:data.anmeldung,bankAccount:data.bankAccount,hasSchufa:data.hasSchufa,
@@ -1005,6 +1018,11 @@ function confirmCharacter(){
 // ════════════════════════════════════════════════════
 function startGame(charId){
   const c=CHARACTERS[charId];
+  // Difficulty multipliers applied to starting state
+  const diff=META.difficulty||'normal';
+  G.difficulty=diff;
+  const DM={easy:{money:1.4,stress:0.7,time:1},normal:{money:1,stress:1,time:1},nightmare:{money:0.7,stress:1.3,time:1}}[diff];
+  G._diffMul=DM;
   Object.assign(G,{
     day:1,money:c.startMoney,timeLeft:8,stress:c.startStress,
     wohnung:null,inventory:[],vocabLearned:[],dayVocab:[],
@@ -1012,7 +1030,7 @@ function startGame(charId){
     reputation:50,xp:{lang:0,street:0,office:0},xpLevel:{lang:0,street:0,office:0},
     streak:0,totalEarned:0,character:charId,
     pendingEvents:[],visitedToday:[],
-    flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
+    flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,srsDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
     formAnswers:{},selectedChip:null,currentApt:null,isDaily:false
   });
   // Character special setup
@@ -1049,7 +1067,7 @@ function rollWeather(){
   for(let i=0;i<w.length;i++){c+=w[i];if(r<=c)return WEATHERS[i]}return WEATHERS[0];
 }
 
-function applyWeather(w){
+function applyWeather(w){if(!w)return;
   document.getElementById('weather-icon').textContent=w.icon;
   document.getElementById('weather-text').textContent=w.text;
   const eff=document.getElementById('weather-effect');
@@ -1080,7 +1098,7 @@ const DAY_MSG=[
 const DAY_ICONS=['🌅','☀️','🌤️','⛅','🌥️','☁️','🌦️','🌧️','🌨️','🌩️','❄️','🌫️','🌪️','🏙️'];
 
 function buildDayScreen(){
-  G.dayVocab=[];G.visitedToday=[];G.flags.quizDoneToday=false;G.timeLeft=8;
+  G.dayVocab=[];G.visitedToday=[];G.flags.quizDoneToday=false;G.flags.srsDoneToday=false;G.timeLeft=8;
   if(G.character==='layla')G.timeLeft=10;
   G.weather=rollWeather();
   applyWeather(G.weather);
@@ -1194,6 +1212,19 @@ function buildEvents(){
     action:()=>startQuiz(),
     tags:[{label:'-1h',cls:'tag-time'},{label:'+مكافأة',cls:'tag-grn'}]
   });
+  // SRS REVIEW
+  if(G.day>=2&&!G.flags.srsDoneToday){
+    const due=srsDuePool().length;
+    if(due>=3){
+      events.push({
+        id:'srs_review',icon:'🧠',title:`مراجعة كلمات (${due} متاح)`,
+        desc:'كلمات تحتاج مراجعة. صحيح = +XP، خطأ = إعادة للصندوق 1.',timeCost:1,
+        available:G.timeLeft>=1&&!G.visitedToday.includes('srs_review'),
+        action:()=>startSrsReview(),
+        tags:[{label:'-1h',cls:'tag-time'},{label:'+XP',cls:'tag-grn'}]
+      });
+    }
+  }
   // SUPERMARKT
   events.push({
     id:'supermarkt',icon:'🛒',title:'Supermarkt — طعام',
@@ -1346,7 +1377,14 @@ function bschtNegotiate(){
   const apt=G.currentApt;
   learnVocab([{de:'verhandeln',ar:'يتفاوض',track:'street'}]);
   addXP('street',15);
-  const chance=G.reputation>=70?0.65:G.reputation>=50?0.4:0.15;
+  let chance=G.reputation>=70?0.65:G.reputation>=50?0.4:0.15;
+  // Vermieter-Trait Modifiers
+  const tr=apt.traits||[];
+  if(tr.includes('streng'))chance-=0.15;
+  if(tr.includes('nachsichtig'))chance+=0.20;
+  if(tr.includes('geldgierig'))chance-=0.10;
+  if(tr.includes('einsam')&&G.flags.nachbarMet)chance+=0.10;
+  chance=Math.max(0.05,Math.min(0.85,chance));
   const success=rng()<chance;
   if(success){
     const d=Math.floor(rng()*3+2)*10;
@@ -1581,7 +1619,7 @@ function nachbarThanks(){window._nachbarTip?.effect();toast('👵 نصيحة م�
 // ════════════════════════════════════════════════════
 // QUIZ
 // ════════════════════════════════════════════════════
-function startQuiz(){
+function startQuiz(){window._currentQuiz=null;
   G.flags.quizDoneToday=true;spendRes(0,1,0);
   const q=rngItem(QUIZZES);window._quiz=q;
   document.getElementById('quiz-content').innerHTML=`
@@ -1594,7 +1632,7 @@ function startQuiz(){
   show('sc-quiz');
 }
 
-function ansQuiz(idx){
+function ansQuiz(idx){const _q=window._currentQuiz;if(_q&&_q.vocab){if(idx===_q.correct)srsCorrect(_q.vocab);else srsWrong(_q.vocab);}
   const q=window._quiz;
   document.querySelectorAll('.quiz-option').forEach(o=>o.style.pointerEvents='none');
   if(idx===q.correct){
@@ -1746,21 +1784,41 @@ function winGame(){
   else if(score>=1000){grade='A';gradeColor='var(--grn)'}
   else if(score>=600){grade='B';gradeColor='var(--cyan)'}
   if(score>META.bestScore){META.bestScore=score;META.bestGrade=grade;META.firstWin=true;saveMeta()}
+
+  // ── Branch ending ──
+  let ending={id:'classic',title:'مبروك!',color:'var(--grn)',icon:'🎉',
+    detail:`وجدت شقة <strong style="color:var(--gold)">"${apt.name}"</strong> وعشت ألمانيا الحقيقية.`};
+  const wgApt=apt.id==='apt2';
+  if(G.flags.liedAtAmt){ending={id:'shadow',title:'انتصار في الظل',color:'var(--purp)',icon:'🌑',
+    detail:`عندك بيت — لكن كذبتك في مكتب التسجيل قد تعود يوماً ما...`};}
+  else if(G.stress>=80){ending={id:'pyrrhus',title:'انتصار باهظ الثمن',color:'var(--amber)',icon:'😮‍💨',
+    detail:`فزت لكن بثمن: التوتر ${G.stress}% أنهكك. الراحة جزء من النجاح.`};}
+  else if(score>=1500&&G.reputation>=80&&G.stress<=40){ending={id:'golden',title:'النهاية الذهبية',color:'var(--gold)',icon:'👑',
+    detail:`<strong>${apt.name}</strong> · سمعة ${G.reputation} · توتر ${G.stress}% · نقاط ${score}.<br>اندماج مثالي. مثال يحتذى به.`};}
+  else if(wgApt&&G.flags.nachbarMet){ending={id:'wg',title:'عائلة جديدة',color:'var(--cyan)',icon:'🏘️',
+    detail:`في WG مع Jana، Frau Berger جارتك. لست وحدك.`};}
+  else if(getXPLevel('lang')>=2&&getXPLevel('office')>=2&&getXPLevel('street')>=2){ending={id:'mentor',title:'المعلم',color:'var(--cyan)',icon:'🎓',
+    detail:`ثلاث مهارات في مستوى Profi. الآن تساعد القادمين الجدد.`};}
+
+  if(!META.endingsUnlocked.includes(ending.id)){META.endingsUnlocked.push(ending.id);saveMeta();}
+
   const shareCode=generateShareCode(score,grade);
-  document.getElementById('win-detail').innerHTML=`وجدت شقة <strong style="color:var(--gold)">"${apt.name}"</strong> وعشت ألمانيا الحقيقية.`;
+  document.getElementById('win-detail').innerHTML=`<div style="font-size:2.5rem;margin-bottom:8px">${ending.icon}</div><div style="font-family:'Syne',sans-serif;font-size:1.3rem;color:${ending.color};margin-bottom:8px">${ending.title}</div>`+ending.detail+`<div style="font-size:.7rem;color:var(--dim);margin-top:10px;font-family:'JetBrains Mono',monospace">ENDING ${META.endingsUnlocked.length}/6 unlocked</div>`;
   document.getElementById('win-stats').innerHTML=`
     <div class="panel-title">📊 إحصائياتك</div>
-    <div style="text-align:center;margin-bottom:14px"><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:${gradeColor}">${grade}</div><div style="font-size:.7rem;color:var(--dim)">التقييم</div></div>
+    <div style="text-align:center;margin-bottom:14px"><div style="font-family:'Syne',sans-serif;font-size:3rem;font-weight:800;color:${gradeColor}">${grade}</div><div style="font-size:.7rem;color:var(--dim)">التقييم · ${G.difficulty||'normal'}</div></div>
     <div class="summary-row"><span>الكلمات المتعلّمة</span><span style="color:var(--gold)">${G.vocabLearned.length}/${VOCAB.length}</span></div>
     <div class="summary-row"><span>المال المتبقي</span><span style="color:var(--grn)">${G.money}€</span></div>
     <div class="summary-row"><span>السمعة</span><span style="color:var(--gold)">${G.reputation}%</span></div>
     <div class="summary-row"><span>اليوم الذي وجدت الشقة</span><span style="color:var(--purp)">يوم ${G.day-1}</span></div>
     <div class="summary-row"><span>النقاط</span><span style="color:var(--cyan)">${score}</span></div>`;
   if(G.isDaily)saveDailyScore(score,grade);
-  document.getElementById('win-share').innerHTML=`<div class="share-box" id="share-text">${shareCode}</div><button class="btn btn-ghost btn-sm" onclick="copyShare()">📋 نسخ للمشاركة</button>`;
+  document.getElementById('win-share').innerHTML=`<div class="share-box" id="share-text">${shareCode}
+Ending: ${ending.title}</div><button class="btn btn-ghost btn-sm" onclick="copyShare()">📋 نسخ للمشاركة</button>`;
   document.getElementById('win-ach').innerHTML=Object.keys(META.achievements).map(id=>{const d=ACHIEVEMENT_DEFS.find(a=>a.id===id);return d?`<div class="achievement"><span class="ach-icon">${d.icon}</span><div><div class="ach-title">${d.title}</div><div class="ach-desc">${d.desc}</div></div></div>`:''}).join('');
   META.totalRuns++;saveMeta();updateTitleBest();show('sc-win');
 }
+
 
 // ════════════════════════════════════════════════════
 // DAILY CHALLENGE
@@ -1848,13 +1906,55 @@ function buildAchievementScreen(){
 // VOCAB SCREEN
 // ════════════════════════════════════════════════════
 function showVocab(){
-  document.getElementById('vocab-all').innerHTML=VOCAB.map(v=>`
-    <div class="vocab-item" onclick="this.classList.toggle('expanded')">
-      <span class="vocab-de">${v.de}</span>
+  const learnedSet=new Set(G.vocabLearned.map(v=>v.de));
+  document.getElementById('vocab-all').innerHTML=VOCAB.map(v=>{
+    const learned=learnedSet.has(v.de);
+    const box=META.vocabBox[v.de]||0;
+    const boxBadge=box?`<span style="font-size:.6rem;font-family:'JetBrains Mono',monospace;color:var(--cyan);background:rgba(0,212,255,.08);padding:2px 6px;border-radius:4px;margin-inline-start:6px">📦${box}/5</span>`:'';
+    return `<div class="vocab-item" onclick="this.classList.toggle('expanded')" style="opacity:${learned?1:.5}">
+      <span class="vocab-de">${v.de}${boxBadge}</span>
       <span class="vocab-ar">${v.ar}</span>
-      <div class="vocab-ex">${v.ex}</div>
-    </div>`).join('');
+      <div class="vocab-ex">${v.ex}${learned?'':' · <em style="color:var(--dim)">— لم تتعلّمها بعد</em>'}</div>
+    </div>`;}).join('');
   show('sc-vocab');
+}
+
+
+// ════════════════════════════════════════════════════
+// SRS DAILY REVIEW
+// ════════════════════════════════════════════════════
+let _srsBatch=[],_srsIdx=0,_srsScore=0;
+function startSrsReview(){
+  const pool=pickReviewVocab(3);
+  if(!pool||pool.length<3){toast('لا توجد كلمات للمراجعة','info');backToDay();return;}
+  _srsBatch=pool;_srsIdx=0;_srsScore=0;
+  G.flags.srsDoneToday=true;G.visitedToday.push('srs_review');
+  spendRes(0,1,0);
+  renderSrsReview();
+}
+function renderSrsReview(){
+  if(_srsIdx>=_srsBatch.length){
+    const earned=_srsScore*10;
+    spendRes(0,0,-3,_srsScore>=2?5:0,'lang',_srsScore*8);
+    showResult(_srsScore>=2?'🎯':'📚','مراجعة منتهية',`${_srsScore}/3 صحيح · +${_srsScore*8} XP لغة`,_srsScore>=2?'var(--grn)':'var(--amber)',()=>backToDay());
+    return;
+  }
+  const v=_srsBatch[_srsIdx];
+  // Build 3 distractors from VOCAB
+  const distractors=VOCAB.filter(x=>x.de!==v.de).sort(()=>rng()-.5).slice(0,3);
+  const opts=[v,...distractors].sort(()=>rng()-.5);
+  const correctIdx=opts.findIndex(o=>o.de===v.de);
+  document.getElementById('quiz-content').innerHTML=`
+    <div class="panel" style="margin-bottom:14px"><div style="font-size:.72rem;color:var(--dim);font-family:'JetBrains Mono',monospace;margin-bottom:6px">SRS · سؤال ${_srsIdx+1}/3 · صندوق ${META.vocabBox[v.de]||1}</div><div style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;color:var(--gold);direction:ltr;text-align:center;margin:10px 0">${v.de}</div><div style="font-size:.78rem;color:var(--dim);text-align:center">ما المعنى؟</div></div>
+    <div class="choices">${opts.map((o,i)=>`<div class="choice" data-i="${i}" data-correct="${i===correctIdx?1:0}" data-de="${v.de}"><div class="ch-ar">${o.ar}</div></div>`).join('')}</div>`;
+  document.querySelectorAll('#quiz-content .choice').forEach(el=>el.addEventListener('click',()=>{
+    document.querySelectorAll('#quiz-content .choice').forEach(c=>c.style.pointerEvents='none');
+    const ok=el.dataset.correct==='1';
+    if(ok){srsCorrect(v.de);_srsScore++;el.classList.add('good');toast('✅ صحيح','ok');}
+    else{srsWrong(v.de);el.classList.add('risky');toast('❌ خطأ — الصندوق 1','no');}
+    setTimeout(()=>{_srsIdx++;renderSrsReview();},800);
+  }));
+  show('sc-quiz');
 }
 
 // ════════════════════════════════════════════════════
@@ -1889,7 +1989,22 @@ function updateTitleBest(){
 // KEYBOARD SHORTCUTS
 // ════════════════════════════════════════════════════
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){const overlay=document.getElementById('result-overlay');if(!overlay.classList.contains('hidden'))closeResult()}
+  // Esc closes overlays
+  if(e.key==='Escape'){
+    const overlay=document.getElementById('result-overlay');
+    if(overlay&&!overlay.classList.contains('hidden')){closeResult();return;}
+    const dayOn=document.getElementById('sc-day')?.classList.contains('on');
+    if(!dayOn)show('sc-title');
+    return;
+  }
+  // 1-9 select event on day screen
+  if(/^[1-9]$/.test(e.key)){
+    const dayOn=document.getElementById('sc-day')?.classList.contains('on');
+    if(!dayOn)return;
+    const idx=+e.key-1;
+    const cards=document.querySelectorAll('#event-grid .event-card:not(.disabled)');
+    if(cards[idx])cards[idx].click();
+  }
 });
 
 // ════════════════════════════════════════════════════
@@ -1898,13 +2013,30 @@ document.addEventListener('keydown',e=>{
 const _showOrig=show;
 window.show=function(id){
   if(id==='sc-achievements')buildAchievementScreen();
-  if(id==='sc-char-select'){buildCharSelect();selectedChar=null;document.getElementById('char-confirm').style.display='none'}
+  if(id==='sc-char-select'){if(G.character&&G.day>1&&G.day<=DAYS_MAX&&!confirm('بدء جلسة جديدة سيلغي الحفظ الحالي. متابعة؟')){return;}buildCharSelect();selectedChar=null;document.getElementById('char-confirm').style.display='none'}
   _showOrig(id);
 };
 
 // ════════════════════════════════════════════════════
 // BOOT
 // ════════════════════════════════════════════════════
+function syncDiffUI(){
+  const cur=META.difficulty||'normal';
+  document.querySelectorAll('.diff-opt').forEach(b=>{
+    const isCur=b.dataset.diff===cur;
+    b.style.borderColor=isCur?'var(--gold)':'';
+    b.style.color=isCur?'var(--gold)':'';
+  });
+  const hint={easy:'+40% مال · -30% توتر · للمبتدئين',
+              normal:'إعدادات قياسية',
+              nightmare:'-30% مال · +30% توتر · للمحترفين'}[cur];
+  const el=document.getElementById('diff-hint');if(el)el.textContent=hint;
+}
+document.querySelectorAll('.diff-opt').forEach(b=>b.addEventListener('click',()=>{
+  META.difficulty=b.dataset.diff;saveMeta();syncDiffUI();
+  toast('مستوى الصعوبة: '+b.textContent.trim(),'info');
+}));
+syncDiffUI();
 updateTitleBest();
 </script>
 </body>
