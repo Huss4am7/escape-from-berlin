@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Wohnungsnot — لعبة بقاء A2 تتعلم الألمانية أثناء البحث عن شقة في أوغسبورغ. شخصيات، تحدّيات يومية، نظام SRS.">
 <meta name="theme-color" content="#06070b">
-<title>Wohnungsnot — A2 Survival v5</title>
+<title>Wohnungsnot — A2 Survival v6</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -242,6 +242,49 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
 .ach-desc{font-size:.72rem;color:var(--dim)}
 .xp-unlock-notice{background:rgba(0,230,118,.06);border:1px solid rgba(0,230,118,.2);border-radius:8px;padding:8px 12px;font-size:.76rem;color:var(--grn);margin-top:8px}
 @media(max-width:480px){.char-grid{grid-template-columns:1fr 1fr}.res-lbl{display:none}.res-bar-wrap{display:none}}
+
+/* === v6 — SCREEN TRANSITIONS (cinematic) === */
+.sc.on{animation:scIn .42s cubic-bezier(.16,1,.3,1)}
+@keyframes scIn{0%{opacity:0;transform:translateX(18px)}100%{opacity:1;transform:translateX(0)}}
+body.high-stress .sc.on{animation-duration:.78s;animation-timing-function:cubic-bezier(.4,0,.2,1)}
+body.high-stress::before{background:radial-gradient(ellipse 80% 60% at 50% 50%,transparent 35%,rgba(255,71,87,.12) 100%);animation:stressPulse 2.4s ease-in-out infinite}
+@keyframes stressPulse{0%,100%{opacity:.85}50%{opacity:1}}
+
+/* === v6 — HERR SCHNEIDER === */
+@keyframes schneiderShake{0%,100%{transform:translate(0,0)}25%{transform:translate(-1px,1px)}50%{transform:translate(1px,-1px)}75%{transform:translate(-1px,-1px)}}
+@keyframes textShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-2px)}40%{transform:translateX(2px)}60%{transform:translateX(-1px)}80%{transform:translateX(1px)}}
+.schneider-overlay{position:fixed;inset:0;z-index:250;background:radial-gradient(ellipse at center,rgba(15,17,26,.92) 30%,rgba(107,142,107,.18) 100%);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:24px 14px;overflow-y:auto}
+.schneider-overlay.on{display:flex;animation:fadeIn .32s ease}
+.schneider-box{background:rgba(15,17,26,.98);border:1.5px solid #6b8e6b;border-radius:14px;padding:20px 18px;max-width:480px;width:100%;margin-top:12px;animation:schneiderShake 1.2s ease-in-out infinite;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 30px rgba(107,142,107,.15)}
+.schneider-portrait{font-size:2.2rem;text-align:center;margin-bottom:8px;font-family:'JetBrains Mono',monospace;color:#9ab59a;letter-spacing:1px;direction:ltr}
+.schneider-name{font-family:'Syne',sans-serif;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:#9ab59a;font-size:.78rem;text-align:center;margin-bottom:14px;direction:ltr}
+.schneider-de{font-family:'JetBrains Mono',monospace;font-size:.92rem;line-height:1.7;color:var(--txt);direction:ltr;background:rgba(107,142,107,.08);border-right:3px solid #6b8e6b;padding:11px 13px;border-radius:7px;margin-bottom:8px;text-align:left}
+.schneider-de .shout{display:inline-block;font-weight:900;color:#ff8c42;animation:textShake .35s ease;letter-spacing:1px}
+.schneider-ar{font-size:.88rem;line-height:1.85;color:var(--dim);margin-bottom:14px;padding:0 4px}
+.schneider-mueller-bg{position:fixed;top:24px;left:14px;font-size:.7rem;color:var(--dim);opacity:.4;z-index:251;pointer-events:none;font-family:'JetBrains Mono',monospace;direction:ltr}
+.schneider-rep-bar{display:flex;justify-content:space-between;align-items:center;font-size:.65rem;font-family:'JetBrains Mono',monospace;color:var(--dim);margin-bottom:10px;direction:ltr}
+.schneider-rep-bar .val{color:#9ab59a;font-weight:700}
+.schneider-choice{background:rgba(107,142,107,.06);border:1px solid rgba(107,142,107,.25);border-radius:8px;padding:10px 12px;margin-bottom:7px;cursor:pointer;transition:all .2s}
+.schneider-choice:hover{background:rgba(107,142,107,.14);border-color:#6b8e6b;transform:translateX(-3px)}
+.schneider-choice .sc-de{font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--txt);direction:ltr;text-align:left;margin-bottom:4px}
+.schneider-choice .sc-ar{font-size:.78rem;color:var(--dim)}
+.schneider-skip{background:transparent;border:1px dashed var(--dim);color:var(--dim);font-size:.7rem;padding:6px 12px;border-radius:6px;cursor:pointer;display:block;margin:8px auto 0;font-family:'Tajawal',sans-serif}
+.schneider-skip:hover{color:var(--red);border-color:var(--red)}
+
+/* === v6 — NPC MEMORY HINT === */
+.npc-memory{background:rgba(156,107,255,.07);border-right:3px solid var(--purp);padding:9px 12px;border-radius:6px;margin-bottom:10px;font-size:.78rem;color:var(--purp);line-height:1.7}
+.npc-memory::before{content:'🧠 ';margin-left:4px}
+
+/* === v6 — DIFFICULTY-BADGE NIGHTMARE === */
+body.diff-nightmare::after{background-image:linear-gradient(rgba(255,71,87,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,71,87,.025) 1px,transparent 1px)}
+
+/* === v6 — Schneider char card in Codex === */
+.codex-people{display:grid;gap:10px;margin-bottom:14px}
+.codex-person{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:12px 14px;display:flex;gap:12px;align-items:center}
+.codex-person .cp-icon{font-size:1.8rem;flex-shrink:0}
+.codex-person .cp-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;margin-bottom:2px}
+.codex-person .cp-stat{font-size:.72rem;color:var(--dim)}
+
 </style>
 </head>
 <body>
@@ -454,6 +497,28 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
   <button class="btn btn-ghost" onclick="show('sc-title')">← رجوع</button>
 </div>
 
+
+<!-- ══ SCHNEIDER OVERLAY ══ -->
+<div id="schneider-overlay" class="schneider-overlay" role="dialog" aria-live="assertive" aria-label="Herr Schneider">
+  <div id="schneider-mueller-bg" class="schneider-mueller-bg"></div>
+  <div class="schneider-box" id="schneider-box">
+    <div class="schneider-rep-bar"><span>👴 SCHNEIDER · Nr.3</span><span>Runde <span id="sn-round">1</span>/3 · Rep <span class="val" id="sn-rep">0</span></span></div>
+    <div class="schneider-portrait" id="sn-portrait">( ಠ_ಠ )</div>
+    <div class="schneider-name">HERR HELMUT SCHNEIDER</div>
+    <div class="schneider-de" id="sn-de"></div>
+    <div class="schneider-ar" id="sn-ar"></div>
+    <div id="sn-choices"></div>
+    <button class="schneider-skip" onclick="schneiderSkip()">⏭ Skip — لا وقت لي (-1h, -2 Rep)</button>
+  </div>
+</div>
+
+<!-- ══ CODEX (Die Leute) ══ -->
+<div id="sc-codex" class="sc">
+  <div style="font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;margin-bottom:14px;color:var(--gold)">👥 الناس في حياتك</div>
+  <div class="codex-people" id="codex-list"></div>
+  <button class="btn btn-ghost" onclick="show('sc-title')">← رجوع</button>
+</div>
+
 <!-- ══ GAMEOVER ══ -->
 <div id="sc-gameover" class="sc">
   <div style="text-align:center;padding:30px 0">
@@ -568,7 +633,7 @@ const CHARACTERS = {
 const APARTMENTS_POOL = [
   {id:'apt1',name:'شقة في der Innenstadt',emoji:'🏙️',vermieter:'Herr Müller',vermIcon:'👴',kaltmiete:720,nebenkosten:110,warmmiete:830,kaution:1440,zimmer:2,qm:52,badge:'مركزية',requiresSchufa:true,requiresJob:true,vermGender:'m',traits:['streng','geldgierig'],
     phoneIntro:'Hier Müller. Sie haben geantwortet?',
-    phoneIntroByTrait:{streng:'Müller hier. Bitte fassen Sie sich kurz.',geldgierig:'Müller. Sie wissen — die Miete ist nicht verhandelbar.'},
+    phoneIntroByTrait:{streng:'Müller hier. Bitte fassen Sie sich kurz.',geldgierig:'Müller. Sie wissen — die Miete ist nicht verhandelbar.'},neighborSchneider:true,
     clauses:[{text:'§3 Kündigungsfrist: 3 Monate.',ar:'مدة الإشعار 3 أشهر.',risk:false},{text:'§5 Kaution: 2 Kaltmieten = 1.440€.',ar:'الكاوشن 1440€ — غالٍ!',risk:true},{text:'§9 Schufa + Lohnzettel erforderlich.',ar:'يطلب Schufa وقسيمة راتب.',risk:true}]},
    {id:'apt2',name:'WG-Zimmer في Oberhausen',emoji:'🏘️',vermieter:'Jana',vermIcon:'👩',kaltmiete:380,nebenkosten:60,warmmiete:440,kaution:380,zimmer:1,qm:18,badge:'مناسبة',requiresSchufa:false,requiresJob:false,vermGender:'f',traits:['nachsichtig','sprachfokussiert'],
     phoneIntro:'Hi, hier Jana! Du willst das Zimmer?',
@@ -597,11 +662,11 @@ let APARTMENTS = APARTMENTS_POOL.slice(0,3);
 const VOCAB=[
   {de:'die Wohnung',ar:'الشقة',ex:'Ich suche eine Wohnung in Augsburg.',track:'lang'},
   {de:'die Miete',ar:'الإيجار',ex:'Die Miete beträgt 700 Euro.',track:'office'},
-  {de:'die Kaution',ar:'الوديعة',ex:'Die Kaution ist zwei Monatsmieten.',track:'office'},
+  {de:'die Kaution',ar:'الوديعة المالية (التأمين)',ex:'Die Kaution ist zwei Monatsmieten.',track:'office'},
   {de:'die Nebenkosten',ar:'التكاليف الإضافية',ex:'Strom und Wasser sind Nebenkosten.',track:'office'},
   {de:'der Mietvertrag',ar:'عقد الإيجار',ex:'Bitte unterschreiben Sie hier.',track:'office'},
   {de:'der Vermieter',ar:'المالك',ex:'Der Vermieter heißt Herr Müller.',track:'lang'},
-  {de:'die Kaution',ar:'الوديعة',ex:'Die Kaution beträgt drei Monatsmieten.',track:'office'},
+  {de:'die Kaution',ar:'الوديعة المالية (التأمين)',ex:'Die Kaution beträgt drei Monatsmieten.',track:'office'},
   {de:'die Kündigungsfrist',ar:'مدة الإشعار',ex:'Die Kündigungsfrist ist 3 Monate.',track:'office'},
   {de:'das Einwohnermeldeamt',ar:'مكتب تسجيل السكان',ex:'Ich muss mich anmelden.',track:'office'},
   {de:'die Anmeldung',ar:'التسجيل الرسمي',ex:'Ohne Anmeldung — kein Konto!',track:'office'},
@@ -630,6 +695,27 @@ const VOCAB=[
   {de:'umsteigen',ar:'تغيير القطار',ex:'Bitte in München umsteigen.',track:'street'},
   {de:'das Gleis',ar:'الرصيف',ex:'Gleis 7, bitte!',track:'street'},
   {de:'die Wartenummer',ar:'رقم الدور',ex:'Nehmen Sie eine Wartenummer.',track:'office'},
+  // v6 — HERR SCHNEIDER VOCAB (Hausordnung-Welt)
+  {de:'die Hausordnung',ar:'نظام المبنى',ex:'Das steht in der Hausordnung!',track:'street'},
+  {de:'die Nachtruhe',ar:'فترة الهدوء الليلية (بعد 22:00)',ex:'Nach 22 Uhr ist Nachtruhe!',track:'street'},
+  {de:'der Gelbe Sack',ar:'الكيس الأصفر (للبلاستيك)',ex:'Verpackungen kommen in den Gelben Sack.',track:'street'},
+  {de:'der Restmüll',ar:'النفايات العامة (الحاوية الرمادية)',ex:'Restmüll kommt in die graue Tonne.',track:'street'},
+  {de:'die Biotonne',ar:'حاوية النفايات العضوية (البنية)',ex:'Essensreste in die Biotonne.',track:'street'},
+  {de:'das Altpapier',ar:'الورق القديم (الحاوية الزرقاء)',ex:'Pizzakarton ist Altpapier!',track:'street'},
+  {de:'die Kehrwoche',ar:'أسبوع التنظيف (دور سكان الدرج)',ex:'Diese Woche habe ich Kehrwoche.',track:'street'},
+  {de:'die Einfahrt',ar:'مدخل السيارة',ex:'Parken Sie nicht in der Einfahrt!',track:'street'},
+  {de:'der Fluchtweg',ar:'مخرج الطوارئ',ex:'Fahrräder versperren den Fluchtweg!',track:'street'},
+  {de:'das Halteverbot',ar:'ممنوع الوقوف',ex:'Hier ist Halteverbot.',track:'street'},
+  {de:'abschleppen lassen',ar:'يأمر بسحب السيارة',ex:'Ich lasse Ihr Auto abschleppen!',track:'street'},
+  {de:'die Sonntagsruhe',ar:'هدوء يوم الأحد',ex:'Sonntagsruhe ist heilig!',track:'street'},
+  {de:'sich beschweren',ar:'يقدّم شكوى',ex:'Ich werde mich beschweren!',track:'street'},
+  {de:'anzeigen',ar:'يُبلّغ السلطات',ex:'Ich zeige Sie an!',track:'street'},
+  {de:'das Hausrecht',ar:'حق إدارة المبنى',ex:'Ich habe Hausrecht!',track:'street'},
+  {de:'Ordnung muss sein',ar:'الترتيب واجب — مقولة ألمانية',ex:'Ordnung muss sein, junger Mann!',track:'street'},
+  // v6 — DELAYED LETTER VOCAB
+  {de:'Hochachtungsvoll',ar:'مع فائق الاحترام (إنهاء رسمي)',ex:'Mit freundlichen Grüßen, Hochachtungsvoll, H. Schneider.',track:'office'},
+  // v6 — SYNONYM (Lohnabrechnung is more common in DE than Lohnzettel)
+  {de:'die Lohnabrechnung',ar:'كشف الراتب (المرادف الشائع لـ Lohnzettel)',ex:'Bringen Sie die Lohnabrechnung der letzten 3 Monate mit.',track:'office'},
 ];
 
 // ════════════════════════════════════════════════════
@@ -651,6 +737,14 @@ const ACHIEVEMENT_DEFS = [
   {id:'first_win',icon:'🎊',title:'أول انتصار',desc:'أنهيت اللعبة بنجاح',hint:'ابحث حتى النهاية',rarity:'common'},
   {id:'daily_first',icon:'📅',title:'أول تحدٍّ يومي',desc:'أكملت أول Daily Challenge',hint:'جرّب تحدي اليوم',rarity:'common'},
   {id:'streak_3',icon:'🔥',title:'Fleißig!',desc:'3 أيام منتجة متتالية',hint:'كن منتجاً كل يوم',rarity:'common'},
+  // v6 — SCHNEIDER + ENDINGS + LEARNING
+  {id:'schneider_first',icon:'👴',title:'Nachbarschaftshilfe',desc:'صمدت أمام Herr Schneider لأول مرة',hint:'قابل الجار النَّقّاد',rarity:'common'},
+  {id:'schneider_tamer',icon:'🍰',title:'Der Grantler-Flüsterer',desc:'كسبت قلب Herr Schneider (Rep ≥ +4)',hint:'كن مهذباً جداً معه',rarity:'rare'},
+  {id:'schneider_nemesis',icon:'⚔️',title:'Feind der Ordnung',desc:'3 مواجهات سلبية مع Schneider',hint:'كن المشاغب الأعلى',rarity:'legendary'},
+  {id:'artikel_perfect',icon:'🎯',title:'Artikel-Meister',desc:'8/8 صحيحة في Artikel-Sprint',hint:'أتقن der/die/das',rarity:'rare'},
+  {id:'srs_streak',icon:'📦',title:'SRS-Disziplin',desc:'5 مراجعات SRS ناجحة (≥80%)',hint:'راجع كل يوم',rarity:'rare'},
+  {id:'ending_collector',icon:'🏆',title:'Sammler aller Wege',desc:'فتحت كل النهايات الـ6',hint:'العب بطرق مختلفة',rarity:'legendary'},
+  {id:'polyglot',icon:'🌍',title:'Polyglott',desc:'15 كلمة في Box 5 (مُتقَنة)',hint:'راجع حتى يثبت كل شيء',rarity:'legendary'},
 ];
 
 // ════════════════════════════════════════════════════
@@ -743,15 +837,43 @@ const DELAYED_DEFS={
     desc:'رأيت أحفادك بالفيديو. يملأ قلبك. -30% توتر!',
     effect:(G)=>{G.stress=Math.max(0,G.stress-30)},
     rückblende:'يوسف — العائلة تعطي القوة'
+  },
+  // v6 — SCHNEIDER DELAYED EVENTS
+  schneider_letter:{
+    icon:'📬',title:'رسالة من Herr Schneider',
+    desc:'في صندوق بريد الفندق: ورقة بخط أنيق قديم. Schneider يكتب لك بأسلوب رسمي يخنق الأنفاس. تتعلم كلمات بيروقراطية حقيقية.',
+    effect:(G)=>{G.stress=Math.min(100,G.stress+5);if(typeof addXP==='function')addXP('lang',8);if(typeof learnVocab==='function')learnVocab([{de:'sich beschweren',ar:'يقدّم شكوى',track:'street'},{de:'Hochachtungsvoll',ar:'مع فائق الاحترام',track:'office'}]);},
+    rückblende:'كنت فظاً مع Schneider. كتب رسالة رسمية.'
+  },
+  schneider_warning:{
+    icon:'📞',title:'Müller سمع شائعات',
+    desc:'Müller اتصل: "Mein Nachbar Schneider hat mir Dinge erzählt..." سمعتك مع Müller انخفضت.',
+    effect:(G)=>{G.reputation=Math.max(0,G.reputation-10)},
+    rückblende:'Schneider اشتكاك لـ Müller'
+  },
+  schneider_petition:{
+    icon:'📋',title:'عريضة من الجيران!',
+    desc:'Schneider جمع توقيعات. Müller يلغي عرضه. apt1 مغلقة لـ4 أيام.',
+    effect:(G)=>{const apt=APARTMENTS_POOL.find(a=>a.id==='apt1');if(apt){apt.available=false;G.flags.apt1BlockedUntil=G.day+4;}G.reputation=Math.max(0,G.reputation-15)},
+    rückblende:'Schneider بدأ حملة ضدك'
+  },
+  schneider_cake:{
+    icon:'🍰',title:'Schneider أحضر كعكة!',
+    desc:'"Käsekuchen, frisch gebacken. Für die nette Familie aus Syrien." لحظة دافئة نادرة.',
+    effect:(G)=>{G.reputation=Math.min(100,G.reputation+15);G.stress=Math.max(0,G.stress-10);if(typeof learnVocab==='function')learnVocab([{de:'der Käsekuchen',ar:'كعكة الجبن',track:'lang'}]);},
+    rückblende:'كسبت قلب Schneider — هو سعيد!'
   }
 };
 
 // ════════════════════════════════════════════════════
 // GAME STATE
 // ════════════════════════════════════════════════════
-const SAVE_KEY='wohnungsnot_v5';
+const SAVE_KEY='wohnungsnot_v6';
+const SAVE_KEY_V5='wohnungsnot_v5';
 const SAVE_KEY_LEGACY='wohnungsnot_v4';
-const META_KEY='wohnungsnot_meta_v5';
+// v6 retains v5 + v4 compatibility via SAVE_KEY_V5 + SAVE_KEY_LEGACY
+const META_KEY='wohnungsnot_meta_v6';
+const META_KEY_V5='wohnungsnot_meta_v5';
 const META_KEY_LEGACY='wohnungsnot_meta_v4';
 
 const G={
@@ -765,7 +887,7 @@ const G={
   character:null,
   pendingEvents:[],
   visitedToday:[],
-  flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,srsDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false},
+  flags:{liedAtAmt:false,badRep:false,scamUsed:false,nachbarMet:false,quizDoneToday:false,srsDoneToday:false,phoneBonusUsed:{},bergerHelpUsed:false,schneiderMet:0,schneiderRep:0,schneiderTopics:[],schneiderNegativeRuns:0,schneiderTodayDone:false,schneiderStreetDone:false,apt1BlockedUntil:0,visitedAmtBefore:0,artikelPerfectStreak:0,srsStreakOK:0},
   formAnswers:{}, selectedChip:null,
   currentApt:null, bschtStep:0, amtStep:0,
   vertragData:null, resultCallback:null,
@@ -782,7 +904,7 @@ const XP_LEVELS=[{name:'Anfänger',min:0,color:'#5a5f7a'},{name:'Gewandt',min:50
 // ════════════════════════════════════════════════════
 let META={achievements:{},totalRuns:0,bestScore:0,bestGrade:'',firstWin:false,dailyHistory:[],charactersUnlocked:['ahmad','fatima','muhammad'],vocabBox:{},errorLog:[],difficulty:'normal',endingsUnlocked:[]};
 
-function loadMeta(){try{let raw=localStorage.getItem(META_KEY)||localStorage.getItem(META_KEY_LEGACY);if(raw){const m=JSON.parse(raw);if(m)Object.assign(META,m);}if(!META.vocabBox)META.vocabBox={};if(!META.errorLog)META.errorLog=[];if(!META.dailyHistory)META.dailyHistory=[];META.dailyHistory=META.dailyHistory.slice(0,30);if(META.achievements){const valid=new Set(ACHIEVEMENT_DEFS.map(d=>d.id));META.achievements=META.achievements.filter(id=>valid.has(id))}}catch(e){console.warn('loadMeta',e)}}
+function loadMeta(){try{let raw=localStorage.getItem(META_KEY)||localStorage.getItem(META_KEY_V5)||localStorage.getItem(META_KEY_LEGACY);if(raw){const m=JSON.parse(raw);if(m)Object.assign(META,m);}if(!META.vocabBox)META.vocabBox={};if(!META.errorLog)META.errorLog=[];if(!META.dailyHistory)META.dailyHistory=[];META.dailyHistory=META.dailyHistory.slice(0,30);if(META.achievements){const valid=new Set(ACHIEVEMENT_DEFS.map(d=>d.id));META.achievements=META.achievements.filter(id=>valid.has(id))}}catch(e){console.warn('loadMeta',e)}}
 function saveMeta(){try{localStorage.setItem(META_KEY,JSON.stringify(META))}catch(e){}}
 loadMeta();
 
@@ -796,7 +918,10 @@ function _toastNext(){const t=document.getElementById('toast');const it=_toastQ.
 function show(id){
   document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
   document.getElementById(id)?.classList.add('on');
-  window.scrollTo(0,0);
+  window.scrollTo({top:0,behavior:'smooth'});
+  // v6 — stress vignette + difficulty class
+  document.body.classList.toggle('high-stress', (typeof G!=='undefined'&&G.stress>=80));
+  document.body.classList.toggle('diff-nightmare', (typeof META!=='undefined'&&META.difficulty==='nightmare'));
 }
 
 function learnVocab(words){
@@ -990,7 +1115,7 @@ function saveGame(){
       reputation:G.reputation,xp:G.xp,xpLevel:G.xpLevel,streak:G.streak,totalEarned:G.totalEarned,
       character:G.character,pendingEvents:G.pendingEvents,flags:G.flags,
       apartments:APARTMENTS.map(a=>({id:a.id,available:a.available,kaltmiete:a.kaltmiete,warmmiete:a.warmmiete})),aptIds:APARTMENTS.map(a=>a.id),
-      saveVersion:5
+      saveVersion:6
     };
     localStorage.setItem(SAVE_KEY,JSON.stringify(data));
     const ind=document.getElementById('saveInd');
@@ -1000,9 +1125,13 @@ function saveGame(){
 
 function loadGame(){
   try{
-    const data=JSON.parse(localStorage.getItem(SAVE_KEY));
-    if(!data||(data.saveVersion!==5&&data.saveVersion!==4)){toast('لا يوجد حفظ متوافق','no');return}
-    if(data.saveVersion===4)toast('🔄 تم ترقية الحفظ من v4','info');
+    let raw=localStorage.getItem(SAVE_KEY);
+    if(!raw)raw=localStorage.getItem(SAVE_KEY_V5);
+    if(!raw)raw=localStorage.getItem('wohnungsnot_v4');
+    const data=raw?JSON.parse(raw):null;
+    if(!data||(data.saveVersion!==6&&data.saveVersion!==5&&data.saveVersion!==4)){toast('لا يوجد حفظ متوافق','no');return}
+    if(data.saveVersion===4)toast('🔄 تم ترقية الحفظ من v4 إلى v6','info');
+    if(data.saveVersion===5)toast('🔄 تم ترقية الحفظ من v5 إلى v6','info');
     Object.assign(G,{day:data.day,money:data.money,stress:data.stress,
       inventory:data.inventory||[],vocabLearned:data.vocabLearned||[],
       jobFound:data.jobFound,anmeldung:data.anmeldung,bankAccount:data.bankAccount,hasSchufa:data.hasSchufa,
@@ -2180,6 +2309,421 @@ function endArtikelSprint(){
   if(s.correct>=7)checkAch('lang_pro');
   showResult('🎯','Artikel-Sprint!',`صحيح: ${s.correct}/${s.words.length} · +${xp} Sprach-XP`,'var(--purp)',()=>{_artikelState=null;backToDay()});
 }
+
+
+
+// ════════════════════════════════════════════════════
+// v6 — HERR SCHNEIDER ENGINE
+// ════════════════════════════════════════════════════
+const SCHNEIDER_PORTRAITS = {
+  grumpy: '(╬ಠ益ಠ)',
+  suspicious: '( ಠ_ಠ )',
+  touched: '( ಥ﹏ಥ )',
+  exploded: '(╯°□°)╯'
+};
+
+// Each topic: 8 items × 3 rounds (round1 fixed, round2 thematic, round3 by rep sum)
+const SCHNEIDER_TOPICS = [
+  {
+    id:'muell', icon:'🗑️',
+    r2_de: 'Die TONNEN! Die GELBEN! Jemand hat einen PIZZA-KARTON in den Gelben Sack getan! Das ist KEIN Plastik! Das ist PAPIER!',
+    r2_ar: 'الحاويات! الصفراء! وضع أحدهم كرتونة بيتزا في الكيس الأصفر! هذا ليس بلاستيك — هذا ورق!',
+    vocab:[{de:'der Gelbe Sack',ar:'الكيس الأصفر (للبلاستيك)'},{de:'das Altpapier',ar:'الورق القديم'},{de:'die Biotonne',ar:'النفايات العضوية'}]
+  },
+  {
+    id:'parken', icon:'🚗',
+    r2_de: 'Sie haben Ihr AUTO vor MEINER Einfahrt geparkt! Das ist HALTEVERBOT! Ich kann es ABSCHLEPPEN LASSEN!',
+    r2_ar: 'ركنت سيارتك أمام مدخلي! هذا ممنوع الوقوف! يمكنني سحبها!',
+    vocab:[{de:'die Einfahrt',ar:'مدخل السيارة'},{de:'das Halteverbot',ar:'ممنوع الوقوف'},{de:'abschleppen lassen',ar:'سحب السيارة'}]
+  },
+  {
+    id:'laerm', icon:'🔇',
+    r2_de: 'Gestern! Um 22:30! Ich habe MUSIK gehört! Hier ist NACHTRUHE! Das steht in der HAUSORDNUNG!',
+    r2_ar: 'أمس الساعة 10:30 مساءً سمعت موسيقى! هنا ساعات هدوء! هذا في نظام المبنى!',
+    vocab:[{de:'die Nachtruhe',ar:'فترة الهدوء الليلية'},{de:'die Hausordnung',ar:'نظام المبنى'},{de:'laut',ar:'صاخب'}]
+  },
+  {
+    id:'besuch', icon:'👥',
+    r2_de: 'FREMDE Leute waren bei Ihnen! Drei! Vier! Wer waren das? Ich habe HAUSRECHT — ich muss WISSEN, wer hier ein- und ausgeht!',
+    r2_ar: 'أناس غرباء جاؤوا إليك! ثلاثة! أربعة! من كانوا؟ عندي حق إدارة المبنى — يجب أن أعرف من يدخل ويخرج!',
+    vocab:[{de:'der Besuch',ar:'الزيارة'},{de:'das Hausrecht',ar:'حق إدارة المبنى'},{de:'fremd',ar:'غريب'}]
+  },
+  {
+    id:'kehrwoche', icon:'🧹',
+    r2_de: 'Diese Woche ist IHRE Kehrwoche! Das Treppenhaus war SCHMUTZIG! Der Reinigungsplan hängt seit JAHRZEHNTEN dort!',
+    r2_ar: 'هذا الأسبوع دورك في تنظيف الدرج! كان متسخاً! خطة التنظيف معلقة هناك منذ عقود!',
+    vocab:[{de:'die Kehrwoche',ar:'دور تنظيف الدرج'},{de:'das Treppenhaus',ar:'بهو الدرج'},{de:'der Reinigungsplan',ar:'خطة التنظيف'}]
+  },
+  {
+    id:'sonntag', icon:'☀️',
+    r2_de: 'SONNTAG! Wäsche auf dem Balkon! Das ist VERBOTEN! Sonntag ist RUHETAG! In Deutschland respektiert man das!',
+    r2_ar: 'يوم الأحد! غسيل على الشرفة! هذا ممنوع! الأحد يوم راحة! في ألمانيا نحترم هذا!',
+    vocab:[{de:'die Sonntagsruhe',ar:'هدوء يوم الأحد'},{de:'der Balkon',ar:'الشرفة'},{de:'verboten',ar:'ممنوع'}]
+  },
+  {
+    id:'rauchen', icon:'🚭',
+    r2_de: 'Rauchen im Hof! Wo die KINDER spielen! Das ist gegen den ANSTAND! Hier gilt RAUCHVERBOT!',
+    r2_ar: 'تدخين في الحوش! حيث يلعب الأطفال! هذا ضد الأخلاق! هنا ممنوع التدخين!',
+    vocab:[{de:'das Rauchverbot',ar:'ممنوع التدخين'},{de:'der Hof',ar:'الحوش'},{de:'der Anstand',ar:'الأخلاق'}]
+  },
+  {
+    id:'fahrrad', icon:'🚲',
+    r2_de: 'Ihr FAHRRAD steht im FLUR! Das ist FLUCHTWEG! BRANDSCHUTZ! Bei Feuer können wir nicht raus!',
+    r2_ar: 'دراجتك في الممر! هذا مخرج طوارئ! وقاية من الحريق! إذا حدث حريق لن نستطيع الخروج!',
+    vocab:[{de:'der Fluchtweg',ar:'مخرج الطوارئ'},{de:'der Brandschutz',ar:'الوقاية من الحريق'},{de:'der Kellerabstellraum',ar:'مخزن القبو'}]
+  }
+];
+
+const SCHNEIDER_R1 = {
+  de: 'So! Sie sind also der Neue! Ich bin Schneider, Nummer 3. Ich muss Ihnen kurz WAS sagen!',
+  ar: 'إذن! أنت الجديد! أنا شنايدر، رقم 3. يجب أن أقول لك شيئاً!',
+  choices: [
+    {label:'A', de:'"Guten Tag Herr Schneider, gerne. Wie kann ich helfen?"', ar:'مهذب — "أهلاً، تفضل."', delta:1, mood:'suspicious'},
+    {label:'B', de:'"Ich habe es eilig — was wollen Sie?"', ar:'بارد — "أنا مستعجل."', delta:-2, mood:'grumpy'},
+    {label:'C', de:'"Nummer 3? Ist das ein Witz?"', ar:'دعابة — مخاطرة!', delta:0, mood:'exploded', random:true}
+  ]
+};
+
+let _schneider = null; // active session
+
+function startSchneider(context){
+  // Hard cap: 3 encounters per run
+  if(G.flags.schneiderMet>=3){return false;}
+  if(G.isDaily && G.flags.schneiderMet>=1){return false;} // Daily: 1 max
+  // Pick fresh topic
+  const used = new Set(G.flags.schneiderTopics||[]);
+  const pool = SCHNEIDER_TOPICS.filter(t=>!used.has(t.id));
+  if(pool.length===0){return false;} // fallback: silent skip
+  const topic = pool[Math.floor(rng()*pool.length)];
+  _schneider = {
+    context: context||'street', // 'apt1' | 'street' | 'delayed'
+    topic, round:1, sumDelta:0, mood:'suspicious',
+    answeredRound1:null
+  };
+  document.getElementById('schneider-mueller-bg').textContent =
+    (context==='apt1') ? '🏠 Herr Müller beobachtet aus dem Hintergrund...' : '';
+  document.getElementById('schneider-overlay').classList.add('on');
+  renderSchneiderRound(1);
+  // First-time achievement on completion (handled in finalize)
+  return true;
+}
+
+function _shoutize(de){
+  // Wrap CAPS-LOCK words with .shout span
+  return escapeSchneider(de).replace(/\b([A-ZÄÖÜß]{3,})\b/g, '<span class="shout">$1</span>');
+}
+function escapeSchneider(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+function renderSchneiderRound(n){
+  const sn = _schneider;
+  document.getElementById('sn-round').textContent = n;
+  document.getElementById('sn-rep').textContent = (G.flags.schneiderRep>=0?'+':'') + G.flags.schneiderRep;
+  document.getElementById('sn-portrait').textContent = SCHNEIDER_PORTRAITS[sn.mood] || SCHNEIDER_PORTRAITS.suspicious;
+
+  let de='', ar='', choices='';
+  if(n===1){
+    // Memory line if returning
+    let mem = '';
+    if(G.flags.schneiderMet>=1){
+      mem = '<div class="npc-memory" style="border-color:#6b8e6b;color:#9ab59a">Schneider: "Ach! Sie WIEDER!"</div>';
+    }
+    de = SCHNEIDER_R1.de;
+    ar = SCHNEIDER_R1.ar;
+    choices = mem + SCHNEIDER_R1.choices.map((c,i)=>
+      `<div class="schneider-choice" onclick="answerSchneider(${i})"><div class="sc-de">${c.label}) ${escapeSchneider(c.de)}</div><div class="sc-ar">${c.ar}</div></div>`
+    ).join('');
+  } else if(n===2){
+    de = sn.topic.r2_de;
+    ar = sn.topic.r2_ar;
+    const opts = [
+      {label:'A', de:'"Sie haben völlig Recht. Entschuldigung."', ar:'مهذب — تعتذر وتتعلم كلمات', delta:2},
+      {label:'B', de:'"Was soll das bringen? Macht doch keinen Unterschied!"', ar:'فظ — مخاطرة Müller', delta:-3},
+      {label:'C', de:'"Das war ich nicht. Ehrlich."', ar:'كذب — قد يكتشف لاحقاً', delta:0, lie:true}
+    ];
+    choices = opts.map((c,i)=>
+      `<div class="schneider-choice" onclick="answerSchneider(${i})"><div class="sc-de">${c.label}) ${escapeSchneider(c.de)}</div><div class="sc-ar">${c.ar}</div></div>`
+    ).join('');
+    sn._round2Opts = opts;
+  } else if(n===3){
+    // Outcome by sumDelta
+    const sum = sn.sumDelta;
+    let outcome;
+    if(sum >= 3){
+      outcome = {de:'Endlich jemand mit VERSTAND! Kommen Sie mal vorbei — ich zeig Ihnen den Reinigungsplan!', ar:'أخيراً شخص مع عقل! تعال، سأريك خطة التنظيف!', mood:'touched', xp:5, vocab:3, vermBoost:10};
+    } else if(sum >= 0){
+      outcome = {de:'Na gut. Aber denken Sie dran: ORDNUNG MUSS SEIN.', ar:'حسناً. لكن تذكّر: الترتيب واجب.', mood:'suspicious', xp:2, vocab:1, vermBoost:0};
+    } else if(sum >= -2){
+      outcome = {de:'So nicht! Ich werde EIN AUGE auf Sie haben!', ar:'ليس هكذا! سأراقبك!', mood:'grumpy', xp:0, vocab:0, vermBoost:0, queueDelayed:'schneider_warning', delay:4};
+    } else {
+      outcome = {de:'Das wird ein ERNSTES Gespräch mit dem Vermieter geben!', ar:'ستكون محادثة جدية مع المالك!', mood:'exploded', xp:0, vocab:0, vermBoost:-15, queueDelayed:'schneider_petition', delay:5};
+    }
+    sn.mood = outcome.mood;
+    document.getElementById('sn-portrait').textContent = SCHNEIDER_PORTRAITS[outcome.mood];
+    de = outcome.de;
+    ar = outcome.ar;
+    choices = `<div class="schneider-choice" onclick="finalizeSchneider()" style="border-color:var(--gold);background:rgba(212,168,67,.08)"><div class="sc-de" style="color:var(--gold)">→ Auf Wiedersehen, Herr Schneider.</div><div class="sc-ar">إلى اللقاء يا سيد شنايدر</div></div>`;
+    sn._outcome = outcome;
+  }
+  document.getElementById('sn-de').innerHTML = _shoutize(de);
+  document.getElementById('sn-ar').textContent = ar;
+  document.getElementById('sn-choices').innerHTML = choices;
+}
+
+function answerSchneider(idx){
+  const sn = _schneider;
+  if(sn.round===1){
+    let c = SCHNEIDER_R1.choices[idx];
+    let delta = c.delta;
+    if(c.random){ delta = (rng()<0.5) ? +3 : -3; toast(delta>0?'😄 Schneider lacht überraschend':'😡 Schneider explodiert','info'); }
+    sn.sumDelta += delta;
+    G.flags.schneiderRep += delta;
+    sn.mood = c.mood;
+    sn.round = 2;
+    renderSchneiderRound(2);
+    return;
+  }
+  if(sn.round===2){
+    const c = sn._round2Opts[idx];
+    sn.sumDelta += c.delta;
+    G.flags.schneiderRep += c.delta;
+    // Vocab learn
+    if(c.delta>0){
+      learnVocab(sn.topic.vocab.slice(0,2));
+      addXP('lang', 6);
+      addXP('street', 4);
+    } else if(c.delta<0){
+      // Müller hört zu? -5 Vermieter-Ruf wenn apt1-context
+      if(sn.context==='apt1'){G.reputation = Math.max(0, G.reputation-5);}
+    } else if(c.lie){
+      // Delayed letter
+      queueDelayed('schneider_letter', 3, 'schneider_lie');
+    }
+    sn.round = 3;
+    renderSchneiderRound(3);
+    return;
+  }
+}
+
+function finalizeSchneider(){
+  const sn = _schneider;
+  const o = sn._outcome;
+  if(o){
+    if(o.xp) addXP('lang', o.xp);
+    if(o.vocab) learnVocab(sn.topic.vocab.slice(0, o.vocab));
+    if(o.vermBoost) G.reputation = Math.max(0, Math.min(100, G.reputation + o.vermBoost));
+    if(o.queueDelayed) queueDelayed(o.queueDelayed, o.delay||4, 'schneider');
+  }
+  // Mark topic used
+  G.flags.schneiderTopics = G.flags.schneiderTopics || [];
+  G.flags.schneiderTopics.push(sn.topic.id);
+  G.flags.schneiderMet = (G.flags.schneiderMet||0) + 1;
+  // Achievements
+  checkAch('schneider_first');
+  if(sn.sumDelta >= 4){
+    checkAch('schneider_tamer');
+    queueDelayed('schneider_cake', 2, 'schneider_friend');
+  }
+  if(sn.sumDelta <= -3){
+    G.flags.schneiderNegativeRuns = (G.flags.schneiderNegativeRuns||0) + 1;
+    if(G.flags.schneiderNegativeRuns >= 3) checkAch('schneider_nemesis');
+  }
+  document.getElementById('schneider-overlay').classList.remove('on');
+  _schneider = null;
+  saveGame && saveGame();
+  toast('👴 Schneider Begegnung beendet','info');
+}
+
+function schneiderSkip(){
+  const sn = _schneider;
+  if(!sn) return;
+  G.flags.schneiderRep -= 2;
+  G.flags.schneiderMet = (G.flags.schneiderMet||0) + 1;
+  G.timeLeft = Math.max(0, G.timeLeft - 1);
+  document.getElementById('schneider-overlay').classList.remove('on');
+  _schneider = null;
+  toast('⏭ تجاوزت Schneider (-1h, -2 Rep)','info');
+}
+
+// ════════════════════════════════════════════════════
+// v6 — INTEGRATION HOOKS
+// ════════════════════════════════════════════════════
+// 1. apt1 Besichtigung: 50% chance Schneider interrupts
+const _origStartBesichtigung = window.startBesichtigung;
+window.startBesichtigung = function(apt){
+  // Block apt1 if Schneider petition active
+  if(apt && apt.id==='apt1' && G.flags.apt1BlockedUntil && G.day < G.flags.apt1BlockedUntil){
+    toast('🚫 Müller blockiert dich (Schneider-Petition)','no');
+    return;
+  }
+  if(apt && apt.id==='apt1' && apt.neighborSchneider && !G.flags.schneiderTodayDone && rng()<0.5 && G.flags.schneiderMet<3){
+    G.flags.schneiderTodayDone = true;
+    G.currentApt = apt;
+    // Show Schneider FIRST, then continue to Besichtigung
+    const ok = startSchneider('apt1');
+    if(ok){
+      // After Schneider closes, continue Besichtigung. Hook into finalize.
+      const _origFinal = finalizeSchneider;
+      window.finalizeSchneider = function(){
+        _origFinal();
+        window.finalizeSchneider = _origFinal;
+        _origStartBesichtigung(apt);
+      };
+      const _origSkip = schneiderSkip;
+      window.schneiderSkip = function(){
+        _origSkip();
+        window.schneiderSkip = _origSkip;
+        _origStartBesichtigung(apt);
+      };
+      return;
+    }
+  }
+  _origStartBesichtigung(apt);
+};
+
+// 2. signVertrag for apt1: block if schneiderRep <= -3
+const _origSignVertrag = window.signVertrag;
+window.signVertrag = function(){
+  const apt = G.vertragData;
+  if(apt && apt.id==='apt1' && (G.flags.schneiderRep||0) <= -3){
+    showResult('📞','Müller hat zurückgezogen','Mein Nachbar Schneider hat mich angerufen. Ich muss die Zusage leider zurücknehmen.','var(--red)',()=>backToDay());
+    return;
+  }
+  _origSignVertrag();
+};
+
+// 3. Add Schneider street event (Tag 6+) into events list — patch via getEventsForDay if exists
+//    We add an event card via DOM patch in renderDay isn't trivial. Instead: intercept via daily event injection.
+
+// 4. NPC Memory hooks: enrich Frau Weber (Amt) with memory on second visit
+const _origStartAmt = window.startAmt;
+if(_origStartAmt){
+  window.startAmt = function(){
+    G.flags.visitedAmtBefore = (G.flags.visitedAmtBefore||0);
+    _origStartAmt();
+    if(G.flags.visitedAmtBefore>=1 || G.flags.liedAtAmt){
+      setTimeout(()=>{
+        const c = document.getElementById('amt-content');
+        if(!c) return;
+        let memHtml='';
+        if(G.flags.liedAtAmt){
+          memHtml = `<div class="npc-memory">Frau Weber: "Sie waren am Tag ${Math.max(1,G.day-3)} hier. Damals haben Sie behauptet, einen Termin zu haben. Heute bitte die Wahrheit."</div>`;
+        } else if(G.flags.visitedAmtBefore>=1){
+          memHtml = `<div class="npc-memory">Frau Weber: "Schön, Sie wiederzusehen. Wo waren wir stehen geblieben?"</div>`;
+        }
+        c.insertAdjacentHTML('afterbegin', memHtml);
+      }, 60);
+    }
+    G.flags.visitedAmtBefore = (G.flags.visitedAmtBefore||0) + 1;
+  };
+}
+
+// 5. Codex (Die Leute) renderer
+function renderCodex(){
+  const list = document.getElementById('codex-list');
+  if(!list) return;
+  const sr = G.flags.schneiderRep||0;
+  const schneiderStat = sr>=3?'صديقك. نوعاً ما.':sr>=0?'يراقبك.':'ليس من المعجبين.';
+  const people = [
+    {icon:'👴',name:'Herr Schneider',stat:`(${sr>=0?'+':''}${sr}) ${schneiderStat}`},
+    {icon:'🏘️',name:'Herr Müller (apt1)',stat:`Streng + Geldgierig · Rep: ${G.reputation}`},
+    {icon:'😊',name:'Jana (apt2)',stat:`Nachsichtig + Sprachfokussiert${G.flags.nachbarMet?' · صديقة':''}`},
+    {icon:'👵',name:'Frau Berger',stat:`الجارة · ${G.flags.bergerHelpUsed?'ساعدتك':'بانتظار اللقاء'}`},
+    {icon:'🏛️',name:'Frau Weber (Amt)',stat:`زارتك ${G.flags.visitedAmtBefore||0} مرة${G.flags.liedAtAmt?' · تتذكر الكذب':''}`}
+  ];
+  list.innerHTML = people.map(p=>`<div class="codex-person"><div class="cp-icon">${p.icon}</div><div><div class="cp-name">${p.name}</div><div class="cp-stat">${p.stat}</div></div></div>`).join('');
+}
+const _origShow = window.show;
+window.show = function(id){_origShow(id); if(id==='sc-codex') renderCodex();};
+
+// 6. winGame text enrichment + ending_collector + ending-specific achievements
+const _origWinGame = window.winGame;
+window.winGame = function(){
+  _origWinGame();
+  // Post-process: append schneider-aware lines + check ending_collector
+  setTimeout(()=>{
+    const detail = document.getElementById('win-detail');
+    if(!detail) return;
+    const sr = G.flags.schneiderRep||0;
+    const tamer = META.achievements && (Array.isArray(META.achievements)?META.achievements.includes('schneider_tamer'):META.achievements['schneider_tamer']);
+    const nemesis = META.achievements && (Array.isArray(META.achievements)?META.achievements.includes('schneider_nemesis'):META.achievements['schneider_nemesis']);
+    let extra = '';
+    if(sr >= 4 || tamer) extra = '<div style="margin-top:10px;font-size:.78rem;color:var(--cyan);font-style:italic">"Selbst Herr Schneider nickte anerkennend."</div>';
+    else if(sr <= -4 || nemesis) extra = '<div style="margin-top:10px;font-size:.78rem;color:var(--red);font-style:italic">"Herr Schneider bekreuzigte sich, als du einzogst."</div>';
+    if(extra) detail.insertAdjacentHTML('beforeend', extra);
+    // ending_collector
+    if(META.endingsUnlocked && META.endingsUnlocked.length>=6) checkAch('ending_collector');
+    // polyglot
+    if(META.vocabBox){
+      const box5 = Object.values(META.vocabBox).filter(b=>b===5).length;
+      if(box5>=15) checkAch('polyglot');
+    }
+  },50);
+};
+
+// 7. Schneider street event injector: append after each renderDay event grid render
+//    Hook via MutationObserver on sc-day or simpler: patch endDay/initDay
+//    We attach via DOM after a short delay each show('sc-day')
+const _origShow2 = window.show;
+window.show = function(id){
+  _origShow2(id);
+  if(id==='sc-day' && G.day>=6 && !G.flags.schneiderStreetDone && G.flags.schneiderMet<3 && rng()<0.6){
+    setTimeout(()=>{
+      const grid = document.querySelector('#sc-day .events-grid, #sc-day [id*="event"], #sc-day');
+      if(!grid) return;
+      const card = document.createElement('div');
+      card.className = 'event-card';
+      card.style.cssText = 'background:linear-gradient(135deg,rgba(107,142,107,.08),rgba(15,17,26,.6));border:1px solid rgba(107,142,107,.3);border-radius:12px;padding:14px;margin-bottom:10px;cursor:pointer';
+      card.innerHTML = `<div style="font-size:.95rem;font-weight:700;margin-bottom:6px">👴 Herr Schneider beim Bäcker getroffen</div><div style="font-size:.75rem;color:var(--dim);line-height:1.6">⏱️ 1h · 😤 +5 Stress · 🗣️ +XP Sprache · 📚 +Vokabeln</div>`;
+      card.onclick = ()=>{
+        G.flags.schneiderStreetDone = true;
+        G.timeLeft = Math.max(0, G.timeLeft-1);
+        G.stress = Math.min(100, G.stress+5);
+        startSchneider('street');
+      };
+      // Insert at top of day events
+      const day = document.getElementById('sc-day');
+      const target = day.querySelector('[id*="grid"]') || day.querySelector('.events-grid') || day;
+      target.insertBefore(card, target.firstChild);
+    }, 80);
+  }
+};
+
+// 8. Keyboard: Esc to close Schneider overlay (skip)
+window.addEventListener('keydown', e=>{
+  if(e.key==='Escape' && _schneider){ schneiderSkip(); }
+});
+
+// 9. Nightmare difficulty: schneiderRep starts at -3
+const _origInitGame = window.initGame;
+if(_origInitGame){
+  window.initGame = function(...args){
+    _origInitGame(...args);
+    if(META.difficulty==='nightmare'){
+      G.flags.schneiderRep = -3;
+    }
+  };
+}
+
+// 10. Add Codex link to title screen (best-effort: append button)
+document.addEventListener('DOMContentLoaded', ()=>{
+  setTimeout(()=>{
+    const title = document.getElementById('sc-title');
+    if(!title) return;
+    if(title.querySelector('[data-codex]')) return;
+    const btn = document.createElement('button');
+    btn.className = 'btn btn-ghost';
+    btn.setAttribute('data-codex','1');
+    btn.style.marginTop='6px';
+    btn.textContent = '👥 الناس في حياتك';
+    btn.onclick = ()=>show('sc-codex');
+    title.appendChild(btn);
+  }, 200);
+});
+
+// 11. v6 banner toast on load
+setTimeout(()=>{toast('🎮 Wohnungsnot v6 — Herr Schneider ist da!','gold');}, 800);
+
+console.log('[v6] Herr Schneider loaded.', SCHNEIDER_TOPICS.length, 'topics');
 
 </script>
 </body>
