@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Wohnungsnot — A2 Survival. Wohnungssuche in Augsburg, mehrstufige Ziele, Bürokratie in zwei Schritten, Job-Bewerbung + Interview.">
 <meta name="theme-color" content="#06070b">
-<title>Wohnungsnot v7 — A2 Survival</title>
+<title>Wohnungsnot — A2 Survival</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Tajawal:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -304,7 +304,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;back
 <div id="sc-title" class="sc on">
   <div class="title-hero">
     <div class="title-main">Wohnungsnot</div>
-    <div class="title-sub">أزمة السكن — A2 Survival · v7</div>
+    <div class="title-sub">أزمة السكن — A2 Survival </div>
     <div class="title-tag">14 يوماً في أوغسبورغ.<br>الألمانية هنا سلاح البقاء.</div>
   </div>
   <div class="story-box">📍 <strong>أوغسبورغ، أكتوبر 2026</strong><br><br>الفندق يكلفك <strong>55€</strong> الليلة. الشقق تطلب <strong>Schufa + Kaution + Anmeldung</strong>. هدفك: شقة + تسجيل + عمل + لغة — كلها معاً.</div>
@@ -517,7 +517,10 @@ const CHARACTERS={
     jobQuestions:[
       {q:'Haben Sie schon auf einer Baustelle gearbeitet?',ctx:'Vorarbeiter Klaus fragt nach Erfahrung.',options:['Ja, 3 Jahre in Damaskus als Maurer.','Nein, ich habe nur theoretisches Wissen.','Ich kann alles lernen, kein Problem.'],correct:0},
       {q:'Können Sie früh anfangen — 6 Uhr?',ctx:'Baustellen-Start ist in Deutschland früh.',options:['6 Uhr ist zu früh für mich.','Kein Problem, ich bin Frühaufsteher.','Ich bevorzuge Nachtschicht.'],correct:1},
-      {q:'Was ist ein "Bauhelm"?',ctx:'Sicherheit zuerst auf der Baustelle.',options:['Werkzeug zum Graben','Schutzhelm für den Kopf','Eine Art Arbeitsschuh'],correct:1}
+      {q:'Was ist ein "Bauhelm"?',ctx:'Sicherheit zuerst auf der Baustelle.',options:['Werkzeug zum Graben','Schutzhelm für den Kopf','Eine Art Arbeitsschuh'],correct:1},
+      {q:'Was sind "Sicherheitsschuhe"?',ctx:'Arbeitsschutz auf der Baustelle.',options:['Helme für die Füße','Spezielle Schuhe mit Stahlkappe','Warnwesten für die Füße'],correct:1},
+      {q:'Wie mischen Sie Beton?',ctx:'Grundtechnik auf der Baustelle.',options:['Nur Wasser und Sand','Zement, Sand, Kies und Wasser','Nur Zement und Wasser'],correct:1},
+      {q:'Ein Kollege macht einen Fehler — was tun Sie?',ctx:'Teamarbeit auf der Baustelle.',options:['Ich schreie ihn an','Ich sage es dem Vorarbeiter sofort','Ich helfe ihm und korrigiere freundlich'],correct:2}
     ]
   },
   fatima:{id:'fatima',portrait:'👩‍⚕️',nameAr:'فاطمة',nameDe:'Fatima — Krankenschwester aus Marokko',
@@ -527,7 +530,10 @@ const CHARACTERS={
     jobQuestions:[
       {q:'Sind Nachtschichten für Sie okay?',ctx:'Das Krankenhaus braucht Flexibilität.',options:['Nein, ich brauche normale Zeiten.','Ja, ich habe viel Erfahrung damit.','Nur wenn es gut bezahlt wird.'],correct:1},
       {q:'Wie reagieren Sie bei einem Notfall?',ctx:'Die Stationsleiterin testet Sie.',options:['Ich rufe sofort den Arzt und prüfe Vitalzeichen.','Ich warte auf Anweisungen.','Ich versuche es allein zu lösen.'],correct:0},
-      {q:'Was ist "Blutdruck messen"?',ctx:'Fachvokabular Pflege.',options:['قياس ضغط الدم','سحب الدم','قياس الحرارة'],correct:0}
+      {q:'Was ist "Blutdruck messen"?',ctx:'Fachvokabular Pflege.',options:['قياس ضغط الدم','سحب الدم','قياس الحرارة'],correct:0},
+      {q:'Warum ist Händewaschen so wichtig?',ctx:'Hygiene im Krankenhaus.',options:['Nur für den Geruch','Um Infektionen zu verhindern','Weil der Chef es sagt'],correct:1},
+      {q:'Ein Patient nimmt die falsche Medikamentendosis — was tun?',ctx:'Sicherheit in der Medikamentengabe.',options:['Ich warte bis zur nächsten Runde','Ich informiere sofort den Arzt','Ich ändere die Dosis selbst'],correct:1},
+      {q:'Was bedeutet "Schichtübergabe"?',ctx:'Kommunikation zwischen Pflegekräften.',options:['Das Ende der Arbeit','Die Übergabe von Patienteninformationen','Der Wechsel der Uniform'],correct:1}
     ]
   },
   muhammad:{id:'muhammad',portrait:'🎓',nameAr:'محمد',nameDe:'Muhammad — Student aus Ägypten',
@@ -537,7 +543,10 @@ const CHARACTERS={
     jobQuestions:[
       {q:'Wie viele Stunden pro Woche möchten Sie arbeiten?',ctx:'Der Chef fragt nach Ihrer Verfügbarkeit.',options:['40 Stunden, Vollzeit.','10-15 Stunden — ich studiere nebenbei.','Egal, ich nehme alles.'],correct:1},
       {q:'Haben Sie Erfahrung im Kundenservice?',ctx:'Café sucht Aushilfe.',options:['Ich habe in Kairo in einem Café gearbeitet.','Nein, aber ich lerne schnell.','Das interessiert mich nicht.'],correct:0},
-      {q:'Was bedeutet "Feierabend"?',ctx:'Alltags-Vokabular.',options:['بداية العمل','نهاية يوم العمل','استراحة الغداء'],correct:1}
+      {q:'Was bedeutet "Feierabend"?',ctx:'Alltags-Vokabular.',options:['بداية العمل','نهاية يوم العمل','استراحة الغداء'],correct:1},
+      {q:'Die Kasse zeigt 50€ zu viel an — was tun?',ctx:'Ehrlichkeit im Café.',options:['Ich behalte das Geld','Ich informiere den Chef sofort','Ich warte, ob es jemand bemerkt'],correct:1},
+      {q:'Ein Kunde beschwert sich über den Kaffee — wie reagieren Sie?',ctx:'Höflichkeit im Service.',options:['Ich sage ihm, er soll woanders hingehen','Ich entschuldige mich und mache einen neuen','Ich ignoriere die Beschwerde'],correct:1},
+      {q:'Was ist die "450-Euro-Grenze"?',ctx:'Steuerrecht für Studenten.',options:['Das monatliche Einkommenslimit für Minijobs','Der Preis für ein Semesterticket','Die Miete für Studentenwohnheime'],correct:0}
     ]
   },
   layla:{id:'layla',portrait:'💻',nameAr:'ليلى',nameDe:'Layla — Freelance Designerin',
@@ -547,7 +556,10 @@ const CHARACTERS={
     jobQuestions:[
       {q:'Können Sie ein Logo bis Freitag liefern?',ctx:'Der Kunde braucht es schnell.',options:['Ja, aber mit 30% Aufschlag für Express.','Nein, ich brauche 2 Wochen.','Ich weiß nicht, vielleicht.'],correct:0},
       {q:'Welche Software benutzen Sie?',ctx:'Portfolio-Gespräch.',options:['Nur Paint','Adobe Illustrator und Figma','Ich male alles von Hand.'],correct:1},
-      {q:'Was ist ein "Rechnung"?',ctx:'Freelancer-Grundvokabular.',options:['فاتورة','عقد','رسالة'],correct:0}
+      {q:'Was ist ein "Rechnung"?',ctx:'Freelancer-Grundvokabular.',options:['فاتورة','عقد','رسالة'],correct:0},
+      {q:'Der Kunde will 5 Revisionen umsonst — wie reagieren Sie?',ctx:'Grenzen setzen als Freelancer.',options:['Ich mache alles umsonst','Ich erkläre freundlich meine Revisionsregeln','Ich weigere mich komplett'],correct:1},
+      {q:'Was ist ein "Mockup"?',ctx:'Design-Fachbegriff.',options:['Ein echtes Produkt','Ein realistisches Vorschaubild','Ein Vertrag'],correct:1},
+      {q:'Welches Dateiformat brauchen Sie für Druck?',ctx:'Technisches Grundwissen.',options:['JPEG','PNG','PDF mit Vektoren'],correct:2}
     ],
     locked:true,unlockCondition:'first_win'
   }
@@ -695,6 +707,14 @@ const DAY_MSGS={1:'وصلت إلى أوغسبورغ. الفندق مكلف. اب
 
 function renderDay(){
   if(!G)return;
+  // Early win: all goals + optional goals completed
+  const aptDone = !!(G.apartment && !G.apartment.temporary);
+  const allDone = aptDone && G.anmeldung==='done' && G.job==='done' && G.sprachLessons>=3 && G.bankAccount && G.hasSchufa;
+  if(allDone){
+    G.day=15;
+    endGame();
+    return;
+  }
   document.getElementById('day-title').textContent=DAY_TITLES[G.day]||('اليوم '+G.day);
   document.getElementById('day-date').textContent=`Augsburg · Oktober 2026 · Tag ${G.day}/14`;
   document.getElementById('day-msg').textContent=DAY_MSGS[G.day]||'يوم جديد، قرارات جديدة.';
@@ -965,7 +985,7 @@ function renderBesicht(){
     const canAfford=G.money>=apt.kaution;
     const opt=document.createElement('div');opt.className='choice '+(canAfford?'good':'bad');
     opt.innerHTML=`<div class="ch-de">Ich möchte unterschreiben.</div><div class="ch-ar">أريد التوقيع (${apt.kaution}€ كاوتسيون (التأمين))</div>`;
-    opt.onclick=()=>{if(!canAfford){toast('لا يكفي الكاوتسيون (التأمين)!','no');return}signApartment(apt)};
+    opt.onclick=()=>{if(!canAfford){toast('لا يكفي كاوتسيون (التأمين)!','no');return}signApartment(apt)};
     cs.appendChild(opt);
   } else {
     const block=document.createElement('div');
@@ -1210,7 +1230,7 @@ function jobInterview(){
   if(G.timeLeft<2){toast('لا يوجد وقت كافٍ','no');return}
   G.timeLeft-=2;
   const c=CHARACTERS[G.charId];
-  _jobState={qs:c.jobQuestions.slice(0,3),idx:0,correct:0,char:c};
+  const shuffled=[...c.jobQuestions].sort(()=>Math.random()-.5);_jobState={qs:shuffled.slice(0,3),idx:0,correct:0,char:c};
   document.getElementById('job-title').textContent=c.jobField+' — Vorstellungsgespräch';
   show('sc-job');renderJob();
 }
@@ -1243,12 +1263,16 @@ function finishJob(){
 const SPRACH_LESSONS=[
   {title:'Lektion 1: Wohnen',vocab:['die Wohnung','die Miete','die Kaution','der Mietvertrag'],q:{q:'Was bedeutet "Warmmiete"?',options:['الإيجار الصيفي فقط','شاملاً التدفئة والماء','رسوم التسجيل'],correct:1}},
   {title:'Lektion 2: Bürokratie',vocab:['die Anmeldung','der Termin','der Lohnzettel','die Wartenummer'],q:{q:'Was ist "die Anmeldung"?',options:['التسجيل الرسمي','إيصال الدفع','عقد العمل'],correct:0}},
-  {title:'Lektion 3: Arbeit',vocab:['sich bewerben','das Vorstellungsgespräch','der Arbeitsvertrag','pünktlich'],q:{q:'Was ist "pünktlich sein"?',options:['أن تكون غنياً','في الموعد تماماً','أن تكون سعيداً'],correct:1}}
+  {title:'Lektion 3: Arbeit',vocab:['sich bewerben','das Vorstellungsgespräch','der Arbeitsvertrag','pünktlich'],q:{q:'Was ist "pünktlich sein"?',options:['أن تكون غنياً','في الموعد تماماً','أن تكون سعيداً'],correct:1}},
+  {title:'Lektion 4: Einkaufen & Alltag',vocab:['der Supermarkt','die Einkaufsliste','das Bargeld','die Kreditkarte'],q:{q:'Was ist "das Bargeld"?',options:['النقود الورقية والمعدنية','البطاقة الائتمانية','قائمة المشتريات'],correct:0}},
+  {title:'Lektion 5: Gesundheit',vocab:['der Arzt','die Apotheke','das Rezept','die Krankenkasse'],q:{q:'Was ist "die Krankenkasse"?',options:['صندوق التأمين الصحي','وصفة طبية','صيدلية'],correct:0}},
+  {title:'Lektion 6: Verkehr',vocab:['der Bahnhof','die Fahrkarte','das Fahrrad','der Bus'],q:{q:'Was ist "die Fahrkarte"?',options:['محطة القطار','تذكرة المواصلات','دراجة هوائية'],correct:1}}
 ];
 function openSprachkurs(){
   if(G.timeLeft<2||G.money<15){toast('لا يوجد وقت/مال كافٍ','no');return}
   G.timeLeft-=2;G.money-=15;
-  const lesson=SPRACH_LESSONS[G.sprachLessons];
+  const pool=[...SPRACH_LESSONS].sort(()=>Math.random()-.5);
+  const lesson=pool[G.sprachLessons % pool.length];
   _sprachState={lesson,shown:false};show('sc-sprach');renderSprach();
 }
 function renderSprach(){
@@ -1283,7 +1307,13 @@ const ART_WORDS=[
   {w:'Kaution',a:'die',ar:'الوديعة'},{w:'Job',a:'der',ar:'العمل'},{w:'Formular',a:'das',ar:'الاستمارة'},
   {w:'Termin',a:'der',ar:'الموعد'},{w:'Miete',a:'die',ar:'الإيجار'},{w:'Zimmer',a:'das',ar:'الغرفة'},
   {w:'Bewerbung',a:'die',ar:'طلب العمل'},{w:'Sprachkurs',a:'der',ar:'دورة اللغة'},
-  {w:'Haus',a:'das',ar:'البيت'},{w:'Mieter',a:'der',ar:'المستأجر'},{w:'Anmeldung',a:'die',ar:'التسجيل'}
+  {w:'Haus',a:'das',ar:'البيت'},{w:'Mieter',a:'der',ar:'المستأجر'},{w:'Anmeldung',a:'die',ar:'التسجيل'},
+  {w:'Küche',a:'die',ar:'المطبخ'},{w:'Bad',a:'das',ar:'الحمام'},{w:'Schlafzimmer',a:'das',ar:'غرفة النوم'},
+  {w:'Wohnzimmer',a:'das',ar:'غرفة المعيشة'},{w:'Balkon',a:'der',ar:'الشرفة'},{w:'Keller',a:'der',ar:'القبو'},
+  {w:'Tür',a:'die',ar:'الباب'},{w:'Fenster',a:'das',ar:'النافذة'},{w:'Tisch',a:'der',ar:'الطاولة'},
+  {w:'Stuhl',a:'der',ar:'الكرسي'},{w:'Lampe',a:'die',ar:'المصباح'},{w:'Garten',a:'der',ar:'الحديقة'},
+  {w:'Straße',a:'die',ar:'الشارع'},{w:'Stadt',a:'die',ar:'المدينة'},{w:'Bahnhof',a:'der',ar:'محطة القطار'},
+  {w:'Auto',a:'das',ar:'السيارة'},{w:'Fahrrad',a:'das',ar:'الدراجة'},{w:'Rechnung',a:'die',ar:'الفاتورة'}
 ];
 function openArtikel(){
   if(G.timeLeft<1){toast('لا يوجد وقت كافٍ','no');return}
