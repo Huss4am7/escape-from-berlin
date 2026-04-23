@@ -1,0 +1,2036 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Tatort A2 — Verhör-Krimi (DE/AR)</title>
+<meta name="description" content="Tatort A2 — Ein A2-Sprachlern-Krimi: Tatort untersuchen, Zeugen befragen, Beweise präsentieren. Auf Deutsch mit arabischen Hilfen."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TATORT A2 DARK THEME EDITION
+   ============================================================ */
+:root{
+  --bg:#06070b; --s1:#0f111a; --s2:#12141e; --s3:#181b28; --s4:#1e2235;
+  --txt:#e8e8eb; --txt2:#c5c5ca; --dim:rgba(255,255,255,.55); --dim2:rgba(255,255,255,.35);
+  --gold:#d4a843; --gold2:#f0d78c; --gold-glow:rgba(212,168,67,.25);
+  --cyan:#00d4ff; --cyan2:#7aeeff; --cyan-glow:rgba(0,212,255,.2);
+  --red:#ff4757; --red2:#ff6b7a; --red-glow:rgba(255,71,87,.25);
+  --grn:#00e676; --grn2:#69f0ae;
+  --purp:#9c6bff; --purp2:#b794ff; --amber:#ff8c42;
+  --bd:rgba(255,255,255,.08); --bd2:rgba(255,255,255,.12); --bd3:rgba(255,255,255,.18);
+  --shadow:0 8px 32px rgba(0,0,0,.45); --shadow-sm:0 4px 12px rgba(0,0,0,.3);
+  --glow-gold:0 0 20px var(--gold-glow); --glow-cyan:0 0 20px var(--cyan-glow); --glow-red:0 0 20px var(--red-glow);
+  --radius:12px; --radius-sm:8px; --radius-lg:16px;
+  --font-de:"Syne","Inter","Segoe UI",sans-serif;
+  --font-mono:"JetBrains Mono","Menlo","Consolas",monospace;
+  --font-ar:"Tajawal","Noto Naskh Arabic","Tahoma",sans-serif;
+  --t-fast:.15s; --t:.25s; --t-slow:.5s;
+  --ease:cubic-bezier(.34,1.56,.64,1); --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:var(--font-de);min-height:100vh;overflow-x:hidden;line-height:1.5}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 1200px 800px at 15% 10%, rgba(212,168,67,.06), transparent 60%),
+    radial-gradient(ellipse 1000px 600px at 85% 90%, rgba(0,212,255,.04), transparent 60%),
+    radial-gradient(ellipse 600px 400px at 50% 50%, rgba(156,107,255,.03), transparent 60%);
+  animation:ambientBg 25s ease-in-out infinite alternate;}
+@keyframes ambientBg{0%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.02)}100%{opacity:.85;transform:scale(1)}}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+  background-size:44px 44px;opacity:.6;}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+a{color:var(--cyan);text-decoration:none;transition:color var(--t-fast)}
+a:hover{color:var(--cyan2)}
+[lang="ar"]{font-family:var(--font-ar);direction:rtl;display:block;color:var(--dim);font-size:.88em;margin-top:4px;letter-spacing:.3px}
+.de{font-family:var(--font-de)}
+.mono{font-family:var(--font-mono)}
+
+#app{max-width:760px;margin:0 auto;padding:16px;position:relative;z-index:1}
+
+header.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 18px;background:rgba(15,17,26,.85);border:1px solid var(--bd2);
+  border-radius:var(--radius);box-shadow:var(--shadow);position:sticky;top:12px;z-index:30;
+  backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand h1{font-size:18px;font-weight:800;margin:0;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.brand .sub{font-size:10px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;font-family:var(--font-mono)}
+.portrait{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;
+  font-family:var(--font-mono);font-size:16px;background:var(--s2);
+  border:2px solid var(--bd2);border-radius:10px;color:var(--gold)}
+.hud{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+
+.xp-ring{position:relative;width:44px;height:44px;cursor:pointer;transition:transform var(--t-fast)}
+.xp-ring:hover{transform:scale(1.08)}
+.xp-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.xp-ring .ring-bg{fill:none;stroke:var(--s3);stroke-width:4}
+.xp-ring .ring-fill{fill:none;stroke-width:4;stroke-linecap:round;transition:stroke-dashoffset .6s var(--ease-out)}
+.xp-ring.lang .ring-fill{stroke:var(--gold)}
+.xp-ring.ded .ring-fill{stroke:var(--cyan)}
+.xp-ring .xp-icon{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--txt)}
+.xp-ring .xp-tooltip{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--s2);border:1px solid var(--bd2);border-radius:var(--radius-sm);
+  padding:6px 10px;font-size:11px;font-family:var(--font-mono);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity var(--t-fast);z-index:50}
+.xp-ring:hover .xp-tooltip{opacity:1}
+
+.timer-bar{display:flex;align-items:center;gap:8px;padding:6px 12px;background:var(--s2);
+  border:1px solid var(--bd);border-radius:999px;font-family:var(--font-mono);font-size:13px;font-weight:600}
+.timer-bar .timer-icon{color:var(--cyan)}
+.timer-bar .timer-value{color:var(--txt);min-width:48px}
+.timer-bar.warn{border-color:var(--amber);animation:timerPulse 1s infinite}
+.timer-bar.warn .timer-icon,.timer-bar.warn .timer-value{color:var(--amber)}
+.timer-bar.crit{border-color:var(--red);background:rgba(255,71,87,.15);animation:timerPulse .5s infinite}
+.timer-bar.crit .timer-icon,.timer-bar.crit .timer-value{color:var(--red)}
+@keyframes timerPulse{0%,100%{box-shadow:0 0 0 0 var(--red-glow)}50%{box-shadow:0 0 0 6px transparent}}
+
+.stress-meter{display:flex;align-items:center;gap:6px;padding:4px 10px;background:var(--s2);
+  border:1px solid var(--bd);border-radius:999px;font-size:12px}
+.stress-meter .stress-bar{width:60px;height:6px;background:var(--s3);border-radius:99px;overflow:hidden}
+.stress-meter .stress-fill{height:100%;background:linear-gradient(90deg,var(--grn),var(--amber),var(--red));border-radius:99px;transition:width var(--t)}
+.stress-meter .stress-val{font-family:var(--font-mono);font-weight:600;min-width:32px;color:var(--dim)}
+.stress-meter.warn{border-color:var(--amber)}
+.stress-meter.crit{border-color:var(--red);animation:timerPulse 1s infinite}
+
+.hud-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;
+  background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--radius-sm);
+  color:var(--txt2);font-size:12px;font-weight:500;transition:all var(--t-fast) var(--ease)}
+.hud-btn:hover{background:rgba(255,255,255,.08);border-color:var(--bd2);color:var(--txt);transform:translateY(-1px)}
+.hud-btn .kbd{font-family:var(--font-mono);font-size:10px;padding:2px 5px;background:var(--s3);border-radius:4px;color:var(--dim)}
+
+.sc{display:none}
+.sc.on{display:block;animation:scIn var(--t) var(--ease-out)}
+@keyframes scIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+
+.card{background:rgba(15,17,26,.88);border:1px solid var(--bd2);border-radius:var(--radius);
+  padding:20px;margin:16px 0;box-shadow:var(--shadow);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);position:relative}
+.card h2{margin:0 0 12px 0;color:var(--txt);font-weight:700;letter-spacing:.5px;font-size:20px}
+.card h3{margin:18px 0 8px 0;color:var(--gold);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+.card p{margin:8px 0;line-height:1.6;color:var(--txt2)}
+.muted{color:var(--dim);font-size:13px}
+
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:var(--radius-sm);
+  background:rgba(255,255,255,.05);border:1px solid var(--bd2);color:var(--txt);
+  font-family:var(--font-de);font-weight:600;font-size:14px;letter-spacing:.3px;
+  transition:all var(--t-fast) var(--ease);margin:4px 6px 4px 0;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.1);border-color:var(--bd3);transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn:active{transform:translateY(0)}
+.btn.primary{background:linear-gradient(135deg,var(--gold),#c49a38);border-color:transparent;color:var(--bg);font-weight:700}
+.btn.primary:hover{box-shadow:var(--glow-gold);transform:translateY(-2px)}
+.btn.cog{background:rgba(212,168,67,.15);border-color:var(--gold);color:var(--gold)}
+.btn.cog:hover{background:rgba(212,168,67,.25)}
+.btn.cyan{background:rgba(0,212,255,.1);border-color:var(--cyan);color:var(--cyan)}
+.btn.cyan:hover{background:rgba(0,212,255,.2);box-shadow:var(--glow-cyan)}
+.btn.danger{background:rgba(255,71,87,.15);border-color:var(--red);color:var(--red)}
+.btn.danger:hover{background:rgba(255,71,87,.25);box-shadow:var(--glow-red)}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.ghost:hover{background:rgba(255,255,255,.05);border-color:var(--bd)}
+.btn.small{padding:7px 12px;font-size:12px}
+.btn.block{display:flex;width:100%;justify-content:flex-start}
+.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none !important}
+
+.bubble{background:var(--s2);border:1px solid var(--bd2);padding:14px 16px;border-radius:var(--radius);position:relative;margin:12px 0}
+.bubble.vogel{border-color:var(--cyan);background:rgba(0,212,255,.08);border-left:3px solid var(--cyan)}
+.bubble.witness{border-color:var(--gold);background:rgba(212,168,67,.08);border-left:3px solid var(--gold)}
+.bubble.confidence-low{background:rgba(255,140,66,.1);border-left:3px solid var(--amber)}
+.bubble.confidence-low::after{content:"unsicher";position:absolute;top:8px;right:10px;font-size:10px;color:var(--amber);font-family:var(--font-mono);letter-spacing:1px;text-transform:uppercase}
+.bubble.confidence-very-low{background:rgba(255,71,87,.1);border-left:3px solid var(--red)}
+.bubble.confidence-very-low::after{content:"sehr unsicher";position:absolute;top:8px;right:10px;font-size:10px;color:var(--red);font-family:var(--font-mono);letter-spacing:1px;text-transform:uppercase}
+.typewriter{white-space:pre-wrap}
+.witness-mood{font-size:11px;color:var(--dim);margin-top:6px;font-style:italic;letter-spacing:.5px}
+.witness-mood.angry{color:var(--red);font-weight:600}
+.witness-mood.happy{color:var(--grn)}
+
+.scene{position:relative;border:1px solid var(--bd2);border-radius:var(--radius);background:var(--s2);
+  min-height:360px;padding:20px;font-family:var(--font-mono);color:var(--dim);line-height:1.4;overflow:hidden}
+.scene::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(255,255,255,.01) 0 6px,transparent 6px 12px);pointer-events:none}
+.scene .ascii{white-space:pre;font-size:13px;opacity:.5;user-select:none}
+
+.hot{position:absolute;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;
+  background:rgba(15,17,26,.9);border:1px solid var(--cyan);border-radius:999px;
+  font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--cyan);
+  cursor:pointer;transition:all var(--t-fast) var(--ease);backdrop-filter:blur(8px)}
+.hot:hover{background:rgba(0,212,255,.15);box-shadow:var(--glow-cyan);transform:scale(1.05)}
+.hot.found{border-color:var(--grn);color:var(--grn);cursor:default}
+.hot.found:hover{box-shadow:none;transform:none;background:rgba(0,230,118,.1)}
+.hot .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:dotPulse 2s ease-in-out infinite}
+.hot.found .dot{background:var(--grn);box-shadow:0 0 10px var(--grn);animation:none}
+@keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.7}}
+
+.modal-bg{position:fixed;inset:0;background:rgba(6,7,11,.85);backdrop-filter:blur(8px);
+  z-index:80;display:none;align-items:center;justify-content:center;padding:16px;animation:fadeIn var(--t) ease both}
+.modal-bg.on{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--s1);border:1px solid var(--bd2);border-radius:var(--radius-lg);
+  max-width:700px;width:100%;padding:24px;box-shadow:var(--shadow);max-height:90vh;overflow:auto;
+  animation:modalIn var(--t) var(--ease) both}
+@keyframes modalIn{from{transform:translateY(24px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+
+.nb{display:grid;grid-template-columns:1fr 1.5fr;gap:16px}
+@media (max-width:680px){.nb{grid-template-columns:1fr}}
+.col{border:1px solid var(--bd2);border-radius:var(--radius);padding:14px;background:var(--s2);min-height:220px}
+.col h3{margin:0 0 12px 0;font-size:12px;color:var(--gold)}
+
+.clue{display:block;padding:10px 12px;margin:8px 0;background:var(--s3);
+  border:1px dashed var(--gold);border-radius:var(--radius-sm);
+  cursor:grab;font-size:12px;line-height:1.4;color:var(--txt2);transition:all var(--t-fast)}
+.clue:hover{background:var(--s4);border-color:var(--gold2);box-shadow:var(--glow-gold)}
+.clue:active{cursor:grabbing}
+.clue.assigned{opacity:.45;border-style:solid;border-color:var(--bd)}
+
+.suspect{border:1px solid var(--bd2);background:var(--s3);border-radius:var(--radius);
+  padding:12px;margin:10px 0;transition:all var(--t-fast)}
+.suspect.over{background:rgba(212,168,67,.1);border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-glow)}
+.suspect.shake{animation:shake .35s}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.suspect h4{margin:0 0 6px 0;color:var(--txt);font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:baseline}
+.bar{height:6px;background:var(--s2);border-radius:99px;overflow:hidden;margin:8px 0}
+.bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red));border-radius:99px;transition:width var(--t)}
+.tags{font-size:10px;color:var(--dim);margin-top:6px}
+.dropped{display:inline-block;font-size:10px;background:rgba(0,212,255,.1);border:1px solid var(--cyan);border-radius:99px;padding:3px 8px;margin:2px;color:var(--cyan)}
+
+.tl{position:relative;border:1px solid var(--bd2);border-radius:var(--radius);background:var(--s2);padding:30px 14px 16px;margin:12px 0}
+.tl .axis{position:relative;height:2px;background:var(--bd2);margin:16px 0 34px}
+.tl .tick{position:absolute;top:-6px;width:2px;height:14px;background:var(--bd3)}
+.tl .tick span{position:absolute;top:18px;left:-14px;font-size:10px;font-family:var(--font-mono);color:var(--dim);width:30px;text-align:center}
+.tl .stmt{position:relative;display:inline-block;margin:6px;padding:10px 12px;
+  border:1px solid var(--bd2);background:var(--s3);border-radius:var(--radius-sm);
+  font-size:11px;max-width:280px;color:var(--txt2)}
+.tl .stmt.conflict{border-color:var(--red);background:rgba(255,71,87,.1);animation:conflictPulse 1.6s ease-in-out infinite}
+@keyframes conflictPulse{0%,100%{box-shadow:0 0 0 0 var(--red-glow)}50%{box-shadow:0 0 0 6px transparent}}
+.tl .stmt b{color:var(--cyan)}
+.tl .stmt .t{font-family:var(--font-mono);color:var(--gold);font-weight:600}
+
+.conf{display:grid;grid-template-rows:auto 1fr auto;gap:12px}
+.conf .topline{border:1px solid var(--cyan);background:rgba(0,212,255,.08);padding:14px;border-radius:var(--radius);font-size:14px}
+.hand{display:flex;flex-wrap:wrap;gap:10px}
+.hand .ev{border:1px solid var(--bd2);background:var(--s3);padding:10px 12px;border-radius:var(--radius-sm);
+  font-size:11px;cursor:pointer;max-width:200px;color:var(--txt2);transition:all var(--t-fast) var(--ease)}
+.hand .ev:hover{transform:translateY(-3px);border-color:var(--bd3);box-shadow:var(--shadow-sm)}
+.hand .ev.sel{background:linear-gradient(135deg,var(--gold),var(--amber));border-color:transparent;color:var(--bg)}
+.present{display:block;width:100%;padding:16px;font-size:16px;font-weight:800;
+  background:linear-gradient(135deg,var(--red),#e63946);color:#fff;border:none;border-radius:var(--radius);
+  letter-spacing:3px;text-transform:uppercase;cursor:pointer;
+  animation:presentPulse 2s ease-in-out infinite;transition:all var(--t-fast)}
+.present:hover{transform:scale(1.02);box-shadow:var(--glow-red)}
+@keyframes presentPulse{0%,100%{box-shadow:0 0 0 0 var(--red-glow)}50%{box-shadow:0 0 0 8px transparent}}
+
+.stamp{position:fixed;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center;z-index:90}
+.stamp.on .seal{display:block;font-family:var(--font-mono);font-size:80px;font-weight:900;
+  color:var(--red);border:6px solid var(--red);padding:16px 36px;border-radius:var(--radius);
+  letter-spacing:12px;transform:rotate(-12deg) scale(.4);opacity:0;
+  animation:stampIn .9s var(--ease) forwards;text-shadow:0 0 30px var(--red-glow)}
+.stamp .seal{display:none}
+@keyframes stampIn{0%{transform:rotate(-30deg) scale(2.5);opacity:0}60%{transform:rotate(-12deg) scale(1.05);opacity:1}100%{transform:rotate(-12deg) scale(1);opacity:.95}}
+
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);
+  background:var(--s2);color:var(--txt);padding:12px 20px;border-radius:var(--radius);
+  z-index:120;border:1px solid var(--bd2);box-shadow:var(--shadow);font-size:13px;
+  max-width:90vw;text-align:center;opacity:0;
+  transition:transform var(--t) var(--ease),opacity var(--t)}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+#toast.ok,#toast.good{border-color:var(--grn);background:rgba(0,230,118,.15);color:var(--grn)}
+#toast.no,#toast.bad{border-color:var(--red);background:rgba(255,71,87,.15);color:var(--red)}
+#toast.info{border-color:var(--cyan);background:rgba(0,212,255,.1);color:var(--cyan)}
+#toast.gold{border-color:var(--gold);background:rgba(212,168,67,.15);color:var(--gold)}
+#toast.ach{border-color:var(--purp);background:rgba(156,107,255,.15);color:var(--purp)}
+
+.ach{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.ach .a{border:1px solid var(--bd2);background:var(--s3);border-radius:var(--radius-sm);
+  padding:12px;font-size:12px;line-height:1.4;color:var(--txt2);transition:all var(--t-fast)}
+.ach .a:hover{border-color:var(--bd3);background:var(--s4)}
+.ach .a.un{background:rgba(212,168,67,.1);border-color:var(--gold)}
+.ach .a.lock{opacity:.4;font-style:italic}
+.ach .a b{display:block;font-size:13px;color:var(--txt);margin-bottom:4px}
+.ach .a .rar{font-size:9px;letter-spacing:2px;color:var(--purp);text-transform:uppercase;font-family:var(--font-mono)}
+
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.spacer{flex:1}
+.kbd{font-family:var(--font-mono);font-size:10px;background:var(--s3);border:1px solid var(--bd);padding:2px 6px;border-radius:4px;color:var(--dim)}
+.divider{height:1px;background:var(--bd);margin:16px 0}
+.tabbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.tabbar .btn.small{margin:0}
+.notice{background:rgba(212,168,67,.1);border:1px dashed var(--gold);padding:12px;border-radius:var(--radius-sm);margin:12px 0;font-size:12px;color:var(--gold2)}
+.center{text-align:center}
+.smallcaps{font-variant:small-caps;letter-spacing:2px;color:var(--dim);font-size:11px}
+.hidden{display:none !important}
+.rtl{direction:rtl;text-align:right;font-family:var(--font-ar)}
+.ltr{direction:ltr;text-align:left}
+
+.confront-stage{padding:12px;border:1px dashed var(--cyan);background:rgba(0,212,255,.05);margin:12px 0;border-radius:var(--radius-sm)}
+.confront-stage.escalated{border-color:var(--red);background:rgba(255,71,87,.1);animation:conflictPulse 1.2s 2}
+.witness-suspect-marker{display:inline-block;padding:3px 8px;border-radius:4px;background:var(--red);color:#fff;font-size:9px;margin-left:6px;letter-spacing:1px;font-family:var(--font-mono);text-transform:uppercase}
+.contra-combine{padding:12px;border:1px solid var(--gold);background:rgba(212,168,67,.08);border-radius:var(--radius-sm);margin:10px 0}
+.contra-combine select{padding:6px 10px;border:1px solid var(--bd2);border-radius:var(--radius-sm);background:var(--s3);color:var(--txt);max-width:100%;font-family:var(--font-de)}
+
+body.high-stress .sc{filter:saturate(.8) brightness(.95)}
+body.high-stress::after{
+  background:radial-gradient(ellipse at center, transparent 40%, rgba(255,71,87,.15) 100%),
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px) !important;
+  animation:vignPulse 3s ease-in-out infinite}
+@keyframes vignPulse{0%,100%{opacity:.6}50%{opacity:.9}}
+body.high-stress #app{animation:subtleShake 4s ease-in-out infinite}
+@keyframes subtleShake{0%,100%{transform:none}25%{transform:translateX(-1px)}75%{transform:translateX(1px)}}
+
+@media (max-width:680px){
+  #app{padding:10px}
+  header.bar{flex-direction:column;align-items:stretch;gap:10px;padding:12px}
+  .brand{justify-content:center}
+  .hud{justify-content:center}
+  .xp-ring{width:38px;height:38px}
+  .card{padding:14px}
+  .card h2{font-size:17px}
+  .scene{min-height:280px;padding:14px}
+}
+@media (max-width:480px){
+  .brand h1{font-size:15px}
+  .timer-bar{padding:5px 10px;font-size:12px}
+  .btn{padding:9px 14px;font-size:13px}
+  .hud-btn{padding:6px 10px}
+}
+
+
+/* ===== Compatibility shim for v2 markup ===== */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 10px;border:1px solid var(--bd2);border-radius:999px;
+  background:var(--s2);font-size:12px;color:var(--txt2);
+  font-family:var(--font-mono);
+}
+.chip b{font-weight:700;color:var(--gold)}
+.chip.blue{background:rgba(0,212,255,.12);border-color:var(--cyan);color:var(--cyan)}
+.chip.cog{background:rgba(212,168,67,.12);border-color:var(--gold);color:var(--gold)}
+.chip.red{background:rgba(255,71,87,.12);border-color:var(--red);color:var(--red)}
+.chip.green{background:rgba(0,230,118,.12);border-color:var(--grn);color:var(--grn)}
+.chip button{all:unset;cursor:pointer;margin-left:4px;font-weight:bold;color:inherit}
+
+/* widen container for game screens */
+#app{max-width:980px}
+
+/* fix: card.akten badge sits cleanly on dark cards */
+.card.akten::after{content:none}
+.card.akten::before{
+  content:"AKTE";position:absolute;top:-1px;left:20px;
+  transform:translateY(-50%);
+  background:linear-gradient(135deg,var(--gold),var(--amber));
+  color:var(--bg);padding:4px 12px;
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  border-radius:4px;font-family:var(--font-mono);z-index:2;
+}
+
+/* witness grid (v2 .witcard) */
+.witcard{
+  display:block;width:100%;text-align:left;
+  padding:14px 16px;margin:8px 0;
+  background:var(--s2);border:1px solid var(--bd2);
+  border-radius:var(--radius);color:var(--txt);
+  transition:all var(--t-fast) var(--ease);cursor:pointer;
+}
+.witcard:hover{border-color:var(--gold);background:var(--s3);transform:translateY(-1px)}
+.witcard h4{margin:0 0 4px;color:var(--gold);font-size:15px}
+.witcard .meta{font-size:11px;color:var(--dim);font-family:var(--font-mono)}
+.witcard.locked{opacity:.5;cursor:not-allowed}
+.witcard.done{border-color:var(--grn)}
+
+/* talk log entries */
+#talkLog .entry{margin:8px 0}
+#talkLog .qLine{font-size:12px;color:var(--cyan);margin:6px 0 2px;font-family:var(--font-mono)}
+
+/* perfekt detector buttons */
+.perfekt-row{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap}
+.perfekt-row .btn{margin:0}
+
+/* better focus visible */
+button:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+
+</style>
+</head>
+<body>
+<body>
+<div id="app">
+  <header class="bar" role="banner" aria-label="Tatort A2 HUD">
+    <div class="brand">
+      <span class="portrait" id="vogelPortrait" aria-hidden="true">( •̀ᴗ•́ )و</span>
+      <div>
+        <h1>TATORT A2</h1>
+        <div class="sub">Kripo Augsburg · Akte <span id="caseNo">—</span></div>
+      </div>
+    </div>
+    <div class="hud" id="hud">
+      <div class="xp-ring lang" title="Sprach-XP">
+        <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="18"></circle><circle class="ring-fill" id="ringLang" cx="22" cy="22" r="18" stroke-dasharray="113" stroke-dashoffset="113"></circle></svg>
+        <span class="xp-icon">DE</span>
+        <span class="xp-tooltip">Sprach-XP: <span id="hudLang">0</span></span>
+      </div>
+      <div class="xp-ring ded" title="Deduktions-XP">
+        <svg viewBox="0 0 44 44"><circle class="ring-bg" cx="22" cy="22" r="18"></circle><circle class="ring-fill" id="ringDed" cx="22" cy="22" r="18" stroke-dasharray="113" stroke-dashoffset="113"></circle></svg>
+        <span class="xp-icon">?!</span>
+        <span class="xp-tooltip">Deduktions-XP: <span id="hudDed">0</span></span>
+      </div>
+      <div class="timer-bar" id="hudTimer">
+        <span class="timer-icon">⏱</span>
+        <span class="timer-value" id="hudTimerV">--:--</span>
+      </div>
+      <div class="stress-meter" id="hudStress" title="Stress">
+        <span style="font-size:13px">😰</span>
+        <div class="stress-bar"><div class="stress-fill" id="stressFill" style="width:0%"></div></div>
+        <span class="stress-val"><span id="hudStressV">0</span>%</span>
+      </div>
+      <button class="hud-btn" onclick="openNotebook()" aria-label="Notizbuch öffnen (N)">📓 Notiz <span class="kbd">N</span></button>
+      <button class="hud-btn" onclick="openCombine()" aria-label="Aussagen kombinieren (K)">⚡ Kombi <span class="kbd">K</span></button>
+      <button class="hud-btn" onclick="openTimeline()" aria-label="Zeitstrahl öffnen (T)">⏱ Timeline <span class="kbd">T</span></button>
+      <button class="hud-btn" onclick="openMenu()" aria-label="Menü (Esc)">☰ Menü <span class="kbd">Esc</span></button>
+    </div>
+  </header>
+
+  <!-- ============ TITLE / MAIN MENU ============ -->
+  <section class="sc on" id="sc-title" aria-label="Hauptmenü">
+    <div class="card">
+      <h2>🔍 Tatort A2 — Verhör-Krimi (Dark Edition)</h2>
+      <p class="muted">Ein A2-Sprachlern-Krimi. Untersuche, befrage, beweise — und lerne dabei <b>Perfekt</b>, <b>indirekte Fragen</b>, <b>Adjektive</b> und <b>Zeitangaben</b>.</p>
+      <p lang="ar">لعبة تحقيق لمستوى A2: افحص مسرح الجريمة، استجوب الشهود، قدّم الأدلة، وتعلّم الألمانية أثناء اللعب.</p>
+      <div class="divider"></div>
+      <div class="row">
+        <button class="btn primary" onclick="goCharSelect()">▶ Neues Spiel <span lang="ar">لعبة جديدة</span></button>
+        <button class="btn" onclick="continueGame()" id="btnContinue">↻ Fortsetzen <span lang="ar">متابعة</span></button>
+        <button class="btn ghost" onclick="show('sc-howto')">❓ Anleitung <span lang="ar">تعليمات</span></button>
+        <button class="btn ghost" onclick="show('sc-ach')">🏆 Erfolge <span lang="ar">إنجازات</span></button>
+        <button class="btn ghost" onclick="show('sc-vocab')">📚 Wortschatz <span lang="ar">المفردات</span></button>
+      </div>
+      <div class="divider"></div>
+      <p class="muted center smallcaps"> Dark Theme Edition · Single-File · Kein Audio · Kein Bild · Keine KI</p>
+    </div>
+  </section>
+
+  <!-- ============ HOWTO ============ -->
+  <section class="sc" id="sc-howto">
+    <div class="card akten">
+      <h2>Anleitung <span lang="ar">تعليمات</span></h2>
+      <h3>1. Tatort scannen</h3>
+      <p>Klicke auf die Hotspots im Tatort. Jeder Hinweis kommt in dein Notizbuch.<br><span lang="ar">انقر على النقاط الساخنة في مسرح الجريمة. كل دليل يُضاف إلى دفتر ملاحظاتك.</span></p>
+      <h3>2. Zeugen befragen</h3>
+      <p>Wähle die Frageform mit Bedacht: <b>direkt</b>, <b>höflich</b> oder <b>sehr höflich</b>. Höflichkeit erhöht die Kooperation.<br><span lang="ar">اختر صيغة السؤال بحذر: مباشر، مهذب، أو مهذب جداً. الأدب يزيد التعاون.</span></p>
+      <h3>3. Perfekt-Detektor</h3>
+      <p>Bei jeder Aussage musst du das richtige Hilfsverb wählen: <b>haben</b> oder <b>sein</b>. Falsch = +Stress.<br><span lang="ar">اختر الفعل المساعد الصحيح: haben أو sein.</span></p>
+      <h3>4. Notizbuch & Verdacht</h3>
+      <p>Ziehe Hinweise per Drag & Drop auf Verdächtige. Treffer = mehr Verdacht. Daneben = Stress.<br><span lang="ar">اسحب الأدلة على المشتبهين. الإصابة الصحيحة ترفع الشك.</span></p>
+      <h3>5. Konfrontation</h3>
+      <p>Wähle Täter und präsentiere <b>3 Beweise</b>. Beweis-Stärke ≥ 7 = Geständnis.<br><span lang="ar">اختر الجاني وقدّم 3 أدلة. قوة الإثبات ≥ 7 = اعتراف.</span></p>
+      <div class="row"><button class="btn" onclick="show('sc-title')">← Zurück</button></div>
+    </div>
+  </section>
+
+  <!-- ============ CHAR SELECT ============ -->
+  <section class="sc" id="sc-char">
+    <div class="card akten">
+      <h2>Wähle deine:n Praktikant:in <span lang="ar">اختر متدرّبك</span></h2>
+      <p class="muted">Kommissarin Vogel braucht Unterstützung. Jede:r bringt einen anderen Bonus.</p>
+      <div id="charGrid" class="ach"></div>
+      <div class="divider"></div>
+      <div class="row">
+        <button class="btn" onclick="show('sc-title')">← Zurück</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROLOG ============ -->
+  <section class="sc" id="sc-prolog">
+    <div class="card akten">
+      <h2 id="prologTitle">Briefing</h2>
+      <div class="bubble vogel">
+        <span class="portrait">( •̀ᴗ•́ )و</span><b>Kommissarin Vogel:</b>
+        <p id="prologTxt" class="typewriter"></p>
+        <p lang="ar" id="prologAr"></p>
+      </div>
+      <div class="row">
+        <button class="btn primary" onclick="enterCrimeScene()">→ Zum Tatort <span lang="ar">إلى مسرح الجريمة</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TATORT (CRIME SCENE) ============ -->
+  <section class="sc" id="sc-scene">
+    <div class="card akten">
+      <h2 id="sceneTitle">Tatort</h2>
+      <p class="muted" id="sceneIntro"></p>
+      <div class="scene" id="scene"></div>
+      <div class="divider"></div>
+      <div class="row">
+        <span class="chip cog">Hinweise: <b id="clueCount">0</b></span>
+        <span class="spacer"></span>
+        <button class="btn" onclick="openNotebook()">📓 Notizbuch</button>
+        <button class="btn primary" onclick="goWitnesses()" id="btnGoWit">→ Zu den Zeugen <span lang="ar">إلى الشهود</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WITNESSES LIST ============ -->
+  <section class="sc" id="sc-witlist">
+    <div class="card akten">
+      <h2>Zeugen befragen <span lang="ar">استجواب الشهود</span></h2>
+      <p class="muted">Wähle eine:n Zeug:in. Jede:r kann mehrere Aussagen liefern, wenn die Kooperation stimmt.</p>
+      <div id="witGrid"></div>
+      <div class="divider"></div>
+      <div class="row">
+        <button class="btn" onclick="show('sc-scene')">← Tatort</button>
+        <span class="spacer"></span>
+        <button class="btn cog" onclick="openNotebook()">📓 Analyse</button>
+        <button class="btn primary" onclick="goConfront()">⚖ Konfrontation <span lang="ar">المواجهة</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INTERROGATION ============ -->
+  <section class="sc" id="sc-talk">
+    <div class="card akten">
+      <h2 id="talkTitle">Befragung</h2>
+      <div class="row">
+        <span class="chip">Kooperation: <b id="coopV">0</b>/10</span>
+        <span class="chip blue" id="witTag">—</span>
+        <span class="spacer"></span>
+        <button class="btn small" onclick="endTalk()">✖ Beenden</button>
+      </div>
+      <div id="talkLog"></div>
+      <div id="talkOpts"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONFRONTATION ============ -->
+  <section class="sc" id="sc-conf">
+    <div class="card akten">
+      <h2>Konfrontation <span lang="ar">المواجهة</span></h2>
+      <p class="muted">Wähle den/die Täter:in und präsentiere <b>3 Beweise</b> (max. 3 ausgewählt).</p>
+      <h3>Verdächtige</h3>
+      <div id="confSusp" class="row"></div>
+      <div class="divider"></div>
+      <h3>Beweise auswählen <span class="muted" id="evCount">(0/3)</span></h3>
+      <div id="confEv" class="hand"></div>
+      <div class="divider"></div>
+      <button class="present" onclick="present()">⚖ Präsentieren!</button>
+    </div>
+  </section>
+
+  <!-- ============ END SCREEN ============ -->
+  <section class="sc" id="sc-end">
+    <div class="card akten">
+      <h2 id="endTitle">Fall abgeschlossen</h2>
+      <div id="endBody"></div>
+      <div class="divider"></div>
+      <div class="row">
+        <button class="btn primary" onclick="nextCase()" id="btnNext">→ Nächster Fall</button>
+        <button class="btn" onclick="show('sc-title')">↩ Hauptmenü</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="sc" id="sc-ach">
+    <div class="card akten">
+      <h2>Erfolge <span lang="ar">الإنجازات</span></h2>
+      <div id="achGrid" class="ach"></div>
+      <div class="divider"></div>
+      <button class="btn" onclick="show('sc-title')">← Zurück</button>
+    </div>
+  </section>
+
+  <!-- ============ VOCAB CODEX ============ -->
+  <section class="sc" id="sc-vocab">
+    <div class="card akten">
+      <h2>Krimi-Wortschatz <span lang="ar">مفردات الجريمة</span></h2>
+      <p class="muted">SRS-Boxen 1–5. Box 5 = dauerhaft gelernt.</p>
+      <div id="vocabList" class="ach"></div>
+      <div class="divider"></div>
+      <button class="btn" onclick="show('sc-title')">← Zurück</button>
+    </div>
+  </section>
+</div>
+
+<!-- ============ MODALS ============ -->
+<div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="modalBody"></div>
+</div>
+
+<div class="stamp" id="stamp"><div class="seal" id="stampText">GELÖST</div></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+
+<script>
+
+/* ============================================================
+   TATORT A2 — Game Logic
+   ============================================================ */
+"use strict";
+
+/* ---------- Persistence ---------- */
+const SAVE_KEY = 'tatort_a2_v2';
+const SAVE_KEY_LEGACY = 'tatort_a2_v1';
+const META_KEY = 'tatort_a2_meta_v2';
+
+let G = null;
+let META = loadMeta();
+
+function loadMeta(){
+  try{
+    const raw = localStorage.getItem(META_KEY);
+    if(raw) return Object.assign(defaultMeta(), JSON.parse(raw));
+  }catch(e){}
+  return defaultMeta();
+}
+function defaultMeta(){
+  return {
+    saveVersion:1,
+    achievements:[],
+    casesCompleted:[],
+    bestTimes:{},
+    vocabBox:{},   // word -> 1..5 (0 = suspended)
+    seenEndings:[],
+    stats:{ politeAsks:0, perfektCorrect:0, articlesSolved:0 }
+  };
+}
+function saveMeta(){ try{ localStorage.setItem(META_KEY, JSON.stringify(META)); }catch(e){} }
+function saveGame(){ if(!G) return; try{ localStorage.setItem(SAVE_KEY, JSON.stringify(G)); }catch(e){} }
+function loadGameRaw(){ try{ const raw=localStorage.getItem(SAVE_KEY); if(raw) return JSON.parse(raw);}catch(e){} return null; }
+
+/* ---------- Characters ---------- */
+const CHARS = {
+  amina:  { name:'Amina',  emoji:'( •ω• )', bonus:'+10% Sprach-XP bei höflichen Fragen', ar:'أمينة — مكافأة لغوية' },
+  karim:  { name:'Karim',  emoji:'( ◉‿◉ )', bonus:'Beobachtungs-Bonus: 1 Bonus-Hinweis pro Fall', ar:'كريم — مكافأة الملاحظة' },
+  leila:  { name:'Leila',  emoji:'( •̀ᴗ•́ )', bonus:'Memory-Bonus: erstes Hilfsverb-Tipp gratis', ar:'ليلى — مكافأة الذاكرة' }
+};
+
+/* ---------- Vocab (SRS pool, ~80 Krimi-Wörter) ---------- */
+const VOCAB = {
+  "der Tatort":"مسرح الجريمة",
+  "der Zeuge":"شاهد",
+  "die Zeugin":"شاهدة",
+  "der Verdächtige":"المشتبه به",
+  "der Täter":"الجاني",
+  "das Opfer":"الضحية",
+  "der Mord":"جريمة قتل",
+  "die Aussage":"الإفادة",
+  "das Alibi":"الحجة الغيابية",
+  "der Beweis":"الدليل",
+  "der Hinweis":"إشارة / دليل",
+  "die Spur":"الأثر",
+  "das Geständnis":"الاعتراف",
+  "die Lüge":"الكذبة",
+  "die Wahrheit":"الحقيقة",
+  "der Verdacht":"الشك",
+  "die Befragung":"الاستجواب",
+  "der Kommissar":"المفوض / المحقق",
+  "die Kommissarin":"المحققة",
+  "die Polizei":"الشرطة",
+  "die Kripo":"الشرطة الجنائية",
+  "der Hof":"الفناء",
+  "der Mantel":"المعطف",
+  "der Schal":"الوشاح",
+  "die Jacke":"الجاكيت",
+  "die Tasche":"الحقيبة",
+  "der Schlüssel":"المفتاح",
+  "der Schuh":"الحذاء",
+  "die Zigarette":"السيجارة",
+  "die Quittung":"الإيصال",
+  "der Knopf":"الزر",
+  "der Regenschirm":"المظلة",
+  "das Notizbuch":"دفتر الملاحظات",
+  "die Uhr":"الساعة",
+  "die Stimme":"الصوت",
+  "der Schrei":"الصرخة",
+  "der Schritt":"الخطوة",
+  "der Schatten":"الظل",
+  "die Tür":"الباب",
+  "das Fenster":"النافذة",
+  "der Aufzug":"المصعد",
+  "die Treppe":"الدرج",
+  "der Hauseingang":"مدخل المبنى",
+  "die Straße":"الشارع",
+  "das Café":"المقهى",
+  "der Kellner":"النادل",
+  "die Kellnerin":"النادلة",
+  "der Bahnhof":"المحطة",
+  "der Zug":"القطار",
+  "das Gleis":"الرصيف",
+  "die Fahrkarte":"تذكرة السفر",
+  "die Verspätung":"التأخير",
+  "der Koffer":"الحقيبة",
+  "der Reisende":"المسافر",
+  "die Adresse":"العنوان",
+  "die Nachbarin":"الجارة",
+  "der Nachbar":"الجار",
+  "der Streit":"الشجار",
+  "schreien":"يصرخ",
+  "lügen":"يكذب",
+  "gestehen":"يعترف",
+  "verdächtigen":"يشتبه",
+  "beobachten":"يراقب",
+  "behaupten":"يدّعي",
+  "verschweigen":"يخفي",
+  "erkennen":"يميّز",
+  "passieren":"يحدث",
+  "geschehen":"يحدث / يجري",
+  "treffen":"يلتقي",
+  "verlassen":"يغادر",
+  "ankommen":"يصل",
+  "weggehen":"يذهب بعيداً",
+  "der Schluss":"الخاتمة / الاستنتاج",
+  "die Spurensicherung":"تأمين الأدلة",
+  "die Tatzeit":"وقت الجريمة",
+  "die Zeugenaussage":"شهادة الشاهد",
+  "die Vernehmung":"الاستجواب الرسمي",
+  "die Festnahme":"الاعتقال",
+  "die Untersuchung":"التحقيق",
+  "der Fall":"القضية",
+  "der Verdachtsmoment":"شُبهة قوية",
+  "verschwinden":"يختفي",
+  "der Schaden":"الضرر"
+};
+
+/* ---------- Achievements ---------- */
+const ACH_DEFS = [
+  { id:'first_case', name:'Erster Fall', desc:'Fall 1 abgeschlossen.', hint:'Schließe den ersten Fall ab.', rar:'common' },
+  { id:'polite_detective', name:'Höflicher Ermittler', desc:'10× sehr höfliche Frage gestellt.', hint:'Bitte mit Konjunktiv II.', rar:'common' },
+  { id:'perfekt_pro', name:'Perfekt-Profi', desc:'20× das richtige Hilfsverb gewählt.', hint:'haben oder sein?', rar:'rare' },
+  { id:'no_mistakes', name:'Akkurat', desc:'Fall ohne falsche Drag-Zuordnung gelöst.', hint:'Sortiere präzise.', rar:'rare' },
+  { id:'speedrun', name:'Schnell-Ermittler', desc:'Fall in unter 10 Minuten gelöst.', hint:'Sei schnell.', rar:'rare' },
+  { id:'all_witnesses', name:'Vertrauensperson', desc:'Alle Zeugen mit Kooperation ≥ 3 verlassen.', hint:'Sei freundlich zu allen.', rar:'rare' },
+  { id:'triple_solve', name:'Trilogie', desc:'Alle 3 Fälle gelöst.', hint:'Löse alle drei Fälle.', rar:'legendary' },
+  { id:'flawless', name:'Makellos', desc:'Fall 3 ohne Game-Over.', hint:'Letzter Fall im ersten Anlauf.', rar:'legendary' },
+  { id:'polyglot_krimi', name:'Krimi-Wortschatz', desc:'60+ Vokabeln in Box 5.', hint:'Lerne lange.', rar:'legendary' },
+  { id:'ending_collector', name:'Alle Enden', desc:'Sieg, Game-Over und das geheime Ende gesehen.', hint:'Erforsche alle Ausgänge.', rar:'legendary' }
+];
+
+/* ---------- Cases ---------- */
+const CASES = {
+  /* ===================== CASE 1 ===================== */
+  1:{
+    id:1,
+    title:'Der Mantel im Hof',
+    titleAr:'المعطف في الفناء',
+    grammarFocus:'Perfekt + Adjektive (Farben/Kleidung)',
+    crimeTime:'20:45',
+    briefing:{
+      de:"Heute Nacht, gegen 20:45 Uhr, ist im Hinterhof der Bahnhofstraße 14 ein Mann gefunden worden. Tot. Erstochen. Drei Nachbarn haben etwas gehört oder gesehen. Wir suchen einen Mann mit dunklem Mantel. Aber Achtung: dunkel kann blau, schwarz oder grau sein. Hör genau zu.",
+      ar:"الليلة، حوالي الساعة 20:45، عُثر على رجل في الفناء الخلفي لشارع باهنهوف 14. ميت، طعناً. ثلاثة جيران سمعوا أو رأوا شيئاً. نبحث عن رجل بمعطف داكن. انتبه: داكن قد يعني أزرق أو أسود أو رمادي. اسمع بدقّة."
+    },
+    sceneIntro:"Hinterhof, Mietshaus Bahnhofstraße 14. Es regnet leicht. Mülltonnen, eine Holzbank, eine Hintertür.",
+    scene:{
+      ascii:
+`   ╔══════════════════════════════════════════════╗
+   ║  HINTERHOF · BAHNHOFSTRASSE 14 · 21:30      ║
+   ╚══════════════════════════════════════════════╝
+       ┌────────┐                            ┌──┐
+       │ HAUS A │                            │HB│
+       │ ▣▣ ▣▣ │   ░ ░ ░  Regen  ░ ░ ░     │▣▣│
+       │        │                            │  │
+       │  [TÜR] │                            └──┘
+       └───╥────┘                       ┌─────────┐
+           ║                            │ MÜLL ▣▣ │
+       ░░░░░░░░░░ Pflasterstein ░░░░░░░ │ TONNEN  │
+                                        └─────────┘
+            ╔═══╗   ⊠ Lampe (an)
+            ║ X ║   ← Fundort des Opfers
+            ╚═══╝
+       ┌──────┐
+       │ BANK │
+       └──────┘
+`,
+      hotspots:[
+        { id:'schal',  x:'62%', y:'78%', label:'🧣 Stoffstück', clue:{de:'Ein dunkelblauer Wollschal hängt am Mülltoneck. Frisch, leicht feucht.', ar:'وشاح صوفي أزرق داكن معلّق على حافة صندوق القمامة، رطب قليلاً.', tag:'schal_dunkelblau', match:['hans_jacke_dunkelblau']}},
+        { id:'knopf',  x:'38%', y:'82%', label:'🔘 Knopf', clue:{de:'Ein silberner Metallknopf liegt zwischen den Pflastersteinen — passt zu schwerer Kleidung.', ar:'زر معدني فضي بين بلاط الرصيف، يناسب ملابس ثقيلة.', tag:'knopf_silber', match:['hans_jacke_dunkelblau']}},
+        { id:'kippe',  x:'74%', y:'30%', label:'🚬 Kippe', clue:{de:'Eine Zigarettenkippe, Marke "Marlboro", noch warm.', ar:'عقب سيجارة "مارلبورو"، لا يزال دافئاً.', tag:'kippe_marlboro', match:['eva_raucht']}},
+        { id:'quittung', x:'24%', y:'40%', label:'🧾 Quittung', clue:{de:'Eine Tankstellen-Quittung, 20:51 Uhr — also 6 Minuten NACH der Tat.', ar:'إيصال محطة وقود، الساعة 20:51 — أي بعد 6 دقائق من الحادثة.', tag:'quittung_2051', match:['paul_tanke']}},
+        { id:'schirm',  x:'15%', y:'72%', label:'☂ Regenschirm', clue:{de:'Ein roter Damen-Regenschirm liegt auf der Bank — trocken innen.', ar:'مظلة سيدات حمراء على المقعد، جافة من الداخل.', tag:'schirm_rot_dame', match:[]}},
+        { id:'lampe',   x:'42%', y:'30%', label:'💡 Lampe', clue:{de:'Die Hoflampe ist intakt und brennt. Niemand hat sie kaputt gemacht.', ar:'مصباح الفناء يعمل وسليم.', tag:'lampe_an', match:[]}},
+        { id:'tuer',    x:'14%', y:'50%', label:'🚪 Hintertür', clue:{de:'Die Hintertür von Haus A ist nur angelehnt. Spuren von feuchten Schuhen führen hinein.', ar:'الباب الخلفي للمنزل A موارب، آثار أحذية رطبة تؤدي إلى الداخل.', tag:'tuer_offen', match:['hans_kam_rein']}}
+      ]
+    },
+    witnesses:[
+      {
+        id:'eva', name:'Frau Eva König', age:54, role:'Nachbarin, 1. OG',
+        portrait:'(￣ε￣＠)',
+        traits:['raucht','aufmerksam'],
+        truthful:true,
+        intro:{de:'Ich habe alles vom Balkon aus gesehen. Aber zuerst eine Zigarette.', ar:'رأيت كل شيء من الشرفة، لكن أولاً سيجارة.'},
+        statements:[
+          {
+            time:'20:40', tag:'eva_sah_mann',
+            confidence:0.7,
+            ask:{
+              direkt:'Was haben Sie gesehen?',
+              hoeflich:'Können Sie mir bitte sagen, was Sie gesehen haben?',
+              sehr:'Würden Sie mir freundlicherweise erzählen, was Sie beobachtet haben?'
+            },
+            de:'Ein Mann ist um 20:40 Uhr in den Hof gekommen. Er hat einen DUNKELBLAUEN Mantel getragen. Glaube ich. Es war ja dunkel und es hat geregnet.',
+            ar:'دخل رجل إلى الفناء في 20:40، كان يرتدي معطفاً أزرق داكناً. أعتقد ذلك. كان الجو مظلماً وممطراً.',
+            aux:'sein',
+            evidence:{ id:'eva_blau', label:'Eva: Mann in DUNKELBLAU um 20:40 (unsicher)', text:'Eva König sagt: "Er hat einen DUNKELBLAUEN Mantel getragen, 20:40." — aber sie ist sich nicht sicher.', match:['hans_jacke_dunkelblau'], unreliable:true }
+          },
+          {
+            time:'20:42', tag:'eva_raucht',
+            ask:{
+              direkt:'Sie haben geraucht?',
+              hoeflich:'Hätten Sie auch geraucht?',
+              sehr:'Würden Sie zugeben, dass Sie auch eine Zigarette geraucht haben?'
+            },
+            de:'Ja, ich habe eine Marlboro geraucht und sie nach unten geworfen. Tut mir leid.',
+            ar:'نعم، دخّنت سيجارة مارلبورو ورميتها للأسفل، آسفة.',
+            aux:'haben',
+            evidence:{ id:'eva_kippe', label:'Eva gibt Marlboro-Wurf zu', text:'Eva König gibt zu, ihre Marlboro-Kippe in den Hof geworfen zu haben.', match:['kippe_marlboro'] }
+          }
+        ]
+      },
+      {
+        id:'hans', name:'Herr Hans Berger', age:41, role:'Mieter Erdgeschoss',
+        portrait:'(¬_¬ )',
+        traits:['nervös','besitzt_dunkle_jacke'],
+        truthful:false,
+        intro:{de:'Ich war zu Hause. Allein. Ich habe nichts gesehen.', ar:'كنت في البيت وحدي، لم أرَ شيئاً.'},
+        statements:[
+          {
+            time:'20:44', tag:'hans_kam_rein',
+            ask:{
+              direkt:'Wo waren Sie um 20:44?',
+              hoeflich:'Können Sie mir sagen, wo Sie um 20:44 Uhr waren?',
+              sehr:'Würden Sie mir bitte erzählen, wo Sie sich um 20:44 Uhr aufgehalten haben?'
+            },
+            de:'Ich bin schon um 20:00 Uhr nach Hause gekommen und habe das Haus nicht mehr verlassen.',
+            ar:'وصلت إلى البيت في 20:00 ولم أغادر بعد ذلك.',
+            aux:'sein',
+            evidence:{ id:'hans_alibi', label:'Hans: "Ab 20:00 zu Hause"', text:'Hans behauptet, ab 20:00 Uhr durchgehend zu Hause gewesen zu sein.', match:[] }
+          },
+          {
+            time:'20:30', tag:'hans_jacke_dunkelblau',
+            ask:{
+              direkt:'Welche Jacke tragen Sie heute?',
+              hoeflich:'Können Sie mir bitte Ihre Jacke zeigen?',
+              sehr:'Wären Sie so freundlich, mir zu zeigen, welche Jacke Sie heute getragen haben?'
+            },
+            de:'Eine dunkelblaue Wolljacke. Aber das beweist gar nichts!',
+            ar:'جاكيت صوف أزرق داكن، لكن هذا لا يثبت شيئاً!',
+            aux:'haben',
+            evidence:{ id:'hans_jacke', label:'Hans: dunkelblaue Wolljacke', text:'Hans Berger trägt eine dunkelblaue Wolljacke (passt zu Schal & Knopf).', match:['schal_dunkelblau','knopf_silber'] }
+          }
+        ]
+      },
+      {
+        id:'paul', name:'Herr Paul Wagner', age:33, role:'Mieter 2. OG',
+        portrait:'( •̯́ ▵ •̯̀)',
+        traits:['raucht_nicht','autofahrer'],
+        truthful:true,
+        intro:{de:'Ich bin erst spät gekommen. Ich war an der Tankstelle.', ar:'وصلت متأخراً، كنت في محطة الوقود.'},
+        statements:[
+          {
+            time:'20:51', tag:'paul_tanke',
+            ask:{
+              direkt:'Wo waren Sie zur Tatzeit?',
+              hoeflich:'Können Sie mir bitte sagen, wo Sie zur Tatzeit waren?',
+              sehr:'Würden Sie mir bitte erklären, wo Sie sich zur Tatzeit befunden haben?'
+            },
+            de:'Ich bin um 20:51 Uhr an der Aral-Tankstelle gewesen. Hier ist die Quittung.',
+            ar:'كنت في محطة Aral في الساعة 20:51. هذا الإيصال.',
+            aux:'sein',
+            evidence:{ id:'paul_alibi', label:'Paul: Tankstellen-Alibi 20:51', text:'Paul Wagners Quittung beweist seinen Aufenthalt an der Tankstelle um 20:51 (6 Min nach der Tat).', match:['quittung_2051'] }
+          }
+        ]
+      }
+    ],
+    suspects:[
+      {id:'eva', name:'Frau König', start:0},
+      {id:'hans', name:'Herr Berger', start:0},
+      {id:'paul', name:'Herr Wagner', start:0}
+    ],
+    culprit:'hans',
+    /* mapping: clue.tag or evidence.id -> +score on suspect */
+    clueMap:{
+      'schal_dunkelblau':{hans:3, eva:0, paul:0},
+      'knopf_silber':{hans:2},
+      'tuer_offen':{hans:1},
+      'kippe_marlboro':{eva:1},
+      'quittung_2051':{paul:-3}, // alibi
+      'hans_jacke':{hans:3},
+      'hans_alibi':{hans:1},     // weak
+      'eva_blau':{hans:2},
+      'eva_kippe':{eva:0},
+      'paul_alibi':{paul:-3}
+    },
+    contradictions:[
+      // pair of statement tags that conflict
+      ['hans_kam_rein','hans_jacke_dunkelblau','hans hatte angeblich Haus nicht verlassen, aber feuchte Spuren gehen REIN durch die Hintertür']
+    ],
+    winText:{
+      golden:'Hans Berger gesteht weinend: "Ich habe gestritten, dann zugestochen. Es tut mir leid." Vogel nickt: "Saubere Arbeit, Praktikant:in."',
+      standard:'Hans Berger schweigt lange, dann nickt er. Geständnis. Fall gelöst.'
+    },
+    failText:'Der Verdächtige bleibt frei. Vogel: "Wir hatten zu wenig Beweise."'
+  },
+
+  /* ===================== CASE 2 ===================== */
+  2:{
+    id:2,
+    title:'Schweigen im Café',
+    titleAr:'الصمت في المقهى',
+    grammarFocus:'Indirekte Fragen + Zeitangaben',
+    crimeTime:'15:20',
+    briefing:{
+      de:"Café Mozart, Maximilianstraße. Heute Nachmittag, ungefähr Viertel nach drei, ist die Besitzerin Frau Lechner vergiftet worden. Ihr Kaffee enthielt ein starkes Schlafmittel. Vier Personen waren im Café. Niemand sagt klar, was wann passiert ist. Frag höflich. Sehr höflich.",
+      ar:"مقهى موتسارت في شارع ماكسيميليان. عصر اليوم، حوالي الثالثة والربع، تسمّمت صاحبة المقهى السيدة ليشنر. قهوتها كانت تحتوي على منوّم قوي. كان في المقهى أربعة أشخاص. لا أحد يتحدث بوضوح. اسأل بأدب، بأدب شديد."
+    },
+    sceneIntro:"Café Mozart, Hauptraum. Sechs Tische, eine Theke, ein Hinterzimmer.",
+    scene:{
+      ascii:
+`   ╔════════════════════════════════════════════╗
+   ║   CAFÉ MOZART · MAXIMILIANSTRASSE · 15:50  ║
+   ╚════════════════════════════════════════════╝
+   ┌─────────────────────── THEKE ───────────────┐
+   │  ☕  ▣  ☕  ▣  ☕   [KASSE]   ☕  ▣  ☕  ▣ │
+   └─────────────────────────────────────────────┘
+       T1▢   T2▢                T3▢   T4▢
+        ⌣      ⌣                  ⌣
+                                  ╳ ← Frau Lechner
+       T5▢                        T6▢
+        ⌣                          ⌣
+   [Hinterzimmer] ─→  ▢  Lager
+`,
+      hotspots:[
+        { id:'tasse', x:'70%', y:'42%', label:'☕ Tasse', clue:{de:'Die Kaffeetasse von Frau Lechner ist halb leer. Bittermandel-Geruch.', ar:'فنجان قهوة السيدة ليشنر نصف فارغ، ورائحة لوز مرّ.', tag:'tasse_bitter', match:['gift_zugang']}},
+        { id:'lipstick', x:'30%', y:'46%', label:'💄 Lippenstift', clue:{de:'Auf einer Serviette ein roter Lippenstift-Abdruck — sehr dunkles Rot.', ar:'بصمة أحمر شفاه أحمر داكن جداً على منديل.', tag:'lippen_dunkelrot', match:['anna_dunkelrot']}},
+        { id:'rezept', x:'60%', y:'12%', label:'📝 Rezept', clue:{de:'Auf der Theke liegt ein Apothekenrezept für ein Schlafmittel — Name unleserlich.', ar:'وصفة دواء منوّم على المنضدة، الاسم غير واضح.', tag:'schlafmittel_rezept', match:['eva_apotheke','gift_zugang']}},
+        { id:'tagebuch', x:'18%', y:'20%', label:'📔 Notizbuch', clue:{de:'Hinter der Kasse: ein Notizbuch. Eintrag heute: "B. droht mir wieder."', ar:'دفتر خلف الكاشير، اليوم: "ب. يهددني مرة أخرى."', tag:'notiz_b_droht', match:['bruno_streit']}},
+        { id:'jacke', x:'82%', y:'72%', label:'🧥 Jacke', clue:{de:'An Tisch 6 hängt eine Lederjacke mit Initialen "B.K."', ar:'جاكيت جلدي على الكرسي 6 بأحرف B.K.', tag:'jacke_bk', match:['bruno_war_da']}},
+        { id:'kassa', x:'48%', y:'18%', label:'💶 Kasse', clue:{de:'Letzter Bon: 15:18 Uhr, ein Espresso. Zahler: bar.', ar:'آخر إيصال 15:18، إسبريسو، نقداً.', tag:'bon_1518', match:[]}},
+        { id:'hinten', x:'14%', y:'82%', label:'🚪 Hintertür', clue:{de:'Hintertür ins Lager ist offen. Nur Angestellte haben den Schlüssel.', ar:'الباب الخلفي للمستودع مفتوح، المفتاح فقط مع الموظفين.', tag:'gift_zugang', match:['anna_angestellt']}},
+        { id:'zucker', x:'50%', y:'48%', label:'🥄 Zuckerdose', clue:{de:'Die Zuckerdose ist beschmiert — feiner weißer Pulver-Rand.', ar:'وعاء السكر ملطّخ — مسحوق أبيض ناعم.', tag:'pulver_zucker', match:['anna_angestellt']}}
+      ]
+    },
+    witnesses:[
+      {
+        id:'anna', name:'Anna Hofer', age:24, role:'Kellnerin',
+        portrait:'(´°ω°`)', traits:['angestellt','tragt_dunkelrot'], truthful:false,
+        intro:{de:'Ich habe nichts getan. Ich serviere nur Kaffee.', ar:'لم أفعل شيئاً، أنا فقط أقدّم القهوة.'},
+        statements:[
+          { time:'15:15', tag:'anna_servierte',
+            ask:{ direkt:'Wann haben Sie den Kaffee gebracht?', hoeflich:'Können Sie mir sagen, wann Sie den Kaffee gebracht haben?', sehr:'Würden Sie mir bitte erklären, wann genau Sie den Kaffee serviert haben?'},
+            de:'Ich habe Frau Lechner um 15:15 Uhr den Kaffee gebracht.', ar:'قدّمت القهوة للسيدة ليشنر في 15:15.', aux:'haben',
+            evidence:{id:'anna_15_15', label:'Anna: Kaffee um 15:15', text:'Anna Hofer behauptet, den Kaffee um 15:15 serviert zu haben.', match:['tasse_bitter']}
+          },
+          { time:'15:00', tag:'anna_dunkelrot',
+            ask:{direkt:'Welcher Lippenstift ist das?', hoeflich:'Können Sie sagen, welche Farbe Sie heute tragen?', sehr:'Würden Sie mir freundlicherweise verraten, welche Lippenstift-Farbe Sie heute tragen?'},
+            de:'Ich trage ein dunkles Rot. Wie immer.', ar:'أرتدي أحمر داكن، كالعادة.', aux:'haben',
+            evidence:{id:'anna_lippen', label:'Anna: dunkelroter Lippenstift', text:'Anna Hofer trägt dunkelroten Lippenstift (passt zur Serviette).', match:['lippen_dunkelrot']}
+          },
+          { time:'14:50', tag:'anna_angestellt',
+            ask:{direkt:'Haben Sie Zugang zum Lager?', hoeflich:'Hätten Sie Zugang zum Lager?', sehr:'Würden Sie bestätigen, dass Sie als Angestellte Zugang zum Lager haben?'},
+            de:'Ja, ich bin Angestellte und habe einen Schlüssel zum Lager.', ar:'نعم، أنا موظفة ولدي مفتاح المستودع.', aux:'haben',
+            evidence:{id:'anna_lager', label:'Anna hat Lager-Schlüssel', text:'Anna Hofer hat als Angestellte Zugang zum Lager (Hintertür).', match:['gift_zugang','pulver_zucker']}
+          }
+        ]
+      },
+      {
+        id:'bruno', name:'Bruno Klein', age:38, role:'Stammgast / Ex-Geschäftspartner',
+        portrait:'(╬⊙益⊙)', traits:['streit_mit_opfer'], truthful:false,
+        intro:{de:'Ja, ich war hier. Aber ich habe sie nicht angefasst.', ar:'نعم، كنت هنا، لكن لم ألمسها.'},
+        statements:[
+          { time:'14:45', tag:'bruno_war_da',
+            ask:{direkt:'Wann sind Sie ins Café gekommen?', hoeflich:'Können Sie mir sagen, wann Sie ins Café gekommen sind?', sehr:'Würden Sie mir bitte erzählen, wann Sie ins Café gekommen sind?'},
+            de:'Ich bin um 14:45 Uhr ins Café gekommen.', ar:'دخلت المقهى في 14:45.', aux:'sein',
+            evidence:{id:'bruno_zeit', label:'Bruno: ab 14:45 im Café', text:'Bruno Klein war ab 14:45 im Café (passt zur Lederjacke an Tisch 6).', match:['jacke_bk']}
+          },
+          { time:'15:05', tag:'bruno_streit',
+            ask:{direkt:'Was war mit Frau Lechner?', hoeflich:'Können Sie mir sagen, was zwischen Ihnen vorgefallen ist?', sehr:'Würden Sie mir bitte schildern, was zwischen Ihnen und Frau Lechner vorgefallen ist?'},
+            de:'Wir haben gestritten. Sie hat mir Geld geschuldet.', ar:'تشاجرنا، كانت تدين لي بمال.', aux:'haben',
+            evidence:{id:'bruno_streit_ev', label:'Bruno: Streit & Schulden', text:'Bruno Klein bestätigt Streit mit Lechner — Motiv: Geldschulden.', match:['notiz_b_droht']}
+          },
+          { time:'15:18', tag:'bruno_alibi_kasse',
+            ask:{direkt:'Wann haben Sie bezahlt?', hoeflich:'Können Sie sagen, wann Sie zuletzt an der Kasse waren?', sehr:'Würden Sie mir bitte erzählen, wann Sie zuletzt an der Kasse bezahlt haben?'},
+            de:'Ich habe um 15:18 Uhr meinen Espresso bezahlt und bin sofort gegangen.', ar:'دفعت إسبريسو الساعة 15:18 وغادرت فوراً.', aux:'haben',
+            evidence:{id:'bruno_bon', label:'Bruno: Bon 15:18', text:'Bruno Klein zahlte um 15:18 — könnte Café vor 15:20 verlassen haben.', match:['bon_1518']}
+          }
+        ]
+      },
+      {
+        id:'eva', name:'Eva Schmidt', age:62, role:'Apothekerin von gegenüber',
+        portrait:'(◕‿◕)', traits:['apotheke','sehr_hoeflich'], truthful:true,
+        intro:{de:'Ich trinke jeden Tag um drei einen Tee hier.', ar:'أشرب الشاي هنا كل يوم في الثالثة.'},
+        statements:[
+          { time:'15:00', tag:'eva_apotheke',
+            ask:{direkt:'Sie verkaufen Schlafmittel?', hoeflich:'Verkaufen Sie auch Schlafmittel in Ihrer Apotheke?', sehr:'Würden Sie bestätigen, dass Sie auch Schlafmittel führen?'},
+            de:'Ja. Heute habe ich auch eine Packung an eine junge Frau verkauft.', ar:'نعم، اليوم بعت علبة لشابة.', aux:'haben',
+            evidence:{id:'eva_verkauf', label:'Eva: Schlafmittel an "junge Frau"', text:'Eva Schmidt verkaufte heute Schlafmittel an eine junge Frau.', match:['schlafmittel_rezept','anna_lippen']}
+          },
+          { time:'15:20', tag:'eva_sah_anna',
+            ask:{direkt:'Haben Sie Anna gesehen?', hoeflich:'Können Sie mir sagen, ob Sie Anna gesehen haben?', sehr:'Würden Sie mir bitte erzählen, ob Sie Anna heute beobachtet haben?'},
+            de:'Anna ist um 15:20 Uhr kurz im Lager verschwunden.', ar:'اختفت أنا في 15:20 في المستودع لفترة قصيرة.', aux:'sein',
+            evidence:{id:'eva_anna_lager', label:'Eva: Anna im Lager 15:20', text:'Eva sah Anna um 15:20 im Lager — exakt zur Tatzeit.', match:['anna_lager','gift_zugang']}
+          }
+        ]
+      },
+      {
+        id:'tom', name:'Tom Vogt', age:19, role:'Student am Fenstertisch',
+        portrait:'(～o～)', traits:['kopfhoerer','jung'], truthful:true,
+        intro:{de:'Ich habe Kopfhörer aufgehabt. Ich habe nichts gehört.', ar:'كنت أرتدي سماعات، لم أسمع شيئاً.'},
+        statements:[
+          { time:'15:18', tag:'tom_sah_bruno_geht',
+            ask:{direkt:'Wer ist gegangen?', hoeflich:'Können Sie mir sagen, wer gegangen ist?', sehr:'Würden Sie mir bitte erzählen, wer das Café verlassen hat?'},
+            de:'Ein Mann mit Lederjacke ist um 15:18 weggegangen.', ar:'رجل بجاكيت جلدي غادر في 15:18.', aux:'sein',
+            evidence:{id:'tom_bruno', label:'Tom: Lederjacke ging 15:18', text:'Tom Vogt sah einen Mann mit Lederjacke um 15:18 das Café verlassen (Bruno).', match:['jacke_bk','bon_1518']}
+          }
+        ]
+      }
+    ],
+    suspects:[
+      {id:'anna', name:'Anna Hofer'},
+      {id:'bruno', name:'Bruno Klein'},
+      {id:'eva',  name:'Eva Schmidt'},
+      {id:'tom',  name:'Tom Vogt'}
+    ],
+    culprit:'anna',
+    clueMap:{
+      'tasse_bitter':{anna:1},
+      'lippen_dunkelrot':{anna:2},
+      'schlafmittel_rezept':{anna:2},
+      'notiz_b_droht':{bruno:2},
+      'jacke_bk':{bruno:1},
+      'bon_1518':{bruno:-2},
+      'gift_zugang':{anna:3},
+      'pulver_zucker':{anna:2},
+      'anna_15_15':{anna:1},
+      'anna_lippen':{anna:2},
+      'anna_lager':{anna:3},
+      'bruno_zeit':{bruno:1},
+      'bruno_streit_ev':{bruno:2},
+      'bruno_bon':{bruno:-2},
+      'eva_verkauf':{anna:2},
+      'eva_anna_lager':{anna:3},
+      'tom_bruno':{bruno:-1}
+    },
+    contradictions:[
+      ['anna_servierte','anna_angestellt','Anna kannte den Zugang zum Lager — und servierte den Kaffee selbst.']
+    ],
+    winText:{
+      golden:'Anna bricht zusammen: "Sie hat mir den Lohn nicht bezahlt. Ich war so müde. Es war nur ein bisschen Schlafmittel..." Vogel: "Tragisch. Aber sauber bewiesen."',
+      standard:'Anna gesteht. Sie hat das Schlafmittel in den Zucker gegeben.'
+    },
+    failText:'Sie haben die falsche Person beschuldigt. Anna wird freigesprochen — und verschwindet.'
+  },
+
+  /* ===================== CASE 3 ===================== */
+  3:{
+    id:3,
+    title:'Letzter Zug nach München',
+    titleAr:'آخر قطار إلى ميونخ',
+    grammarFocus:'Wechselpräpositionen + Modalverben',
+    crimeTime:'23:14',
+    briefing:{
+      de:"Hauptbahnhof Augsburg, Gleis 7. Der letzte Zug nach München ist um 23:14 Uhr abgefahren — und mit ihm offenbar ein Mörder. Ein Mann liegt auf der Bank zwischen Gleis 7 und 8. Vier Personen waren auf dem Bahnsteig. Achtung: Der offensichtlichste Verdächtige ist NICHT immer der Täter. Vergleiche mit deinen alten Akten.",
+      ar:"محطة قطارات أوغسبورغ، الرصيف 7. غادر آخر قطار إلى ميونخ في 23:14. رجل ميت على المقعد بين الرصيف 7 و 8. كان أربعة أشخاص على الرصيف. انتبه: المشتبه به الأوضح ليس دائماً الجاني. قارن مع ملفاتك القديمة."
+    },
+    sceneIntro:"Hauptbahnhof Augsburg, 23:30. Anzeigetafel flackert.",
+    scene:{
+      ascii:
+`   ╔════════════════════════════════════════════╗
+   ║  HAUPTBAHNHOF AUGSBURG · GLEIS 7 · 23:30   ║
+   ╚════════════════════════════════════════════╝
+   ┌──────────────── ANZEIGETAFEL ─────────────────┐
+   │  RE 5012   →  MÜNCHEN HBF   23:14   ABGEFAHR. │
+   └────────────────────────────────────────────────┘
+       ▣ AUTOMAT       ┌────────┐    ▣ KIOSK
+                       │ BANK ╳ │    (geschlossen)
+   ═════════════════════════════════════════════════
+   ─── GLEIS 7 ─────────────────────────────────────
+   ═════════════════════════════════════════════════
+                  ┌──────┐    ┌────────┐
+                  │ KOFFR│    │ TELEFON│
+                  └──────┘    └────────┘
+   ═════════════════════════════════════════════════
+   ─── GLEIS 8 ─────────────────────────────────────
+`,
+      hotspots:[
+        { id:'koffer', x:'40%', y:'72%', label:'🧳 Koffer', clue:{de:'Ein schwarzer Koffer steht ALLEIN auf dem Bahnsteig — Etikett: "M. R., Wien".', ar:'حقيبة سوداء وحدها على الرصيف — اللصاقة: "م. ر.، فيينا".', tag:'koffer_mr', match:['martin_wien']}},
+        { id:'fahrkarte', x:'72%', y:'30%', label:'🎫 Fahrkarte', clue:{de:'Eine zerrissene Fahrkarte: München, 23:14, Wagen 5, Platz 22.', ar:'تذكرة ممزّقة: ميونخ، 23:14، عربة 5، مقعد 22.', tag:'ticket_p22', match:['martin_wien']}},
+        { id:'phone', x:'62%', y:'72%', label:'📞 Telefon', clue:{de:'Im Münztelefon: letzter Anruf um 23:09 nach Wien.', ar:'في الهاتف: آخر مكالمة الساعة 23:09 إلى فيينا.', tag:'anruf_wien_2309', match:['martin_wien','telefon_zeuge']}},
+        { id:'auto', x:'14%', y:'30%', label:'🤖 Automat', clue:{de:'Der Fahrkartenautomat zeigt Datum + Uhrzeit. Kamera defekt.', ar:'آلة التذاكر تعرض التاريخ. الكاميرا معطلة.', tag:'kamera_defekt', match:[]}},
+        { id:'bank', x:'34%', y:'30%', label:'🪑 Bank', clue:{de:'Auf der Bank: das Opfer. Ein dünner Faden — orange Wolle — klebt am Rücken.', ar:'على المقعد: الضحية، خيط رفيع برتقالي على ظهره.', tag:'orange_wolle', match:['julia_orange']}},
+        { id:'kiosk', x:'80%', y:'18%', label:'🏪 Kiosk', clue:{de:'Der Kiosk hat seit 23:00 zu. Im Schaufenster ein gelber Zettel.', ar:'الكشك مغلق منذ 23:00. ملصق أصفر في الواجهة.', tag:'kiosk_zu', match:[]}},
+        { id:'gleis8', x:'50%', y:'92%', label:'🚇 Gleis 8', clue:{de:'Auf Gleis 8 hält JETZT ein Güterzug. Niemand aussteigt. Aber: ein Schatten LÄUFT WEG.', ar:'على الرصيف 8 يقف قطار شحن. ظل يهرب.', tag:'schatten_gleis8', match:[]}}
+      ]
+    },
+    witnesses:[
+      {
+        id:'martin', name:'Martin Roth', age:46, role:'Geschäftsmann aus Wien',
+        portrait:'(￣ヘ￣)', traits:['nervoes','wien'], truthful:false,
+        intro:{de:'Ich muss diesen Zug bekommen. Bitte schnell!', ar:'يجب أن ألحق بهذا القطار، أرجوك بسرعة!'},
+        statements:[
+          { time:'23:09', tag:'martin_wien',
+            ask:{direkt:'Mit wem haben Sie telefoniert?', hoeflich:'Können Sie mir sagen, mit wem Sie telefoniert haben?', sehr:'Würden Sie mir bitte verraten, mit wem Sie um 23:09 telefoniert haben?'},
+            de:'Mit meiner Frau in Wien. Ich habe ihr gesagt, dass ich heute Nacht ankomme.', ar:'مع زوجتي في فيينا، أخبرتها أنني سأصل الليلة.', aux:'haben',
+            evidence:{id:'martin_call', label:'Martin: Anruf nach Wien 23:09', text:'Martin Roth gibt zu, um 23:09 nach Wien telefoniert zu haben.', match:['anruf_wien_2309','koffer_mr']}
+          },
+          { time:'23:13', tag:'martin_in_zug',
+            ask:{direkt:'Sind Sie in den Zug eingestiegen?', hoeflich:'Können Sie sagen, ob Sie in den Zug gestiegen sind?', sehr:'Würden Sie mir bitte erklären, ob Sie wirklich in den Zug eingestiegen sind?'},
+            de:'Nein! Mein Koffer ist im Zug, aber ich BIN nicht eingestiegen — ich habe ihn verpasst!', ar:'لا! حقيبتي في القطار لكنني لم أصعد، فاتني القطار!', aux:'sein',
+            evidence:{id:'martin_verpasst', label:'Martin: Zug verpasst', text:'Martin behauptet, den Zug verpasst zu haben — Koffer fuhr ohne ihn ab.', match:[]}
+          }
+        ]
+      },
+      {
+        id:'julia', name:'Julia Brandt', age:29, role:'Krankenschwester, Strickjacke',
+        portrait:'(◕︵◕)', traits:['orange_jacke','schicht_ende'], truthful:true,
+        intro:{de:'Ich komme aus dem Spät-Dienst. Ich wollte nach Hause.', ar:'انتهت مناوبتي المسائية، أردت العودة للبيت.'},
+        statements:[
+          { time:'23:10', tag:'julia_orange',
+            ask:{direkt:'Was tragen Sie?', hoeflich:'Können Sie mir sagen, was Sie heute tragen?', sehr:'Würden Sie mir bitte sagen, was für eine Jacke Sie heute tragen?'},
+            de:'Eine orange Strickjacke. Ich habe sie selber gestrickt.', ar:'جاكيت برتقالي محبوك، حبكته بنفسي.', aux:'haben',
+            evidence:{id:'julia_jacke', label:'Julia: orange Strickjacke', text:'Julia Brandt trägt eine selbstgestrickte orange Strickjacke (Wollfaser passt!).', match:['orange_wolle']}
+          },
+          { time:'23:12', tag:'julia_sah_streit',
+            ask:{direkt:'Was haben Sie gesehen?', hoeflich:'Können Sie mir sagen, was Sie gesehen haben?', sehr:'Würden Sie mir bitte erzählen, was genau Sie beobachtet haben?'},
+            de:'Ich habe gesehen, wie zwei Männer auf der Bank gestritten haben. Einer ist dann nach Gleis 8 gelaufen.', ar:'رأيت رجلين يتشاجران على المقعد، ثم ركض أحدهما نحو الرصيف 8.', aux:'haben',
+            evidence:{id:'julia_streit', label:'Julia: Streit + Flucht Gleis 8', text:'Julia sah Streit auf Bank, dann Flucht zu Gleis 8.', match:['schatten_gleis8']}
+          }
+        ]
+      },
+      {
+        id:'frank', name:'Frank Stein', age:55, role:'Bahn-Mitarbeiter (Reinigung)',
+        portrait:'(¬‿¬ )', traits:['kennt_bahnhof'], truthful:false,
+        intro:{de:'Ich habe nur geputzt. Wirklich.', ar:'كنت فقط أنظف، حقاً.'},
+        statements:[
+          { time:'23:00', tag:'frank_putzt',
+            ask:{direkt:'Wo waren Sie?', hoeflich:'Können Sie mir sagen, wo Sie waren?', sehr:'Würden Sie mir bitte erklären, wo Sie sich aufgehalten haben?'},
+            de:'Ich bin auf Gleis 8 gewesen und habe geputzt.', ar:'كنت على الرصيف 8 وكنت أنظف.', aux:'sein',
+            evidence:{id:'frank_gleis8', label:'Frank: war auf Gleis 8', text:'Frank Stein war laut eigener Aussage auf Gleis 8 — gleicher Ort wie der fliehende Schatten.', match:['schatten_gleis8','kiosk_zu']}
+          },
+          { time:'23:13', tag:'frank_kannte_opfer',
+            ask:{direkt:'Kannten Sie das Opfer?', hoeflich:'Hätten Sie das Opfer gekannt?', sehr:'Würden Sie mir bitte sagen, ob Sie das Opfer gekannt haben?'},
+            de:'Nein. Niemals gesehen.', ar:'لا، لم أرَه أبداً.', aux:'haben',
+            evidence:{id:'frank_leugnet', label:'Frank: kennt Opfer NICHT', text:'Frank leugnet, das Opfer zu kennen.', match:[]}
+          }
+        ]
+      },
+      {
+        id:'sara', name:'Sara Weiß', age:34, role:'Anonymer Anruf an die Polizei',
+        portrait:'(°ロ°)', traits:['telefonzeuge'], truthful:true,
+        intro:{de:'Ich rufe an, weil ich es gehört habe. Aber ich war nicht im Bahnhof.', ar:'اتصلت لأنني سمعت ذلك، لكنني لم أكن في المحطة.'},
+        statements:[
+          { time:'23:11', tag:'telefon_zeuge',
+            ask:{direkt:'Was haben Sie gehört?', hoeflich:'Können Sie mir sagen, was Sie gehört haben?', sehr:'Würden Sie mir bitte schildern, was genau Sie gehört haben?'},
+            de:'Ich habe einen Streit gehört: ein Mann hat geschrien "Du SOLLST schweigen, Frank!"', ar:'سمعت شجاراً: رجل يصرخ "يجب أن تصمت يا فرانك!"', aux:'haben',
+            evidence:{id:'sara_frank', label:'Sara: Name "Frank" gerufen', text:'Telefonzeugin Sara hörte den Namen "Frank" aus dem Streit.', match:['frank_gleis8','frank_leugnet']}
+          }
+        ]
+      }
+    ],
+    suspects:[
+      {id:'martin', name:'Martin Roth (offensichtlich)'},
+      {id:'julia',  name:'Julia Brandt'},
+      {id:'frank',  name:'Frank Stein (Reinigung)'},
+      {id:'sara',   name:'Sara Weiß (Anruf)'}
+    ],
+    culprit:'frank', // Twist: not Martin
+    clueMap:{
+      'koffer_mr':{martin:2},
+      'ticket_p22':{martin:1},
+      'anruf_wien_2309':{martin:1},
+      'orange_wolle':{julia:-1, frank:1}, // Julia gesteht, Frank kontaktierte Opfer
+      'schatten_gleis8':{frank:3},
+      'kiosk_zu':{frank:0},
+      'martin_call':{martin:1},
+      'martin_verpasst':{martin:-1},
+      'julia_jacke':{julia:-2},
+      'julia_streit':{frank:2},
+      'frank_gleis8':{frank:3},
+      'frank_leugnet':{frank:2},
+      'sara_frank':{frank:3}
+    },
+    contradictions:[
+      ['frank_gleis8','frank_kannte_opfer','Frank war am Tatort UND leugnet, das Opfer zu kennen — aber Sara hörte seinen Namen.']
+    ],
+    winText:{
+      golden:'Frank Stein bricht zusammen: "Er wollte alles erzählen. Ich konnte nicht anders." Vogel klopft dir auf die Schulter: "Saubere Trilogie. Du bist bereit für die Kripo."',
+      standard:'Frank Stein gesteht. Der unscheinbare Reinigungs-Mann war es.',
+      secret:'GEHEIMES ENDE — Du erkennst, dass die Spuren aus Fall 1 (dunkelblau) und Fall 2 (Hintertür) ein Muster bilden: Frank Stein arbeitete früher bei Müller (Bahnhofstraße) UND putzte das Café Mozart. Drei Tatorte, ein Täter. Vogel: "Du hast soeben den Augsburg-Killer gefasst."'
+    },
+    failText:'Sie haben Martin Roth verhaftet — den OFFENSICHTLICHEN. Doch in der Nacht stirbt ein weiterer Zeuge. Sie haben den falschen Mann.'
+  }
+};
+
+/* ============================================================
+   Engine
+   ============================================================ */
+function $(id){return document.getElementById(id)}
+function el(tag, attrs={}, html=""){const e=document.createElement(tag);for(const k in attrs){if(k==="class")e.className=attrs[k];else if(k==="onclick")e.onclick=attrs[k];else e.setAttribute(k,attrs[k]);}if(html!==undefined)e.innerHTML=html;return e}
+function show(id){
+  document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));
+  const t=$(id); if(t){t.classList.add('on'); window.scrollTo({top:0,behavior:'smooth'});}
+}
+function toast(msg, kind=""){
+  const t=$('toast'); t.className=''; t.classList.add('on'); if(kind)t.classList.add(kind);
+  t.textContent=msg;
+  clearTimeout(t._x); t._x=setTimeout(()=>{t.classList.remove('on')},2200);
+}
+
+/* ---------- Init ---------- */
+function init(){
+  // v2: Migration v1 → v2 (Saves nicht kompatibel wegen neuem Timer-Feld)
+  try{
+    const legacy = localStorage.getItem(SAVE_KEY_LEGACY);
+    if(legacy && !localStorage.getItem(SAVE_KEY)){
+      localStorage.removeItem(SAVE_KEY_LEGACY);
+      setTimeout(()=>toast('v1-Spielstand archiviert. Neuer Run mit Timer.','good'), 800);
+    }
+  }catch(e){}
+
+  $('btnContinue').disabled = !loadGameRaw();
+  renderAchievements();
+  renderVocab();
+  renderCharSelect();
+  document.addEventListener('keydown',(e)=>{
+    if(e.key==='Escape'){openMenu();}
+    else if(e.key==='n'||e.key==='N'){openNotebook();}
+    else if(e.key==='t'||e.key==='T'){openTimeline();}
+    else if(/^[1-4]$/.test(e.key)){
+      const opt=document.querySelector('#talkOpts [data-key="'+e.key+'"]');
+      if(opt) opt.click();
+    }
+  });
+}
+
+function renderCharSelect(){
+  const g=$('charGrid'); g.innerHTML='';
+  for(const id in CHARS){
+    const c=CHARS[id];
+    const a=el('div',{class:'a un'});
+    a.innerHTML = `<b>${c.emoji} ${c.name}</b>
+      <div>${c.bonus}</div>
+      <div lang="ar">${c.ar}</div>
+      <div style="margin-top:6px"><button class="btn small primary" data-id="${id}">Wählen</button></div>`;
+    a.querySelector('button').onclick = ()=>startNewGame(id);
+    g.appendChild(a);
+  }
+}
+
+function goCharSelect(){ show('sc-char'); }
+
+function startNewGame(charId){
+  G = freshGame(charId, 1);
+  saveGame();
+  startCase(1);
+}
+function continueGame(){
+  const raw = loadGameRaw();
+  if(!raw){ toast('Kein Speicherstand.','bad'); return; }
+  G = raw;
+  startCase(G.case || 1);
+}
+function freshGame(charId, caseId){
+  return {
+    case:caseId, character:charId,
+    phase:'PROLOG',
+    notebook:{ clues:[], suspects:{}, evidence:[] }, // evidence: [{id,label,text,match}]
+    droppedAssignments:{}, // suspectId -> [evidenceIds]
+    timeline:[],           // {time, witnessId, witnessName, tag, text, conflict}
+    cooperation:{},        // witnessId -> int
+    talkedTo:{},           // witnessId -> {askedTags:[], finished:false}
+    stress:0,
+    xp:{lang:0, deduction:0},
+    flags:{ perfektCorrect:0, wrongDrops:0, gameOversThisCase:0, retried:false, startedAt:Date.now(),
+            confrontStage:0, confrontTries:0, contradictionsUsed:[], unreliableTrusted:0 },
+    timer: 900,            // v2: 15 Minuten pro Fall
+    confSel:[],
+    confTarget:null
+  };
+}
+
+/* v2: zentraler Timer */
+let G_TIMER_INT = null;
+function startTimer(){
+  stopTimer();
+  G_TIMER_INT = setInterval(()=>{
+    if(!G || G.phase==='ENDE' || G.phase==='PROLOG') return;
+    G.timer--;
+    refreshHUD();
+    if(G.timer===180) toast('⏰ Noch 3 Minuten!','bad');
+    if(G.timer===60)  toast('⏰ Noch 1 Minute!','bad');
+    if(G.timer<=0){
+      stopTimer();
+      finishCase(false,'timeout',0,15);
+    }
+  },1000);
+}
+function stopTimer(){ if(G_TIMER_INT){ clearInterval(G_TIMER_INT); G_TIMER_INT=null; } }
+
+/* ---------- HUD ---------- */
+function refreshHUD(){
+  if(!G){return;}
+  $('hudLang').textContent = G.xp.lang;
+  $('hudDed').textContent = G.xp.deduction;
+  $('hudStressV').textContent = G.stress;
+  $('caseNo').textContent = '#'+G.case;
+  document.body.classList.toggle('high-stress', G.stress>=80);
+  // portrait by stress
+  const p = G.stress>=80 ? '(╯°□°)╯' : (G.stress>=50 ? '(¬‿¬)' : '( •̀ᴗ•́ )و');
+  $('vogelPortrait').textContent = p;
+  // v2: Timer
+  const t = G.timer || 0;
+  const mm = String(Math.floor(t/60)).padStart(2,'0');
+  const ss = String(t%60).padStart(2,'0');
+  $('hudTimerV').textContent = mm+':'+ss;
+  const tEl = $('hudTimer');
+  tEl.classList.toggle('warn', t<=180 && t>60);
+  tEl.classList.toggle('crit', t<=60);
+}
+
+function addStress(n){ G.stress = Math.max(0, Math.min(100, G.stress+n)); refreshHUD(); }
+function addLangXP(n){ G.xp.lang += n; refreshHUD(); }
+function addDedXP(n){ G.xp.deduction += n; refreshHUD(); }
+
+/* ---------- SRS small helper ---------- */
+function maybeLearn(word){
+  if(!VOCAB[word]) return;
+  if(!META.vocabBox[word]) META.vocabBox[word]=1;
+  saveMeta();
+}
+function bumpSRS(word, correct){
+  if(!META.vocabBox[word]) META.vocabBox[word]=1;
+  if(correct){
+    META.vocabBox[word] = Math.min(5, META.vocabBox[word]+1);
+  } else {
+    META.vocabBox[word] = Math.max(1, META.vocabBox[word]-1);
+  }
+  saveMeta();
+}
+
+/* ---------- Case start ---------- */
+function startCase(n){
+  if(!CASES[n]){ toast('Kein weiterer Fall.','bad'); show('sc-title'); return; }
+  if(!G || G.character == null){ G = freshGame('amina', n); }
+  G.case = n;
+  G.phase='PROLOG';
+  // reset case-bound state but keep character & xp
+  G.notebook = { clues:[], suspects:{}, evidence:[] };
+  G.droppedAssignments = {};
+  G.timeline = [];
+  G.cooperation = {};
+  G.talkedTo = {};
+  G.confSel = [];
+  G.confTarget = null;
+  G.flags.startedAt = Date.now();
+  G.flags.perfektCorrect = 0;
+  G.flags.wrongDrops = 0;
+  G.flags.gameOversThisCase = 0;
+  G.flags.confrontStage = 0;
+  G.flags.confrontTries = 0;
+  G.flags.contradictionsUsed = [];
+  G.timer = (n===1?900:(n===2?720:600)); // Fall 1:15min, 2:12min, 3:10min
+  startTimer();
+  // initialize suspects
+  CASES[n].suspects.forEach(s=>{ G.notebook.suspects[s.id] = { score: s.start||0, dropped:[] }; G.cooperation[s.id]=undefined; });
+  // initialize cooperation per witness (separate map)
+  CASES[n].witnesses.forEach(w=>{ G.cooperation[w.id]=2; G.talkedTo[w.id]={askedTags:[], finished:false}; });
+  saveGame();
+  showProlog();
+}
+
+function showProlog(){
+  const c = CASES[G.case];
+  $('prologTitle').textContent = `Akte #${c.id}: ${c.title}`;
+  $('prologTxt').textContent = c.briefing.de;
+  $('prologAr').textContent = c.briefing.ar;
+  show('sc-prolog');
+  refreshHUD();
+}
+
+/* ---------- Crime scene ---------- */
+function enterCrimeScene(){
+  G.phase='TATORT';
+  const c = CASES[G.case];
+  $('sceneTitle').textContent = `Tatort: ${c.title}`;
+  $('sceneIntro').textContent = c.sceneIntro;
+  const scene = $('scene');
+  scene.innerHTML = '';
+  const ascii = el('div',{class:'ascii'}, c.scene.ascii);
+  scene.appendChild(ascii);
+  c.scene.hotspots.forEach(h=>{
+    const found = G.notebook.clues.includes(h.clue.tag);
+    const b = el('button',{class:'hot'+(found?' found':''), style:`left:${h.x};top:${h.y}`},
+      `<span class="dot"></span> ${h.label}`);
+    b.onclick = ()=>investigate(h);
+    scene.appendChild(b);
+  });
+  // bonus hint for Karim
+  if(G.character==='karim' && !G.flags.karimHinted){
+    G.flags.karimHinted = true;
+    setTimeout(()=>toast('Karim flüstert: "Achte auf den dunklen Punkt unten."','good'), 600);
+  }
+  $('clueCount').textContent = G.notebook.clues.length;
+  show('sc-scene');
+}
+
+function investigate(h){
+  const found = G.notebook.clues.includes(h.clue.tag);
+  openModal(`
+    <h2>🔎 ${h.label}</h2>
+    <p>${h.clue.de}</p>
+    <p lang="ar">${h.clue.ar}</p>
+    <div class="row">
+      ${found ? '<span class="chip green">Bereits notiert ✓</span>' : '<button class="btn primary" id="addClueBtn">📓 Ins Notizbuch</button>'}
+      <span class="spacer"></span>
+      <button class="btn ghost" onclick="closeModal()">Schließen</button>
+    </div>`);
+  if(!found){
+    document.getElementById('addClueBtn').onclick = ()=>{
+      G.notebook.clues.push(h.clue.tag);
+      G.notebook.evidence.push({ id:h.clue.tag, label:h.label.replace(/^\W+\s*/,'')+' · '+h.clue.de.split('.')[0], text:h.clue.de, match:h.clue.match||[] });
+      addDedXP(2);
+      // tiny vocab learning from German nouns
+      const m = h.clue.de.match(/\b(der|die|das)\s+\w+/g);
+      if(m) m.forEach(x=>maybeLearn(x));
+      $('clueCount').textContent = G.notebook.clues.length;
+      saveGame();
+      toast('Hinweis im Notizbuch.','good');
+      closeModal();
+      enterCrimeScene();
+    };
+  }
+}
+
+/* ---------- Witnesses ---------- */
+function goWitnesses(){
+  if(G.notebook.clues.length<2){ toast('Sammle zuerst Hinweise (≥2).','bad'); return; }
+  G.phase='ZEUGEN';
+  const c = CASES[G.case];
+  const w = $('witGrid'); w.innerHTML='';
+  c.witnesses.forEach(wit=>{
+    const tt = G.talkedTo[wit.id];
+    const remaining = wit.statements.length - (tt.askedTags||[]).length;
+    const card = el('div',{class:'card'});
+    card.innerHTML = `
+      <div class="row">
+        <span class="portrait">${wit.portrait}</span>
+        <div>
+          <h3 style="margin:0">${wit.name} <span class="muted">· ${wit.role}</span></h3>
+          <div class="muted">Kooperation: <b>${G.cooperation[wit.id]}</b>/10 · Aussagen offen: <b>${remaining}</b></div>
+        </div>
+        <span class="spacer"></span>
+        <button class="btn primary" ${remaining===0||tt.finished?'disabled':''}>Befragen</button>
+      </div>`;
+    card.querySelector('button').onclick = ()=>startTalk(wit.id);
+    w.appendChild(card);
+  });
+  show('sc-witlist');
+}
+
+function startTalk(id){
+  G.currentWit = id;
+  const wit = CASES[G.case].witnesses.find(x=>x.id===id);
+  $('talkTitle').textContent = `Befragung: ${wit.name}`;
+  $('witTag').textContent = wit.role;
+  $('coopV').textContent = G.cooperation[id];
+  $('talkLog').innerHTML = `<div class="bubble witness"><span class="portrait">${wit.portrait}</span><b>${wit.name}:</b><div class="typewriter">${wit.intro.de}</div><p lang="ar">${wit.intro.ar}</p></div>`;
+  renderTalkOpts();
+  show('sc-talk');
+}
+
+function renderTalkOpts(){
+  const wit = CASES[G.case].witnesses.find(x=>x.id===G.currentWit);
+  const tt = G.talkedTo[wit.id];
+  const opts = $('talkOpts'); opts.innerHTML='';
+  const remaining = wit.statements.filter(s=>!(tt.askedTags||[]).includes(s.tag));
+  if(G.cooperation[wit.id] < 0){
+    opts.innerHTML = `<div class="notice">Der/die Zeug:in bricht ab. <button class="btn small" onclick="endTalk()">OK</button></div>`;
+    tt.finished = true; saveGame(); return;
+  }
+  if(remaining.length===0){
+    opts.innerHTML = `<div class="notice">Keine offenen Aussagen mehr. <button class="btn small primary" onclick="endTalk()">Beenden</button></div>`;
+    return;
+  }
+  // pick first not-yet-asked: but offer ALL remaining as topic buttons
+  remaining.forEach((s, idx)=>{
+    const wrap = el('div',{class:'card'});
+    wrap.innerHTML = `<h3>Frage ${idx+1}: <span class="muted">${s.time}</span></h3>`;
+    const styles = [
+      {key:'1', stil:'direkt', label:'Direkt', cls:'danger', cost:'Kooperation −1'},
+      {key:'2', stil:'hoeflich', label:'Höflich', cls:'', cost:'Kooperation ±0'},
+      {key:'3', stil:'sehr', label:'Sehr höflich', cls:'primary', cost:'Kooperation +1, Sprach-XP'}
+    ];
+    styles.forEach(st=>{
+      const b = el('button',{class:'btn block '+st.cls,'data-key':st.key},
+        `<b>${st.label}</b> <span class="muted">(${st.cost})</span><br><span lang="de" dir="ltr">"${s.ask[st.stil]}"</span>`);
+      b.onclick = ()=>askWitness(wit.id, s, st.stil);
+      wrap.appendChild(b);
+    });
+    opts.appendChild(wrap);
+  });
+}
+
+function askWitness(witId, st, stil){
+  const wit = CASES[G.case].witnesses.find(x=>x.id===witId);
+  const tt = G.talkedTo[witId];
+  // Cooperation effects
+  if(stil==='direkt'){
+    G.cooperation[witId]-=1;
+    toast('Der Zeuge wird defensiv. 😠','bad');
+  } else if(stil==='hoeflich'){
+    toast('Höflich. Der Zeuge bleibt neutral.','');
+  } else if(stil==='sehr'){
+    G.cooperation[witId]+=1;
+    addLangXP(G.character==='amina'?2:1);
+    META.stats.politeAsks++;
+    if(META.stats.politeAsks>=10) unlock('polite_detective');
+    toast('Der Zeuge öffnet sich. 🙂','good');
+  }
+  $('coopV').textContent = G.cooperation[witId];
+  // v2: Coop < 0 → bricht ab
+  if(G.cooperation[witId] < 0){
+    const w = wit;
+    $('talkLog').appendChild(el('div',{class:'bubble witness'},
+      `<span class="portrait">(╬ಠ益ಠ)</span><b>${w.name}:</b><div class="witness-mood angry">"Ich sage Ihnen GAR NICHTS mehr! Auf Wiedersehen."</div><p lang="ar">"لن أقول لك شيئاً بعد الآن! وداعاً."</p>`));
+    G.talkedTo[witId].finished = true;
+    saveGame();
+    setTimeout(()=>endTalk(), 1800);
+    return;
+  }
+  saveMeta();
+
+  // append witness reply
+  const bubble = el('div',{class:'bubble witness'},
+    `<span class="portrait">${wit.portrait}</span><b>${wit.name}:</b>
+     <div class="typewriter" id="tw_${witId}_${st.tag}"></div>
+     <p lang="ar">${st.ar}</p>`);
+  $('talkLog').appendChild(bubble);
+  typewrite(`tw_${witId}_${st.tag}`, st.de);
+
+  // Perfekt-Detector modal
+  setTimeout(()=>perfektCheck(witId, st), 380);
+}
+
+function typewrite(id, text){
+  const t = document.getElementById(id); if(!t) return;
+  t.textContent=''; let i=0;
+  const tick = ()=>{
+    if(!document.body.contains(t)) return;
+    t.textContent = text.slice(0, ++i);
+    if(i<text.length) setTimeout(tick, 14);
+  };
+  tick();
+}
+
+function perfektCheck(witId, st){
+  // v2: Confidence-Markierung der letzten Bubble
+  const conf = (typeof st.confidence==='number') ? st.confidence : 1.0;
+  const lastBubble = $('talkLog').querySelector('.bubble.witness:last-child');
+  if(lastBubble){
+    if(conf < 0.5) lastBubble.classList.add('confidence-very-low');
+    else if(conf < 0.85) lastBubble.classList.add('confidence-low');
+  }
+  const correct = st.aux;
+  let freeHint = (G.character==='leila' && !G.flags.leilaUsed);
+  openModal(`
+    <h2>📚 Perfekt-Detektor</h2>
+    <p>Welches Hilfsverb gehört zu dieser Aussage?</p>
+    <div class="bubble"><b>"${st.de}"</b></div>
+    ${freeHint?`<p class="muted">Leila tippt dir: <b>${correct.toUpperCase()}</b> (Gratis-Hinweis)</p>`:''}
+    <div class="row">
+      <button class="btn primary" id="pHaben">haben</button>
+      <button class="btn primary" id="pSein">sein</button>
+      <span class="spacer"></span>
+      <button class="btn ghost" onclick="closeModal()">Überspringen</button>
+    </div>`);
+  if(freeHint) G.flags.leilaUsed=true;
+  // v2: Stress > 60 → Button-Reihenfolge gemischt (visueller Druck)
+  if(G.stress > 60){
+    const row = document.querySelector('.modal .row');
+    if(row && Math.random()<0.5){
+      const h=document.getElementById('pHaben'), se=document.getElementById('pSein');
+      if(h && se && h.parentNode===se.parentNode) row.insertBefore(se, h);
+    }
+  }
+  const finalize=(choice)=>{
+    if(choice===correct){
+      G.flags.perfektCorrect++; META.stats.perfektCorrect++; addLangXP(2);
+      toast('Richtig! ' + correct + '.','good');
+      if(G.flags.perfektCorrect>=20 || META.stats.perfektCorrect>=20) unlock('perfekt_pro');
+    } else {
+      addStress(8);
+      toast('Falsch — es ist '+correct+'.','bad');
+    }
+    saveMeta();
+    // Add to timeline + evidence
+    const tt = G.talkedTo[witId];
+    tt.askedTags.push(st.tag);
+    G.timeline.push({ time:st.time, witnessId:witId, witnessName:CASES[G.case].witnesses.find(w=>w.id===witId).name, tag:st.tag, text:st.de, conflict:false });
+    if(st.evidence){
+      // avoid duplicates
+      if(!G.notebook.evidence.find(e=>e.id===st.evidence.id))
+        G.notebook.evidence.push(Object.assign({}, st.evidence));
+    }
+    detectContradictions();
+    saveGame();
+    closeModal();
+    renderTalkOpts();
+  };
+  document.getElementById('pHaben').onclick=()=>finalize('haben');
+  document.getElementById('pSein').onclick =()=>finalize('sein');
+}
+
+function detectContradictions(){
+  const c = CASES[G.case];
+  const tags = new Set(G.timeline.map(t=>t.tag));
+  c.contradictions.forEach(([a,b,note])=>{
+    if(tags.has(a) && tags.has(b)){
+      G.timeline.forEach(t=>{ if(t.tag===a||t.tag===b) t.conflict=true; });
+      // grant evidence "contradiction"
+      const id = 'contra_'+a+'_'+b;
+      if(!G.notebook.evidence.find(e=>e.id===id)){
+        G.notebook.evidence.push({ id, label:'⚠ Widerspruch entdeckt', text:note, match:[a,b] });
+        addDedXP(4);
+        toast('Widerspruch erkannt!','good');
+      }
+    }
+  });
+}
+
+function endTalk(){
+  if(G.currentWit) G.talkedTo[G.currentWit].finished=true;
+  saveGame();
+  goWitnesses();
+}
+
+/* ---------- Notebook ---------- */
+function openNotebook(){
+  if(!G){ toast('Starte zuerst einen Fall.','bad'); return; }
+  const c = CASES[G.case];
+  const evList = G.notebook.evidence;
+  let evidenceHtml = evList.length? evList.map(e=>{
+    const assigned = isEvidenceAssigned(e.id);
+    return `<div class="clue ${assigned?'assigned':''}" draggable="true" data-eid="${e.id}" title="${e.text.replace(/"/g,'&quot;')}">
+      <b>${e.label}</b><br><span class="muted">${e.text}</span>
+    </div>`;
+  }).join('') : '<p class="muted">Noch keine Hinweise. Untersuche den Tatort.</p>';
+
+  let suspectsHtml = c.suspects.map(s=>{
+    const score = G.notebook.suspects[s.id].score;
+    const dropped = (G.notebook.suspects[s.id].dropped||[]).map(eid=>{
+      const e = G.notebook.evidence.find(x=>x.id===eid); return e?`<span class="dropped">${e.label}</span>`:'';
+    }).join('');
+    return `<div class="suspect" data-suspect="${s.id}">
+      <h4>${s.name} <span class="mono">${Math.max(0,Math.min(10,score))}/10</span></h4>
+      <div class="bar"><i style="width:${Math.max(0,Math.min(10,score))*10}%"></i></div>
+      <div class="tags">${dropped || '<span class="muted">Noch keine Zuordnungen.</span>'}</div>
+    </div>`;
+  }).join('');
+
+  openModal(`
+    <h2>📓 Notizbuch <span class="muted">/ Analyse</span></h2>
+    <div class="nb">
+      <div class="col">
+        <h3>Hinweise (${evList.length})</h3>
+        <div id="nbClues">${evidenceHtml}</div>
+      </div>
+      <div class="col">
+        <h3>Verdächtige</h3>
+        <div id="nbSuspects">${suspectsHtml}</div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <button class="btn" onclick="closeModal()">Schließen</button>
+      <span class="spacer"></span>
+      <button class="btn cog" onclick="closeModal();openTimeline()">⏱ Timeline</button>
+      <button class="btn primary" onclick="closeModal();goConfront()">⚖ Konfrontation</button>
+    </div>
+  `);
+  wireDragDrop();
+}
+
+function isEvidenceAssigned(eid){
+  for(const sid in G.notebook.suspects){
+    if((G.notebook.suspects[sid].dropped||[]).includes(eid)) return true;
+  }
+  return false;
+}
+
+function wireDragDrop(){
+  document.querySelectorAll('#nbClues .clue').forEach(cl=>{
+    cl.addEventListener('dragstart', e=>{
+      e.dataTransfer.setData('text/plain', cl.dataset.eid);
+      e.dataTransfer.effectAllowed='move';
+    });
+  });
+  document.querySelectorAll('#nbSuspects .suspect').forEach(sp=>{
+    sp.addEventListener('dragover', e=>{ e.preventDefault(); sp.classList.add('over'); });
+    sp.addEventListener('dragleave', ()=>sp.classList.remove('over'));
+    sp.addEventListener('drop', e=>{
+      e.preventDefault(); sp.classList.remove('over');
+      const eid = e.dataTransfer.getData('text/plain');
+      assignClueToSuspect(eid, sp.dataset.suspect, sp);
+    });
+  });
+}
+
+function assignClueToSuspect(eid, sid, spEl){
+  if(!eid||!sid) return;
+  const ev = G.notebook.evidence.find(x=>x.id===eid); if(!ev) return;
+  // already assigned?
+  if(isEvidenceAssigned(eid)){ toast('Hinweis bereits zugeordnet.'); return; }
+  const map = CASES[G.case].clueMap[eid] || {};
+  const delta = map[sid] || 0;
+  G.notebook.suspects[sid].dropped = G.notebook.suspects[sid].dropped || [];
+  G.notebook.suspects[sid].dropped.push(eid);
+  G.notebook.suspects[sid].score = (G.notebook.suspects[sid].score||0) + delta;
+  if(delta > 0){
+    addDedXP(3);
+    toast('Treffer! +'+delta+' Verdacht','good');
+  } else if(delta < 0){
+    addDedXP(1);
+    toast('Eher Entlastung ('+delta+').','good');
+  } else {
+    G.flags.wrongDrops++;
+    addStress(4);
+    spEl.classList.add('shake');
+    setTimeout(()=>spEl.classList.remove('shake'), 400);
+    toast('Diese Spur passt hier nicht.','bad');
+  }
+  saveGame();
+  // re-render notebook content
+  openNotebook();
+}
+
+/* ---------- Timeline ---------- */
+function openTimeline(){
+  if(!G){ toast('Starte zuerst einen Fall.','bad'); return; }
+  const items = G.timeline.slice().sort((a,b)=> a.time.localeCompare(b.time));
+  const ticksHtml = ['18:00','19:00','20:00','21:00','22:00','23:00','24:00'].map((t,i)=>{
+    return `<i class="tick" style="left:${i*100/6}%"><span>${t}</span></i>`;
+  }).join('');
+  const stmts = items.map(s=>{
+    const pos = timeToPercent(s.time);
+    return `<div style="position:relative">
+      <div class="stmt ${s.conflict?'conflict':''}" style="margin-left:${Math.max(0,pos-10)}%">
+        <span class="t">${s.time}</span> · <b>${s.witnessName}</b><br>
+        <span lang="de" dir="ltr">${s.text}</span>
+      </div>
+    </div>`;
+  }).join('') || '<p class="muted">Noch keine Aussagen.</p>';
+  openModal(`
+    <h2>⏱ Zeitstrahl <span class="muted">${CASES[G.case].title}</span></h2>
+    <p class="muted">Tatzeit: <b>${CASES[G.case].crimeTime}</b>. Rote Karten = Widerspruch.</p>
+    <div class="tl"><div class="axis">${ticksHtml}</div>${stmts}</div>
+    <div class="row"><button class="btn" onclick="closeModal()">Schließen</button></div>
+  `);
+}
+function timeToPercent(t){
+  const [h,m]=t.split(':').map(Number);
+  const mins = (h*60+m) - 18*60;
+  return Math.max(0, Math.min(100, mins/(6*60)*100));
+}
+
+/* ---------- Confrontation ---------- */
+function goConfront(){
+  if(!G){ toast('Starte zuerst einen Fall.','bad'); return; }
+  if(G.notebook.evidence.length < 3){ toast('Mindestens 3 Beweise sammeln.','bad'); return; }
+  G.phase='KONFRONTATION';
+  const c = CASES[G.case];
+  // suspects
+  const sw = $('confSusp'); sw.innerHTML='';
+  c.suspects.forEach(s=>{
+    const b = el('button',{class:'btn'+ (G.confTarget===s.id?' primary':'')}, `${s.name} <span class="muted">(${G.notebook.suspects[s.id].score})</span>`);
+    b.onclick = ()=>{ G.confTarget = s.id; goConfront(); };
+    sw.appendChild(b);
+  });
+  // evidence cards
+  const ec = $('confEv'); ec.innerHTML='';
+  G.notebook.evidence.forEach(e=>{
+    const sel = G.confSel.includes(e.id);
+    const unrel = e.unreliable ? ' confidence-low':'';
+    const warn = e.unreliable ? ' ⚠️':'';
+    const card = el('div',{class:'ev'+(sel?' sel':'')+unrel}, `<b>${e.label}${warn}</b><br><span class="muted">${e.text}</span>`);
+    card.onclick = ()=>{
+      const i = G.confSel.indexOf(e.id);
+      if(i>=0) G.confSel.splice(i,1);
+      else { if(G.confSel.length>=3){ toast('Maximal 3 Beweise.','bad'); return; } G.confSel.push(e.id); }
+      goConfront();
+    };
+    ec.appendChild(card);
+  });
+  $('evCount').textContent = `(${G.confSel.length}/3)`;
+  show('sc-conf');
+}
+
+function present(){
+  if(!G.confTarget){ toast('Wähle einen Verdächtigen.','bad'); return; }
+  if(G.confSel.length!==3){ toast('Genau 3 Beweise präsentieren.','bad'); return; }
+  const c = CASES[G.case];
+  let strength = 0;
+  G.confSel.forEach(eid=>{
+    const m = c.clueMap[eid]||{};
+    strength += (m[G.confTarget]||0);
+  });
+  const contrasUsed = G.confSel.filter(id=>id.startsWith('contra_')).length;
+  strength += contrasUsed*2;
+
+  const isCulprit = (G.confTarget === c.culprit);
+  const elapsedMin = Math.floor((Date.now() - G.flags.startedAt)/60000);
+  const targetName = (c.suspects.find(s=>s.id===G.confTarget)||{}).name || G.confTarget;
+
+  // v2: Eskalations-Stages
+  G.flags.confrontTries = (G.flags.confrontTries||0) + 1;
+  const stage = G.flags.confrontStage || 0;
+  const ec = $('confEv');
+  // Stage 0 + nicht stark genug → Täter streitet ab
+  if(stage===0 && strength < 7){
+    G.flags.confrontStage = 1;
+    G.confSel = [];
+    const stageDiv = el('div',{class:'confront-stage escalated'},
+      `<b>${targetName}:</b> "Das beweist GAR NICHTS! Sie haben keine Ahnung. Ich war es nicht!"<br>
+       <p lang="ar" style="margin-top:6px">"هذا لا يثبت شيئاً! ليس لديك أي فكرة. لم أكن أنا!"</p>
+       <div class="muted">Wähle 3 NEUE Beweise und präsentiere erneut. (Versuch ${G.flags.confrontTries}/3)</div>`);
+    if(ec) ec.parentNode.insertBefore(stageDiv, ec);
+    addStress(8);
+    goConfront();
+    return;
+  }
+  // Stage 1 + immer noch zu schwach (aber > 4) → "Moment..."
+  if(stage===1 && strength>=4 && strength<7 && G.flags.confrontTries<3){
+    G.flags.confrontStage = 2;
+    G.confSel = [];
+    const stageDiv = el('div',{class:'confront-stage escalated'},
+      `<b>${targetName}:</b> "Moment... das... das war anders! Lassen Sie mich erklären..."<br>
+       <p lang="ar" style="margin-top:6px">"لحظة... هذا... كان مختلفاً! دعني أشرح..."</p>
+       <div class="muted">Letzte Chance — präsentiere den entscheidenden Beweis.</div>`);
+    if(ec) ec.parentNode.insertBefore(stageDiv, ec);
+    addStress(5);
+    goConfront();
+    return;
+  }
+
+  if(strength>=7 && isCulprit){
+    // WIN
+    let endKey='standard';
+    const allCoop = c.witnesses.every(w=>G.cooperation[w.id]>=3);
+    if(allCoop && G.stress<40) endKey='golden';
+    // case 3 secret
+    if(c.id===3 && META.casesCompleted.includes(1) && META.casesCompleted.includes(2)) endKey='secret';
+    finishCase(true, endKey, strength, elapsedMin);
+  } else {
+    finishCase(false, 'fail', strength, elapsedMin);
+  }
+}
+
+function finishCase(won, endKey, strength, elapsedMin){
+  stopTimer();
+  const c = CASES[G.case];
+  if(endKey==='timeout'){ toast('⏰ Zeit abgelaufen!','bad'); }
+  // achievements
+  if(won){
+    if(c.id===1) unlock('first_case');
+    if(elapsedMin<10) unlock('speedrun');
+    if(G.flags.wrongDrops===0) unlock('no_mistakes');
+    if(c.witnesses.every(w=>G.cooperation[w.id]>=3)) unlock('all_witnesses');
+    if(!META.casesCompleted.includes(c.id)) META.casesCompleted.push(c.id);
+    if(c.id===3 && G.flags.gameOversThisCase===0) unlock('flawless');
+    if([1,2,3].every(x=>META.casesCompleted.includes(x))) unlock('triple_solve');
+    if(!META.seenEndings.includes(endKey)) META.seenEndings.push(endKey);
+    if(!META.seenEndings.includes('win')) META.seenEndings.push('win');
+  } else {
+    G.flags.gameOversThisCase++;
+    if(!META.seenEndings.includes('fail')) META.seenEndings.push('fail');
+  }
+  // ending collector
+  if(['win','fail','secret'].every(k=>META.seenEndings.includes(k))) unlock('ending_collector');
+  // polyglot
+  const box5 = Object.values(META.vocabBox).filter(v=>v===5).length;
+  if(box5>=60) unlock('polyglot_krimi');
+
+  saveMeta();
+
+  // Build end screen
+  let body='';
+  if(won){
+    showStamp('GELÖST');
+    const txt = c.winText[endKey] || c.winText.standard;
+    body = `<div class="bubble vogel"><span class="portrait">(◕‿◕)</span><b>Vogel:</b><div>${txt}</div></div>`;
+    body += `<div class="row">
+      <span class="chip green">Beweis-Stärke: ${strength}</span>
+      <span class="chip blue">Zeit: ${elapsedMin} Min</span>
+      <span class="chip cog">Endung: ${endKey.toUpperCase()}</span>
+    </div>`;
+  } else {
+    showStamp('FREISPRUCH', true);
+    body = `<div class="bubble vogel"><span class="portrait">(╯°□°)╯</span><b>Vogel:</b><div>${c.failText}</div></div>`;
+    body += `<div class="row">
+      <span class="chip red">Beweis-Stärke nur ${strength}/7</span>
+      <button class="btn primary" onclick="retryCase()">↻ Erneut versuchen</button>
+    </div>`;
+  }
+  $('endTitle').textContent = won? `🏅 Fall gelöst — ${c.title}` : `💔 Game Over — ${c.title}`;
+  $('endBody').innerHTML = body;
+  $('btnNext').classList.toggle('hidden', !won);
+  G.phase = won?'WIN':'FAIL';
+  saveGame();
+  show('sc-end');
+}
+
+function retryCase(){
+  G.flags.retried = true;
+  // reset only what was wrong: keep clues+evidence+timeline
+  G.confSel=[]; G.confTarget=null;
+  goConfront();
+}
+
+function nextCase(){
+  if(CASES[G.case+1]){ startCase(G.case+1); }
+  else { toast('Du hast alle Fälle gelöst! 🎉','good'); show('sc-title'); }
+}
+
+/* ---------- Stamp ---------- */
+function showStamp(text, bad){
+  const s = $('stamp'); const t = $('stampText');
+  t.textContent = text;
+  t.style.color = bad? '#000' : 'var(--red)';
+  t.style.borderColor = bad? '#000' : 'var(--red)';
+  s.classList.add('on');
+  setTimeout(()=>s.classList.remove('on'), 2200);
+}
+
+/* ---------- Modal ---------- */
+function openModal(html){
+  $('modalBody').innerHTML = html;
+  $('modal').classList.add('on');
+}
+function closeModal(){ $('modal').classList.remove('on'); }
+
+/* ---------- Menu ---------- */
+function openMenu(){
+  openModal(`
+    <h2>☰ Menü</h2>
+    <div class="row" style="flex-direction:column;align-items:stretch">
+      <button class="btn block" onclick="closeModal();show('sc-title')">🏠 Hauptmenü</button>
+      <button class="btn block" onclick="closeModal();show('sc-howto')">❓ Anleitung</button>
+      <button class="btn block" onclick="closeModal();show('sc-ach')">🏆 Erfolge</button>
+      <button class="btn block" onclick="closeModal();show('sc-vocab')">📚 Wortschatz</button>
+      <button class="btn block ghost" onclick="if(confirm('Speicherstand wirklich löschen?')){localStorage.removeItem('${SAVE_KEY}');location.reload();}">🗑 Speicher löschen</button>
+      <button class="btn block" onclick="closeModal()">Schließen</button>
+    </div>`);
+}
+
+/* ---------- Achievements ---------- */
+function unlock(id){
+  if(META.achievements.includes(id)) return;
+  META.achievements.push(id);
+  saveMeta();
+  const def = ACH_DEFS.find(a=>a.id===id);
+  toast('🏆 Erfolg: '+(def?def.name:id),'good');
+  renderAchievements();
+}
+function renderAchievements(){
+  const g = $('achGrid'); if(!g) return; g.innerHTML='';
+  ACH_DEFS.forEach(a=>{
+    const un = META.achievements.includes(a.id);
+    const d = el('div',{class:'a '+(un?'un':'lock')});
+    d.innerHTML = `<span class="rar">${a.rar}</span><b>${a.name}</b><div>${un?a.desc:('🔒 '+a.hint)}</div>`;
+    g.appendChild(d);
+  });
+}
+
+/* ---------- Vocab UI ---------- */
+function renderVocab(){
+  const g = $('vocabList'); if(!g) return; g.innerHTML='';
+  Object.keys(VOCAB).sort().forEach(w=>{
+    const box = META.vocabBox[w]||0;
+    const d = el('div',{class:'a '+(box>=5?'un':'')});
+    d.innerHTML = `<b>${w}</b><div lang="ar">${VOCAB[w]}</div><div class="muted mono">📦 ${box}/5</div>`;
+    g.appendChild(d);
+  });
+}
+
+/* ---------- Start ---------- */
+init();
+refreshHUD();
+
+/* === v2: Aussagen kombinieren (Widerspruch triggern) === */
+function openCombine(){
+  if(!G || !G.timeline.length){ toast('Noch keine Aussagen gesammelt.','bad'); return; }
+  const opts = G.timeline.map((t,i)=>`<option value="${i}">${t.time} · ${t.witnessName}: ${t.text.slice(0,55)}…</option>`).join('');
+  openModal(`
+    <h2>⚡ Aussagen kombinieren</h2>
+    <p class="muted">Wähle zwei Aussagen, die sich widersprechen könnten. <span lang="ar">اختر إفادتين قد تتعارضان.</span></p>
+    <div class="contra-combine">
+      <div><b>Aussage A:</b><br><select id="cmbA" style="width:100%">${opts}</select></div>
+      <div style="margin-top:8px"><b>Aussage B:</b><br><select id="cmbB" style="width:100%">${opts}</select></div>
+    </div>
+    <div class="row">
+      <button class="btn primary" id="cmbDo">Konfrontieren!</button>
+      <button class="btn ghost" onclick="closeModal()">Abbrechen</button>
+    </div>`);
+  $('cmbDo').onclick = ()=>{
+    const a = G.timeline[+$('cmbA').value], b = G.timeline[+$('cmbB').value];
+    if(!a || !b || a===b){ toast('Wähle zwei verschiedene Aussagen.','bad'); return; }
+    const c = CASES[G.case];
+    const hit = (c.contradictions||[]).find(([x,y])=> (x===a.tag && y===b.tag) || (x===b.tag && y===a.tag));
+    if(hit){
+      const id = 'contra_'+hit[0]+'_'+hit[1];
+      if(!G.notebook.evidence.find(e=>e.id===id)){
+        G.notebook.evidence.push({id, label:'⚡ Widerspruch (manuell gefunden)', text:hit[2], match:[hit[0],hit[1]]});
+        addDedXP(6); addLangXP(2);
+        // verdacht des betroffenen zeugen sinkt, falls er der lügner ist
+        toast('🔥 WIDERSPRUCH! Beweis im Notizbuch.','good');
+      } else { toast('Widerspruch bereits bekannt.','bad'); }
+      // markiere beide timeline-einträge
+      a.conflict = true; b.conflict = true;
+      saveGame();
+      closeModal();
+    } else {
+      toast('Kein Widerspruch erkennbar. (−2 Stress-Hinweis)','bad');
+      addStress(4);
+    }
+  };
+}
+
+/* === HUD shim: drive stress bar fill + XP rings === */
+(function(){
+  function syncHud(){
+    try{
+      var s = parseInt(document.getElementById('hudStressV').textContent,10)||0;
+      var fill = document.getElementById('stressFill');
+      if(fill) fill.style.width = Math.max(0,Math.min(100,s))+'%';
+      var hs = document.getElementById('hudStress');
+      if(hs){
+        hs.classList.toggle('warn', s>=60 && s<80);
+        hs.classList.toggle('crit', s>=80);
+      }
+      var lang = parseInt(document.getElementById('hudLang').textContent,10)||0;
+      var ded  = parseInt(document.getElementById('hudDed').textContent,10)||0;
+      var C = 2*Math.PI*18; // ~113
+      function setRing(id, val, max){
+        var el = document.getElementById(id); if(!el) return;
+        var pct = Math.max(0,Math.min(1, val/max));
+        el.setAttribute('stroke-dasharray', C);
+        el.setAttribute('stroke-dashoffset', C*(1-pct));
+      }
+      setRing('ringLang', lang, 200);
+      setRing('ringDed',  ded,  200);
+      // High-stress class on body also already toggled by v2 JS via document.body.classList.toggle('high-stress',...).
+    }catch(e){}
+  }
+  // Observe text changes via MutationObserver on the HUD
+  var hud = document.getElementById('hud');
+  if(hud && window.MutationObserver){
+    var mo = new MutationObserver(syncHud);
+    mo.observe(hud, {subtree:true, childList:true, characterData:true});
+  }
+  // Also patch a few likely setter calls by polling lightly (cheap, no animation cost)
+  setInterval(syncHud, 500);
+  syncHud();
+})();
+
+
+
+</script>
+</body>
+</html>
